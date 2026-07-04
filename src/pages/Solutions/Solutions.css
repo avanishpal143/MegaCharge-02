@@ -1,0 +1,20 @@
+/**
+ * ========================================
+ * Solutions Page Styles
+ * Purpose:
+ * Styles tabs, grid containers, and list blocks
+ * for charging segments.
+ *
+ * Developer Notes:
+ * Incorporates subtle gradients.
+ *
+ * ========================================
+ */
+
+/* =====================================
+   Solutions Page Layout
+===================================== */
+.solutions-page-container {
+  background-image: radial-gradient(circle at 20% 20%, rgba(29, 185, 84, 0.02), transparent 45%),
+                    radial-gradient(circle at 80% 80%, rgba(255, 107, 53, 0.01), transparent 50%);
+}

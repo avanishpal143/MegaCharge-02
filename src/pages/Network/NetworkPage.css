@@ -1,0 +1,19 @@
+/**
+ * ========================================
+ * Network Page Styles
+ * Purpose:
+ * Styles station directory grids.
+ *
+ * Developer Notes:
+ * Integrates search input transitions.
+ *
+ * ========================================
+ */
+
+/* =====================================
+   Network Layout
+===================================== */
+.network-page-container {
+  background-image: radial-gradient(circle at 50% 20%, rgba(29, 185, 84, 0.02), transparent 45%),
+                    radial-gradient(circle at 10% 80%, rgba(255, 107, 53, 0.01), transparent 45%);
+}

@@ -1,0 +1,24 @@
+/**
+ * ========================================
+ * Franchise Page Styles
+ * Purpose:
+ * Styles inputs, selectors, and submit button
+ * states for partnership.
+ *
+ * Developer Notes:
+ * Integrates focus outline transitions.
+ *
+ * ========================================
+ */
+
+/* =====================================
+   Franchise Page Layout
+===================================== */
+.franchise-page-container {
+  background-image: radial-gradient(circle at 10% 30%, rgba(255, 107, 53, 0.01), transparent 45%),
+                    radial-gradient(circle at 90% 70%, rgba(29, 185, 84, 0.02), transparent 45%);
+}
+
+.franchise-page-container select {
+  cursor: pointer;
+}

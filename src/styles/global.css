@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+@import './variables.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/**
+ * ========================================
+ * MegaCharge Global Stylesheet
+ * Purpose:
+ * Configures font rendering, scroll inertia,
+ * glassmorphic base layers, and transitions.
+ *
+ * Developer Notes:
+ * Uses Lenis smooth scrolling container logic.
+ *
+ * ========================================
+ */
+
+/* =====================================
+   Base Elements Setup
+===================================== */
+html {
+  scroll-behavior: auto; /* Required for Lenis smooth scroll */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-primary);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* =====================================
+   Custom Scrollbar
+===================================== */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0e2949;
+  border-radius: 5px;
+  border: 2px solid var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-green);
+}
+
+/* =====================================
+   Lenis Smooth Scrolling Classes
+===================================== */
+.lenis {
+  height: auto;
+}
+
+.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* =====================================
+   Premium Glassmorphism Class
+===================================== */
+.glass-panel {
+  background: var(--color-card-bg);
+  backdrop-filter: var(--backdrop-blur-val);
+  -webkit-backdrop-filter: var(--backdrop-blur-val);
+  border: 1px solid var(--color-card-border);
+  box-shadow: var(--shadow-glass);
+}
+
+.glass-panel-hover:hover {
+  border-color: rgba(29, 185, 84, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(29, 185, 84, 0.05), var(--shadow-glass);
+  transform: translateY(-4px);
+}
+
+/* =====================================
+   Typography & Typography Utilities
+===================================== */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.text-gradient-green {
+  background: linear-gradient(135deg, #ffffff 0%, var(--color-green) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-orange {
+  background: linear-gradient(135deg, #ffffff 0%, var(--color-orange) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* =====================================
+   Global Animations & Interactive Components
+===================================== */
+.premium-btn {
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+  z-index: 1;
+}
+
+.premium-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: 0.5s;
+  z-index: -1;
+}
+
+.premium-btn:hover::before {
+  left: 100%;
+}

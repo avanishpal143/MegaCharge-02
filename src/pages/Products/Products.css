@@ -1,0 +1,20 @@
+/**
+ * ========================================
+ * Products Page Styles
+ * Purpose:
+ * Styles tab headers, technical tables, and
+ * product visual blocks.
+ *
+ * Developer Notes:
+ * Uses transparent backdrops for list hover.
+ *
+ * ========================================
+ */
+
+/* =====================================
+   Product Container Highlights
+===================================== */
+.products-page-container {
+  background-image: radial-gradient(circle at 80% 20%, rgba(29, 185, 84, 0.02), transparent 40%),
+                    radial-gradient(circle at 20% 80%, rgba(255, 107, 53, 0.02), transparent 45%);
+}

@@ -1,0 +1,23 @@
+/**
+ * ========================================
+ * Careers Page Styles
+ * Purpose:
+ * Styles active role listings and CV inputs.
+ *
+ * Developer Notes:
+ * Integrates input border highlight states.
+ *
+ * ========================================
+ */
+
+/* =====================================
+   Careers Layout
+===================================== */
+.careers-page-container {
+  background-image: radial-gradient(circle at 10% 20%, rgba(29, 185, 84, 0.02), transparent 45%),
+                    radial-gradient(circle at 90% 80%, rgba(255, 107, 53, 0.01), transparent 45%);
+}
+
+.careers-page-container select {
+  cursor: pointer;
+}

@@ -1,0 +1,42 @@
+/**
+ * ========================================
+ * Footer Styles
+ * Purpose:
+ * Provides transitions, list spacings,
+ * and column hover animations for the footer.
+ *
+ * Developer Notes:
+ * Uses custom opacity values to emphasize text.
+ *
+ * ========================================
+ */
+
+/* =====================================
+   Footer Base Layout
+===================================== */
+.footer-container {
+  background-color: var(--color-dark);
+}
+
+.footer-link {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: var(--transition-fast);
+  display: inline-block;
+}
+
+.footer-link:hover {
+  color: var(--color-green);
+  transform: translateX(3px);
+}
+
+/* =====================================
+   Newsletter Accent Styles
+===================================== */
+.footer-container input::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.footer-container input:focus {
+  box-shadow: 0 0 10px rgba(29, 185, 84, 0.15);
+}

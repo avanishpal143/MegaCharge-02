@@ -1,0 +1,19 @@
+/**
+ * ========================================
+ * Projects Page Styles
+ * Purpose:
+ * Styles project grid layout and borders.
+ *
+ * Developer Notes:
+ * Uses structural padding and grid parameters.
+ *
+ * ========================================
+ */
+
+/* =====================================
+   Projects Layout
+===================================== */
+.projects-page-container {
+  background-image: radial-gradient(circle at 10% 20%, rgba(29, 185, 84, 0.02), transparent 45%),
+                    radial-gradient(circle at 90% 80%, rgba(255, 107, 53, 0.01), transparent 45%);
+}
