@@ -1,14 +1,3 @@
-/**
- * ========================================
- * Franchise Page Component
- * Purpose:
- * Renders the partner program guidelines,
- * business models (FOCO/FOLO), investment math,
- * and the official print-ready signage asset pack.
- *
- * ========================================
- */
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import './FranchisePage.css';
@@ -124,7 +113,7 @@ const FranchisePage = () => {
       title: "Floor Bay Stencil (Asset 05)",
       dimensions: "2.5 m × 5.0 m",
       material: "Thermoplastic Paint System",
-      finish: "Green (#1DB954) reflective additive",
+      finish: "Green reflective additive",
       dpi: "Vector Paths, Line width 100 mm",
       header: "EV ONLY parking layout marker",
       tagline: "Reflective Low-Light Visibility Stencil",
@@ -139,24 +128,25 @@ const FranchisePage = () => {
   ];
 
   return (
-    <div className="franchise-page-container overflow-hidden pt-28 pb-20 px-6">
+    <div className="franchise-page-container bg-slate-50 min-h-screen overflow-hidden">
       
-      {/* HEADER SECTION */}
-      <section className="max-w-7xl mx-auto mb-20 text-center">
-        <span className="section-label mb-4">
-          🤝 CORPORATE ALLIANCES
-        </span>
-        <h1 className="text-white text-4xl sm:text-5xl lg:text-7xl font-extrabold font-poppins leading-none tracking-tight">
-          Launch a MegaCharge <br />
-          <span className="text-gradient-green">Franchise Hub</span>
-        </h1>
-        <p className="text-megacharge-text-secondary text-sm sm:text-base leading-relaxed max-w-3xl mx-auto mt-6">
-          Secure a vital position in India's interstate highways and metro transportation grid. Own a profitable CPO segment with structured technical deployment backing from **Mega Nirman & Industries Ltd (MNIL)**.
-        </p>
+      {/* HEADER SECTION (DARK GRADIENT) */}
+      <section className="w-full bg-[#0B132B] pt-32 pb-20 px-6 text-center text-white border-b border-slate-800 relative">
+        <div className="absolute inset-0 bg-gradient-radial from-[#00B4D8] to-transparent opacity-10 blur-3xl pointer-events-none" />
+        
+        <div className="max-w-7xl mx-auto relative z-10">
+          <h1 className="text-white text-4xl sm:text-5xl lg:text-7xl font-extrabold font-poppins leading-none tracking-tight">
+            EV Charger Rentals <br />
+            <span className="text-gradient-green">& Partner Models</span>
+          </h1>
+          <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-3xl mx-auto mt-6">
+            Get a premium charging station installed on your commercial property. Partner with MegaCharge, backed by the industrial legacy of **Mega Nirman & Industries Ltd (MNIL)**, and choose a lease layout that works for you.
+          </p>
+        </div>
       </section>
 
-      {/* BUSINESS MODELS */}
-      <section className="max-w-7xl mx-auto mb-32">
+      {/* RENTAL / BUSINESS MODELS */}
+      <section className="max-w-7xl mx-auto py-24 px-6">
         <motion.div 
           variants={staggerContainer}
           initial="initial"
@@ -167,99 +157,97 @@ const FranchisePage = () => {
           {/* FOCO CARD */}
           <motion.div 
             variants={fadeInUp}
-            className="premium-glass-card p-10 rounded-3xl border border-megacharge-border flex flex-col justify-between"
+            className="premium-glass-card p-10 rounded-3xl border border-slate-200 bg-white shadow-sm flex flex-col justify-between"
           >
             <div>
               <div className="flex justify-between items-center mb-8">
-                <span className="text-megacharge-green text-xs font-extrabold uppercase tracking-widest bg-megacharge-green bg-opacity-5 border border-megacharge-green border-opacity-30 px-4 py-1.5 rounded-full">
-                  FOCO Model
+                <span className="text-[#00B4D8] text-xs font-extrabold uppercase tracking-widest bg-[#00B4D8] bg-opacity-5 border border-[#00B4D8] border-opacity-30 px-4 py-1.5 rounded-full">
+                  FOCO Rental Model
                 </span>
-                <span className="text-megacharge-text-secondary text-xs font-mono">Franchise Owned · Company Operated</span>
+                <span className="text-slate-500 text-xs font-mono">Franchise Owned · Company Operated</span>
               </div>
-              <h3 className="text-white text-3xl font-extrabold mb-4">Hands-Off Yield Payouts</h3>
-              <p className="text-megacharge-text-secondary text-sm leading-relaxed mb-8">
-                Invest the capital and nominate a viable parking footprint. MegaCharge manages hardware allocation, substation permissions, grid connectivity setup, remote software repairs, billing operations, and customer support. Receive stable monthly base lease payouts or direct charging revenue cuts.
+              <h3 className="text-slate-900 text-3xl font-extrabold mb-4">Hands-Off Yield Payouts</h3>
+              <p className="text-slate-600 text-sm leading-relaxed mb-8">
+                Rent out your land or parking space to MegaCharge. We manage the charger hardware supply, utility approvals, installation, cloud software billing, remote maintenance, and 24x7 customer support. You receive steady monthly rental lease payments with zero operational stress.
               </p>
-              <ul className="flex flex-col gap-3 text-xs text-megacharge-text-secondary font-mono mb-8">
+              <ul className="flex flex-col gap-3 text-xs text-slate-600 font-mono mb-8">
                 <li className="flex items-center gap-2">&bull; Minimum Space: 2–4 parking bays</li>
-                <li className="flex items-center gap-2">&bull; Ideal Sites: Highways, hypermarkets, mall side-bays</li>
-                <li className="flex items-center gap-2">&bull; Site Uptime: 100% managed by MegaCharge support</li>
+                <li className="flex items-center gap-2">&bull; Ideal Sites: Highway hotels, food malls, tech parks</li>
+                <li className="flex items-center gap-2">&bull; Maintenance: 100% managed by MegaCharge team</li>
               </ul>
             </div>
-            <a href="#enquiry-form" className="btn-premium-outline text-white text-center text-xs font-bold py-4 rounded-full transition-all duration-300 block">
-              Apply for FOCO Program &rarr;
+            <a href="#enquiry-form" className="btn-premium-green text-white text-center text-xs font-bold py-4 rounded-full transition-all duration-300 block">
+              Host a Station &rarr;
             </a>
           </motion.div>
 
           {/* FOLO CARD */}
           <motion.div 
             variants={fadeInUp}
-            className="premium-glass-card p-10 rounded-3xl border border-megacharge-border flex flex-col justify-between premium-glass-card-orange"
+            className="premium-glass-card p-10 rounded-3xl border border-slate-200 bg-white shadow-sm flex flex-col justify-between"
           >
             <div>
               <div className="flex justify-between items-center mb-8">
-                <span className="text-megacharge-orange text-xs font-extrabold uppercase tracking-widest bg-megacharge-orange bg-opacity-5 border border-megacharge-orange border-opacity-30 px-4 py-1.5 rounded-full">
-                  FOLO Model
+                <span className="text-[#FF6B35] text-xs font-extrabold uppercase tracking-widest bg-[#FF6B35] bg-opacity-5 border border-[#FF6B35] border-opacity-30 px-4 py-1.5 rounded-full">
+                  FOLO Rental Model
                 </span>
-                <span className="text-megacharge-text-secondary text-xs font-mono">Franchise Owned · Locally Operated</span>
+                <span className="text-slate-500 text-xs font-mono">Franchise Owned · Locally Operated</span>
               </div>
-              <h3 className="text-white text-3xl font-extrabold mb-4">Active Operator Margins</h3>
-              <p className="text-megacharge-text-secondary text-sm leading-relaxed mb-8">
-                Retain full operational authority. You purchase the Level 3 DC rapid rectifiers from MegaCharge, manage site operators, and set localized margins. MegaCharge configures our OCPP 1.6 SaaS client, manages cloud billing pathways, and lists your nodes on digital mapping directories globally.
+              <h3 className="text-slate-900 text-3xl font-extrabold mb-4">Active Operator Margins</h3>
+              <p className="text-slate-600 text-sm leading-relaxed mb-8">
+                Rent the chargers directly from MegaCharge and manage the local station operations on your property. You get complete access to the cloud OCPP 1.6 SaaS client dashboard, control over local pricing, and customer billing pathways. Perfect for gas station owners and expressways.
               </p>
-              <ul className="flex flex-col gap-3 text-xs text-megacharge-text-secondary font-mono mb-8">
+              <ul className="flex flex-col gap-3 text-xs text-slate-600 font-mono mb-8">
                 <li className="flex items-center gap-2">&bull; Minimum Space: 3–6 highway parking bays</li>
-                <li className="flex items-center gap-2">&bull; Ideal Sites: Expressway gas stations, logistics transit nodes</li>
-                <li className="flex items-center gap-2">&bull; Software License: Direct CPO dashboard privileges</li>
+                <li className="flex items-center gap-2">&bull; Ideal Sites: Petrol pumps, transit depots, logistics hubs</li>
+                <li className="flex items-center gap-2">&bull; Software: Direct CPO portal telemetry access</li>
               </ul>
             </div>
-            <a href="#enquiry-form" className="btn-premium-outline text-white text-center text-xs font-bold py-4 rounded-full transition-all duration-300 block">
-              Apply for FOLO Program &rarr;
+            <a href="#enquiry-form" className="btn-premium-green text-white text-center text-xs font-bold py-4 rounded-full transition-all duration-300 block">
+              Rent a Charger &rarr;
             </a>
           </motion.div>
         </motion.div>
       </section>
 
       {/* INVESTMENT & PAYBACK METRICS */}
-      <section className="max-w-7xl mx-auto mb-32 bg-megacharge-card bg-opacity-40 border border-megacharge-border p-8 md:p-16 rounded-3xl grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <section className="max-w-7xl mx-auto mb-24 bg-white border border-slate-200 p-8 md:p-16 rounded-3xl shadow-sm grid grid-cols-1 lg:grid-cols-3 gap-12 text-slate-900">
         <div className="lg:col-span-1 flex flex-col justify-center">
-          <span className="text-megacharge-green text-xs font-bold uppercase tracking-wider">Financial Modeling</span>
-          <h3 className="text-white text-3xl font-extrabold mt-2 mb-4 leading-tight">Projected Investment Yield</h3>
-          <p className="text-megacharge-text-secondary text-xs sm:text-sm leading-relaxed">
+          <h3 className="text-slate-900 text-3xl font-extrabold mb-4 leading-tight">Projected Rental Returns</h3>
+          <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
             Baseline figures are calculated for a standard dual-charger highway station layout (120 kW dual-gun DC Fast Charger). Projections align with MNIL historical highway grid analytics.
           </p>
         </div>
 
         <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-6">
-          <div className="p-6 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-megacharge-border">
-            <span className="text-megacharge-text-secondary text-[11px] block uppercase tracking-wider mb-2 font-mono">Estimated CapEx</span>
-            <span className="text-white text-xl font-bold font-poppins font-mono">₹12 - ₹15 Lakhs</span>
-            <p className="text-megacharge-text-secondary text-[11px] mt-3 leading-relaxed">Includes dual CCS2 DC charger hardware, civil grid works, and branding signage pack.</p>
+          <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200">
+            <span className="text-slate-500 text-[11px] block uppercase tracking-wider mb-2 font-mono">Monthly Base Rent</span>
+            <span className="text-slate-900 text-xl font-bold font-poppins font-mono">₹25K - ₹50K</span>
+            <p className="text-slate-600 text-[11px] mt-3 leading-relaxed">Fixed lease payouts depending on space size, highway traffic density, and electricity grid supply access.</p>
           </div>
-          <div className="p-6 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-megacharge-border">
-            <span className="text-megacharge-text-secondary text-[11px] block uppercase tracking-wider mb-2 font-mono">Gross Margin</span>
-            <span className="text-megacharge-green text-xl font-bold font-poppins font-mono">₹5.5 - ₹7.0 / kWh</span>
-            <p className="text-megacharge-text-secondary text-[11px] mt-3 leading-relaxed">Dispense profit margin derived after subtracting local utility electricity tariffs.</p>
+          <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200">
+            <span className="text-slate-500 text-[11px] block uppercase tracking-wider mb-2 font-mono">Revenue Share</span>
+            <span className="text-[#00B4D8] text-xl font-bold font-poppins font-mono">10% - 18%</span>
+            <p className="text-slate-600 text-[11px] mt-3 leading-relaxed">Percentage of gross session revenues paid out to the site host, calculated and disbursed monthly.</p>
           </div>
-          <div className="p-6 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-megacharge-border">
-            <span className="text-megacharge-text-secondary text-[11px] block uppercase tracking-wider mb-2 font-mono">Payback Period</span>
-            <span className="text-white text-xl font-bold font-poppins font-mono">18 - 24 Months</span>
-            <p className="text-megacharge-text-secondary text-[11px] mt-3 leading-relaxed">Calculated on 6 average vehicle charge sessions per charger every 24 hours.</p>
+          <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200">
+            <span className="text-slate-500 text-[11px] block uppercase tracking-wider mb-2 font-mono">Contract Term</span>
+            <span className="text-slate-900 text-xl font-bold font-poppins font-mono">3 - 5 Years</span>
+            <p className="text-slate-600 text-[11px] mt-3 leading-relaxed">Standard renewable rental agreement with guaranteed hardware upgrades and maintenance intervals.</p>
           </div>
         </div>
       </section>
 
-      {/* BRAND IDENTITY & SIGNAGE SYSTEM KIT (NEW DETAILED SECTION FROM ASSET PPTX) */}
-      <section className="max-w-7xl mx-auto mb-32">
+      {/* BRAND IDENTITY & SIGNAGE SYSTEM KIT */}
+      <section className="max-w-7xl mx-auto mb-24 px-6 bg-transparent">
         <motion.div 
           {...fadeInUp}
           className="text-center max-w-3xl mx-auto mb-20"
         >
-          <span className="section-label mb-4">🎨 BRANDING IDENTITY</span>
-          <h2 className="text-white text-4xl sm:text-5xl font-extrabold leading-tight">
+          <h2 className="text-slate-900 text-4xl sm:text-5xl font-extrabold leading-tight">
             Print-Ready Signage & Site Identity Pack
           </h2>
-          <p className="text-megacharge-text-secondary text-sm sm:text-base leading-relaxed mt-4">
+          <p className="text-slate-600 text-sm leading-relaxed mt-4">
             Every MegaCharge station setup is equipped with standardized, print-ready signage guides (Doc No: BAP-MC-001 Rev 02) to build user trust and ensure absolute safety.
           </p>
         </motion.div>
@@ -275,42 +263,38 @@ const FranchisePage = () => {
             <motion.div 
               key={asset.id}
               variants={fadeInUp}
-              className="premium-glass-card p-6 sm:p-8 rounded-3xl border border-megacharge-border flex flex-col justify-between"
+              className="premium-glass-card p-6 sm:p-8 rounded-3xl border border-slate-200 bg-white shadow-sm flex flex-col justify-between text-slate-900"
             >
               <div>
-                <span className="text-megacharge-green text-[10px] font-bold uppercase tracking-widest block font-mono mb-2">
+                <span className="text-[#00B4D8] text-[10px] font-bold uppercase tracking-widest block font-mono mb-2">
                   {asset.dimensions} // {asset.dpi}
                 </span>
-                <h4 className="text-white font-extrabold text-xl mb-4">{asset.title}</h4>
+                <h4 className="text-slate-900 font-extrabold text-xl mb-4">{asset.title}</h4>
                 
-                {/* Print Layout Specs */}
-                <div className="p-4 rounded-xl bg-megacharge-dark bg-opacity-40 border border-megacharge-border border-opacity-60 text-[11px] font-mono mb-6">
-                  <div className="flex justify-between border-b border-megacharge-border border-opacity-40 py-1.5">
-                    <span className="text-megacharge-text-secondary">Material:</span>
-                    <span className="text-white">{asset.material}</span>
+                {/* Print Specs */}
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-[11px] font-mono mb-6">
+                  <div className="flex justify-between border-b border-slate-200 py-1.5">
+                    <span className="text-slate-500">Material:</span>
+                    <span className="text-slate-900 font-bold">{asset.material}</span>
                   </div>
                   <div className="flex justify-between py-1.5">
-                    <span className="text-megacharge-text-secondary">Finish:</span>
-                    <span className="text-white text-right">{asset.finish}</span>
+                    <span className="text-slate-500">Finish:</span>
+                    <span className="text-slate-900 font-bold text-right">{asset.finish}</span>
                   </div>
                 </div>
 
                 <div className="space-y-4">
-                  <div className="border-t border-megacharge-border border-opacity-40 pt-4">
-                    <span className="text-[10px] text-megacharge-text-secondary uppercase block font-mono mb-1">Visual Text Layout</span>
-                    <p className="text-white text-xs font-bold font-mono bg-megacharge-dark bg-opacity-30 p-2.5 rounded border border-megacharge-border border-opacity-30">
-                      {asset.header}<br />
-                      <span className="text-megacharge-green font-normal text-[10px]">{asset.tagline}</span>
-                    </p>
+                  <div className="border-t border-slate-200 pt-4">
+                    <span className="text-[10px] text-slate-500 uppercase block font-mono mb-1">Visual Text Layout</span>
+                    <span className="text-slate-900 text-xs font-bold leading-tight block">{asset.header}</span>
+                    <span className="text-slate-600 text-xs leading-normal mt-1 block">{asset.tagline}</span>
                   </div>
-                  
-                  <div>
-                    <span className="text-[10px] text-megacharge-text-secondary uppercase block font-mono mb-2">Signage Details</span>
-                    <ul className="flex flex-col gap-1.5 text-xs text-megacharge-text-secondary">
-                      {asset.bullets.map((bullet, i) => (
-                        <li key={i} className="flex items-start gap-2">
-                          <span className="text-megacharge-green font-bold">&bull;</span>
-                          <span>{bullet}</span>
+                  <div className="border-t border-slate-200 pt-4">
+                    <span className="text-[10px] text-slate-500 uppercase block font-mono mb-1.5">Content points</span>
+                    <ul className="space-y-2">
+                      {asset.bullets.map((bullet, idx) => (
+                        <li key={idx} className="text-slate-600 text-xs leading-relaxed flex items-start gap-1">
+                          <span>&bull;</span> <span>{bullet}</span>
                         </li>
                       ))}
                     </ul>
@@ -318,135 +302,124 @@ const FranchisePage = () => {
                 </div>
               </div>
 
-              <div className="border-t border-megacharge-border border-opacity-40 pt-4 mt-6 text-[10px] font-mono text-megacharge-text-secondary flex justify-between items-center">
-                <span>Print File Ready</span>
-                <span className="text-megacharge-green">{asset.footnote}</span>
+              <div className="border-t border-slate-200 pt-4 mt-6 text-[10px] font-mono text-slate-500 text-center">
+                {asset.footnote}
               </div>
             </motion.div>
           ))}
-
-          {/* Printer checklist placeholder */}
-          <motion.div 
-            variants={fadeInUp}
-            className="premium-glass-card p-6 sm:p-8 rounded-3xl border border-megacharge-green border-opacity-30 flex flex-col justify-between bg-megacharge-green bg-opacity-[0.02]"
-          >
-            <div>
-              <span className="text-megacharge-green text-[10px] font-bold uppercase tracking-widest block font-mono mb-2">
-                ASSET STANDARDIZATION
-              </span>
-              <h4 className="text-white font-extrabold text-xl mb-4">Printer Checklist</h4>
-              <p className="text-megacharge-text-secondary text-xs leading-relaxed mb-6">
-                All branding files are provided in vector-based CMYK formats with a 3mm bleed standard. Hindi translations are pre-outlined to avoid custom font rendering discrepancies.
-              </p>
-              <ul className="flex flex-col gap-2 text-[11px] text-megacharge-text-secondary font-mono">
-                <li className="flex gap-2">☑ CMYK Color profile check</li>
-                <li className="flex gap-2">☑ Crop & trim markers standard</li>
-                <li className="flex gap-2">☑ Swapped official partner logo</li>
-                <li className="flex gap-2">☑ Verified helpline number</li>
-              </ul>
-            </div>
-            <a 
-              href="/contact" 
-              className="btn-premium-green text-white text-center text-xs font-bold py-4 rounded-full block mt-6"
-            >
-              Request Vector Signage Pack
-            </a>
-          </motion.div>
         </motion.div>
       </section>
 
-      {/* ENQUIRY INTAKE FORM */}
-      <section id="enquiry-form" className="max-w-4xl mx-auto premium-glass-card p-8 md:p-16 rounded-3xl border border-megacharge-border relative">
-        {/* Glow behind form */}
-        <div className="absolute inset-0 bg-gradient-radial from-megacharge-green to-transparent opacity-[0.03] pointer-events-none" />
+      {/* RENTAL ALLIANCE ENQUIRY FORM */}
+      <section id="enquiry-form" className="max-w-3xl mx-auto pb-24 px-6 bg-transparent relative">
+        <div className="absolute inset-0 bg-gradient-radial from-[#00B4D8] to-transparent opacity-5 blur-2xl pointer-events-none" />
         
-        <div className="text-center mb-12 relative z-10">
-          <h3 className="text-white text-3xl font-extrabold">Apply for Franchise Program</h3>
-          <p className="text-megacharge-text-secondary text-xs sm:text-sm mt-2">
-            Complete the form below. Our Corporate Alliances Division will review your site availability details.
-          </p>
-        </div>
-
-        {submitted ? (
-          <div className="text-center p-8 border border-megacharge-green rounded-2xl bg-megacharge-green bg-opacity-5 relative z-10">
-            <span className="text-4xl block mb-3 animate-bounce">✓</span>
-            <h4 className="text-white font-bold text-lg mb-2">Application Received</h4>
-            <p className="text-megacharge-text-secondary text-xs leading-relaxed max-w-md mx-auto">
-              Thank you for applying. A representative from Mega Nirman & Industries Ltd (MNIL) will connect with you on your registered mobile number within 24 working hours. Reference ID: MC-FR-{Math.floor(Math.random() * 9000 + 1000)}.
+        <motion.div 
+          {...fadeInUp}
+          className="premium-glass-card-dark p-8 md:p-12 rounded-3xl border border-[#00B4D8] border-opacity-20 shadow-[0_0_30px_rgba(0,180,216,0.1)] text-white relative z-10"
+        >
+          <div className="text-center mb-10">
+            <h3 className="text-white text-3xl font-extrabold mb-3">Host or Rent an EV Station</h3>
+            <p className="text-slate-300 text-sm leading-relaxed max-w-lg mx-auto">
+              Submit your property details for a free site assessment survey by MNIL engineers. Let's build India's green grid together.
             </p>
           </div>
-        ) : (
-          <form onSubmit={handleSubmit} className="flex flex-col gap-6 relative z-10">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div>
-                <label className="text-white text-xs block mb-2 font-bold uppercase tracking-wider">Your Full Name *</label>
-                <input 
-                  type="text" required
-                  value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})}
-                  className="w-full bg-megacharge-dark bg-opacity-50 border border-megacharge-border text-white text-sm px-5 py-4 rounded-xl focus:outline-none focus:border-megacharge-green transition-colors"
-                  placeholder="e.g. Ramesh Sharma"
-                />
-              </div>
-              <div>
-                <label className="text-white text-xs block mb-2 font-bold uppercase tracking-wider">Corporate Email *</label>
-                <input 
-                  type="email" required
-                  value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})}
-                  className="w-full bg-megacharge-dark bg-opacity-50 border border-megacharge-border text-white text-sm px-5 py-4 rounded-xl focus:outline-none focus:border-megacharge-green transition-colors"
-                  placeholder="e.g. ramesh@company.com"
-                />
-              </div>
-            </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div>
-                <label className="text-white text-xs block mb-2 font-bold uppercase tracking-wider">Contact Mobile Number *</label>
-                <input 
-                  type="tel" required
-                  value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                  className="w-full bg-megacharge-dark bg-opacity-50 border border-megacharge-border text-white text-sm px-5 py-4 rounded-xl focus:outline-none focus:border-megacharge-green transition-colors"
-                  placeholder="e.g. +91 98765 43210"
-                />
-              </div>
-              <div>
-                <label className="text-white text-xs block mb-2 font-bold uppercase tracking-wider">Proposed Site Location *</label>
-                <input 
-                  type="text" required
-                  value={formData.location} onChange={(e) => setFormData({...formData, location: e.target.value})}
-                  className="w-full bg-megacharge-dark bg-opacity-50 border border-megacharge-border text-white text-sm px-5 py-4 rounded-xl focus:outline-none focus:border-megacharge-green transition-colors"
-                  placeholder="e.g. NH44 Expressway, Karnal, Haryana"
-                />
-              </div>
+          {submitted ? (
+            <div className="p-8 border border-green-500 border-opacity-40 rounded-2xl bg-green-500 bg-opacity-5 text-center">
+              <span className="text-4xl block mb-4">🎉</span>
+              <h4 className="text-white text-xl font-bold mb-2">Request Submitted Successfully!</h4>
+              <p className="text-slate-300 text-sm leading-relaxed">
+                Thank you for applying. A MegaCharge representative will reach out to schedule your site grid evaluation survey.
+              </p>
             </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="flex flex-col gap-6 relative z-10 text-slate-900">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="flex flex-col gap-2">
+                  <label className="text-white text-xs font-bold uppercase tracking-wider font-mono">Full Name</label>
+                  <input 
+                    type="text" 
+                    required 
+                    value={formData.name}
+                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                    placeholder="Enter your name" 
+                    className="bg-[#1C2541] border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#00B4D8]"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label className="text-white text-xs font-bold uppercase tracking-wider font-mono">Corporate Email</label>
+                  <input 
+                    type="email" 
+                    required 
+                    value={formData.email}
+                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    placeholder="email@company.com" 
+                    className="bg-[#1C2541] border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#00B4D8]"
+                  />
+                </div>
+              </div>
 
-            <div>
-              <label className="text-white text-xs block mb-2 font-bold uppercase tracking-wider">Proposed Site Category</label>
-              <select 
-                value={formData.siteType} onChange={(e) => setFormData({...formData, siteType: e.target.value})}
-                className="w-full bg-megacharge-dark bg-opacity-50 border border-megacharge-border text-white text-sm px-5 py-4 rounded-xl focus:outline-none focus:border-megacharge-green transition-colors"
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="flex flex-col gap-2">
+                  <label className="text-white text-xs font-bold uppercase tracking-wider font-mono">Phone Number</label>
+                  <input 
+                    type="tel" 
+                    required 
+                    value={formData.phone}
+                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                    placeholder="+91 99999 99999" 
+                    className="bg-[#1C2541] border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#00B4D8]"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label className="text-white text-xs font-bold uppercase tracking-wider font-mono">Property Location (City / State)</label>
+                  <input 
+                    type="text" 
+                    required 
+                    value={formData.location}
+                    onChange={(e) => setFormData({...formData, location: e.target.value})}
+                    placeholder="e.g. Gurugram, Haryana" 
+                    className="bg-[#1C2541] border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#00B4D8]"
+                  />
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label className="text-white text-xs font-bold uppercase tracking-wider font-mono">Property Category</label>
+                <select 
+                  value={formData.siteType}
+                  onChange={(e) => setFormData({...formData, siteType: e.target.value})}
+                  className="bg-[#1C2541] border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#00B4D8]"
+                >
+                  <option value="highway">Highway Land / Gas Station</option>
+                  <option value="mall">Shopping Mall / Commercial Parking</option>
+                  <option value="hotel">Hotel / Restaurant parking</option>
+                  <option value="office">Office complex / Tech Park</option>
+                  <option value="residential">Residential Housing Society</option>
+                </select>
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label className="text-white text-xs font-bold uppercase tracking-wider font-mono">Message / Site Details</label>
+                <textarea 
+                  rows="4" 
+                  value={formData.message}
+                  onChange={(e) => setFormData({...formData, message: e.target.value})}
+                  placeholder="Provide approximate space dimensions, existing electricity load, or other details..." 
+                  className="bg-[#1C2541] border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#00B4D8]"
+                />
+              </div>
+
+              <button 
+                type="submit" 
+                className="w-full text-center bg-[#00B4D8] hover:bg-opacity-95 text-white font-bold text-sm py-4 rounded-xl transition-all duration-300 shadow-sm mt-2 block"
               >
-                <option value="highway">Highway Stopway Plaza</option>
-                <option value="mall">Shopping Mall / Hotel parking</option>
-                <option value="office">Corporate Commercial complex</option>
-                <option value="residential">Residential Housing society</option>
-              </select>
-            </div>
-
-            <div>
-              <label className="text-white text-xs block mb-2 font-bold uppercase tracking-wider">Site space / grid details (Optional)</label>
-              <textarea 
-                rows="4"
-                value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})}
-                className="w-full bg-megacharge-dark bg-opacity-50 border border-megacharge-border text-white text-sm px-5 py-4 rounded-xl focus:outline-none focus:border-megacharge-green transition-colors resize-none"
-                placeholder="Details of available parking slots, transformer capacity (KVA) or lease preferences..."
-              />
-            </div>
-
-            <button type="submit" className="w-full py-5 btn-premium-green text-white font-bold text-xs uppercase rounded-xl transition-all duration-300 mt-4">
-              Submit Franchise Request
-            </button>
-          </form>
-        )}
+                Submit Installation Inquiry
+              </button>
+            </form>
+          )}
+        </motion.div>
       </section>
 
     </div>
