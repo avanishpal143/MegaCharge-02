@@ -3,16 +3,14 @@
  * ROI & Savings Utilities Component
  * Purpose:
  * Provides interactive calculators for savings,
- * ROI analysis, and charger recommendations.
- *
- * Developer Notes:
- * Uses state hooks for range input math
- * and multi-step forms.
+ * ROI analysis, and charger recommendations
+ * styled like a premium EV console dashboard.
  *
  * ========================================
  */
 
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { BoltIcon, LeafIcon, ChargerIcon, UsersIcon } from '../CustomIcons/CustomIcons';
 
 /* ==========================================
@@ -23,35 +21,47 @@ const ROIUtilities = () => {
   const [activeTab, setActiveTab] = useState('savings'); // 'savings' | 'roi' | 'select'
 
   return (
-    <div className="roi-utilities-wrapper w-full max-w-5xl mx-auto glass-panel p-6 md:p-10 rounded-3xl border border-megacharge-border">
+    <div className="roi-utilities-wrapper w-full max-w-6xl mx-auto premium-glass-card p-6 md:p-12 rounded-3xl border border-megacharge-border relative overflow-hidden">
+      {/* Decorative cyber grid ambient circle */}
+      <div className="absolute top-[-20%] right-[-10%] w-[400px] h-[400px] bg-megacharge-green opacity-5 rounded-full blur-3xl pointer-events-none" />
       
       {/* TABS HEADER */}
-      <div className="flex flex-wrap items-center justify-center gap-4 mb-10 pb-6 border-b border-megacharge-border">
+      <div className="flex flex-wrap items-center justify-center gap-4 mb-12 pb-8 border-b border-megacharge-border">
         <button 
           onClick={() => setActiveTab('savings')}
-          className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 flex items-center gap-2 text-sm ${activeTab === 'savings' ? 'bg-megacharge-green text-white shadow-glow-green' : 'text-megacharge-text-secondary hover:text-white'}`}
+          className={`px-8 py-3.5 rounded-full font-bold transition-all duration-300 flex items-center gap-2.5 text-xs uppercase tracking-wider ${activeTab === 'savings' ? 'bg-megacharge-green text-white shadow-glow-green' : 'text-megacharge-text-secondary hover:text-white hover:bg-megacharge-border hover:bg-opacity-20'}`}
         >
           <LeafIcon className="w-4 h-4" /> Cost & CO₂ Savings
         </button>
         <button 
           onClick={() => setActiveTab('roi')}
-          className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 flex items-center gap-2 text-sm ${activeTab === 'roi' ? 'bg-megacharge-green text-white shadow-glow-green' : 'text-megacharge-text-secondary hover:text-white'}`}
+          className={`px-8 py-3.5 rounded-full font-bold transition-all duration-300 flex items-center gap-2.5 text-xs uppercase tracking-wider ${activeTab === 'roi' ? 'bg-megacharge-green text-white shadow-glow-green' : 'text-megacharge-text-secondary hover:text-white hover:bg-megacharge-border hover:bg-opacity-20'}`}
         >
           <UsersIcon className="w-4 h-4" /> Commercial ROI
         </button>
         <button 
           onClick={() => setActiveTab('select')}
-          className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 flex items-center gap-2 text-sm ${activeTab === 'select' ? 'bg-megacharge-green text-white shadow-glow-green' : 'text-megacharge-text-secondary hover:text-white'}`}
+          className={`px-8 py-3.5 rounded-full font-bold transition-all duration-300 flex items-center gap-2.5 text-xs uppercase tracking-wider ${activeTab === 'select' ? 'bg-megacharge-green text-white shadow-glow-green' : 'text-megacharge-text-secondary hover:text-white hover:bg-megacharge-border hover:bg-opacity-20'}`}
         >
           <ChargerIcon className="w-4 h-4" /> Charger Selector
         </button>
       </div>
 
-      {/* TABS CONTENT */}
-      <div className="tab-contents">
-        {activeTab === 'savings' && <SavingsCalculator />}
-        {activeTab === 'roi' && <ROICalculator />}
-        {activeTab === 'select' && <ChargerSelector />}
+      {/* TABS CONTENT WITH MOTION ANIMATION */}
+      <div className="tab-contents min-h-[400px]">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.4, ease: 'easeInOut' }}
+          >
+            {activeTab === 'savings' && <SavingsCalculator />}
+            {activeTab === 'roi' && <ROICalculator />}
+            {activeTab === 'select' && <ChargerSelector />}
+          </motion.div>
+        </AnimatePresence>
       </div>
 
     </div>
@@ -59,113 +69,160 @@ const ROIUtilities = () => {
 };
 
 /* ==========================================
-   1. SAVINGS CALCULATOR
+   1. SAVINGS CALCULATOR WITH DYNAMIC BATTERY GAUGE
 ========================================== */
 
 const SavingsCalculator = () => {
-  const [dailyKm, setDailyKm] = useState(50);
-  const [fuelCost, setFuelCost] = useState(100);
-  const [efficiency, setEfficiency] = useState(15);
-  const [tariff, setTariff] = useState(8);
+  const [dailyKm, setDailyKm] = useState(60);
+  const [fuelCost, setFuelCost] = useState(102);
+  const [efficiency, setEfficiency] = useState(14);
+  const [tariff, setTariff] = useState(8.5);
   
   // Constants
   const evEfficiency = 6.5; // km per kWh (avg)
   
-  // Math
+  // Math calculations
   const petrolCostPerKm = fuelCost / efficiency;
   const evCostPerKm = tariff / evEfficiency;
   const savingsPerKm = petrolCostPerKm - evCostPerKm;
   
   const monthlySavings = Math.round(savingsPerKm * dailyKm * 30);
   const yearlySavings = Math.round(savingsPerKm * dailyKm * 365);
-  const co2Offset = Math.round(dailyKm * 365 * 0.120); // 120g CO2 per km for average petrol car
+  const co2Offset = Math.round(dailyKm * 365 * 0.120); // 120g CO2 per km for petrol car
+
+  // Calculate battery charge state segments (max 5) based on commute size
+  const batteryPercent = Math.min(100, Math.max(10, Math.round((yearlySavings / 120000) * 100)));
+  const chargeSegments = Math.ceil(batteryPercent / 20);
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
       
-      {/* Sliders Area */}
-      <div className="flex flex-col gap-6">
-        <h3 className="text-white text-xl font-bold mb-2">Estimate Fuel Savings</h3>
+      {/* Sliders Area (Column span 7) */}
+      <div className="lg:col-span-7 flex flex-col gap-8">
+        <div>
+          <span className="text-megacharge-green text-[10px] font-bold uppercase tracking-wider block mb-1">Commute Profiler</span>
+          <h3 className="text-white text-2xl font-extrabold mb-4">Commute Cost Estimator</h3>
+          <p className="text-megacharge-text-secondary text-sm leading-relaxed mb-6">
+            Adjust the sliders below to calibrate your driving statistics against standard utility tariffs.
+          </p>
+        </div>
         
-        <div>
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-megacharge-text-secondary text-sm">Daily Commute Distance:</span>
-            <span className="text-megacharge-green font-bold">{dailyKm} km</span>
+        <div className="space-y-6">
+          <div className="bg-megacharge-dark bg-opacity-40 p-5 rounded-2xl border border-megacharge-border">
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-white font-semibold text-sm">Daily Driving Distance:</span>
+              <span className="text-megacharge-green font-extrabold font-mono text-base">{dailyKm} km / Day</span>
+            </div>
+            <input 
+              type="range" min="10" max="300" step="5"
+              value={dailyKm} onChange={(e) => setDailyKm(Number(e.target.value))}
+              className="w-full accent-megacharge-green"
+            />
           </div>
-          <input 
-            type="range" min="10" max="300" step="5"
-            value={dailyKm} onChange={(e) => setDailyKm(Number(e.target.value))}
-            className="w-full accent-megacharge-green bg-megacharge-border rounded-lg h-2"
-          />
-        </div>
 
-        <div>
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-megacharge-text-secondary text-sm">Petrol/Diesel Cost (per Litre):</span>
-            <span className="text-megacharge-green font-bold">₹{fuelCost}</span>
+          <div className="bg-megacharge-dark bg-opacity-40 p-5 rounded-2xl border border-megacharge-border">
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-white font-semibold text-sm">Petrol/Diesel Fuel Tariff:</span>
+              <span className="text-megacharge-green font-extrabold font-mono text-base">₹{fuelCost} / Litre</span>
+            </div>
+            <input 
+              type="range" min="80" max="150" step="1"
+              value={fuelCost} onChange={(e) => setFuelCost(Number(e.target.value))}
+              className="w-full accent-megacharge-green"
+            />
           </div>
-          <input 
-            type="range" min="80" max="150" step="1"
-            value={fuelCost} onChange={(e) => setFuelCost(Number(e.target.value))}
-            className="w-full accent-megacharge-green bg-megacharge-border rounded-lg h-2"
-          />
-        </div>
 
-        <div>
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-megacharge-text-secondary text-sm">ICE Vehicle Fuel Efficiency:</span>
-            <span className="text-megacharge-green font-bold">{efficiency} km/L</span>
-          </div>
-          <input 
-            type="range" min="8" max="25" step="0.5"
-            value={efficiency} onChange={(e) => setEfficiency(Number(e.target.value))}
-            className="w-full accent-megacharge-green bg-megacharge-border rounded-lg h-2"
-          />
-        </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="bg-megacharge-dark bg-opacity-40 p-5 rounded-2xl border border-megacharge-border">
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-white font-semibold text-sm">ICE Fuel Economy:</span>
+                <span className="text-megacharge-green font-extrabold font-mono text-sm">{efficiency} km/L</span>
+              </div>
+              <input 
+                type="range" min="8" max="25" step="0.5"
+                value={efficiency} onChange={(e) => setEfficiency(Number(e.target.value))}
+                className="w-full accent-megacharge-green"
+              />
+            </div>
 
-        <div>
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-megacharge-text-secondary text-sm">Electricity Tariff (per Unit):</span>
-            <span className="text-megacharge-green font-bold">₹{tariff} / kWh</span>
+            <div className="bg-megacharge-dark bg-opacity-40 p-5 rounded-2xl border border-megacharge-border">
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-white font-semibold text-sm">EV Grid Tariff:</span>
+                <span className="text-megacharge-green font-extrabold font-mono text-sm">₹{tariff} / kWh</span>
+              </div>
+              <input 
+                type="range" min="5" max="15" step="0.5"
+                value={tariff} onChange={(e) => setTariff(Number(e.target.value))}
+                className="w-full accent-megacharge-green"
+              />
+            </div>
           </div>
-          <input 
-            type="range" min="5" max="15" step="0.5"
-            value={tariff} onChange={(e) => setTariff(Number(e.target.value))}
-            className="w-full accent-megacharge-green bg-megacharge-border rounded-lg h-2"
-          />
         </div>
       </div>
 
-      {/* Output Results Area */}
-      <div className="bg-megacharge-card border border-megacharge-border rounded-2xl p-8 flex flex-col justify-between">
+      {/* Output Console / Battery Gauge Area (Column span 5) */}
+      <div className="lg:col-span-5 bg-megacharge-card bg-opacity-40 border border-megacharge-border rounded-3xl p-8 flex flex-col justify-between relative overflow-hidden">
+        {/* Glow behind stats */}
+        <div className="absolute inset-0 bg-gradient-radial from-megacharge-green to-transparent opacity-[0.03] pointer-events-none" />
+        
         <div>
-          <span className="text-megacharge-green text-xs font-bold uppercase tracking-wider">Estimated Savings</span>
-          <h2 className="text-white text-3xl font-extrabold mt-2 mb-6">Drive Sustainable</h2>
-          
-          <div className="grid grid-cols-2 gap-6 mb-6">
-            <div className="border-l-2 border-megacharge-green pl-4">
-              <span className="text-megacharge-text-secondary text-xs block">Monthly Savings</span>
-              <span className="text-white text-2xl font-bold font-poppins">₹{monthlySavings.toLocaleString('en-IN')}</span>
+          <div className="flex items-center justify-between mb-6 pb-4 border-b border-megacharge-border">
+            <span className="text-megacharge-green text-xs font-bold uppercase tracking-widest">Savings Output</span>
+            <span className="text-[10px] text-megacharge-text-secondary font-mono bg-megacharge-dark px-2.5 py-1 rounded-full border border-megacharge-border border-opacity-60">System Ready</span>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4 mb-8">
+            <div className="p-4 rounded-xl bg-megacharge-dark bg-opacity-30 border border-megacharge-border border-opacity-40">
+              <span className="text-megacharge-text-secondary text-[11px] uppercase tracking-wider block mb-1">Monthly Cost Savings</span>
+              <span className="text-white text-2xl font-extrabold font-mono">₹{monthlySavings.toLocaleString('en-IN')}</span>
             </div>
-            <div className="border-l-2 border-megacharge-green pl-4">
-              <span className="text-megacharge-text-secondary text-xs block">Annual Savings</span>
-              <span className="text-white text-2xl font-bold font-poppins">₹{yearlySavings.toLocaleString('en-IN')}</span>
+            <div className="p-4 rounded-xl bg-megacharge-dark bg-opacity-30 border border-megacharge-border border-opacity-40">
+              <span className="text-megacharge-text-secondary text-[11px] uppercase tracking-wider block mb-1">Annual Cost Savings</span>
+              <span className="text-megacharge-green text-2xl font-extrabold font-mono">₹{yearlySavings.toLocaleString('en-IN')}</span>
             </div>
           </div>
 
-          <div className="border-t border-megacharge-border pt-6 flex items-center gap-4">
+          {/* Premium Battery Visualizer */}
+          <div className="flex items-center gap-6 p-4 rounded-2xl bg-megacharge-dark bg-opacity-60 border border-megacharge-border mb-6">
+            <div className="relative w-14 h-24 border-2 border-megacharge-green rounded-xl p-1 flex flex-col-reverse gap-1 justify-start">
+              {/* Battery cap */}
+              <div className="absolute top-[-7px] left-1/2 transform -translate-x-1/2 w-5 h-1.5 bg-megacharge-green rounded-t" />
+              
+              {/* Battery Charge Segments */}
+              {Array.from({ length: 5 }).map((_, idx) => (
+                <div 
+                  key={idx} 
+                  className={`w-full h-3 rounded transition-all duration-500 ${idx < chargeSegments ? 'bg-megacharge-green shadow-[0_0_8px_#1DB954]' : 'bg-megacharge-border bg-opacity-30'}`}
+                />
+              ))}
+              
+              {/* Lightning overlay */}
+              <div className="absolute inset-0 flex items-center justify-center text-white text-lg font-bold opacity-80 animate-pulse">
+                ⚡
+              </div>
+            </div>
+            
+            <div className="flex-grow">
+              <span className="text-white text-sm font-bold block mb-1">Battery Charge Index</span>
+              <p className="text-megacharge-text-secondary text-[11px] leading-relaxed">
+                Commute saves equivalent to <strong className="text-megacharge-green font-mono">{batteryPercent}%</strong> charging offset index.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-4 bg-megacharge-green bg-opacity-5 border border-megacharge-green border-opacity-20 p-4 rounded-2xl">
             <div className="p-3 bg-megacharge-green bg-opacity-10 text-megacharge-green rounded-xl">
               <LeafIcon className="w-6 h-6" />
             </div>
             <div>
-              <span className="text-megacharge-text-secondary text-xs block">Annual CO₂ Emissions Reduced</span>
-              <span className="text-megacharge-green text-lg font-bold font-poppins">{co2Offset.toLocaleString()} kg of CO₂</span>
+              <span className="text-megacharge-text-secondary text-[11px] block uppercase tracking-wider">Annual Carbon Capture</span>
+              <span className="text-white text-base font-extrabold font-mono">{co2Offset.toLocaleString()} kg of CO₂ Offset</span>
             </div>
           </div>
         </div>
 
-        <p className="text-megacharge-text-secondary text-xs leading-relaxed mt-6">
-          *Calculations based on average EV motor efficiency of 6.5 km/kWh compared to equivalent internal combustion vehicles. Actual savings may vary with driving patterns.
+        <p className="text-megacharge-text-secondary text-[10px] leading-relaxed mt-6 border-t border-megacharge-border pt-4">
+          *Commute metrics align EV power discharge profiles with typical highway speed configurations. Actual environmental indicators vary.
         </p>
       </div>
 
@@ -174,121 +231,164 @@ const SavingsCalculator = () => {
 };
 
 /* ==========================================
-   2. ROI CALCULATOR
+   2. COMMERCIAL ROI CALCULATOR WITH COMPARATIVE GAUGES
 ========================================== */
 
 const ROICalculator = () => {
   const [chargersCount, setChargersCount] = useState(2);
-  const [sessions, setSessions] = useState(5);
-  const [avgKwh, setAvgKwh] = useState(40);
-  const [margin, setMargin] = useState(6);
-  const [investment, setInvestment] = useState(12); // Lakhs
+  const [sessions, setSessions] = useState(6);
+  const [avgKwh, setAvgKwh] = useState(45);
+  const [margin, setMargin] = useState(6.5);
+  const [investment, setInvestment] = useState(15); // Lakhs
 
-  // Math
+  // Math calculations
   const dailyKwh = chargersCount * sessions * avgKwh;
   const dailyProfit = dailyKwh * margin;
   const monthlyProfit = dailyProfit * 30;
   const annualProfit = monthlyProfit * 12;
   const paybackMonths = Math.round((investment * 100000) / monthlyProfit * 10) / 10;
+  
+  // Calculate dynamic ROI scale rating (1-100)
+  const roiRating = Math.min(100, Math.max(10, Math.round((annualProfit / (investment * 100000)) * 100)));
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
       
-      {/* Inputs Area */}
-      <div className="flex flex-col gap-6">
-        <h3 className="text-white text-xl font-bold mb-2">Franchise & CPO Yield</h3>
-        
+      {/* Inputs Area (Column span 7) */}
+      <div className="lg:col-span-7 flex flex-col gap-6">
         <div>
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-megacharge-text-secondary text-sm">Number of DC Chargers:</span>
-            <span className="text-megacharge-green font-bold">{chargersCount} Units</span>
-          </div>
-          <input 
-            type="range" min="1" max="10" step="1"
-            value={chargersCount} onChange={(e) => setChargersCount(Number(e.target.value))}
-            className="w-full accent-megacharge-green bg-megacharge-border rounded-lg h-2"
-          />
+          <span className="text-megacharge-orange text-[10px] font-bold uppercase tracking-wider block mb-1">CPO Alliances</span>
+          <h3 className="text-white text-2xl font-extrabold mb-4">Commercial Franchise Estimator</h3>
+          <p className="text-megacharge-text-secondary text-sm leading-relaxed mb-6">
+            Calibrate grid capacity variables, pricing structures, and setup capital to project payout velocity.
+          </p>
         </div>
 
-        <div>
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-megacharge-text-secondary text-sm">Daily Sessions (Per Charger):</span>
-            <span className="text-megacharge-green font-bold">{sessions} sessions</span>
-          </div>
-          <input 
-            type="range" min="2" max="15" step="1"
-            value={sessions} onChange={(e) => setSessions(Number(e.target.value))}
-            className="w-full accent-megacharge-green bg-megacharge-border rounded-lg h-2"
-          />
-        </div>
+        <div className="space-y-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="bg-megacharge-dark bg-opacity-40 p-4 rounded-2xl border border-megacharge-border">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-white text-xs font-semibold">DC Fast Rectifiers:</span>
+                <span className="text-megacharge-orange font-bold font-mono text-sm">{chargersCount} Dual-Gun Units</span>
+              </div>
+              <input 
+                type="range" min="1" max="10" step="1"
+                value={chargersCount} onChange={(e) => setChargersCount(Number(e.target.value))}
+                className="w-full accent-megacharge-orange"
+              />
+            </div>
 
-        <div>
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-megacharge-text-secondary text-sm">Avg Power Dispensed per session:</span>
-            <span className="text-megacharge-green font-bold">{avgKwh} kWh</span>
+            <div className="bg-megacharge-dark bg-opacity-40 p-4 rounded-2xl border border-megacharge-border">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-white text-xs font-semibold">Sessions (Per Unit):</span>
+                <span className="text-megacharge-orange font-bold font-mono text-sm">{sessions} charges / Day</span>
+              </div>
+              <input 
+                type="range" min="2" max="15" step="1"
+                value={sessions} onChange={(e) => setSessions(Number(e.target.value))}
+                className="w-full accent-megacharge-orange"
+              />
+            </div>
           </div>
-          <input 
-            type="range" min="20" max="80" step="5"
-            value={avgKwh} onChange={(e) => setAvgKwh(Number(e.target.value))}
-            className="w-full accent-megacharge-green bg-megacharge-border rounded-lg h-2"
-          />
-        </div>
 
-        <div>
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-megacharge-text-secondary text-sm">Gross margin (per Unit/kWh):</span>
-            <span className="text-megacharge-green font-bold">₹{margin}</span>
-          </div>
-          <input 
-            type="range" min="2" max="12" step="0.5"
-            value={margin} onChange={(e) => setMargin(Number(e.target.value))}
-            className="w-full accent-megacharge-green bg-megacharge-border rounded-lg h-2"
-          />
-        </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="bg-megacharge-dark bg-opacity-40 p-4 rounded-2xl border border-megacharge-border">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-white text-xs font-semibold">Average Power Dispense:</span>
+                <span className="text-megacharge-orange font-bold font-mono text-sm">{avgKwh} kWh / vehicle</span>
+              </div>
+              <input 
+                type="range" min="20" max="80" step="5"
+                value={avgKwh} onChange={(e) => setAvgKwh(Number(e.target.value))}
+                className="w-full accent-megacharge-orange"
+              />
+            </div>
 
-        <div>
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-megacharge-text-secondary text-sm">Setup Capital Investment:</span>
-            <span className="text-megacharge-green font-bold">₹{investment} Lakhs</span>
+            <div className="bg-megacharge-dark bg-opacity-40 p-4 rounded-2xl border border-megacharge-border">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-white text-xs font-semibold">Profit Margin per kWh:</span>
+                <span className="text-megacharge-orange font-bold font-mono text-sm">₹{margin} / kWh</span>
+              </div>
+              <input 
+                type="range" min="2" max="12" step="0.5"
+                value={margin} onChange={(e) => setMargin(Number(e.target.value))}
+                className="w-full accent-megacharge-orange"
+              />
+            </div>
           </div>
-          <input 
-            type="range" min="3" max="50" step="1"
-            value={investment} onChange={(e) => setInvestment(Number(e.target.value))}
-            className="w-full accent-megacharge-green bg-megacharge-border rounded-lg h-2"
-          />
+
+          <div className="bg-megacharge-dark bg-opacity-40 p-5 rounded-2xl border border-megacharge-border">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-white font-semibold text-sm">Total Franchise Investment:</span>
+              <span className="text-megacharge-orange font-extrabold font-mono text-base">₹{investment} Lakhs</span>
+            </div>
+            <input 
+              type="range" min="3" max="50" step="1"
+              value={investment} onChange={(e) => setInvestment(Number(e.target.value))}
+              className="w-full accent-megacharge-orange"
+            />
+          </div>
         </div>
       </div>
 
-      {/* Outputs Area */}
-      <div className="bg-megacharge-card border border-megacharge-border rounded-2xl p-8 flex flex-col justify-between">
+      {/* Outputs Area (Column span 5) */}
+      <div className="lg:col-span-5 bg-megacharge-card bg-opacity-40 border border-megacharge-border rounded-3xl p-8 flex flex-col justify-between relative overflow-hidden">
+        {/* Ambient background glow */}
+        <div className="absolute inset-0 bg-gradient-radial from-megacharge-orange to-transparent opacity-[0.03] pointer-events-none" />
+        
         <div>
-          <span className="text-megacharge-green text-xs font-bold uppercase tracking-wider">ROI Metrics</span>
-          <h2 className="text-white text-3xl font-extrabold mt-2 mb-6">Invest in the Future</h2>
-          
-          <div className="grid grid-cols-2 gap-6 mb-6">
-            <div className="border-l-2 border-megacharge-green pl-4">
-              <span className="text-megacharge-text-secondary text-xs block">Annual Profit</span>
-              <span className="text-white text-2xl font-bold font-poppins">₹{annualProfit.toLocaleString('en-IN')}</span>
+          <div className="flex items-center justify-between mb-6 pb-4 border-b border-megacharge-border">
+            <span className="text-megacharge-orange text-xs font-bold uppercase tracking-widest">Yield Output</span>
+            <span className="text-[10px] text-megacharge-text-secondary font-mono bg-megacharge-dark px-2.5 py-1 rounded-full border border-megacharge-border border-opacity-60">Live Projections</span>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4 mb-8">
+            <div className="p-4 rounded-xl bg-megacharge-dark bg-opacity-30 border border-megacharge-border border-opacity-40">
+              <span className="text-megacharge-text-secondary text-[11px] uppercase tracking-wider block mb-1">Annual Profit Flow</span>
+              <span className="text-white text-xl font-extrabold font-mono">₹{annualProfit.toLocaleString('en-IN')}</span>
             </div>
-            <div className="border-l-2 border-megacharge-green pl-4">
-              <span className="text-megacharge-text-secondary text-xs block">Payback Period</span>
-              <span className="text-megacharge-green text-2xl font-bold font-poppins">{paybackMonths} Months</span>
+            <div className="p-4 rounded-xl bg-megacharge-dark bg-opacity-30 border border-megacharge-border border-opacity-40">
+              <span className="text-megacharge-text-secondary text-[11px] uppercase tracking-wider block mb-1">Payback Duration</span>
+              <span className="text-megacharge-orange text-xl font-extrabold font-mono">{paybackMonths} Months</span>
             </div>
           </div>
 
-          <div className="border-t border-megacharge-border pt-6 flex items-center gap-4">
+          {/* Dynamic Circular progress widget */}
+          <div className="p-5 rounded-2xl bg-megacharge-dark bg-opacity-60 border border-megacharge-border mb-6">
+            <span className="text-white text-xs font-bold uppercase tracking-wider block mb-3 text-center">Setup Yield Rating</span>
+            <div className="flex items-center justify-center gap-6">
+              <svg className="w-16 h-16 transform -rotate-90">
+                <circle cx="32" cy="32" r="28" className="stroke-megacharge-border fill-none" strokeWidth="4" />
+                <circle 
+                  cx="32" cy="32" r="28" 
+                  className="stroke-megacharge-orange fill-none transition-all duration-500" 
+                  strokeWidth="4" 
+                  strokeDasharray="176"
+                  strokeDashoffset={176 - (176 * roiRating) / 100}
+                />
+              </svg>
+              <div>
+                <span className="text-white text-sm font-bold block mb-1">Yield Score: {roiRating}%</span>
+                <span className="text-megacharge-text-secondary text-[11px] block">
+                  Expected payback rate ranks as <strong className="text-megacharge-orange">{roiRating > 60 ? 'Ultra-Rapid' : roiRating > 35 ? 'Highly Profitable' : 'Stable Return'}</strong>.
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-4 bg-megacharge-orange bg-opacity-5 border border-megacharge-orange border-opacity-20 p-4 rounded-2xl">
             <div className="p-3 bg-megacharge-orange bg-opacity-10 text-megacharge-orange rounded-xl">
               <BoltIcon className="w-6 h-6" />
             </div>
             <div>
-              <span className="text-megacharge-text-secondary text-xs block">Power Dispensed (Daily)</span>
-              <span className="text-white text-lg font-bold font-poppins">{dailyKwh} kWh / Day</span>
+              <span className="text-megacharge-text-secondary text-[11px] block uppercase tracking-wider">Total Power Discharged</span>
+              <span className="text-white text-base font-extrabold font-mono">{dailyKwh} kWh / Day</span>
             </div>
           </div>
         </div>
 
-        <p className="text-megacharge-text-secondary text-xs leading-relaxed mt-6">
-          *Payback projections exclude site rent and local demand charges. Projections align with standard MNIL franchise margins.
+        <p className="text-megacharge-text-secondary text-[10px] leading-relaxed mt-6 border-t border-megacharge-border pt-4">
+          *Payback projections exclude local real estate leases, commercial grid demand charges, and statutory tax rebates.
         </p>
       </div>
 
@@ -297,7 +397,7 @@ const ROICalculator = () => {
 };
 
 /* ==========================================
-   3. CHARGER SELECTOR
+   3. CHARGER SELECTOR WIZARD
 ========================================== */
 
 const ChargerSelector = () => {
@@ -322,7 +422,7 @@ const ChargerSelector = () => {
     if (power === '1phase' || useCase === 'home' || vehicle === '2w') {
       return {
         title: 'MegaCharge 7.4 kW AC Smart Charger',
-        desc: 'Sleek, wall-mounted, intelligent charger. Integrates with the MegaCharge mobile app for RFID swipe-and-charge, schedules, and usage reports.',
+        desc: 'Sleek, wall-mounted, intelligent charger. Integrates with the MegaCharge mobile app for RFID swipe-and-charge, scheduling, and usage reports.',
         specs: ['Output: 7.4 kW (Single-phase 32A)', 'Connector: Type 2', 'Safety: Built-in Overcurrent & Temp diagnostics', 'Connectivity: Wi-Fi, Bluetooth, RFID'],
         cta: 'Request Home Installation'
       };
@@ -344,150 +444,203 @@ const ChargerSelector = () => {
   };
 
   return (
-    <div className="min-h-[300px] flex flex-col justify-center">
-      
-      {/* STEP 1: VEHICLE SELECT */}
-      {step === 1 && (
-        <div>
-          <h3 className="text-white text-xl font-bold text-center mb-6">Select your vehicle profile:</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <button 
-              onClick={() => handleNext('2w', setVehicle)}
-              className="p-6 rounded-2xl bg-megacharge-card border border-megacharge-border hover:border-megacharge-green transition-all duration-300 text-center"
-            >
-              <div className="text-3xl mb-3">🛵</div>
-              <h4 className="text-white font-bold mb-1">Two/Three-Wheeler</h4>
-              <p className="text-megacharge-text-secondary text-xs">EV Bikes, Scooters, Rickshaws</p>
-            </button>
-            <button 
-              onClick={() => handleNext('car', setVehicle)}
-              className="p-6 rounded-2xl bg-megacharge-card border border-megacharge-border hover:border-megacharge-green transition-all duration-300 text-center"
-            >
-              <div className="text-3xl mb-3">🚗</div>
-              <h4 className="text-white font-bold mb-1">Passenger Vehicle</h4>
-              <p className="text-megacharge-text-secondary text-xs">Standard EVs (SUV, Sedans)</p>
-            </button>
-            <button 
-              onClick={() => handleNext('fleet', setVehicle)}
-              className="p-6 rounded-2xl bg-megacharge-card border border-megacharge-border hover:border-megacharge-green transition-all duration-300 text-center"
-            >
-              <div className="text-3xl mb-3">🚛</div>
-              <h4 className="text-white font-bold mb-1">Commercial Fleet</h4>
-              <p className="text-megacharge-text-secondary text-xs">Delivery trucks, e-commerce vehicles, buses</p>
-            </button>
-          </div>
-        </div>
-      )}
+    <div className="min-h-[400px] flex flex-col justify-center">
+      <AnimatePresence mode="wait">
+        
+        {/* STEP 1: VEHICLE PROFILE */}
+        {step === 1 && (
+          <motion.div
+            key="step1"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <h3 className="text-white text-xl font-bold text-center mb-8 uppercase tracking-wider">Select your vehicle segment:</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+              <motion.button 
+                whileHover={{ scale: 1.03, translateY: -4 }}
+                onClick={() => handleNext('2w', setVehicle)}
+                className="p-8 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-megacharge-border hover:border-megacharge-green transition-all duration-300 text-center"
+              >
+                <div className="text-4xl mb-4">🛵</div>
+                <h4 className="text-white font-extrabold text-base mb-1">Two/Three-Wheeler</h4>
+                <p className="text-megacharge-text-secondary text-xs">Bikes, Electric Scooters, E-Rickshaws</p>
+              </motion.button>
 
-      {/* STEP 2: USE CASE SELECT */}
-      {step === 2 && (
-        <div>
-          <h3 className="text-white text-xl font-bold text-center mb-6">Where will the charger be installed?</h3>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <button 
-              onClick={() => handleNext('home', setUseCase)}
-              className="p-5 rounded-2xl bg-megacharge-card border border-megacharge-border hover:border-megacharge-green transition-all duration-300 text-center"
-            >
-              <div className="text-3xl mb-3">🏠</div>
-              <h4 className="text-white font-bold text-sm mb-1">Home / Villa</h4>
-            </button>
-            <button 
-              onClick={() => handleNext('office', setUseCase)}
-              className="p-5 rounded-2xl bg-megacharge-card border border-megacharge-border hover:border-megacharge-green transition-all duration-300 text-center"
-            >
-              <div className="text-3xl mb-3">🏢</div>
-              <h4 className="text-white font-bold text-sm mb-1">Workplace / Corporate</h4>
-            </button>
-            <button 
-              onClick={() => handleNext('commercial', setUseCase)}
-              className="p-5 rounded-2xl bg-megacharge-card border border-megacharge-border hover:border-megacharge-green transition-all duration-300 text-center"
-            >
-              <div className="text-3xl mb-3">🛍️</div>
-              <h4 className="text-white font-bold text-sm mb-1">Mall / Hotel / Public</h4>
-            </button>
-            <button 
-              onClick={() => handleNext('highway', setUseCase)}
-              className="p-5 rounded-2xl bg-megacharge-card border border-megacharge-border hover:border-megacharge-green transition-all duration-300 text-center"
-            >
-              <div className="text-3xl mb-3">🛣️</div>
-              <h4 className="text-white font-bold text-sm mb-1">Highway Fast Hub</h4>
-            </button>
-          </div>
-          <button onClick={() => setStep(1)} className="text-xs text-megacharge-text-secondary hover:underline mt-6 block text-center">
-            &larr; Go Back
-          </button>
-        </div>
-      )}
+              <motion.button 
+                whileHover={{ scale: 1.03, translateY: -4 }}
+                onClick={() => handleNext('car', setVehicle)}
+                className="p-8 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-megacharge-border hover:border-megacharge-green transition-all duration-300 text-center"
+              >
+                <div className="text-4xl mb-4">🚗</div>
+                <h4 className="text-white font-extrabold text-base mb-1">Passenger Vehicles</h4>
+                <p className="text-megacharge-text-secondary text-xs">Standard EVs (SUV, Sedans, Hatchbacks)</p>
+              </motion.button>
 
-      {/* STEP 3: POWER SUPPLY */}
-      {step === 3 && (
-        <div>
-          <h3 className="text-white text-xl font-bold text-center mb-6">Select available power connection:</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <button 
-              onClick={() => handleNext('1phase', setPower)}
-              className="p-6 rounded-2xl bg-megacharge-card border border-megacharge-border hover:border-megacharge-green transition-all duration-300 text-center"
-            >
-              <div className="text-2xl mb-3">🔌</div>
-              <h4 className="text-white font-bold mb-1">Single Phase (230V)</h4>
-              <p className="text-megacharge-text-secondary text-xs">Standard domestic lines</p>
-            </button>
-            <button 
-              onClick={() => handleNext('3phase', setPower)}
-              className="p-6 rounded-2xl bg-megacharge-card border border-megacharge-border hover:border-megacharge-green transition-all duration-300 text-center"
-            >
-              <div className="text-2xl mb-3">⚡</div>
-              <h4 className="text-white font-bold mb-1">Three Phase (415V)</h4>
-              <p className="text-megacharge-text-secondary text-xs">Industrial / Commercial utility</p>
-            </button>
-            <button 
-              onClick={() => handleNext('grid', setPower)}
-              className="p-6 rounded-2xl bg-megacharge-card border border-megacharge-border hover:border-megacharge-green transition-all duration-300 text-center"
-            >
-              <div className="text-2xl mb-3">🏭</div>
-              <h4 className="text-white font-bold mb-1">Substation / Grid Power</h4>
-              <p className="text-megacharge-text-secondary text-xs">High-voltage highway grids</p>
-            </button>
-          </div>
-          <button onClick={() => setStep(2)} className="text-xs text-megacharge-text-secondary hover:underline mt-6 block text-center">
-            &larr; Go Back
-          </button>
-        </div>
-      )}
-
-      {/* STEP 4: RECOMMENDATION */}
-      {step === 4 && (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2">
-            <span className="text-megacharge-green text-xs font-bold uppercase tracking-wider">Recommended Hardware</span>
-            <h3 className="text-white text-2xl font-bold mt-2 mb-4">{getRecommendation().title}</h3>
-            <p className="text-megacharge-text-secondary text-sm leading-relaxed mb-6">
-              {getRecommendation().desc}
-            </p>
-            
-            <button onClick={resetSelector} className="text-xs text-megacharge-green hover:underline flex items-center gap-1 font-semibold">
-              🔄 Run Selector Again
-            </button>
-          </div>
-
-          <div className="bg-megacharge-border bg-opacity-35 p-6 rounded-2xl border border-megacharge-border flex flex-col justify-between">
-            <div>
-              <h4 className="text-white font-bold text-xs uppercase tracking-wider mb-4">Key Specifications:</h4>
-              <ul className="flex flex-col gap-2.5">
-                {getRecommendation().specs.map((spec, i) => (
-                  <li key={i} className="text-megacharge-text-secondary text-xs flex items-center gap-2">
-                    <span className="text-megacharge-green">&bull;</span> {spec}
-                  </li>
-                ))}
-              </ul>
+              <motion.button 
+                whileHover={{ scale: 1.03, translateY: -4 }}
+                onClick={() => handleNext('fleet', setVehicle)}
+                className="p-8 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-megacharge-border hover:border-megacharge-green transition-all duration-300 text-center"
+              >
+                <div className="text-4xl mb-4">🚛</div>
+                <h4 className="text-white font-extrabold text-base mb-1">Commercial Fleet</h4>
+                <p className="text-megacharge-text-secondary text-xs">Delivery trucks, e-commerce vehicles, corporate fleets</p>
+              </motion.button>
             </div>
-            <a href="/contact" className="w-full text-center bg-megacharge-green hover:bg-opacity-95 text-white font-bold text-xs py-3.5 rounded-full transition-all duration-300 mt-6 shadow-glow-green block">
-              {getRecommendation().cta}
-            </a>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        )}
 
+        {/* STEP 2: USE CASE SELECT */}
+        {step === 2 && (
+          <motion.div
+            key="step2"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <h3 className="text-white text-xl font-bold text-center mb-8 uppercase tracking-wider">Where will the charger be deployed?</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+              <motion.button 
+                whileHover={{ scale: 1.03, translateY: -4 }}
+                onClick={() => handleNext('home', setUseCase)}
+                className="p-6 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-megacharge-border hover:border-megacharge-green transition-all duration-300 text-center"
+              >
+                <div className="text-4xl mb-3">🏠</div>
+                <h4 className="text-white font-extrabold text-sm mb-1">Home / Villa</h4>
+              </motion.button>
+
+              <motion.button 
+                whileHover={{ scale: 1.03, translateY: -4 }}
+                onClick={() => handleNext('office', setUseCase)}
+                className="p-6 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-megacharge-border hover:border-megacharge-green transition-all duration-300 text-center"
+              >
+                <div className="text-4xl mb-3">🏢</div>
+                <h4 className="text-white font-extrabold text-sm mb-1">Workplace / Corporate</h4>
+              </motion.button>
+
+              <motion.button 
+                whileHover={{ scale: 1.03, translateY: -4 }}
+                onClick={() => handleNext('commercial', setUseCase)}
+                className="p-6 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-megacharge-border hover:border-megacharge-green transition-all duration-300 text-center"
+              >
+                <div className="text-4xl mb-3">🛍️</div>
+                <h4 className="text-white font-extrabold text-sm mb-1">Retail Mall / Hotel</h4>
+              </motion.button>
+
+              <motion.button 
+                whileHover={{ scale: 1.03, translateY: -4 }}
+                onClick={() => handleNext('highway', setUseCase)}
+                className="p-6 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-megacharge-border hover:border-megacharge-green transition-all duration-300 text-center"
+              >
+                <div className="text-4xl mb-3">🛣️</div>
+                <h4 className="text-white font-extrabold text-sm mb-1">Highway Fast Hub</h4>
+              </motion.button>
+            </div>
+            <button onClick={() => setStep(1)} className="text-xs text-megacharge-text-secondary hover:text-white hover:underline mt-8 block mx-auto">
+              &larr; Return to Previous Step
+            </button>
+          </motion.div>
+        )}
+
+        {/* STEP 3: POWER CONNECTION */}
+        {step === 3 && (
+          <motion.div
+            key="step3"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <h3 className="text-white text-xl font-bold text-center mb-8 uppercase tracking-wider">Select Available Grid Power:</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+              <motion.button 
+                whileHover={{ scale: 1.03, translateY: -4 }}
+                onClick={() => handleNext('1phase', setPower)}
+                className="p-8 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-megacharge-border hover:border-megacharge-green transition-all duration-300 text-center"
+              >
+                <div className="text-3xl mb-3">🔌</div>
+                <h4 className="text-white font-extrabold text-base mb-1">Single Phase (230V)</h4>
+                <p className="text-megacharge-text-secondary text-xs">Standard domestic power lines</p>
+              </motion.button>
+
+              <motion.button 
+                whileHover={{ scale: 1.03, translateY: -4 }}
+                onClick={() => handleNext('3phase', setPower)}
+                className="p-8 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-megacharge-border hover:border-megacharge-green transition-all duration-300 text-center"
+              >
+                <div className="text-3xl mb-3">⚡</div>
+                <h4 className="text-white font-extrabold text-base mb-1">Three Phase (415V)</h4>
+                <p className="text-megacharge-text-secondary text-xs">Commercial utility power setup</p>
+              </motion.button>
+
+              <motion.button 
+                whileHover={{ scale: 1.03, translateY: -4 }}
+                onClick={() => handleNext('grid', setPower)}
+                className="p-8 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-megacharge-border hover:border-megacharge-green transition-all duration-300 text-center"
+              >
+                <div className="text-3xl mb-3">🏭</div>
+                <h4 className="text-white font-extrabold text-base mb-1">Substation Grid</h4>
+                <p className="text-megacharge-text-secondary text-xs">High-voltage highway connection hubs</p>
+              </motion.button>
+            </div>
+            <button onClick={() => setStep(2)} className="text-xs text-megacharge-text-secondary hover:text-white hover:underline mt-8 block mx-auto">
+              &larr; Return to Previous Step
+            </button>
+          </motion.div>
+        )}
+
+        {/* STEP 4: RECOMMENDATION */}
+        {step === 4 && (
+          <motion.div
+            key="step4"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.3 }}
+            className="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-5xl mx-auto"
+          >
+            <div className="lg:col-span-7 bg-megacharge-dark bg-opacity-40 p-8 rounded-3xl border border-megacharge-border flex flex-col justify-between">
+              <div>
+                <span className="text-megacharge-green text-xs font-bold uppercase tracking-widest block mb-2">Recommended Deployment Hardware</span>
+                <h3 className="text-white text-3xl font-extrabold mb-4">{getRecommendation().title}</h3>
+                <p className="text-megacharge-text-secondary text-sm leading-relaxed mb-6">
+                  {getRecommendation().desc}
+                </p>
+              </div>
+              
+              <button 
+                onClick={resetSelector} 
+                className="text-xs text-megacharge-green hover:underline flex items-center gap-1 font-semibold w-fit"
+              >
+                🔄 Calibrate Inputs Again
+              </button>
+            </div>
+
+            <div className="lg:col-span-5 bg-megacharge-card bg-opacity-60 p-8 rounded-3xl border border-megacharge-green border-opacity-35 flex flex-col justify-between shadow-glow-green">
+              <div>
+                <h4 className="text-white font-extrabold text-xs uppercase tracking-widest mb-4 pb-2 border-b border-megacharge-border">System Specifications:</h4>
+                <ul className="flex flex-col gap-3">
+                  {getRecommendation().specs.map((spec, i) => (
+                    <li key={i} className="text-megacharge-text-secondary text-xs flex items-start gap-2">
+                      <span className="text-megacharge-green mt-0.5">&bull;</span>
+                      <span>{spec}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <a 
+                href="/contact" 
+                className="w-full text-center bg-megacharge-green hover:bg-opacity-95 text-white font-bold text-xs py-4 rounded-full transition-all duration-300 mt-8 shadow-glow-green block"
+              >
+                {getRecommendation().cta}
+              </a>
+            </div>
+          </motion.div>
+        )}
+
+      </AnimatePresence>
     </div>
   );
 };

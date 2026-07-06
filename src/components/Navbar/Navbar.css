@@ -15,25 +15,51 @@
 /* =====================================
    Navbar Layout & Background States
 ===================================== */
+/* =====================================
+   Navbar Layout & Background States
+===================================== */
 .navbar-container {
   position: fixed;
   top: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
   z-index: 100;
-  transition: var(--transition-smooth);
+  transition: var(--transition-smooth), width 0.5s cubic-bezier(0.16, 1, 0.3, 1), top 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-radius 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   border-bottom: 1px solid transparent;
 }
 
 .navbar-transparent {
-  background-color: transparent;
+  background: linear-gradient(90deg, rgba(14, 38, 68, 0.85) 0%, rgba(3, 10, 22, 0.95) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  top: 0;
+  width: 100%;
 }
 
 .navbar-scrolled {
-  background-color: rgba(3, 12, 21, 0.85);
-  backdrop-filter: var(--backdrop-blur-val);
-  -webkit-backdrop-filter: var(--backdrop-blur-val);
-  border-bottom: 1px solid var(--color-card-border);
+  top: 16px;
+  width: max-content;
+  max-width: 95%;
+  background: linear-gradient(135deg, rgba(16, 42, 76, 0.8) 0%, rgba(3, 10, 22, 0.9) 100%);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  box-shadow: 0 15px 40px -10px rgba(0, 0, 0, 0.6), 0 0 25px rgba(29, 185, 84, 0.06);
+}
+
+/* Ensure navbar inner behaves correctly when scrolled vs transparent */
+.navbar-inner {
+  transition: var(--transition-smooth);
+}
+
+.navbar-scrolled .navbar-inner {
+  height: 72px; /* Slightly more compact when floating */
+  padding-left: 2rem;
+  padding-right: 2rem;
+  gap: 4rem; /* Balanced horizontal spacing between logo, links, and buttons */
 }
 
 /* =====================================
@@ -46,28 +72,41 @@
 }
 
 .logo-icon-container {
-  width: 32px;
-  height: 32px;
-  background-color: var(--color-green);
-  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--shadow-green);
+  transition: var(--transition-smooth);
 }
 
-.logo-lightning {
-  color: var(--color-white);
-  font-size: 1.1rem;
-  line-height: 1;
+.navbar-logo:hover .logo-icon-container {
+  transform: rotate(-8deg) scale(1.1);
+  filter: drop-shadow(0 0 8px rgba(29, 185, 84, 0.45));
 }
 
 .nav-link {
   color: var(--color-white);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   font-weight: 500;
   transition: var(--transition-fast);
-  opacity: 0.85;
+  opacity: 0.8;
+  position: relative;
+  padding: 0.25rem 0;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-green);
+  transition: var(--transition-fast);
+}
+
+.nav-link:hover::after,
+.nav-link.active-link::after {
+  width: 100%;
 }
 
 .nav-link:hover {
@@ -80,18 +119,27 @@
 ===================================== */
 .mega-menu-overlay {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 12px);
   left: 0;
   width: 100%;
-  background-color: rgba(3, 12, 21, 0.96);
-  backdrop-filter: var(--backdrop-blur-val);
-  -webkit-backdrop-filter: var(--backdrop-blur-val);
-  border-bottom: 1px solid var(--color-card-border);
+  background: rgba(6, 18, 33, 0.88);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(29, 185, 84, 0.06);
   opacity: 0;
   visibility: hidden;
   transform: translateY(-10px);
-  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
   z-index: 99;
+}
+
+/* On non-scrolled navbar, pull the menu closer to avoid layout gaps */
+.navbar-transparent .mega-menu-overlay {
+  top: 100%;
+  border-radius: 0 0 24px 24px;
+  border-top: none;
 }
 
 .mega-menu-active {
@@ -103,18 +151,24 @@
 .mega-menu-card {
   transition: var(--transition-smooth);
   border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.01);
 }
 
 .mega-menu-card:hover {
-  border-color: rgba(29, 185, 84, 0.15);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border-color: rgba(29, 185, 84, 0.2);
+  background: rgba(29, 185, 84, 0.03);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 15px rgba(29, 185, 84, 0.04);
 }
 
 /* =====================================
    Mobile Responsive Tweak
-===================================== */
+==================================== */
 @media (max-width: 1023px) {
   .mega-menu-overlay {
     display: none !important;
+  }
+  .navbar-scrolled {
+    width: 95%;
+    top: 10px;
   }
 }

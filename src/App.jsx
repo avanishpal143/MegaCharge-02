@@ -18,6 +18,7 @@ import Lenis from 'lenis';
 /* Shared Layout Components */
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
+import BackgroundGrid from './components/BackgroundGrid/BackgroundGrid';
 
 /* Route Pages */
 import Home from './pages/Home/Home';
@@ -87,7 +88,7 @@ const App = () => {
   return (
     <Router>
       <ScrollToTop />
-      <div className="flex flex-col min-h-screen">
+      <BackgroundGrid>
         
         {/* Transparent Header */}
         <Navbar />
@@ -114,7 +115,7 @@ const App = () => {
         {/* Corporate Footer */}
         <Footer />
 
-      </div>
+      </BackgroundGrid>
     </Router>
   );
 };
