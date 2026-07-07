@@ -154,7 +154,7 @@ const InteractiveMap = () => {
                   cx={hub.coords.x}
                   cy={hub.coords.y}
                   r={isSelected ? 10 : 6}
-                  fill={hub.id === 'nh44' ? '#FF6B35' : '#1DB954'}
+                  fill={hub.id === 'nh44' ? '#C9C1EB' : '#93A6C8'}
                   fillOpacity="0.2"
                   className="animate-ping"
                   style={{ animationDuration: isSelected ? '1.5s' : '3s' }}
@@ -165,7 +165,7 @@ const InteractiveMap = () => {
                   cx={hub.coords.x}
                   cy={hub.coords.y}
                   r={isSelected ? 6 : 4.5}
-                  fill={hub.id === 'nh44' ? '#FF6B35' : '#1DB954'}
+                  fill={hub.id === 'nh44' ? '#C9C1EB' : '#93A6C8'}
                   className="transition-all duration-300 group-hover:r-6"
                 />
 

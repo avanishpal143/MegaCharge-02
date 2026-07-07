@@ -12,28 +12,27 @@
  */
 
 :root {
-  /* Brand Palette */
-  --color-green: #00B4D8;
-  --color-navy: #0B132B;
-  --color-orange: #FF6B35;
-  --color-dark: #0B132B;
+  /* Brand Palette - Redefined to new matching gradient scheme */
+  --color-green: #93A6C8;      /* Primary active highlight (periwinkle) */
+  --color-navy: #344F4F;       /* Sub container dark (teal-grey) */
+  --color-orange: #C9C1EB;     /* Alternate highlight (lavender) */
+  --color-dark: #23322D;       /* Main dark background (slate-green) */
   --color-gray: #F6F8FB;
   --color-white: #FFFFFF;
   
-  /* UI Specific Colors (Light mode by default) */
-  --color-bg: #F8FAFC;
-  --color-card-bg: rgba(255, 255, 255, 0.85);
-  --color-card-border: rgba(11, 19, 43, 0.1);
-  --color-text-primary: #0F172A;
-  --color-text-secondary: #475569;
-  --color-text-dark: #0F172A;
+  /* Custom requested color palette */
+  --color-black: #23322D;
+  --color-plum: #344F4F;
+  --color-lavender: #688AA0;
+  --color-lavender-light: #C9C1EB;
+  --color-navy-dark: #23322D;
+  --color-cosmic-bg: #344F4F;
   
-  /* Modern Glowing Gradients */
-  --gradient-green: linear-gradient(135deg, #00B4D8 0%, #0077B6 50%, #03045E 100%);
-  --gradient-orange: linear-gradient(135deg, #FF6B35 0%, #f97316 50%, #ea580c 100%);
-  --gradient-cyan: linear-gradient(135deg, #00B4D8 0%, #90E0EF 100%);
-  --gradient-dark-glass: linear-gradient(135deg, #0B132B 0%, #1C2541 100%);
-  --gradient-battery: linear-gradient(90deg, #00B4D8 0%, #0077B6 70%, #90E0EF 100%);
+  /* Modern Cosmic Gradients */
+  --gradient-cosmic: linear-gradient(135deg, #23322D 0%, #344F4F 45%, #496D76 100%);
+  --gradient-purple-glow: linear-gradient(135deg, #688AA0 0%, #93A6C8 50%, #C9C1EB 100%);
+  --gradient-card-dark: linear-gradient(135deg, #23322D 0%, #344F4F 100%);
+  --gradient-battery: linear-gradient(90deg, #93A6C8 0%, #688AA0 70%, #C9C1EB 100%);
   
   /* Font Families */
   --font-primary: 'Poppins', sans-serif;
@@ -43,10 +42,10 @@
   --nav-height: 80px;
   
   /* Shadows & Neon Glows */
-  --shadow-green: 0 0 25px rgba(0, 180, 216, 0.35);
-  --shadow-orange: 0 0 25px rgba(255, 107, 53, 0.35);
-  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
-  --shadow-card-glow: 0 0 20px rgba(0, 180, 216, 0.05);
+  --shadow-green: 0 0 25px rgba(147, 166, 200, 0.35);
+  --shadow-orange: 0 0 25px rgba(201, 193, 235, 0.35);
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+  --shadow-card-glow: 0 0 20px rgba(147, 166, 200, 0.08);
   --backdrop-blur-val: blur(20px);
   
   /* Premium Transitions */

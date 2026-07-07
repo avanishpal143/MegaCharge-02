@@ -32,6 +32,165 @@
 }
 
 .faq-item:hover {
-  border-color: rgba(29, 185, 84, 0.25);
+  border-color: rgba(147, 166, 200, 0.25);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
+
+/* =====================================
+   Cosmic section and premium cards for "A Cut Above the Rest"
+===================================== */
+.cosmic-section {
+  background: linear-gradient(180deg, var(--color-dark) 0%, #170a1a 50%, #000000 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.cosmic-glow-orb-1 {
+  position: absolute;
+  top: -10%;
+  left: 10%;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(168, 131, 186, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.cosmic-glow-orb-2 {
+  position: absolute;
+  bottom: -10%;
+  right: 10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(90, 62, 81, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.cosmic-card {
+  background: rgba(11, 19, 43, 0.45);
+  border: 1px solid rgba(168, 131, 186, 0.12);
+  border-radius: 24px;
+  padding: 2rem;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(16px);
+}
+
+.cosmic-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(168, 131, 186, 0.2) 0%, rgba(217, 218, 255, 0.05) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cosmic-card:hover {
+  transform: translateY(-8px);
+  background: rgba(35, 11, 19, 0.6);
+  border-color: rgba(201, 193, 235, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(201, 193, 235, 0.25);
+}
+
+.cosmic-card:hover::before {
+  background: linear-gradient(135deg, rgba(201, 193, 235, 0.6) 0%, rgba(52, 79, 79, 0.8) 100%);
+}
+
+.cosmic-card-icon {
+  background: rgba(201, 193, 235, 0.1);
+  color: var(--color-orange);
+  border: 1px solid rgba(201, 193, 235, 0.2);
+  transition: all 0.3s ease;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cosmic-card:hover .cosmic-card-icon {
+  background: var(--color-orange);
+  color: var(--color-dark);
+  box-shadow: var(--shadow-orange);
+}
+
+/* Custom Clipped Cards (futuristic angled corners) */
+.stats-clipped-card {
+  clip-path: polygon(
+    0% 16px, 
+    16px 0%, 
+    calc(100% - 16px) 0%, 
+    100% 16px, 
+    100% calc(100% - 16px), 
+    calc(100% - 16px) 100%, 
+    16px 100%, 
+    0% calc(100% - 16px)
+  );
+}
+
+/* Overlapping phone mockup styles */
+.phone-mockup-wrapper {
+  perspective: 1200px;
+}
+
+.phone-mockup-container {
+  transform-style: preserve-3d;
+}
+
+/* Auto-scrolling logo marquee */
+.partner-marquee-container {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  width: 100%;
+  position: relative;
+}
+
+.partner-marquee-container::before,
+.partner-marquee-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 120px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.partner-marquee-container::before {
+  left: 0;
+  background: linear-gradient(to right, rgb(248, 250, 252) 0%, rgba(248, 250, 252, 0) 100%);
+}
+
+.partner-marquee-container::after {
+  right: 0;
+  background: linear-gradient(to left, rgb(248, 250, 252) 0%, rgba(248, 250, 252, 0) 100%);
+}
+
+.partner-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: scrollMarquee 25s linear infinite;
+}
+
+.partner-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scrollMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+

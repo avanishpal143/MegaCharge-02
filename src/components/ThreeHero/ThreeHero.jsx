@@ -63,7 +63,7 @@ const ThreeHero = () => {
     dirLight.position.set(5, 5, 5);
     scene.add(dirLight);
 
-    const pointLight = new THREE.PointLight('#1DB954', 2.5, 20);
+    const pointLight = new THREE.PointLight('#93A6C8', 2.5, 20);
     pointLight.position.set(0, -2, 2);
     scene.add(pointLight);
 
@@ -72,13 +72,13 @@ const ThreeHero = () => {
     batteryRef.current = batteryGroup;
     scene.add(batteryGroup);
 
-    // Inner core cylinder (metallic green)
+    // Inner core cylinder (metallic periwinkle)
     const coreGeom = new THREE.CylinderGeometry(0.8, 0.8, 3, 32);
     const coreMat = new THREE.MeshStandardMaterial({
-      color: '#1DB954',
+      color: '#93A6C8',
       roughness: 0.2,
       metalness: 0.9,
-      emissive: '#1DB954',
+      emissive: '#93A6C8',
       emissiveIntensity: 0.2
     });
     const coreMesh = new THREE.Mesh(coreGeom, coreMat);
@@ -117,7 +117,7 @@ const ThreeHero = () => {
 
     // Indicator Rings (representing charge status)
     const ringGeom = new THREE.TorusGeometry(1.05, 0.04, 8, 32);
-    const ringMat = new THREE.MeshBasicMaterial({ color: '#1DB954' });
+    const ringMat = new THREE.MeshBasicMaterial({ color: '#93A6C8' });
     
     const indicatorRings = [];
     for (let i = 0; i < 3; i++) {
@@ -163,7 +163,7 @@ const ThreeHero = () => {
     const ctx = canvas.getContext('2d');
     const grad = ctx.createRadialGradient(8, 8, 0, 8, 8, 8);
     grad.addColorStop(0, 'rgba(255,255,255,1)');
-    grad.addColorStop(0.3, 'rgba(29,185,84,1)');
+    grad.addColorStop(0.3, 'rgba(0,180,216,1)');
     grad.addColorStop(1, 'rgba(0,0,0,0)');
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, 16, 16);

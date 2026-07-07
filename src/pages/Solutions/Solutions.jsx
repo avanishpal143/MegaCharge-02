@@ -61,8 +61,8 @@ const Solutions = () => {
     <div className="solutions-page-container bg-slate-50 min-h-screen">
       
       {/* HEADER SECTION (DARK GRADIENT WITH GLOW) */}
-      <section className="w-full bg-[#0B132B] pt-32 pb-20 px-6 text-center text-white border-b border-slate-800 relative">
-        <div className="absolute inset-0 bg-gradient-radial from-[#00B4D8] to-transparent opacity-10 blur-3xl pointer-events-none" />
+      <section className="w-full bg-megacharge-dark pt-32 pb-20 px-6 text-center text-white border-b border-slate-800 relative">
+        <div className="absolute inset-0 bg-gradient-radial from-megacharge-green to-transparent opacity-10 blur-3xl pointer-events-none" />
         
         <div className="max-w-7xl mx-auto relative z-10">
           <h1 className="text-white text-4xl sm:text-5xl font-extrabold font-poppins">
@@ -76,19 +76,19 @@ const Solutions = () => {
           <div className="flex flex-wrap items-center justify-center gap-4 mt-10">
             <button 
               onClick={() => setActiveSegment('commercial')}
-              className={`px-6 py-3 rounded-full font-semibold text-xs flex items-center gap-2 transition-all duration-300 ${activeSegment === 'commercial' ? 'bg-[#00B4D8] text-white shadow-[0_0_15px_rgba(0,180,216,0.3)]' : 'bg-[#1C2541] border border-slate-700 text-slate-300 hover:text-white'}`}
+              className={`px-6 py-3 rounded-full font-semibold text-xs flex items-center gap-2 transition-all duration-300 ${activeSegment === 'commercial' ? 'bg-megacharge-green text-white shadow-glow-green' : 'bg-megacharge-navy border border-slate-700 text-slate-300 hover:text-white'}`}
             >
               <BuildingIcon className="w-4 h-4" /> Commercial Properties
             </button>
             <button 
               onClick={() => setActiveSegment('residential')}
-              className={`px-6 py-3 rounded-full font-semibold text-xs flex items-center gap-2 transition-all duration-300 ${activeSegment === 'residential' ? 'bg-[#00B4D8] text-white shadow-[0_0_15px_rgba(0,180,216,0.3)]' : 'bg-[#1C2541] border border-slate-700 text-slate-300 hover:text-white'}`}
+              className={`px-6 py-3 rounded-full font-semibold text-xs flex items-center gap-2 transition-all duration-300 ${activeSegment === 'residential' ? 'bg-megacharge-green text-white shadow-glow-green' : 'bg-megacharge-navy border border-slate-700 text-slate-300 hover:text-white'}`}
             >
               <HomeIcon className="w-4 h-4" /> Residential Societies
             </button>
             <button 
               onClick={() => setActiveSegment('fleet')}
-              className={`px-6 py-3 rounded-full font-semibold text-xs flex items-center gap-2 transition-all duration-300 ${activeSegment === 'fleet' ? 'bg-[#00B4D8] text-white shadow-[0_0_15px_rgba(0,180,216,0.3)]' : 'bg-[#1C2541] border border-slate-700 text-slate-300 hover:text-white'}`}
+              className={`px-6 py-3 rounded-full font-semibold text-xs flex items-center gap-2 transition-all duration-300 ${activeSegment === 'fleet' ? 'bg-megacharge-green text-white shadow-glow-green' : 'bg-megacharge-navy border border-slate-700 text-slate-300 hover:text-white'}`}
             >
               <TruckIcon className="w-4 h-4" /> Logistics & Fleet Depots
             </button>
@@ -227,25 +227,25 @@ const Solutions = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <motion.div whileHover={{ y: -5 }} className="p-6 rounded-2xl bg-slate-50 border border-slate-200 shadow-sm">
-              <span className="text-[#00B4D8] font-bold text-2xl mb-3 block">01. Site Survey</span>
+              <span className="text-megacharge-green font-bold text-2xl mb-3 block">01. Site Survey</span>
               <h4 className="text-slate-900 font-extrabold text-sm mb-2">Feasibility Audit</h4>
               <p className="text-slate-600 text-xs leading-relaxed">MNIL field engineers conduct structural assessments and electrical check audits.</p>
             </motion.div>
 
             <motion.div whileHover={{ y: -5 }} className="p-6 rounded-2xl bg-slate-50 border border-slate-200 shadow-sm">
-              <span className="text-[#00B4D8] font-bold text-2xl mb-3 block">02. Design Approval</span>
+              <span className="text-megacharge-green font-bold text-2xl mb-3 block">02. Design Approval</span>
               <h4 className="text-slate-900 font-extrabold text-sm mb-2">Technical Blueprint</h4>
               <p className="text-slate-600 text-xs leading-relaxed">We outline optimal charger configurations, cabling metrics, and safety isolators.</p>
             </motion.div>
 
             <motion.div whileHover={{ y: -5 }} className="p-6 rounded-2xl bg-slate-50 border border-slate-200 shadow-sm">
-              <span className="text-[#00B4D8] font-bold text-2xl mb-3 block">03. Deployment</span>
+              <span className="text-megacharge-green font-bold text-2xl mb-3 block">03. Deployment</span>
               <h4 className="text-slate-900 font-extrabold text-sm mb-2">Civil Works & Mounts</h4>
               <p className="text-slate-600 text-xs leading-relaxed">We pour structural base blocks, install couplers, and wire the terminals safely.</p>
             </motion.div>
 
             <motion.div whileHover={{ y: -5 }} className="p-6 rounded-2xl bg-slate-50 border border-slate-200 shadow-sm">
-              <span className="text-[#00B4D8] font-bold text-2xl mb-3 block">04. Telemetry Sync</span>
+              <span className="text-megacharge-green font-bold text-2xl mb-3 block">04. Telemetry Sync</span>
               <h4 className="text-slate-900 font-extrabold text-sm mb-2">Live Cloud Config</h4>
               <p className="text-slate-600 text-xs leading-relaxed">We map the terminal to public directories and connect cloud OCPP billing grids.</p>
             </motion.div>
@@ -274,7 +274,7 @@ const Solutions = () => {
                 className="w-full flex items-center justify-between p-6 text-left transition-colors hover:bg-slate-50"
               >
                 <span className="text-slate-900 font-extrabold text-sm sm:text-base">{faq.q}</span>
-                <span className="text-[#00B4D8] text-xl font-bold">
+                <span className="text-megacharge-green text-xl font-bold">
                   {activeFaq === idx ? '−' : '+'}
                 </span>
               </button>
@@ -294,11 +294,11 @@ const Solutions = () => {
 
       {/* SOLUTIONS ENQUIRY FORM */}
       <section className="max-w-3xl mx-auto pb-32 px-6 relative">
-        <div className="absolute inset-0 bg-gradient-radial from-[#00B4D8] to-transparent opacity-5 blur-3xl pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-radial from-megacharge-green to-transparent opacity-5 blur-3xl pointer-events-none" />
         
         <motion.div 
           {...fadeInUp}
-          className="premium-glass-card-dark p-8 md:p-12 rounded-3xl border border-[#00B4D8] border-opacity-25 flex flex-col gap-8 shadow-[0_0_30px_rgba(0,180,216,0.15)] text-white relative z-10"
+          className="premium-glass-card-dark p-8 md:p-12 rounded-3xl border border-megacharge-green border-opacity-25 flex flex-col gap-8 shadow-glow-green text-white relative z-10"
         >
           <div className="text-center md:text-left border-b border-slate-800 pb-6">
             <h3 className="text-white text-3xl font-extrabold leading-tight">Request Infrastructure Integration</h3>
@@ -326,7 +326,7 @@ const Solutions = () => {
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
                     placeholder="Enter your name" 
-                    className="bg-[#1C2541] border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#00B4D8] transition-colors"
+                    className="bg-megacharge-navy border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-megacharge-green transition-colors"
                   />
                 </div>
                 <div className="flex flex-col gap-1.5">
@@ -337,7 +337,7 @@ const Solutions = () => {
                     value={formData.phone}
                     onChange={(e) => setFormData({...formData, phone: e.target.value})}
                     placeholder="+91 99999 99999" 
-                    className="bg-[#1C2541] border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#00B4D8] transition-colors"
+                    className="bg-megacharge-navy border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-megacharge-green transition-colors"
                   />
                 </div>
               </div>
@@ -347,11 +347,11 @@ const Solutions = () => {
                 <select 
                   value={formData.solutionType}
                   onChange={(e) => setFormData({...formData, solutionType: e.target.value})}
-                  className="bg-[#1C2541] border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#00B4D8] transition-colors"
+                  className="bg-megacharge-navy border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-megacharge-green transition-colors font-mono cursor-pointer"
                 >
-                  <option value="commercial">Commercial Complex / Hotel / Restaurant</option>
-                  <option value="residential">Housing Society / Residential Villa</option>
-                  <option value="fleet">Logistics Yard / Fleet Depot</option>
+                  <option value="commercial" className="bg-megacharge-dark">Commercial Complex / Hotel / Restaurant</option>
+                  <option value="residential" className="bg-megacharge-dark">Housing Society / Residential Villa</option>
+                  <option value="fleet" className="bg-megacharge-dark">Logistics Yard / Fleet Depot</option>
                 </select>
               </div>
 
@@ -362,13 +362,13 @@ const Solutions = () => {
                   value={formData.message}
                   onChange={(e) => setFormData({...formData, message: e.target.value})}
                   placeholder="Provide approximate space dimensions, existing electricity load details, or other notes..." 
-                  className="bg-[#1C2541] border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#00B4D8] transition-colors resize-none"
+                  className="bg-megacharge-navy border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-megacharge-green transition-colors resize-none"
                 />
               </div>
 
               <button 
                 type="submit" 
-                className="w-full text-center bg-[#00B4D8] hover:bg-opacity-95 text-white font-bold text-xs py-4 rounded-xl transition-all duration-300 mt-2 block shadow-[0_0_15px_rgba(0,180,216,0.3)]"
+                className="w-full text-center bg-megacharge-green hover:bg-opacity-95 text-white font-bold text-xs py-4 rounded-xl transition-all duration-300 mt-2 block shadow-glow-green"
               >
                 Submit Solutions Request &rarr;
               </button>

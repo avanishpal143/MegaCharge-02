@@ -8,13 +8,13 @@ export default {
     extend: {
       colors: {
         megacharge: {
-          green: "#00B4D8",
-          navy: "#1C2541",
-          orange: "#FF6B35",
-          dark: "#0B132B",
+          green: "#93A6C8",
+          navy: "#344F4F",
+          orange: "#C9C1EB",
+          dark: "#23322D",
           gray: "#F8FAFC",
           card: "#FFFFFF",
-          border: "#E2E8F0",
+          border: "#D1D5DB",
         }
       },
       fontFamily: {

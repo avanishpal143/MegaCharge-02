@@ -151,8 +151,8 @@ const FranchisePage = () => {
     <div className="franchise-page-container bg-slate-50 min-h-screen overflow-hidden">
       
       {/* HEADER SECTION (DARK GRADIENT) */}
-      <section className="w-full bg-[#0B132B] pt-32 pb-20 px-6 text-center text-white border-b border-slate-800 relative">
-        <div className="absolute inset-0 bg-gradient-radial from-[#00B4D8] to-transparent opacity-10 blur-3xl pointer-events-none" />
+      <section className="w-full bg-megacharge-dark pt-32 pb-20 px-6 text-center text-white border-b border-slate-800 relative">
+        <div className="absolute inset-0 bg-gradient-radial from-megacharge-green to-transparent opacity-10 blur-3xl pointer-events-none" />
         
         <div className="max-w-7xl mx-auto relative z-10">
           <h1 className="text-white text-4xl sm:text-5xl lg:text-7xl font-extrabold font-poppins leading-none tracking-tight">
@@ -181,7 +181,7 @@ const FranchisePage = () => {
           >
             <div>
               <div className="flex justify-between items-center mb-8">
-                <span className="text-[#00B4D8] text-xs font-extrabold uppercase tracking-widest bg-[#00B4D8] bg-opacity-5 border border-[#00B4D8] border-opacity-30 px-4 py-1.5 rounded-full">
+                <span className="text-megacharge-green text-xs font-extrabold uppercase tracking-widest bg-megacharge-green bg-opacity-5 border border-megacharge-green border-opacity-30 px-4 py-1.5 rounded-full">
                   FOCO Rental Model
                 </span>
                 <span className="text-slate-500 text-xs font-mono">Franchise Owned · Company Operated</span>
@@ -208,7 +208,7 @@ const FranchisePage = () => {
           >
             <div>
               <div className="flex justify-between items-center mb-8">
-                <span className="text-[#FF6B35] text-xs font-extrabold uppercase tracking-widest bg-[#FF6B35] bg-opacity-5 border border-[#FF6B35] border-opacity-30 px-4 py-1.5 rounded-full">
+                <span className="text-megacharge-orange text-xs font-extrabold uppercase tracking-widest bg-megacharge-orange bg-opacity-5 border border-megacharge-orange border-opacity-30 px-4 py-1.5 rounded-full">
                   FOLO Rental Model
                 </span>
                 <span className="text-slate-500 text-xs font-mono">Franchise Owned · Locally Operated</span>
@@ -247,7 +247,7 @@ const FranchisePage = () => {
           </div>
           <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200">
             <span className="text-slate-500 text-[11px] block uppercase tracking-wider mb-2 font-mono">Revenue Share</span>
-            <span className="text-[#00B4D8] text-xl font-bold font-poppins font-mono">10% - 18%</span>
+            <span className="text-megacharge-green text-xl font-bold font-poppins font-mono">10% - 18%</span>
             <p className="text-slate-600 text-[11px] mt-3 leading-relaxed">Percentage of gross session revenues paid out to the site host, calculated and disbursed monthly.</p>
           </div>
           <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200">
@@ -286,7 +286,7 @@ const FranchisePage = () => {
               className="premium-glass-card p-6 sm:p-8 rounded-3xl border border-slate-200 bg-white shadow-sm flex flex-col justify-between text-slate-900"
             >
               <div>
-                <span className="text-[#00B4D8] text-[10px] font-bold uppercase tracking-widest block font-mono mb-2">
+                <span className="text-megacharge-green text-[10px] font-bold uppercase tracking-widest block font-mono mb-2">
                   {asset.dimensions} // {asset.dpi}
                 </span>
                 <h4 className="text-slate-900 font-extrabold text-xl mb-4">{asset.title}</h4>
@@ -351,7 +351,7 @@ const FranchisePage = () => {
                 className="w-full flex items-center justify-between p-6 text-left transition-colors hover:bg-slate-50"
               >
                 <span className="text-slate-900 font-extrabold text-sm sm:text-base">{faq.q}</span>
-                <span className="text-[#00B4D8] text-xl font-bold">
+                <span className="text-megacharge-green text-xl font-bold">
                   {activeFaq === idx ? '−' : '+'}
                 </span>
               </button>
@@ -371,11 +371,11 @@ const FranchisePage = () => {
 
       {/* RENTAL ALLIANCE ENQUIRY FORM */}
       <section id="enquiry-form" className="max-w-3xl mx-auto pb-24 px-6 bg-transparent relative">
-        <div className="absolute inset-0 bg-gradient-radial from-[#00B4D8] to-transparent opacity-5 blur-2xl pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-radial from-megacharge-green to-transparent opacity-5 blur-2xl pointer-events-none" />
         
         <motion.div 
           {...fadeInUp}
-          className="premium-glass-card-dark p-8 md:p-12 rounded-3xl border border-[#00B4D8] border-opacity-20 shadow-[0_0_30px_rgba(0,180,216,0.15)] text-white relative z-10"
+          className="premium-glass-card-dark p-8 md:p-12 rounded-3xl border border-megacharge-green border-opacity-20 shadow-glow-green text-white relative z-10"
         >
           <div className="text-center mb-10">
             <h3 className="text-white text-3xl font-extrabold mb-3">Host or Rent an EV Station</h3>
@@ -403,7 +403,7 @@ const FranchisePage = () => {
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
                     placeholder="Enter your name" 
-                    className="bg-[#1C2541] border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#00B4D8]"
+                    className="bg-megacharge-navy border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-megacharge-green"
                   />
                 </div>
                 <div className="flex flex-col gap-2">
@@ -414,7 +414,7 @@ const FranchisePage = () => {
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
                     placeholder="email@company.com" 
-                    className="bg-[#1C2541] border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#00B4D8]"
+                    className="bg-megacharge-navy border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-megacharge-green"
                   />
                 </div>
               </div>
@@ -428,7 +428,7 @@ const FranchisePage = () => {
                     value={formData.phone}
                     onChange={(e) => setFormData({...formData, phone: e.target.value})}
                     placeholder="+91 99999 99999" 
-                    className="bg-[#1C2541] border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#00B4D8]"
+                    className="bg-megacharge-navy border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-megacharge-green"
                   />
                 </div>
                 <div className="flex flex-col gap-2">
@@ -439,7 +439,7 @@ const FranchisePage = () => {
                     value={formData.location}
                     onChange={(e) => setFormData({...formData, location: e.target.value})}
                     placeholder="e.g. Gurugram, Haryana" 
-                    className="bg-[#1C2541] border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#00B4D8]"
+                    className="bg-megacharge-navy border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-megacharge-green"
                   />
                 </div>
               </div>
@@ -449,13 +449,13 @@ const FranchisePage = () => {
                 <select 
                   value={formData.siteType}
                   onChange={(e) => setFormData({...formData, siteType: e.target.value})}
-                  className="bg-[#1C2541] border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#00B4D8]"
+                  className="bg-megacharge-navy border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-megacharge-green font-mono cursor-pointer"
                 >
-                  <option value="highway">Highway Land / Gas Station</option>
-                  <option value="mall">Shopping Mall / Commercial Parking</option>
-                  <option value="hotel">Hotel / Restaurant parking</option>
-                  <option value="office">Office complex / Tech Park</option>
-                  <option value="residential">Residential Housing Society</option>
+                  <option value="highway" className="bg-megacharge-dark">Highway Land / Gas Station</option>
+                  <option value="mall" className="bg-megacharge-dark">Shopping Mall / Commercial Parking</option>
+                  <option value="hotel" className="bg-megacharge-dark">Hotel / Restaurant parking</option>
+                  <option value="office" className="bg-megacharge-dark">Office complex / Tech Park</option>
+                  <option value="residential" className="bg-megacharge-dark">Residential Housing Society</option>
                 </select>
               </div>
 
@@ -466,13 +466,13 @@ const FranchisePage = () => {
                   value={formData.message}
                   onChange={(e) => setFormData({...formData, message: e.target.value})}
                   placeholder="Provide approximate space dimensions, existing electricity load, or other details..." 
-                  className="bg-[#1C2541] border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#00B4D8]"
+                  className="bg-megacharge-navy border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-megacharge-green"
                 />
               </div>
 
               <button 
                 type="submit" 
-                className="w-full text-center bg-[#00B4D8] hover:bg-opacity-95 text-white font-bold text-sm py-4 rounded-xl transition-all duration-300 shadow-sm mt-2 block"
+                className="w-full text-center bg-megacharge-green hover:bg-opacity-95 text-white font-bold text-sm py-4 rounded-xl transition-all duration-300 shadow-sm mt-2 block"
               >
                 Submit Installation Inquiry
               </button>

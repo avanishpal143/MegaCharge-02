@@ -157,13 +157,13 @@ body {
 
 .premium-glass-card-dark:hover {
   transform: translateY(-12px) scale(1.015);
-  background: linear-gradient(135deg, #1C2541 0%, #0B132B 100%);
+  background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-dark) 100%);
   border-color: var(--color-green);
-  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8), 0 0 35px rgba(0, 180, 216, 0.25);
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8), 0 0 35px rgba(147, 166, 200, 0.25);
 }
 
 .premium-glass-card-dark:hover::before {
-  background: linear-gradient(135deg, rgba(0, 180, 216, 0.6) 0%, rgba(0, 180, 216, 0.2) 100%);
+  background: linear-gradient(135deg, rgba(147, 166, 200, 0.6) 0%, rgba(147, 166, 200, 0.2) 100%);
 }
 
 .premium-glass-card-orange:hover {
@@ -186,14 +186,14 @@ body {
   position: relative;
   z-index: 1;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 180, 216, 0.25);
+  box-shadow: var(--shadow-green);
 }
 
 .btn-premium-green::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #00E5FF 0%, #00B4D8 100%);
+  background: var(--gradient-purple-glow);
   opacity: 0;
   z-index: -1;
   transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -201,7 +201,7 @@ body {
 
 .btn-premium-green:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 25px rgba(0, 180, 216, 0.45), 0 0 15px rgba(0, 180, 216, 0.25);
+  box-shadow: 0 12px 25px rgba(147, 166, 200, 0.45), 0 0 15px rgba(147, 166, 200, 0.25);
 }
 
 .btn-premium-green:hover::after {
@@ -214,14 +214,14 @@ body {
   position: relative;
   z-index: 1;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.25);
+  box-shadow: var(--shadow-orange);
 }
 
 .btn-premium-orange::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #eab308 0%, #FF6B35 100%);
+  background: var(--gradient-purple-glow);
   opacity: 0;
   z-index: -1;
   transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -229,7 +229,7 @@ body {
 
 .btn-premium-orange:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 25px rgba(234, 179, 8, 0.45), 0 0 15px rgba(255, 107, 53, 0.2);
+  box-shadow: 0 12px 25px rgba(201, 193, 235, 0.45), 0 0 15px rgba(201, 193, 235, 0.25);
 }
 
 .btn-premium-orange:hover::after {

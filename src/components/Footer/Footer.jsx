@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { PhoneIcon } from '../CustomIcons/CustomIcons';
 import './Footer.css';
+import logoImg from '../../assets/logo.png';
 
 /* ==========================================
    FOOTER COMPONENT
@@ -15,9 +16,9 @@ const Footer = () => {
         {/* UPPER DECK: BRAND STATEMENT ONLY */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 pb-12 border-b border-slate-800">
           <div className="lg:col-span-2">
-            <Link to="/" className="flex items-center gap-2 mb-4">
-              <div className="logo-icon-container">
-                <span className="logo-lightning">⚡</span>
+            <Link to="/" className="flex items-center gap-2.5 mb-4">
+              <div className="logo-icon-container flex items-center justify-center">
+                <img src={logoImg} alt="MegaCharge Logo" className="w-9 h-9 object-contain" />
               </div>
               <span className="text-white font-poppins font-extrabold text-2xl tracking-tight">
                 MEGA<span className="text-megacharge-green">CHARGE</span>

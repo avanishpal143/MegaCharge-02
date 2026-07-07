@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { PhoneIcon } from '../../components/CustomIcons/CustomIcons';
 import './Products.css';
 
 // Import images
@@ -113,10 +114,9 @@ const Products = () => {
 
   return (
     <div className="products-page-container overflow-hidden bg-slate-50 min-h-screen">
-      
-      {/* HEADER SECTION (DARK GRADIENT WITH GLOW) */}
-      <section className="w-full bg-[#0B132B] pt-32 pb-20 px-6 text-center text-white relative border-b border-slate-800">
-        <div className="absolute inset-0 bg-gradient-radial from-[#00B4D8] to-transparent opacity-10 blur-3xl pointer-events-none" />
+         {/* HEADER SECTION (DARK GRADIENT WITH GLOW) */}
+      <section className="w-full bg-megacharge-dark pt-32 pb-20 px-6 text-center text-white relative border-b border-slate-800">
+        <div className="absolute inset-0 bg-gradient-radial from-megacharge-green to-transparent opacity-10 blur-3xl pointer-events-none" />
         
         <div className="max-w-7xl mx-auto relative z-10">
           <h1 className="text-white text-4xl sm:text-5xl lg:text-7xl font-extrabold font-poppins leading-none tracking-tight">
@@ -126,24 +126,24 @@ const Products = () => {
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-3xl mx-auto mt-6">
             Every MegaCharge unit is built to perform reliably in extreme temperatures. Rent our premium chargers on flexible terms with zero upfront setup costs, active grid protection, and remote OCPP telemetry.
           </p>
-
+ 
           {/* TABS SELECTOR */}
           <div className="flex flex-wrap items-center justify-center gap-4 mt-12">
             <button 
               onClick={() => setActiveTab('all')}
-              className={`px-8 py-3 rounded-full font-bold text-xs uppercase tracking-wider transition-all duration-300 ${activeTab === 'all' ? 'bg-[#00B4D8] text-white shadow-[0_0_15px_rgba(0,180,216,0.3)]' : 'bg-[#1C2541] border border-slate-700 text-slate-300 hover:text-white'}`}
+              className={`px-8 py-3 rounded-full font-bold text-xs uppercase tracking-wider transition-all duration-300 ${activeTab === 'all' ? 'bg-megacharge-green text-white shadow-glow-green' : 'bg-megacharge-navy border border-slate-700 text-slate-300 hover:text-white'}`}
             >
               Show All Models
             </button>
             <button 
               onClick={() => setActiveTab('ac')}
-              className={`px-8 py-3 rounded-full font-bold text-xs uppercase tracking-wider transition-all duration-300 ${activeTab === 'ac' ? 'bg-[#00B4D8] text-white shadow-[0_0_15px_rgba(0,180,216,0.3)]' : 'bg-[#1C2541] border border-slate-700 text-slate-300 hover:text-white'}`}
+              className={`px-8 py-3 rounded-full font-bold text-xs uppercase tracking-wider transition-all duration-300 ${activeTab === 'ac' ? 'bg-megacharge-green text-white shadow-glow-green' : 'bg-megacharge-navy border border-slate-700 text-slate-300 hover:text-white'}`}
             >
               Smart AC Wallboxes
             </button>
             <button 
               onClick={() => setActiveTab('dc')}
-              className={`px-8 py-3 rounded-full font-bold text-xs uppercase tracking-wider transition-all duration-300 ${activeTab === 'dc' ? 'bg-[#00B4D8] text-white shadow-[0_0_15px_rgba(0,180,216,0.3)]' : 'bg-[#1C2541] border border-slate-700 text-slate-300 hover:text-white'}`}
+              className={`px-8 py-3 rounded-full font-bold text-xs uppercase tracking-wider transition-all duration-300 ${activeTab === 'dc' ? 'bg-megacharge-green text-white shadow-glow-green' : 'bg-megacharge-navy border border-slate-700 text-slate-300 hover:text-white'}`}
             >
               DC Fast Chargers
             </button>
@@ -173,10 +173,19 @@ const Products = () => {
               >
                 <div>
                   <div className="flex justify-between items-start mb-6">
-                    <span className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider ${charger.type === 'ac' ? 'bg-[#00B4D8] bg-opacity-10 text-[#00B4D8]' : 'bg-[#FF6B35] bg-opacity-10 text-[#FF6B35]'}`}>
+                    <span className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider ${charger.type === 'ac' ? 'bg-megacharge-green bg-opacity-10 text-megacharge-green' : 'bg-megacharge-orange bg-opacity-10 text-megacharge-orange'}`}>
                       {charger.type === 'ac' ? 'AC Wallbox' : 'DC Rapid'}
                     </span>
                     <span className="text-slate-400 text-xs font-mono">{charger.power}</span>
+                  </div>
+                  
+                  {/* Product Charger Image */}
+                  <div className="w-full h-64 mb-6 overflow-hidden rounded-2xl border border-slate-200 shadow-sm relative group bg-gradient-to-b from-slate-50 to-slate-100 flex items-center justify-center">
+                    <img 
+                      src={charger.type === 'ac' ? acCharger : dcCharger} 
+                      alt={charger.name} 
+                      className="h-full object-contain p-6 transition-transform duration-500 group-hover:scale-105"
+                    />
                   </div>
                   
                   <h3 className="text-slate-900 text-2xl font-extrabold mb-4">{charger.name}</h3>
@@ -200,7 +209,7 @@ const Products = () => {
                   <ul className="flex flex-col gap-2 mb-8 text-xs text-slate-600 font-mono">
                     {charger.features.map((feat, index) => (
                       <li key={index} className="flex items-center gap-2">
-                        <span className={charger.type === 'ac' ? 'text-[#00B4D8]' : 'text-[#FF6B35]'}>&bull;</span>
+                        <span className={charger.type === 'ac' ? 'text-megacharge-green' : 'text-megacharge-orange'}>&bull;</span>
                         <span>{feat}</span>
                       </li>
                     ))}
@@ -236,7 +245,7 @@ const Products = () => {
           <table className="w-full text-left border-collapse min-w-[800px]">
             <thead>
               <tr className="border-b border-slate-200 pb-4">
-                <th className="py-4 text-xs font-mono uppercase tracking-wider text-[#00B4D8] font-bold pl-4">Specification Matrix</th>
+                <th className="py-4 text-xs font-mono uppercase tracking-wider text-megacharge-green font-bold pl-4">Specification Matrix</th>
                 <th className="py-4 text-xs font-mono uppercase tracking-wider text-slate-900 font-bold">7.4 kW AC Smart</th>
                 <th className="py-4 text-xs font-mono uppercase tracking-wider text-slate-900 font-bold">30 kW DC Compact</th>
                 <th className="py-4 text-xs font-mono uppercase tracking-wider text-slate-900 font-bold">60 kW DC Dual</th>
@@ -318,8 +327,8 @@ const Products = () => {
                 onClick={() => toggleFaq(idx)}
                 className="w-full flex items-center justify-between p-6 text-left transition-colors hover:bg-slate-50"
               >
-                <span className="text-slate-900 font-extrabold text-sm sm:text-base">{faq.q}</span>
-                <span className="text-[#00B4D8] text-xl font-bold">
+                <span className="text-slate-700 font-medium text-sm sm:text-base">{faq.q}</span>
+                <span className="text-megacharge-green text-xl font-bold">
                   {activeFaq === idx ? '−' : '+'}
                 </span>
               </button>
@@ -337,90 +346,183 @@ const Products = () => {
         </div>
       </section>
 
-      {/* CHARGER ENQUIRY FORM */}
-      <section className="max-w-3xl mx-auto pb-32 px-6 relative">
-        <div className="absolute inset-0 bg-gradient-radial from-[#00B4D8] to-transparent opacity-5 blur-3xl pointer-events-none" />
+      {/* CHARGER ENQUIRY FORM (2-COLUMN PREMIUM LAYOUT) */}
+      <section className="max-w-7xl mx-auto pb-32 px-6 relative">
+        <div className="absolute inset-0 bg-gradient-radial from-megacharge-green to-transparent opacity-5 blur-3xl pointer-events-none" />
         
-        <motion.div 
-          {...fadeInUp}
-          className="premium-glass-card-dark p-8 md:p-12 rounded-3xl border border-[#00B4D8] border-opacity-25 flex flex-col gap-8 shadow-[0_0_30px_rgba(0,180,216,0.15)] text-white relative z-10"
-        >
-          <div className="text-center md:text-left border-b border-slate-800 pb-6">
-            <h3 className="text-white text-3xl font-extrabold leading-tight">Request Charger Hardware Rental</h3>
-            <p className="text-slate-300 text-sm leading-relaxed mt-2">
-              Interested in a specific AC or DC model? Complete the form below and MNIL engineers will send a load assessment report.
-            </p>
-          </div>
-
-          {submitted ? (
-            <div className="p-8 border border-green-500 border-opacity-40 rounded-2xl bg-green-500 bg-opacity-5 text-center w-full">
-              <span className="text-4xl block mb-4">🎉</span>
-              <h4 className="text-white text-xl font-bold mb-2">Request Submitted Successfully!</h4>
-              <p className="text-slate-300 text-sm leading-relaxed">
-                Thank you. A technical representative will review your selected model specifications and connect with you shortly.
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start relative z-10">
+          
+          {/* Left Column: Contact details (Talk to Our Team) */}
+          <div className="lg:col-span-6 flex flex-col gap-8 text-slate-900">
+            <div>
+              <span className="text-megacharge-orange text-xs font-bold uppercase tracking-widest bg-megacharge-orange bg-opacity-5 border border-megacharge-orange border-opacity-20 px-4 py-1.5 rounded-full inline-block mb-3 font-mono">
+                Get In Touch
+              </span>
+              <h2 className="text-slate-900 text-4xl sm:text-5xl font-extrabold font-poppins leading-none tracking-tight">
+                Talk to Our Team
+              </h2>
+              <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-xl mt-4">
+                Ready to scale your EV charging infrastructure? Speak with our technical team of engineers about installation feasibility, charger operations, OCPP telemetry, or flexible rental quotes.
               </p>
             </div>
-          ) : (
-            <form onSubmit={handleFormSubmit} className="flex flex-col gap-5 w-full text-slate-900">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-white text-[10px] font-bold uppercase tracking-wider font-mono">Full Name *</label>
-                  <input 
-                    type="text" 
-                    required 
-                    value={formData.name}
-                    onChange={(e) => setFormData({...formData, name: e.target.value})}
-                    placeholder="Enter your name" 
-                    className="bg-[#1C2541] border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#00B4D8] transition-colors"
-                  />
+            
+            {/* Contact details cards */}
+            <div className="flex flex-col gap-4">
+              {/* Sales Card */}
+              <div className="flex items-center gap-4 bg-white p-5 rounded-2xl border border-slate-200 shadow-sm transition-all duration-300 hover:border-megacharge-orange hover:shadow-md">
+                <div className="p-3 bg-megacharge-orange bg-opacity-10 text-megacharge-orange rounded-xl flex items-center justify-center">
+                  <PhoneIcon className="w-5 h-5" />
                 </div>
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-white text-[10px] font-bold uppercase tracking-wider font-mono">Phone Number *</label>
-                  <input 
-                    type="tel" 
-                    required 
-                    value={formData.phone}
-                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                    placeholder="+91 99999 99999" 
-                    className="bg-[#1C2541] border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#00B4D8] transition-colors"
-                  />
+                <div>
+                  <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block font-mono">Sales & Corporate</span>
+                  <a href="tel:9289555090" className="text-slate-950 font-bold text-sm sm:text-base hover:underline">+91 92895 55090</a>
                 </div>
               </div>
 
-              <div className="flex flex-col gap-1.5">
-                <label className="text-white text-[10px] font-bold uppercase tracking-wider font-mono">Select Charger Model *</label>
-                <select 
-                  value={formData.chargerType}
-                  onChange={(e) => setFormData({...formData, chargerType: e.target.value})}
-                  className="bg-[#1C2541] border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#00B4D8] transition-colors"
-                >
-                  <option value="ac7">7.4 kW AC Smart Box (AC)</option>
-                  <option value="dc30">30 kW DC Compact Rapid (DC)</option>
-                  <option value="dc60">60 kW DC Dual Gun Charger (DC)</option>
-                  <option value="dc180">120 kW - 180 kW DC Ultra Charger (DC)</option>
-                </select>
+              {/* Support Card */}
+              <div className="flex items-center gap-4 bg-white p-5 rounded-2xl border border-slate-200 shadow-sm transition-all duration-300 hover:border-megacharge-orange hover:shadow-md">
+                <div className="p-3 bg-megacharge-orange bg-opacity-10 text-megacharge-orange rounded-xl flex items-center justify-center">
+                  <span className="text-lg">✉</span>
+                </div>
+                <div>
+                  <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block font-mono">Support & Inquiries</span>
+                  <a href="mailto:sales@megacharge.co.in" className="text-slate-950 font-bold text-sm sm:text-base hover:underline">sales@megacharge.co.in</a>
+                </div>
               </div>
 
-              <div className="flex flex-col gap-1.5">
-                <label className="text-white text-[10px] font-bold uppercase tracking-wider font-mono">Deployment Site Notes</label>
-                <textarea 
-                  rows="3" 
-                  value={formData.message}
-                  onChange={(e) => setFormData({...formData, message: e.target.value})}
-                  placeholder="Provide approximate space dimensions, existing electricity load details, or other notes..." 
-                  className="bg-[#1C2541] border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#00B4D8] transition-colors resize-none"
-                />
+              {/* Address Card */}
+              <div className="flex items-center gap-4 bg-white p-5 rounded-2xl border border-slate-200 shadow-sm transition-all duration-300 hover:border-megacharge-orange hover:shadow-md">
+                <div className="p-3 bg-megacharge-orange bg-opacity-10 text-megacharge-orange rounded-xl flex items-center justify-center">
+                  <span className="text-lg">🏢</span>
+                </div>
+                <div>
+                  <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block font-mono">Corporate Headquarters</span>
+                  <span className="text-slate-950 font-bold text-xs sm:text-sm">811-812, Aggarwal Cyber Plaza-1, NSP, Pitampura, Delhi 110034</span>
+                </div>
               </div>
 
-              <button 
-                type="submit" 
-                className="w-full text-center bg-[#00B4D8] hover:bg-opacity-95 text-white font-bold text-xs py-4 rounded-xl transition-all duration-300 mt-2 block shadow-[0_0_15px_rgba(0,180,216,0.3)]"
-              >
-                Submit Hardware Request &rarr;
-              </button>
-            </form>
-          )}
-        </motion.div>
+              {/* WhatsApp Card */}
+              <div className="flex items-center gap-4 bg-white p-5 rounded-2xl border border-slate-200 shadow-sm transition-all duration-300 hover:border-megacharge-orange hover:shadow-md">
+                <div className="p-3 bg-megacharge-orange bg-opacity-10 text-megacharge-orange rounded-xl flex items-center justify-center">
+                  <span className="text-lg">💬</span>
+                </div>
+                <div>
+                  <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block font-mono">WhatsApp Support</span>
+                  <a href="https://wa.me/919289555090" target="_blank" rel="noopener noreferrer" className="text-slate-950 font-bold text-sm sm:text-base hover:underline">Chat with us now</a>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom tags */}
+            <div className="flex flex-wrap gap-2 mt-2">
+              <span className="text-[10px] font-mono text-slate-500 bg-slate-100 border border-slate-200 px-3.5 py-1.5 rounded-full font-semibold">• Direct Grid Alignment</span>
+              <span className="text-[10px] font-mono text-slate-500 bg-slate-100 border border-slate-200 px-3.5 py-1.5 rounded-full font-semibold">• Live Telemetry Integration</span>
+              <span className="text-[10px] font-mono text-slate-500 bg-slate-100 border border-slate-200 px-3.5 py-1.5 rounded-full font-semibold">• 24/7 Grid NOC Support</span>
+              <span className="text-[10px] font-mono text-slate-500 bg-slate-100 border border-slate-200 px-3.5 py-1.5 rounded-full font-semibold">• Zero Maintenance Fees</span>
+            </div>
+          </div>
+
+          {/* Right Column: Dark Form Card */}
+          <div className="lg:col-span-6 w-full">
+            <motion.div 
+              {...fadeInUp}
+              className="premium-glass-card-dark p-8 md:p-10 rounded-3xl border border-megacharge-orange border-opacity-25 flex flex-col gap-6 shadow-glow-orange text-white relative z-10"
+            >
+              <div className="border-b border-slate-800 pb-4">
+                <span className="text-megacharge-orange text-[10px] font-bold uppercase tracking-wider font-mono">Request a Rental</span>
+                <h3 className="text-white text-2xl font-extrabold leading-tight mt-1">Request Charger Rental</h3>
+                <p className="text-slate-300 text-xs leading-relaxed mt-1">
+                  Complete the form below to receive custom quotes and load assessment surveys from MNIL engineers.
+                </p>
+              </div>
+
+              {submitted ? (
+                <div className="p-8 border border-green-500 border-opacity-40 rounded-2xl bg-green-500 bg-opacity-5 text-center w-full">
+                  <span className="text-4xl block mb-4">🎉</span>
+                  <h4 className="text-white text-lg font-bold mb-2">Request Submitted Successfully!</h4>
+                  <p className="text-slate-300 text-xs leading-relaxed">
+                    Thank you. A technical representative will review your selected model specifications and connect with you shortly.
+                  </p>
+                </div>
+              ) : (
+                <form onSubmit={handleFormSubmit} className="flex flex-col gap-4.5 w-full text-slate-900">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="flex flex-col gap-1.5">
+                      <label className="text-white text-[10px] font-bold uppercase tracking-wider font-mono">Full Name *</label>
+                      <input 
+                        type="text" 
+                        required 
+                        value={formData.name}
+                        onChange={(e) => setFormData({...formData, name: e.target.value})}
+                        placeholder="Enter your name" 
+                        className="bg-megacharge-dark border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-megacharge-orange transition-colors"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-1.5">
+                      <label className="text-white text-[10px] font-bold uppercase tracking-wider font-mono">Phone Number *</label>
+                      <input 
+                        type="tel" 
+                        required 
+                        value={formData.phone}
+                        onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                        placeholder="+91 99999 99999" 
+                        className="bg-megacharge-dark border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-megacharge-orange transition-colors"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-white text-[10px] font-bold uppercase tracking-wider font-mono">Select Charger Model *</label>
+                    <select 
+                      value={formData.chargerType}
+                      onChange={(e) => setFormData({...formData, chargerType: e.target.value})}
+                      className="bg-megacharge-dark border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-megacharge-orange transition-colors cursor-pointer"
+                    >
+                      <option value="ac7" className="bg-megacharge-dark">7.4 kW AC Smart Box (AC)</option>
+                      <option value="dc30" className="bg-megacharge-dark">30 kW DC Compact Rapid (DC)</option>
+                      <option value="dc60" className="bg-megacharge-dark">60 kW DC Dual Gun Charger (DC)</option>
+                      <option value="dc180" className="bg-megacharge-dark">120 kW - 180 kW DC Ultra Charger (DC)</option>
+                    </select>
+                  </div>
+
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-white text-[10px] font-bold uppercase tracking-wider font-mono">Deployment Site Notes</label>
+                    <textarea 
+                      rows="3" 
+                      value={formData.message}
+                      onChange={(e) => setFormData({...formData, message: e.target.value})}
+                      placeholder="Provide approximate space dimensions, existing electricity load details, or other notes..." 
+                      className="bg-megacharge-dark border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-megacharge-orange transition-colors resize-none"
+                    />
+                  </div>
+
+                  <button 
+                    type="submit" 
+                    className="w-full text-center bg-megacharge-orange hover:bg-megacharge-navy text-megacharge-dark hover:text-white font-bold text-xs py-4 rounded-xl transition-all duration-300 mt-2 block shadow-glow-orange uppercase tracking-wider font-mono"
+                  >
+                    Submit Hardware Request &rarr;
+                  </button>
+                </form>
+              )}
+
+              {/* Form Stats Footer inside Card */}
+              <div className="grid grid-cols-3 gap-2 border-t border-slate-800 pt-4 mt-2 text-center">
+                <div>
+                  <span className="block text-white text-base font-extrabold">500+</span>
+                  <span className="text-[9px] text-slate-400 uppercase font-mono tracking-wider">Stations</span>
+                </div>
+                <div>
+                  <span className="block text-white text-base font-extrabold">99.9%</span>
+                  <span className="text-[9px] text-slate-400 uppercase font-mono tracking-wider">Uptime SLA</span>
+                </div>
+                <div>
+                  <span className="block text-white text-base font-extrabold">5 MW+</span>
+                  <span className="text-[9px] text-slate-400 uppercase font-mono tracking-wider">Power Dispensed</span>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
       </section>
 
     </div>
