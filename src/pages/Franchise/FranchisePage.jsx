@@ -30,6 +30,7 @@ const FranchisePage = () => {
     message: ''
   });
   const [submitted, setSubmitted] = useState(false);
+  const [activeFaq, setActiveFaq] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,6 +38,25 @@ const FranchisePage = () => {
       setSubmitted(true);
     }
   };
+
+  const toggleFaq = (idx) => {
+    setActiveFaq(activeFaq === idx ? null : idx);
+  };
+
+  const FAQS = [
+    {
+      q: "What is the key difference between the FOCO and FOLO models?",
+      a: "In the FOCO (Company Operated) model, you lease the land and MegaCharge manages all operations, paying you a fixed rent or session share. In the FOLO (Locally Operated) model, you rent our hardware, set custom margins, and manage local customer service yourself."
+    },
+    {
+      q: "What is the lock-in period for the rental agreement?",
+      a: "Our standard rental lease agreement has a duration of 3 to 5 years. It is fully renewable with built-in hardware upgrades and expansion pathways."
+    },
+    {
+      q: "How does MNIL coordinate structural civil works?",
+      a: "Our centralized engineering division conducts initial civil checks and allocates localized teams to carry out base concrete pouring, cabling trenches, protection isolators, and signage installations."
+    }
+  ];
 
   const SIGNAGE_ASSETS = [
     {
@@ -310,13 +330,52 @@ const FranchisePage = () => {
         </motion.div>
       </section>
 
+      {/* FRANCHISE FAQ SECTION */}
+      <section className="max-w-4xl mx-auto pb-24 px-6">
+        <motion.div 
+          {...fadeInUp}
+          className="text-center mb-16"
+        >
+          <h2 className="text-slate-900 text-3xl font-extrabold">Franchise & Alliance FAQs</h2>
+        </motion.div>
+
+        <div className="flex flex-col gap-5">
+          {FAQS.map((faq, idx) => (
+            <motion.div 
+              key={idx} 
+              whileHover={{ scale: 1.01 }}
+              className="faq-item rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm"
+            >
+              <button 
+                onClick={() => toggleFaq(idx)}
+                className="w-full flex items-center justify-between p-6 text-left transition-colors hover:bg-slate-50"
+              >
+                <span className="text-slate-900 font-extrabold text-sm sm:text-base">{faq.q}</span>
+                <span className="text-[#00B4D8] text-xl font-bold">
+                  {activeFaq === idx ? '−' : '+'}
+                </span>
+              </button>
+              
+              <div 
+                className={`faq-answer-container transition-all duration-300 ease-in-out ${activeFaq === idx ? 'max-h-[300px] border-t border-slate-100 p-6' : 'max-h-0'}`}
+                style={{ overflow: 'hidden' }}
+              >
+                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                  {faq.a}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
       {/* RENTAL ALLIANCE ENQUIRY FORM */}
       <section id="enquiry-form" className="max-w-3xl mx-auto pb-24 px-6 bg-transparent relative">
         <div className="absolute inset-0 bg-gradient-radial from-[#00B4D8] to-transparent opacity-5 blur-2xl pointer-events-none" />
         
         <motion.div 
           {...fadeInUp}
-          className="premium-glass-card-dark p-8 md:p-12 rounded-3xl border border-[#00B4D8] border-opacity-20 shadow-[0_0_30px_rgba(0,180,216,0.1)] text-white relative z-10"
+          className="premium-glass-card-dark p-8 md:p-12 rounded-3xl border border-[#00B4D8] border-opacity-20 shadow-[0_0_30px_rgba(0,180,216,0.15)] text-white relative z-10"
         >
           <div className="text-center mb-10">
             <h3 className="text-white text-3xl font-extrabold mb-3">Host or Rent an EV Station</h3>
@@ -337,7 +396,7 @@ const FranchisePage = () => {
             <form onSubmit={handleSubmit} className="flex flex-col gap-6 relative z-10 text-slate-900">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="flex flex-col gap-2">
-                  <label className="text-white text-xs font-bold uppercase tracking-wider font-mono">Full Name</label>
+                  <label className="text-white text-xs font-bold uppercase tracking-wider font-mono">Full Name *</label>
                   <input 
                     type="text" 
                     required 
@@ -362,7 +421,7 @@ const FranchisePage = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="flex flex-col gap-2">
-                  <label className="text-white text-xs font-bold uppercase tracking-wider font-mono">Phone Number</label>
+                  <label className="text-white text-xs font-bold uppercase tracking-wider font-mono">Phone Number *</label>
                   <input 
                     type="tel" 
                     required 
@@ -373,7 +432,7 @@ const FranchisePage = () => {
                   />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <label className="text-white text-xs font-bold uppercase tracking-wider font-mono">Property Location (City / State)</label>
+                  <label className="text-white text-xs font-bold uppercase tracking-wider font-mono">Property Location (City / State) *</label>
                   <input 
                     type="text" 
                     required 

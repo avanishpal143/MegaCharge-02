@@ -9,11 +9,11 @@ import './Footer.css';
 
 const Footer = () => {
   return (
-    <footer className="footer-container pt-16 pb-8 px-6 bg-megacharge-dark border-t border-megacharge-border">
+    <footer className="footer-container pt-16 pb-8 px-6 bg-megacharge-dark border-t border-slate-800">
       <div className="max-w-7xl mx-auto">
         
         {/* UPPER DECK: BRAND STATEMENT ONLY */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 pb-12 border-b border-megacharge-border">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 pb-12 border-b border-slate-800">
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center gap-2 mb-4">
               <div className="logo-icon-container">
@@ -23,8 +23,8 @@ const Footer = () => {
                 MEGA<span className="text-megacharge-green">CHARGE</span>
               </span>
             </Link>
-            <p className="text-megacharge-text-secondary text-sm leading-relaxed max-w-2xl">
-              A premium EV infrastructure segment of **Mega Nirman & Industries Limited (MNIL)**. Powering India's electric mobility transition since 1983 with cutting-edge public and residential charger grids. We rent out state-of-the-art charging stations and manage end-to-end installations.
+            <p className="text-slate-300 text-sm leading-relaxed max-w-2xl">
+              A premium EV infrastructure segment of <strong className="text-white font-bold">Mega Nirman & Industries Limited (MNIL)</strong>. Powering India's electric mobility transition since 1983 with cutting-edge public and residential charger grids. We rent out state-of-the-art charging stations and manage end-to-end installations.
             </p>
           </div>
         </div>
@@ -61,9 +61,9 @@ const Footer = () => {
           </div>
 
           {/* Link Col 4: Head Office Info */}
-          <div className="border-t md:border-t-0 border-megacharge-border pt-6 md:pt-0">
+          <div className="border-t md:border-t-0 border-slate-800 pt-6 md:pt-0">
             <h5 className="text-white font-bold text-sm mb-4 uppercase tracking-wider">Head Office</h5>
-            <p className="text-megacharge-text-secondary text-xs leading-relaxed mb-4">
+            <p className="text-slate-400 text-xs leading-relaxed mb-4">
               811-812, Aggarwal Cyber Plaza-1, Netaji Subhash Place, Pitampura, Delhi, 110034
             </p>
             <div className="flex flex-col gap-2">
@@ -79,22 +79,11 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* LOWER DECK: REGULATORY COMPLIANCE, MAPS & COPYRIGHT */}
-        <div className="pt-8 border-t border-megacharge-border flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex flex-wrap items-center gap-6">
-            <span className="text-megacharge-text-secondary text-xs">Certified compliance:</span>
-            <div className="flex gap-3">
-              <span className="text-[10px] text-white bg-megacharge-border px-2.5 py-1 rounded font-semibold border border-opacity-50">ISO 9001:2015</span>
-              <span className="text-[10px] text-white bg-megacharge-border px-2.5 py-1 rounded font-semibold border border-opacity-50">OCPP 1.6 Compliant</span>
-              <span className="text-[10px] text-white bg-megacharge-border px-2.5 py-1 rounded font-semibold border border-opacity-50">MNIL Segment</span>
-            </div>
-          </div>
-          
-          <div className="flex items-center gap-6">
-            <span className="text-megacharge-text-secondary text-xs font-mono">
-              &copy; {new Date().getFullYear()} MegaCharge. All rights reserved.
-            </span>
-          </div>
+        {/* LOWER DECK: COPYRIGHT */}
+        <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row items-center justify-center gap-6">
+          <span className="text-slate-500 text-xs font-mono">
+            &copy; {new Date().getFullYear()} MegaCharge. All rights reserved.
+          </span>
         </div>
 
       </div>

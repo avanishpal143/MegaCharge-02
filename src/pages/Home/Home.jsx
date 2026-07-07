@@ -32,9 +32,18 @@ const staggerContainer = {
 
 const Home = () => {
   const [activeFaq, setActiveFaq] = useState(null);
+  const [homeFormData, setHomeFormData] = useState({ name: '', email: '', phone: '', location: '', message: '' });
+  const [homeSubmitted, setHomeSubmitted] = useState(false);
 
   const toggleFaq = (index) => {
     setActiveFaq(activeFaq === index ? null : index);
+  };
+
+  const handleHomeFormSubmit = (e) => {
+    e.preventDefault();
+    if (homeFormData.name && homeFormData.phone) {
+      setHomeSubmitted(true);
+    }
   };
 
   const FAQS = [
@@ -88,17 +97,21 @@ const Home = () => {
               Partner with MegaCharge to launch high-performance EV charging units on rent. Unlock steady monthly rental income or revenue share on your property while driving clean mobility. We manage the installation, maintenance, and grid software.
             </p>
             
-            <div className="flex flex-wrap gap-4 mt-4 w-full sm:w-auto">
-              <Link to="/contact" className="w-full sm:w-auto text-center btn-premium-green text-white font-bold text-sm px-10 py-5 rounded-full flex items-center justify-center gap-2">
+            {/* Button and Helpline in a single aligned row */}
+            <div className="flex flex-col sm:flex-row items-center gap-4 mt-6 w-full sm:w-auto">
+              <Link 
+                to="/contact" 
+                className="w-full sm:w-auto text-center btn-premium-green text-white font-bold text-sm px-10 py-5 rounded-full flex items-center justify-center gap-2 transition-transform duration-300 hover:scale-105 shadow-[0_0_15px_rgba(0,180,216,0.3)]"
+              >
                 Apply for Station Installation <ArrowRightIcon className="w-4 h-4" />
               </Link>
-            </div>
-
-            <div className="flex items-center gap-3 mt-4 text-xs text-slate-300 bg-[#1C2541] bg-opacity-80 border border-slate-700 p-3.5 rounded-full">
-              <div className="p-2 bg-[#00B4D8] bg-opacity-20 text-[#00B4D8] rounded-full pulse-glow">
-                <PhoneIcon className="w-3.5 h-3.5" />
+              
+              <div className="flex items-center gap-3 text-xs text-slate-300 bg-[#1C2541] bg-opacity-80 border border-slate-700 px-6 py-[18px] rounded-full w-full sm:w-auto justify-center sm:justify-start">
+                <div className="p-2 bg-[#00B4D8] bg-opacity-20 text-[#00B4D8] rounded-full pulse-glow">
+                  <PhoneIcon className="w-3.5 h-3.5" />
+                </div>
+                <span>Helpline: <strong className="text-white">92895 55090</strong></span>
               </div>
-              <span>24x7 Installation Helpline: <strong className="text-white">92895 55090</strong></span>
             </div>
           </motion.div>
 
@@ -123,7 +136,13 @@ const Home = () => {
          2. TRUSTED BY MARQUEE
       ========================================== */}
       <section className="py-16 bg-slate-50 border-y border-slate-200">
-        <div className="max-w-7xl mx-auto px-6 text-center">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+          className="max-w-7xl mx-auto px-6 text-center"
+        >
           <span className="text-slate-500 text-[11px] font-bold uppercase tracking-wider block mb-8">
             STEERING INFRASTRUCTURE ALLIANCES WITH MARKET LEADERS
           </span>
@@ -134,7 +153,7 @@ const Home = () => {
             <span className="text-slate-800 font-extrabold text-sm sm:text-base tracking-widest font-mono">L&T RENEWABLES</span>
             <span className="text-slate-800 font-extrabold text-sm sm:text-base tracking-widest font-mono">NHAI EXPRESSWAYS</span>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* ==========================================
@@ -163,6 +182,7 @@ const Home = () => {
           {/* Charger 1: AC */}
           <motion.div 
             variants={fadeInUp}
+            whileHover={{ scale: 1.02, translateY: -8 }}
             className="premium-glass-card p-8 rounded-3xl flex flex-col justify-between relative overflow-hidden"
           >
             <div>
@@ -207,6 +227,7 @@ const Home = () => {
           {/* Charger 2: DC */}
           <motion.div 
             variants={fadeInUp}
+            whileHover={{ scale: 1.02, translateY: -8 }}
             className="premium-glass-card p-8 rounded-3xl flex flex-col justify-between relative overflow-hidden"
           >
             <div>
@@ -268,29 +289,38 @@ const Home = () => {
           </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="p-8 rounded-2xl bg-slate-50 border border-slate-200 hover:border-[#00B4D8] transition-colors duration-300">
+            <motion.div 
+              whileHover={{ scale: 1.03, y: -5 }}
+              className="p-8 rounded-2xl bg-slate-50 border border-slate-200 hover:border-[#00B4D8] transition-colors duration-300 shadow-sm"
+            >
               <span className="text-[#00B4D8] text-3xl font-bold font-mono block mb-4">01.</span>
               <h4 className="text-slate-900 font-extrabold text-lg mb-2">Liquid Cooled Rectifiers</h4>
               <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
                 Our Level 3 DC fast chargers use internal liquid-cooled plates. This design mitigates component wear in dusty highway environments and hot Indian summer parameters.
               </p>
-            </div>
+            </motion.div>
             
-            <div className="p-8 rounded-2xl bg-slate-50 border border-slate-200 hover:border-[#00B4D8] transition-colors duration-300">
+            <motion.div 
+              whileHover={{ scale: 1.03, y: -5 }}
+              className="p-8 rounded-2xl bg-slate-50 border border-slate-200 hover:border-[#00B4D8] transition-colors duration-300 shadow-sm"
+            >
               <span className="text-[#00B4D8] text-3xl font-bold font-mono block mb-4">02.</span>
               <h4 className="text-slate-900 font-extrabold text-lg mb-2">Active Grid Protection</h4>
               <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
                 Smart balancing software prevents localized power spikes. If grid demand peaks, our chargers adjust rate output dynamically to safeguard industrial fuses.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="p-8 rounded-2xl bg-slate-50 border border-slate-200 hover:border-[#00B4D8] transition-colors duration-300">
+            <motion.div 
+              whileHover={{ scale: 1.03, y: -5 }}
+              className="p-8 rounded-2xl bg-slate-50 border border-slate-200 hover:border-[#00B4D8] transition-colors duration-300 shadow-sm"
+            >
               <span className="text-[#00B4D8] text-3xl font-bold font-mono block mb-4">03.</span>
               <h4 className="text-slate-900 font-extrabold text-lg mb-2">OCPP 1.6 SaaS Platform</h4>
               <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
                 Commercial partners gain full dashboard metrics, including charger power loads, session costs, payment collection status, and remote maintenance triggers.
               </p>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -316,7 +346,10 @@ const Home = () => {
             </p>
 
             <div className="flex flex-col gap-6 w-full mt-4">
-              <div className="flex gap-4">
+              <motion.div 
+                whileHover={{ x: 6 }}
+                className="flex gap-4"
+              >
                 <div className="p-3 bg-[#00B4D8] bg-opacity-10 text-[#00B4D8] rounded-xl h-fit border border-[#00B4D8] border-opacity-20">
                   <ShieldIcon className="w-6 h-6" />
                 </div>
@@ -326,9 +359,12 @@ const Home = () => {
                     Integrated circuit breakers absorb line surges and lightning currents, preserving vehicle Battery Management Systems (BMS).
                   </p>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="flex gap-4">
+              <motion.div 
+                whileHover={{ x: 6 }}
+                className="flex gap-4"
+              >
                 <div className="p-3 bg-[#00B4D8] bg-opacity-10 text-[#00B4D8] rounded-xl h-fit border border-[#00B4D8] border-opacity-20">
                   <BoltIcon className="w-6 h-6" />
                 </div>
@@ -338,9 +374,12 @@ const Home = () => {
                     Sensors throttle charger output power if the grid or charger modules exceed operating temperatures.
                   </p>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="flex gap-4">
+              <motion.div 
+                whileHover={{ x: 6 }}
+                className="flex gap-4"
+              >
                 <div className="p-3 bg-[#00B4D8] bg-opacity-10 text-[#00B4D8] rounded-xl h-fit border border-[#00B4D8] border-opacity-20">
                   <ChargerIcon className="w-6 h-6" />
                 </div>
@@ -350,7 +389,7 @@ const Home = () => {
                     Automated connections report system diagnostic logs and payment status to centralized customer care centers.
                   </p>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
 
@@ -389,7 +428,7 @@ const Home = () => {
       </section>
 
       {/* ==========================================
-         7. DECISION TOOLS (ROI SAVINGS - LIGHT BACKGROUND)
+         7. DECISION TOOLS (ROI SAVINGS - COCKPIT DASHBOARD)
       ========================================== */}
       <section className="py-32 px-6 bg-transparent">
         <div className="max-w-7xl mx-auto">
@@ -422,8 +461,9 @@ const Home = () => {
 
         <div className="flex flex-col gap-5">
           {FAQS.map((faq, idx) => (
-            <div 
+            <motion.div 
               key={idx} 
+              whileHover={{ scale: 1.01 }}
               className="faq-item rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm"
             >
               <button 
@@ -444,35 +484,111 @@ const Home = () => {
                   {faq.a}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
 
       {/* ==========================================
-         9. FINAL CALL TO ACTION (DARK GLOW CARD)
+         9. FINAL CALL TO ACTION (WITH INTEGRATED FORM)
       ========================================== */}
       <section className="py-32 px-6 relative flex justify-center text-center bg-transparent">
         <div className="absolute inset-0 bg-gradient-radial from-[#00B4D8] to-transparent opacity-5 blur-3xl pointer-events-none" />
         
         <motion.div 
           {...fadeInUp}
-          className="max-w-4xl mx-auto relative z-10 premium-glass-card-dark p-10 md:p-20 rounded-3xl border border-[#00B4D8] border-opacity-25 flex flex-col items-center gap-8 shadow-[0_0_30px_rgba(0,180,216,0.15)] text-white"
+          className="max-w-3xl w-full mx-auto relative z-10 premium-glass-card-dark p-8 md:p-12 rounded-3xl border border-[#00B4D8] border-opacity-25 flex flex-col gap-8 shadow-[0_0_30px_rgba(0,180,216,0.15)] text-white text-left"
         >
-          <span className="text-[#00B4D8] text-xs font-bold uppercase tracking-widest bg-[#00B4D8] bg-opacity-5 border border-[#00B4D8] border-opacity-25 px-4 py-1.5 rounded-full">
-            Rental Installation Registry Open
-          </span>
-          <h2 className="text-white text-3xl md:text-5xl font-extrabold leading-tight">
-            Ready to Rent an EV Charging Station?
-          </h2>
-          <p className="text-slate-300 text-sm md:text-base leading-relaxed max-w-2xl">
-            Get a high-performance EV charging station installed on rent. Contact us today for a free site assessment and customized rental quotation. Join the green mobility revolution with zero setup hassle.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4 mt-4 w-full sm:w-auto">
-            <Link to="/contact" className="w-full sm:w-auto text-center btn-premium-green text-white font-bold text-sm px-12 py-5 rounded-full block shadow-glow-green">
-              Contact Us for Installation
-            </Link>
+          <div className="text-center md:text-left border-b border-slate-800 pb-6">
+            <span className="text-[#00B4D8] text-xs font-bold uppercase tracking-widest bg-[#00B4D8] bg-opacity-5 border border-[#00B4D8] border-opacity-25 px-4 py-1.5 rounded-full inline-block mb-3">
+              Rental Installation Registry Open
+            </span>
+            <h2 className="text-white text-3xl font-extrabold leading-tight">
+              Ready to Rent an EV Charging Station?
+            </h2>
+            <p className="text-slate-300 text-sm leading-relaxed mt-2">
+              Get a high-performance EV charging station installed on rent. Enter your property details below for a free site assessment and customized rental quotation from MNIL engineers.
+            </p>
           </div>
+
+          {homeSubmitted ? (
+            <div className="p-8 border border-green-500 border-opacity-40 rounded-2xl bg-green-500 bg-opacity-5 text-center w-full">
+              <span className="text-4xl block mb-4">🎉</span>
+              <h4 className="text-white text-xl font-bold mb-2">Rental Enquiry Submitted!</h4>
+              <p className="text-slate-300 text-sm leading-relaxed">
+                Thank you for reaching out. A MegaCharge representative will contact you within 24 hours to schedule your site grid evaluation survey.
+              </p>
+            </div>
+          ) : (
+            <form onSubmit={handleHomeFormSubmit} className="flex flex-col gap-5 w-full text-slate-900">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-white text-[10px] font-bold uppercase tracking-wider font-mono">Full Name *</label>
+                  <input 
+                    type="text" 
+                    required 
+                    value={homeFormData.name}
+                    onChange={(e) => setHomeFormData({...homeFormData, name: e.target.value})}
+                    placeholder="Enter your name" 
+                    className="bg-[#1C2541] border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#00B4D8] transition-colors"
+                  />
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-white text-[10px] font-bold uppercase tracking-wider font-mono">Phone Number *</label>
+                  <input 
+                    type="tel" 
+                    required 
+                    value={homeFormData.phone}
+                    onChange={(e) => setHomeFormData({...homeFormData, phone: e.target.value})}
+                    placeholder="+91 99999 99999" 
+                    className="bg-[#1C2541] border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#00B4D8] transition-colors"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-white text-[10px] font-bold uppercase tracking-wider font-mono">Corporate Email</label>
+                  <input 
+                    type="email" 
+                    value={homeFormData.email}
+                    onChange={(e) => setHomeFormData({...homeFormData, email: e.target.value})}
+                    placeholder="email@company.com" 
+                    className="bg-[#1C2541] border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#00B4D8] transition-colors"
+                  />
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-white text-[10px] font-bold uppercase tracking-wider font-mono">Site Location (City, State) *</label>
+                  <input 
+                    type="text" 
+                    required 
+                    value={homeFormData.location}
+                    onChange={(e) => setHomeFormData({...homeFormData, location: e.target.value})}
+                    placeholder="e.g. Gurugram, Haryana" 
+                    className="bg-[#1C2541] border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#00B4D8] transition-colors"
+                  />
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-1.5">
+                <label className="text-white text-[10px] font-bold uppercase tracking-wider font-mono">Site Details / Message</label>
+                <textarea 
+                  rows="3" 
+                  value={homeFormData.message}
+                  onChange={(e) => setHomeFormData({...homeFormData, message: e.target.value})}
+                  placeholder="Provide approximate space dimensions, existing electricity load details, or general notes..." 
+                  className="bg-[#1C2541] border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#00B4D8] transition-colors resize-none"
+                />
+              </div>
+
+              <button 
+                type="submit" 
+                className="w-full text-center bg-[#00B4D8] hover:bg-opacity-95 text-white font-bold text-xs py-4 rounded-xl transition-all duration-300 mt-2 block shadow-[0_0_15px_rgba(0,180,216,0.3)]"
+              >
+                Submit Installation Inquiry &rarr;
+              </button>
+            </form>
+          )}
         </motion.div>
       </section>
 

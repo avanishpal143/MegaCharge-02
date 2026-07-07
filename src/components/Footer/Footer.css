@@ -19,14 +19,14 @@
 }
 
 .footer-link {
-  color: var(--color-text-secondary);
+  color: #94A3B8;
   text-decoration: none;
   transition: var(--transition-fast);
   display: inline-block;
 }
 
 .footer-link:hover {
-  color: var(--color-green);
+  color: #00B4D8;
   transform: translateX(3px);
 }
 

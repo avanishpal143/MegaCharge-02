@@ -21,27 +21,27 @@ const ROIUtilities = () => {
   const [activeTab, setActiveTab] = useState('savings'); // 'savings' | 'roi' | 'select'
 
   return (
-    <div className="roi-utilities-wrapper w-full max-w-6xl mx-auto premium-glass-card p-6 md:p-12 rounded-3xl border border-megacharge-border relative overflow-hidden">
+    <div className="roi-utilities-wrapper w-full max-w-6xl mx-auto premium-glass-card-dark p-6 md:p-12 rounded-3xl border border-slate-800 relative overflow-hidden text-white shadow-[0_0_30px_rgba(0,180,216,0.15)]">
       {/* Decorative cyber grid ambient circle */}
-      <div className="absolute top-[-20%] right-[-10%] w-[400px] h-[400px] bg-megacharge-green opacity-5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-[-20%] right-[-10%] w-[400px] h-[400px] bg-[#00B4D8] opacity-5 rounded-full blur-3xl pointer-events-none" />
       
       {/* TABS HEADER */}
-      <div className="flex flex-wrap items-center justify-center gap-4 mb-12 pb-8 border-b border-megacharge-border">
+      <div className="flex flex-wrap items-center justify-center gap-4 mb-12 pb-8 border-b border-slate-800">
         <button 
           onClick={() => setActiveTab('savings')}
-          className={`px-8 py-3.5 rounded-full font-bold transition-all duration-300 flex items-center gap-2.5 text-xs uppercase tracking-wider ${activeTab === 'savings' ? 'bg-megacharge-green text-white shadow-glow-green' : 'text-megacharge-text-secondary hover:text-white hover:bg-megacharge-border hover:bg-opacity-20'}`}
+          className={`px-8 py-3.5 rounded-full font-bold transition-all duration-300 flex items-center gap-2.5 text-xs uppercase tracking-wider border ${activeTab === 'savings' ? 'bg-[#00B4D8] border-[#00B4D8] text-white shadow-[0_0_15px_rgba(0,180,216,0.35)]' : 'bg-[#1C2541] border-slate-700 text-slate-400 hover:text-white hover:border-slate-600'}`}
         >
           <LeafIcon className="w-4 h-4" /> Cost & CO₂ Savings
         </button>
         <button 
           onClick={() => setActiveTab('roi')}
-          className={`px-8 py-3.5 rounded-full font-bold transition-all duration-300 flex items-center gap-2.5 text-xs uppercase tracking-wider ${activeTab === 'roi' ? 'bg-megacharge-green text-white shadow-glow-green' : 'text-megacharge-text-secondary hover:text-white hover:bg-megacharge-border hover:bg-opacity-20'}`}
+          className={`px-8 py-3.5 rounded-full font-bold transition-all duration-300 flex items-center gap-2.5 text-xs uppercase tracking-wider border ${activeTab === 'roi' ? 'bg-[#00B4D8] border-[#00B4D8] text-white shadow-[0_0_15px_rgba(0,180,216,0.35)]' : 'bg-[#1C2541] border-slate-700 text-slate-400 hover:text-white hover:border-slate-600'}`}
         >
           <UsersIcon className="w-4 h-4" /> Commercial ROI
         </button>
         <button 
           onClick={() => setActiveTab('select')}
-          className={`px-8 py-3.5 rounded-full font-bold transition-all duration-300 flex items-center gap-2.5 text-xs uppercase tracking-wider ${activeTab === 'select' ? 'bg-megacharge-green text-white shadow-glow-green' : 'text-megacharge-text-secondary hover:text-white hover:bg-megacharge-border hover:bg-opacity-20'}`}
+          className={`px-8 py-3.5 rounded-full font-bold transition-all duration-300 flex items-center gap-2.5 text-xs uppercase tracking-wider border ${activeTab === 'select' ? 'bg-[#00B4D8] border-[#00B4D8] text-white shadow-[0_0_15px_rgba(0,180,216,0.35)]' : 'bg-[#1C2541] border-slate-700 text-slate-400 hover:text-white hover:border-slate-600'}`}
         >
           <ChargerIcon className="w-4 h-4" /> Charger Selector
         </button>
@@ -100,7 +100,7 @@ const SavingsCalculator = () => {
       {/* Sliders Area (Column span 7) */}
       <div className="lg:col-span-7 flex flex-col gap-8">
         <div>
-          <span className="text-megacharge-green text-[10px] font-bold uppercase tracking-wider block mb-1">Commute Profiler</span>
+          <span className="text-[#00B4D8] text-[10px] font-bold uppercase tracking-wider block mb-1">Commute Profiler</span>
           <h3 className="text-white text-2xl font-extrabold mb-4">Commute Cost Estimator</h3>
           <p className="text-megacharge-text-secondary text-sm leading-relaxed mb-6">
             Adjust the sliders below to calibrate your driving statistics against standard utility tariffs.
@@ -108,52 +108,52 @@ const SavingsCalculator = () => {
         </div>
         
         <div className="space-y-6">
-          <div className="bg-megacharge-dark bg-opacity-40 p-5 rounded-2xl border border-megacharge-border">
+          <div className="bg-megacharge-dark bg-opacity-40 p-5 rounded-2xl border border-slate-800">
             <div className="flex items-center justify-between mb-3">
               <span className="text-white font-semibold text-sm">Daily Driving Distance:</span>
-              <span className="text-megacharge-green font-extrabold font-mono text-base">{dailyKm} km / Day</span>
+              <span className="text-[#00B4D8] font-extrabold font-mono text-base">{dailyKm} km / Day</span>
             </div>
             <input 
               type="range" min="10" max="300" step="5"
               value={dailyKm} onChange={(e) => setDailyKm(Number(e.target.value))}
-              className="w-full accent-megacharge-green"
+              className="w-full accent-[#00B4D8]"
             />
           </div>
 
-          <div className="bg-megacharge-dark bg-opacity-40 p-5 rounded-2xl border border-megacharge-border">
+          <div className="bg-megacharge-dark bg-opacity-40 p-5 rounded-2xl border border-slate-800">
             <div className="flex items-center justify-between mb-3">
               <span className="text-white font-semibold text-sm">Petrol/Diesel Fuel Tariff:</span>
-              <span className="text-megacharge-green font-extrabold font-mono text-base">₹{fuelCost} / Litre</span>
+              <span className="text-[#00B4D8] font-extrabold font-mono text-base">₹{fuelCost} / Litre</span>
             </div>
             <input 
               type="range" min="80" max="150" step="1"
               value={fuelCost} onChange={(e) => setFuelCost(Number(e.target.value))}
-              className="w-full accent-megacharge-green"
+              className="w-full accent-[#00B4D8]"
             />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="bg-megacharge-dark bg-opacity-40 p-5 rounded-2xl border border-megacharge-border">
+            <div className="bg-megacharge-dark bg-opacity-40 p-5 rounded-2xl border border-slate-800">
               <div className="flex items-center justify-between mb-3">
                 <span className="text-white font-semibold text-sm">ICE Fuel Economy:</span>
-                <span className="text-megacharge-green font-extrabold font-mono text-sm">{efficiency} km/L</span>
+                <span className="text-[#00B4D8] font-extrabold font-mono text-sm">{efficiency} km/L</span>
               </div>
               <input 
                 type="range" min="8" max="25" step="0.5"
                 value={efficiency} onChange={(e) => setEfficiency(Number(e.target.value))}
-                className="w-full accent-megacharge-green"
+                className="w-full accent-[#00B4D8]"
               />
             </div>
 
-            <div className="bg-megacharge-dark bg-opacity-40 p-5 rounded-2xl border border-megacharge-border">
+            <div className="bg-megacharge-dark bg-opacity-40 p-5 rounded-2xl border border-slate-800">
               <div className="flex items-center justify-between mb-3">
                 <span className="text-white font-semibold text-sm">EV Grid Tariff:</span>
-                <span className="text-megacharge-green font-extrabold font-mono text-sm">₹{tariff} / kWh</span>
+                <span className="text-[#00B4D8] font-extrabold font-mono text-sm">₹{tariff} / kWh</span>
               </div>
               <input 
                 type="range" min="5" max="15" step="0.5"
                 value={tariff} onChange={(e) => setTariff(Number(e.target.value))}
-                className="w-full accent-megacharge-green"
+                className="w-full accent-[#00B4D8]"
               />
             </div>
           </div>
@@ -161,38 +161,38 @@ const SavingsCalculator = () => {
       </div>
 
       {/* Output Console / Battery Gauge Area (Column span 5) */}
-      <div className="lg:col-span-5 bg-megacharge-card bg-opacity-40 border border-megacharge-border rounded-3xl p-8 flex flex-col justify-between relative overflow-hidden">
+      <div className="lg:col-span-5 bg-[#1C2541] bg-opacity-40 border border-slate-800 rounded-3xl p-8 flex flex-col justify-between relative overflow-hidden">
         {/* Glow behind stats */}
         <div className="absolute inset-0 bg-gradient-radial from-megacharge-green to-transparent opacity-[0.03] pointer-events-none" />
         
         <div>
-          <div className="flex items-center justify-between mb-6 pb-4 border-b border-megacharge-border">
-            <span className="text-megacharge-green text-xs font-bold uppercase tracking-widest">Savings Output</span>
-            <span className="text-[10px] text-megacharge-text-secondary font-mono bg-megacharge-dark px-2.5 py-1 rounded-full border border-megacharge-border border-opacity-60">System Ready</span>
+          <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-800">
+            <span className="text-[#00B4D8] text-xs font-bold uppercase tracking-widest">Savings Output</span>
+            <span className="text-[10px] text-megacharge-text-secondary font-mono bg-megacharge-dark px-2.5 py-1 rounded-full border border-slate-800 border-opacity-60">System Ready</span>
           </div>
 
           <div className="grid grid-cols-2 gap-4 mb-8">
-            <div className="p-4 rounded-xl bg-megacharge-dark bg-opacity-30 border border-megacharge-border border-opacity-40">
+            <div className="p-4 rounded-xl bg-megacharge-dark bg-opacity-30 border border-slate-800 border-opacity-40">
               <span className="text-megacharge-text-secondary text-[11px] uppercase tracking-wider block mb-1">Monthly Cost Savings</span>
               <span className="text-white text-2xl font-extrabold font-mono">₹{monthlySavings.toLocaleString('en-IN')}</span>
             </div>
-            <div className="p-4 rounded-xl bg-megacharge-dark bg-opacity-30 border border-megacharge-border border-opacity-40">
+            <div className="p-4 rounded-xl bg-megacharge-dark bg-opacity-30 border border-slate-800 border-opacity-40">
               <span className="text-megacharge-text-secondary text-[11px] uppercase tracking-wider block mb-1">Annual Cost Savings</span>
-              <span className="text-megacharge-green text-2xl font-extrabold font-mono">₹{yearlySavings.toLocaleString('en-IN')}</span>
+              <span className="text-[#00B4D8] text-2xl font-extrabold font-mono">₹{yearlySavings.toLocaleString('en-IN')}</span>
             </div>
           </div>
 
           {/* Premium Battery Visualizer */}
-          <div className="flex items-center gap-6 p-4 rounded-2xl bg-megacharge-dark bg-opacity-60 border border-megacharge-border mb-6">
-            <div className="relative w-14 h-24 border-2 border-megacharge-green rounded-xl p-1 flex flex-col-reverse gap-1 justify-start">
+          <div className="flex items-center gap-6 p-4 rounded-2xl bg-megacharge-dark bg-opacity-60 border border-slate-800 mb-6">
+            <div className="relative w-14 h-24 border-2 border-[#00B4D8] rounded-xl p-1 flex flex-col-reverse gap-1 justify-start">
               {/* Battery cap */}
-              <div className="absolute top-[-7px] left-1/2 transform -translate-x-1/2 w-5 h-1.5 bg-megacharge-green rounded-t" />
+              <div className="absolute top-[-7px] left-1/2 transform -translate-x-1/2 w-5 h-1.5 bg-[#00B4D8] rounded-t" />
               
               {/* Battery Charge Segments */}
               {Array.from({ length: 5 }).map((_, idx) => (
                 <div 
                   key={idx} 
-                  className={`w-full h-3 rounded transition-all duration-500 ${idx < chargeSegments ? 'bg-megacharge-green shadow-[0_0_8px_#1DB954]' : 'bg-megacharge-border bg-opacity-30'}`}
+                  className={`w-full h-3 rounded transition-all duration-500 ${idx < chargeSegments ? 'bg-[#00B4D8] shadow-[0_0_8px_#1DB954]' : 'bg-megacharge-border bg-opacity-30'}`}
                 />
               ))}
               
@@ -205,13 +205,13 @@ const SavingsCalculator = () => {
             <div className="flex-grow">
               <span className="text-white text-sm font-bold block mb-1">Battery Charge Index</span>
               <p className="text-megacharge-text-secondary text-[11px] leading-relaxed">
-                Commute saves equivalent to <strong className="text-megacharge-green font-mono">{batteryPercent}%</strong> charging offset index.
+                Commute saves equivalent to <strong className="text-[#00B4D8] font-mono">{batteryPercent}%</strong> charging offset index.
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-4 bg-megacharge-green bg-opacity-5 border border-megacharge-green border-opacity-20 p-4 rounded-2xl">
-            <div className="p-3 bg-megacharge-green bg-opacity-10 text-megacharge-green rounded-xl">
+          <div className="flex items-center gap-4 bg-[#00B4D8] bg-opacity-5 border border-[#00B4D8] border-opacity-20 p-4 rounded-2xl">
+            <div className="p-3 bg-[#00B4D8] bg-opacity-10 text-[#00B4D8] rounded-xl">
               <LeafIcon className="w-6 h-6" />
             </div>
             <div>
@@ -221,7 +221,7 @@ const SavingsCalculator = () => {
           </div>
         </div>
 
-        <p className="text-megacharge-text-secondary text-[10px] leading-relaxed mt-6 border-t border-megacharge-border pt-4">
+        <p className="text-megacharge-text-secondary text-[10px] leading-relaxed mt-6 border-t border-slate-800 pt-4">
           *Commute metrics align EV power discharge profiles with typical highway speed configurations. Actual environmental indicators vary.
         </p>
       </div>
@@ -266,7 +266,7 @@ const ROICalculator = () => {
 
         <div className="space-y-5">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="bg-megacharge-dark bg-opacity-40 p-4 rounded-2xl border border-megacharge-border">
+            <div className="bg-megacharge-dark bg-opacity-40 p-4 rounded-2xl border border-slate-800">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-white text-xs font-semibold">DC Fast Rectifiers:</span>
                 <span className="text-megacharge-orange font-bold font-mono text-sm">{chargersCount} Dual-Gun Units</span>
@@ -274,11 +274,11 @@ const ROICalculator = () => {
               <input 
                 type="range" min="1" max="10" step="1"
                 value={chargersCount} onChange={(e) => setChargersCount(Number(e.target.value))}
-                className="w-full accent-megacharge-orange"
+                className="w-full accent-[#FF6B35]"
               />
             </div>
 
-            <div className="bg-megacharge-dark bg-opacity-40 p-4 rounded-2xl border border-megacharge-border">
+            <div className="bg-megacharge-dark bg-opacity-40 p-4 rounded-2xl border border-slate-800">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-white text-xs font-semibold">Sessions (Per Unit):</span>
                 <span className="text-megacharge-orange font-bold font-mono text-sm">{sessions} charges / Day</span>
@@ -286,13 +286,13 @@ const ROICalculator = () => {
               <input 
                 type="range" min="2" max="15" step="1"
                 value={sessions} onChange={(e) => setSessions(Number(e.target.value))}
-                className="w-full accent-megacharge-orange"
+                className="w-full accent-[#FF6B35]"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="bg-megacharge-dark bg-opacity-40 p-4 rounded-2xl border border-megacharge-border">
+            <div className="bg-megacharge-dark bg-opacity-40 p-4 rounded-2xl border border-slate-800">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-white text-xs font-semibold">Average Power Dispense:</span>
                 <span className="text-megacharge-orange font-bold font-mono text-sm">{avgKwh} kWh / vehicle</span>
@@ -300,11 +300,11 @@ const ROICalculator = () => {
               <input 
                 type="range" min="20" max="80" step="5"
                 value={avgKwh} onChange={(e) => setAvgKwh(Number(e.target.value))}
-                className="w-full accent-megacharge-orange"
+                className="w-full accent-[#FF6B35]"
               />
             </div>
 
-            <div className="bg-megacharge-dark bg-opacity-40 p-4 rounded-2xl border border-megacharge-border">
+            <div className="bg-megacharge-dark bg-opacity-40 p-4 rounded-2xl border border-slate-800">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-white text-xs font-semibold">Profit Margin per kWh:</span>
                 <span className="text-megacharge-orange font-bold font-mono text-sm">₹{margin} / kWh</span>
@@ -312,12 +312,12 @@ const ROICalculator = () => {
               <input 
                 type="range" min="2" max="12" step="0.5"
                 value={margin} onChange={(e) => setMargin(Number(e.target.value))}
-                className="w-full accent-megacharge-orange"
+                className="w-full accent-[#FF6B35]"
               />
             </div>
           </div>
 
-          <div className="bg-megacharge-dark bg-opacity-40 p-5 rounded-2xl border border-megacharge-border">
+          <div className="bg-megacharge-dark bg-opacity-40 p-5 rounded-2xl border border-slate-800">
             <div className="flex items-center justify-between mb-2">
               <span className="text-white font-semibold text-sm">Total Franchise Investment:</span>
               <span className="text-megacharge-orange font-extrabold font-mono text-base">₹{investment} Lakhs</span>
@@ -325,36 +325,36 @@ const ROICalculator = () => {
             <input 
               type="range" min="3" max="50" step="1"
               value={investment} onChange={(e) => setInvestment(Number(e.target.value))}
-              className="w-full accent-megacharge-orange"
+              className="w-full accent-[#FF6B35]"
             />
           </div>
         </div>
       </div>
 
       {/* Outputs Area (Column span 5) */}
-      <div className="lg:col-span-5 bg-megacharge-card bg-opacity-40 border border-megacharge-border rounded-3xl p-8 flex flex-col justify-between relative overflow-hidden">
+      <div className="lg:col-span-5 bg-[#1C2541] bg-opacity-40 border border-slate-800 rounded-3xl p-8 flex flex-col justify-between relative overflow-hidden">
         {/* Ambient background glow */}
         <div className="absolute inset-0 bg-gradient-radial from-megacharge-orange to-transparent opacity-[0.03] pointer-events-none" />
         
         <div>
-          <div className="flex items-center justify-between mb-6 pb-4 border-b border-megacharge-border">
+          <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-800">
             <span className="text-megacharge-orange text-xs font-bold uppercase tracking-widest">Yield Output</span>
-            <span className="text-[10px] text-megacharge-text-secondary font-mono bg-megacharge-dark px-2.5 py-1 rounded-full border border-megacharge-border border-opacity-60">Live Projections</span>
+            <span className="text-[10px] text-megacharge-text-secondary font-mono bg-megacharge-dark px-2.5 py-1 rounded-full border border-slate-800 border-opacity-60">Live Projections</span>
           </div>
 
           <div className="grid grid-cols-2 gap-4 mb-8">
-            <div className="p-4 rounded-xl bg-megacharge-dark bg-opacity-30 border border-megacharge-border border-opacity-40">
+            <div className="p-4 rounded-xl bg-megacharge-dark bg-opacity-30 border border-slate-800 border-opacity-40">
               <span className="text-megacharge-text-secondary text-[11px] uppercase tracking-wider block mb-1">Annual Profit Flow</span>
               <span className="text-white text-xl font-extrabold font-mono">₹{annualProfit.toLocaleString('en-IN')}</span>
             </div>
-            <div className="p-4 rounded-xl bg-megacharge-dark bg-opacity-30 border border-megacharge-border border-opacity-40">
+            <div className="p-4 rounded-xl bg-megacharge-dark bg-opacity-30 border border-slate-800 border-opacity-40">
               <span className="text-megacharge-text-secondary text-[11px] uppercase tracking-wider block mb-1">Payback Duration</span>
               <span className="text-megacharge-orange text-xl font-extrabold font-mono">{paybackMonths} Months</span>
             </div>
           </div>
 
           {/* Dynamic Circular progress widget */}
-          <div className="p-5 rounded-2xl bg-megacharge-dark bg-opacity-60 border border-megacharge-border mb-6">
+          <div className="p-5 rounded-2xl bg-megacharge-dark bg-opacity-60 border border-slate-800 mb-6">
             <span className="text-white text-xs font-bold uppercase tracking-wider block mb-3 text-center">Setup Yield Rating</span>
             <div className="flex items-center justify-center gap-6">
               <svg className="w-16 h-16 transform -rotate-90">
@@ -387,7 +387,7 @@ const ROICalculator = () => {
           </div>
         </div>
 
-        <p className="text-megacharge-text-secondary text-[10px] leading-relaxed mt-6 border-t border-megacharge-border pt-4">
+        <p className="text-megacharge-text-secondary text-[10px] leading-relaxed mt-6 border-t border-slate-800 pt-4">
           *Payback projections exclude local real estate leases, commercial grid demand charges, and statutory tax rebates.
         </p>
       </div>
@@ -461,7 +461,7 @@ const ChargerSelector = () => {
               <motion.button 
                 whileHover={{ scale: 1.03, translateY: -4 }}
                 onClick={() => handleNext('2w', setVehicle)}
-                className="p-8 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-megacharge-border hover:border-megacharge-green transition-all duration-300 text-center"
+                className="p-8 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-slate-800 hover:border-[#00B4D8] transition-all duration-300 text-center"
               >
                 <div className="text-4xl mb-4">🛵</div>
                 <h4 className="text-white font-extrabold text-base mb-1">Two/Three-Wheeler</h4>
@@ -471,7 +471,7 @@ const ChargerSelector = () => {
               <motion.button 
                 whileHover={{ scale: 1.03, translateY: -4 }}
                 onClick={() => handleNext('car', setVehicle)}
-                className="p-8 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-megacharge-border hover:border-megacharge-green transition-all duration-300 text-center"
+                className="p-8 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-slate-800 hover:border-[#00B4D8] transition-all duration-300 text-center"
               >
                 <div className="text-4xl mb-4">🚗</div>
                 <h4 className="text-white font-extrabold text-base mb-1">Passenger Vehicles</h4>
@@ -481,7 +481,7 @@ const ChargerSelector = () => {
               <motion.button 
                 whileHover={{ scale: 1.03, translateY: -4 }}
                 onClick={() => handleNext('fleet', setVehicle)}
-                className="p-8 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-megacharge-border hover:border-megacharge-green transition-all duration-300 text-center"
+                className="p-8 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-slate-800 hover:border-[#00B4D8] transition-all duration-300 text-center"
               >
                 <div className="text-4xl mb-4">🚛</div>
                 <h4 className="text-white font-extrabold text-base mb-1">Commercial Fleet</h4>
@@ -505,7 +505,7 @@ const ChargerSelector = () => {
               <motion.button 
                 whileHover={{ scale: 1.03, translateY: -4 }}
                 onClick={() => handleNext('home', setUseCase)}
-                className="p-6 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-megacharge-border hover:border-megacharge-green transition-all duration-300 text-center"
+                className="p-6 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-slate-800 hover:border-[#00B4D8] transition-all duration-300 text-center"
               >
                 <div className="text-4xl mb-3">🏠</div>
                 <h4 className="text-white font-extrabold text-sm mb-1">Home / Villa</h4>
@@ -514,7 +514,7 @@ const ChargerSelector = () => {
               <motion.button 
                 whileHover={{ scale: 1.03, translateY: -4 }}
                 onClick={() => handleNext('office', setUseCase)}
-                className="p-6 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-megacharge-border hover:border-megacharge-green transition-all duration-300 text-center"
+                className="p-6 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-slate-800 hover:border-[#00B4D8] transition-all duration-300 text-center"
               >
                 <div className="text-4xl mb-3">🏢</div>
                 <h4 className="text-white font-extrabold text-sm mb-1">Workplace / Corporate</h4>
@@ -523,7 +523,7 @@ const ChargerSelector = () => {
               <motion.button 
                 whileHover={{ scale: 1.03, translateY: -4 }}
                 onClick={() => handleNext('commercial', setUseCase)}
-                className="p-6 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-megacharge-border hover:border-megacharge-green transition-all duration-300 text-center"
+                className="p-6 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-slate-800 hover:border-[#00B4D8] transition-all duration-300 text-center"
               >
                 <div className="text-4xl mb-3">🛍️</div>
                 <h4 className="text-white font-extrabold text-sm mb-1">Retail Mall / Hotel</h4>
@@ -532,7 +532,7 @@ const ChargerSelector = () => {
               <motion.button 
                 whileHover={{ scale: 1.03, translateY: -4 }}
                 onClick={() => handleNext('highway', setUseCase)}
-                className="p-6 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-megacharge-border hover:border-megacharge-green transition-all duration-300 text-center"
+                className="p-6 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-slate-800 hover:border-[#00B4D8] transition-all duration-300 text-center"
               >
                 <div className="text-4xl mb-3">🛣️</div>
                 <h4 className="text-white font-extrabold text-sm mb-1">Highway Fast Hub</h4>
@@ -558,7 +558,7 @@ const ChargerSelector = () => {
               <motion.button 
                 whileHover={{ scale: 1.03, translateY: -4 }}
                 onClick={() => handleNext('1phase', setPower)}
-                className="p-8 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-megacharge-border hover:border-megacharge-green transition-all duration-300 text-center"
+                className="p-8 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-slate-800 hover:border-[#00B4D8] transition-all duration-300 text-center"
               >
                 <div className="text-3xl mb-3">🔌</div>
                 <h4 className="text-white font-extrabold text-base mb-1">Single Phase (230V)</h4>
@@ -568,7 +568,7 @@ const ChargerSelector = () => {
               <motion.button 
                 whileHover={{ scale: 1.03, translateY: -4 }}
                 onClick={() => handleNext('3phase', setPower)}
-                className="p-8 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-megacharge-border hover:border-megacharge-green transition-all duration-300 text-center"
+                className="p-8 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-slate-800 hover:border-[#00B4D8] transition-all duration-300 text-center"
               >
                 <div className="text-3xl mb-3">⚡</div>
                 <h4 className="text-white font-extrabold text-base mb-1">Three Phase (415V)</h4>
@@ -578,7 +578,7 @@ const ChargerSelector = () => {
               <motion.button 
                 whileHover={{ scale: 1.03, translateY: -4 }}
                 onClick={() => handleNext('grid', setPower)}
-                className="p-8 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-megacharge-border hover:border-megacharge-green transition-all duration-300 text-center"
+                className="p-8 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-slate-800 hover:border-[#00B4D8] transition-all duration-300 text-center"
               >
                 <div className="text-3xl mb-3">🏭</div>
                 <h4 className="text-white font-extrabold text-base mb-1">Substation Grid</h4>
@@ -601,9 +601,9 @@ const ChargerSelector = () => {
             transition={{ duration: 0.3 }}
             className="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-5xl mx-auto"
           >
-            <div className="lg:col-span-7 bg-megacharge-dark bg-opacity-40 p-8 rounded-3xl border border-megacharge-border flex flex-col justify-between">
+            <div className="lg:col-span-7 bg-megacharge-dark bg-opacity-40 p-8 rounded-3xl border border-slate-800 flex flex-col justify-between">
               <div>
-                <span className="text-megacharge-green text-xs font-bold uppercase tracking-widest block mb-2">Recommended Deployment Hardware</span>
+                <span className="text-[#00B4D8] text-xs font-bold uppercase tracking-widest block mb-2">Recommended Deployment Hardware</span>
                 <h3 className="text-white text-3xl font-extrabold mb-4">{getRecommendation().title}</h3>
                 <p className="text-megacharge-text-secondary text-sm leading-relaxed mb-6">
                   {getRecommendation().desc}
@@ -612,19 +612,19 @@ const ChargerSelector = () => {
               
               <button 
                 onClick={resetSelector} 
-                className="text-xs text-megacharge-green hover:underline flex items-center gap-1 font-semibold w-fit"
+                className="text-xs text-[#00B4D8] hover:underline flex items-center gap-1 font-semibold w-fit"
               >
                 🔄 Calibrate Inputs Again
               </button>
             </div>
 
-            <div className="lg:col-span-5 bg-megacharge-card bg-opacity-60 p-8 rounded-3xl border border-megacharge-green border-opacity-35 flex flex-col justify-between shadow-glow-green">
+            <div className="lg:col-span-5 bg-[#1C2541] bg-opacity-60 p-8 rounded-3xl border border-[#00B4D8] border-opacity-35 flex flex-col justify-between shadow-glow-green">
               <div>
-                <h4 className="text-white font-extrabold text-xs uppercase tracking-widest mb-4 pb-2 border-b border-megacharge-border">System Specifications:</h4>
+                <h4 className="text-white font-extrabold text-xs uppercase tracking-widest mb-4 pb-2 border-b border-slate-800">System Specifications:</h4>
                 <ul className="flex flex-col gap-3">
                   {getRecommendation().specs.map((spec, i) => (
                     <li key={i} className="text-megacharge-text-secondary text-xs flex items-start gap-2">
-                      <span className="text-megacharge-green mt-0.5">&bull;</span>
+                      <span className="text-[#00B4D8] mt-0.5">&bull;</span>
                       <span>{spec}</span>
                     </li>
                   ))}
@@ -632,7 +632,7 @@ const ChargerSelector = () => {
               </div>
               <a 
                 href="/contact" 
-                className="w-full text-center bg-megacharge-green hover:bg-opacity-95 text-white font-bold text-xs py-4 rounded-full transition-all duration-300 mt-8 shadow-glow-green block"
+                className="w-full text-center bg-[#00B4D8] hover:bg-opacity-95 text-white font-bold text-xs py-4 rounded-full transition-all duration-300 mt-8 shadow-glow-green block"
               >
                 {getRecommendation().cta}
               </a>

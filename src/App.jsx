@@ -19,6 +19,7 @@ import Lenis from 'lenis';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import BackgroundGrid from './components/BackgroundGrid/BackgroundGrid';
+import FloatingActions from './components/FloatingActions/FloatingActions';
 
 /* Route Pages */
 import Home from './pages/Home/Home';
@@ -92,6 +93,9 @@ const App = () => {
         
         {/* Transparent Header */}
         <Navbar />
+
+        {/* Global Floating Actions (WhatsApp & Go to Top) */}
+        <FloatingActions />
 
         {/* Dynamic Main Body */}
         <main className="flex-grow">

@@ -1,13 +1,61 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { BuildingIcon, HomeIcon, TruckIcon } from '../../components/CustomIcons/CustomIcons';
 import './Solutions.css';
 
 /* ==========================================
-   SOLUTIONS COMPONENT
+   ANIMATION DEFINITIONS
 ========================================== */
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 40 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-100px' },
+  transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+};
+
+const staggerContainer = {
+  initial: { opacity: 0 },
+  whileInView: { opacity: 1 },
+  viewport: { once: true },
+  transition: { staggerChildren: 0.12 }
+};
 
 const Solutions = () => {
   const [activeSegment, setActiveSegment] = useState('commercial'); // 'commercial' | 'residential' | 'fleet'
+  const [activeFaq, setActiveFaq] = useState(null);
+  const [formData, setFormData] = useState({ name: '', phone: '', solutionType: 'commercial', message: '' });
+  const [submitted, setSubmitted] = useState(false);
+
+  const FAQS = [
+    {
+      q: "What electrical connection parameters are required for solutions?",
+      a: "AC Wallbox installations require standard single-phase 230V or three-phase 415V domestic grids. High-power DC chargers (30kW - 180kW) require a dedicated LT/HT three-phase commercial connection with appropriate grid sanction load."
+    },
+    {
+      q: "How does the revenue-sharing payout schedule operate?",
+      a: "Under the FOCO model, MegaCharge installs the meters. Telemetry automatically tallies the kWh dispensed. Earnings are calculated dynamically based on local utility slab tariffs, and payouts are disbursed directly to your bank account within the first 7 days of each month."
+    },
+    {
+      q: "Can the local housing society admin customize user charging tariffs?",
+      a: "Yes. Using the Society Admin Portal dashboard, admins can set differential tariffs (e.g. baseline rates for residents, higher rates for visitors) and distribute RFID swipe authorization cards."
+    },
+    {
+      q: "What happens if a charger goes offline or has a coupler jam?",
+      a: "Our NOC diagnostic telemetry center runs 24x7 monitoring. Jammed couplers or network drops trigger an automatic reset command. Physical faults are assigned to a localized MNIL field engineer, resolving under 24 hours."
+    }
+  ];
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    if (formData.name && formData.phone) {
+      setSubmitted(true);
+    }
+  };
+
+  const toggleFaq = (idx) => {
+    setActiveFaq(activeFaq === idx ? null : idx);
+  };
 
   return (
     <div className="solutions-page-container bg-slate-50 min-h-screen">
@@ -74,10 +122,6 @@ const Solutions = () => {
                   </p>
                 </div>
               </div>
-
-              <a href="/contact" className="bg-[#00B4D8] hover:bg-opacity-95 text-white font-bold text-xs px-6 py-3.5 rounded-full transition-all duration-300 shadow-sm mt-4 block">
-                Contact Us for Installation &rarr;
-              </a>
             </div>
             
             <div className="lg:col-span-5 bg-white border border-slate-200 p-8 rounded-3xl shadow-sm text-slate-900">
@@ -115,10 +159,6 @@ const Solutions = () => {
                   </p>
                 </div>
               </div>
-
-              <a href="/contact" className="bg-[#00B4D8] hover:bg-opacity-95 text-white font-bold text-xs px-6 py-3.5 rounded-full transition-all duration-300 shadow-sm mt-4 block">
-                Request Society Audit &rarr;
-              </a>
             </div>
             
             <div className="lg:col-span-5 bg-white border border-slate-200 p-8 rounded-3xl shadow-sm text-slate-900">
@@ -126,7 +166,7 @@ const Solutions = () => {
               <ul className="flex flex-col gap-3 text-xs text-slate-600">
                 <li className="flex items-center gap-2 border-b border-slate-100 pb-2.5">🏡 Individual Luxury Villas</li>
                 <li className="flex items-center gap-2 border-b border-slate-100 pb-2.5">🏢 Multi-story Apartment Societies</li>
-                <li className="flex items-center gap-2 border-b border-slate-100 pb-2.5"> Gated Residential Townships</li>
+                <li className="flex items-center gap-2 border-b border-slate-100 pb-2.5">🏡 Gated Residential Townships</li>
                 <li className="flex items-center gap-2">🛋️ Cooperative Housing Projects</li>
               </ul>
             </div>
@@ -156,10 +196,6 @@ const Solutions = () => {
                   </p>
                 </div>
               </div>
-
-              <a href="/contact" className="bg-[#00B4D8] hover:bg-opacity-95 text-white font-bold text-xs px-6 py-3.5 rounded-full transition-all duration-300 shadow-sm mt-4 block">
-                Connect with Fleet Engineers &rarr;
-              </a>
             </div>
             
             <div className="lg:col-span-5 bg-white border border-slate-200 p-8 rounded-3xl shadow-sm text-slate-900">
@@ -174,6 +210,171 @@ const Solutions = () => {
           </div>
         )}
 
+      </section>
+
+      {/* ROADMAP SECTION (PROCESS ROADMAP) */}
+      <section className="py-24 px-6 bg-white border-y border-slate-200">
+        <div className="max-w-7xl mx-auto">
+          <motion.div 
+            {...fadeInUp}
+            className="text-center max-w-2xl mx-auto mb-16"
+          >
+            <h2 className="text-slate-900 text-3xl font-extrabold">Installation Roadmap to Launch</h2>
+            <p className="text-slate-600 text-xs sm:text-sm mt-3 leading-relaxed">
+              We guide you from property evaluation to full commissioning and digital deployment launch.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <motion.div whileHover={{ y: -5 }} className="p-6 rounded-2xl bg-slate-50 border border-slate-200 shadow-sm">
+              <span className="text-[#00B4D8] font-bold text-2xl mb-3 block">01. Site Survey</span>
+              <h4 className="text-slate-900 font-extrabold text-sm mb-2">Feasibility Audit</h4>
+              <p className="text-slate-600 text-xs leading-relaxed">MNIL field engineers conduct structural assessments and electrical check audits.</p>
+            </motion.div>
+
+            <motion.div whileHover={{ y: -5 }} className="p-6 rounded-2xl bg-slate-50 border border-slate-200 shadow-sm">
+              <span className="text-[#00B4D8] font-bold text-2xl mb-3 block">02. Design Approval</span>
+              <h4 className="text-slate-900 font-extrabold text-sm mb-2">Technical Blueprint</h4>
+              <p className="text-slate-600 text-xs leading-relaxed">We outline optimal charger configurations, cabling metrics, and safety isolators.</p>
+            </motion.div>
+
+            <motion.div whileHover={{ y: -5 }} className="p-6 rounded-2xl bg-slate-50 border border-slate-200 shadow-sm">
+              <span className="text-[#00B4D8] font-bold text-2xl mb-3 block">03. Deployment</span>
+              <h4 className="text-slate-900 font-extrabold text-sm mb-2">Civil Works & Mounts</h4>
+              <p className="text-slate-600 text-xs leading-relaxed">We pour structural base blocks, install couplers, and wire the terminals safely.</p>
+            </motion.div>
+
+            <motion.div whileHover={{ y: -5 }} className="p-6 rounded-2xl bg-slate-50 border border-slate-200 shadow-sm">
+              <span className="text-[#00B4D8] font-bold text-2xl mb-3 block">04. Telemetry Sync</span>
+              <h4 className="text-slate-900 font-extrabold text-sm mb-2">Live Cloud Config</h4>
+              <p className="text-slate-600 text-xs leading-relaxed">We map the terminal to public directories and connect cloud OCPP billing grids.</p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* SOLUTIONS FAQs */}
+      <section className="max-w-4xl mx-auto py-24 px-6">
+        <motion.div 
+          {...fadeInUp}
+          className="text-center mb-16"
+        >
+          <h2 className="text-slate-900 text-3xl font-extrabold">Deployment & Installation FAQs</h2>
+        </motion.div>
+
+        <div className="flex flex-col gap-5">
+          {FAQS.map((faq, idx) => (
+            <motion.div 
+              key={idx} 
+              whileHover={{ scale: 1.01 }}
+              className="faq-item rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm"
+            >
+              <button 
+                onClick={() => toggleFaq(idx)}
+                className="w-full flex items-center justify-between p-6 text-left transition-colors hover:bg-slate-50"
+              >
+                <span className="text-slate-900 font-extrabold text-sm sm:text-base">{faq.q}</span>
+                <span className="text-[#00B4D8] text-xl font-bold">
+                  {activeFaq === idx ? '−' : '+'}
+                </span>
+              </button>
+              
+              <div 
+                className={`faq-answer-container transition-all duration-300 ease-in-out ${activeFaq === idx ? 'max-h-[300px] border-t border-slate-100 p-6' : 'max-h-0'}`}
+                style={{ overflow: 'hidden' }}
+              >
+                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                  {faq.a}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* SOLUTIONS ENQUIRY FORM */}
+      <section className="max-w-3xl mx-auto pb-32 px-6 relative">
+        <div className="absolute inset-0 bg-gradient-radial from-[#00B4D8] to-transparent opacity-5 blur-3xl pointer-events-none" />
+        
+        <motion.div 
+          {...fadeInUp}
+          className="premium-glass-card-dark p-8 md:p-12 rounded-3xl border border-[#00B4D8] border-opacity-25 flex flex-col gap-8 shadow-[0_0_30px_rgba(0,180,216,0.15)] text-white relative z-10"
+        >
+          <div className="text-center md:text-left border-b border-slate-800 pb-6">
+            <h3 className="text-white text-3xl font-extrabold leading-tight">Request Infrastructure Integration</h3>
+            <p className="text-slate-300 text-sm leading-relaxed mt-2">
+              Submit your property details below. A regional manager will schedule a physical survey with load capacity audits.
+            </p>
+          </div>
+
+          {submitted ? (
+            <div className="p-8 border border-green-500 border-opacity-40 rounded-2xl bg-green-500 bg-opacity-5 text-center w-full">
+              <span className="text-4xl block mb-4">🎉</span>
+              <h4 className="text-white text-xl font-bold mb-2">Request Submitted Successfully!</h4>
+              <p className="text-slate-300 text-sm leading-relaxed">
+                Thank you. A field coordinator has been assigned to your query and will contact you within 24 hours.
+              </p>
+            </div>
+          ) : (
+            <form onSubmit={handleFormSubmit} className="flex flex-col gap-5 w-full text-slate-900">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-white text-[10px] font-bold uppercase tracking-wider font-mono">Full Name *</label>
+                  <input 
+                    type="text" 
+                    required 
+                    value={formData.name}
+                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                    placeholder="Enter your name" 
+                    className="bg-[#1C2541] border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#00B4D8] transition-colors"
+                  />
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-white text-[10px] font-bold uppercase tracking-wider font-mono">Phone Number *</label>
+                  <input 
+                    type="tel" 
+                    required 
+                    value={formData.phone}
+                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                    placeholder="+91 99999 99999" 
+                    className="bg-[#1C2541] border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#00B4D8] transition-colors"
+                  />
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-1.5">
+                <label className="text-white text-[10px] font-bold uppercase tracking-wider font-mono">Select Vertical Segment *</label>
+                <select 
+                  value={formData.solutionType}
+                  onChange={(e) => setFormData({...formData, solutionType: e.target.value})}
+                  className="bg-[#1C2541] border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#00B4D8] transition-colors"
+                >
+                  <option value="commercial">Commercial Complex / Hotel / Restaurant</option>
+                  <option value="residential">Housing Society / Residential Villa</option>
+                  <option value="fleet">Logistics Yard / Fleet Depot</option>
+                </select>
+              </div>
+
+              <div className="flex flex-col gap-1.5">
+                <label className="text-white text-[10px] font-bold uppercase tracking-wider font-mono">Deployment Site Notes</label>
+                <textarea 
+                  rows="3" 
+                  value={formData.message}
+                  onChange={(e) => setFormData({...formData, message: e.target.value})}
+                  placeholder="Provide approximate space dimensions, existing electricity load details, or other notes..." 
+                  className="bg-[#1C2541] border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#00B4D8] transition-colors resize-none"
+                />
+              </div>
+
+              <button 
+                type="submit" 
+                className="w-full text-center bg-[#00B4D8] hover:bg-opacity-95 text-white font-bold text-xs py-4 rounded-xl transition-all duration-300 mt-2 block shadow-[0_0_15px_rgba(0,180,216,0.3)]"
+              >
+                Submit Solutions Request &rarr;
+              </button>
+            </form>
+          )}
+        </motion.div>
       </section>
 
     </div>
