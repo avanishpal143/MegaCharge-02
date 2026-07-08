@@ -11,7 +11,13 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { BoltIcon, LeafIcon, ChargerIcon, UsersIcon } from '../CustomIcons/CustomIcons';
+import { 
+  BoltIcon, LeafIcon, ChargerIcon, UsersIcon,
+  IconGoogleScooter, IconGoogleCar, IconGoogleTruck,
+  IconGoogleHome, IconGoogleApartment, IconGoogleMall,
+  IconGoogleRoad, IconGoogleOutlet, IconGoogleBolt,
+  IconGoogleFactory, IconGoogleSync
+} from '../CustomIcons/CustomIcons';
 
 /* ==========================================
    UTILITY CONTAINER
@@ -197,8 +203,8 @@ const SavingsCalculator = () => {
               ))}
               
               {/* Lightning overlay */}
-              <div className="absolute inset-0 flex items-center justify-center text-white text-lg font-bold opacity-80 animate-pulse">
-                ⚡
+              <div className="absolute inset-0 flex items-center justify-center text-white font-bold opacity-80 shadow-glow-green">
+                <IconGoogleBolt size={22} className="text-megacharge-green" pulse />
               </div>
             </div>
             
@@ -461,9 +467,11 @@ const ChargerSelector = () => {
               <motion.button 
                 whileHover={{ scale: 1.03, translateY: -4 }}
                 onClick={() => handleNext('2w', setVehicle)}
-                className="p-8 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-slate-800 hover:border-megacharge-green transition-all duration-300 text-center"
+                className="p-8 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-slate-800 hover:border-megacharge-green transition-all duration-300 text-center flex flex-col items-center justify-center"
               >
-                <div className="text-4xl mb-4">🛵</div>
+                <div className="p-3 bg-megacharge-green bg-opacity-10 border border-megacharge-green border-opacity-20 rounded-2xl w-fit mb-4 shadow-glow-green flex items-center justify-center">
+                  <IconGoogleScooter size={32} className="text-megacharge-green" bounce />
+                </div>
                 <h4 className="text-white font-extrabold text-base mb-1">Two/Three-Wheeler</h4>
                 <p className="text-megacharge-text-secondary text-xs">Bikes, Electric Scooters, E-Rickshaws</p>
               </motion.button>
@@ -471,9 +479,11 @@ const ChargerSelector = () => {
               <motion.button 
                 whileHover={{ scale: 1.03, translateY: -4 }}
                 onClick={() => handleNext('car', setVehicle)}
-                className="p-8 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-slate-800 hover:border-megacharge-green transition-all duration-300 text-center"
+                className="p-8 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-slate-800 hover:border-megacharge-green transition-all duration-300 text-center flex flex-col items-center justify-center"
               >
-                <div className="text-4xl mb-4">🚗</div>
+                <div className="p-3 bg-megacharge-green bg-opacity-10 border border-megacharge-green border-opacity-20 rounded-2xl w-fit mb-4 shadow-glow-green flex items-center justify-center">
+                  <IconGoogleCar size={32} className="text-megacharge-green" bounce />
+                </div>
                 <h4 className="text-white font-extrabold text-base mb-1">Passenger Vehicles</h4>
                 <p className="text-megacharge-text-secondary text-xs">Standard EVs (SUV, Sedans, Hatchbacks)</p>
               </motion.button>
@@ -481,9 +491,11 @@ const ChargerSelector = () => {
               <motion.button 
                 whileHover={{ scale: 1.03, translateY: -4 }}
                 onClick={() => handleNext('fleet', setVehicle)}
-                className="p-8 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-slate-800 hover:border-megacharge-green transition-all duration-300 text-center"
+                className="p-8 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-slate-800 hover:border-megacharge-green transition-all duration-300 text-center flex flex-col items-center justify-center"
               >
-                <div className="text-4xl mb-4">🚛</div>
+                <div className="p-3 bg-megacharge-green bg-opacity-10 border border-megacharge-green border-opacity-20 rounded-2xl w-fit mb-4 shadow-glow-green flex items-center justify-center">
+                  <IconGoogleTruck size={32} className="text-megacharge-green" bounce />
+                </div>
                 <h4 className="text-white font-extrabold text-base mb-1">Commercial Fleet</h4>
                 <p className="text-megacharge-text-secondary text-xs">Delivery trucks, e-commerce vehicles, corporate fleets</p>
               </motion.button>
@@ -505,36 +517,44 @@ const ChargerSelector = () => {
               <motion.button 
                 whileHover={{ scale: 1.03, translateY: -4 }}
                 onClick={() => handleNext('home', setUseCase)}
-                className="p-6 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-slate-800 hover:border-megacharge-green transition-all duration-300 text-center"
+                className="p-6 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-slate-800 hover:border-megacharge-green transition-all duration-300 text-center flex flex-col items-center justify-center"
               >
-                <div className="text-4xl mb-3">🏠</div>
+                <div className="p-3 bg-megacharge-green bg-opacity-10 border border-megacharge-green border-opacity-20 rounded-2xl w-fit mb-3 shadow-glow-green flex items-center justify-center">
+                  <IconGoogleHome size={28} className="text-megacharge-green" bounce />
+                </div>
                 <h4 className="text-white font-extrabold text-sm mb-1">Home / Villa</h4>
               </motion.button>
 
               <motion.button 
                 whileHover={{ scale: 1.03, translateY: -4 }}
                 onClick={() => handleNext('office', setUseCase)}
-                className="p-6 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-slate-800 hover:border-megacharge-green transition-all duration-300 text-center"
+                className="p-6 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-slate-800 hover:border-megacharge-green transition-all duration-300 text-center flex flex-col items-center justify-center"
               >
-                <div className="text-4xl mb-3">🏢</div>
+                <div className="p-3 bg-megacharge-green bg-opacity-10 border border-megacharge-green border-opacity-20 rounded-2xl w-fit mb-3 shadow-glow-green flex items-center justify-center">
+                  <IconGoogleApartment size={28} className="text-megacharge-green" bounce />
+                </div>
                 <h4 className="text-white font-extrabold text-sm mb-1">Workplace / Corporate</h4>
               </motion.button>
 
               <motion.button 
                 whileHover={{ scale: 1.03, translateY: -4 }}
                 onClick={() => handleNext('commercial', setUseCase)}
-                className="p-6 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-slate-800 hover:border-megacharge-green transition-all duration-300 text-center"
+                className="p-6 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-slate-800 hover:border-megacharge-green transition-all duration-300 text-center flex flex-col items-center justify-center"
               >
-                <div className="text-4xl mb-3">🛍️</div>
+                <div className="p-3 bg-megacharge-green bg-opacity-10 border border-megacharge-green border-opacity-20 rounded-2xl w-fit mb-3 shadow-glow-green flex items-center justify-center">
+                  <IconGoogleMall size={28} className="text-megacharge-green" bounce />
+                </div>
                 <h4 className="text-white font-extrabold text-sm mb-1">Retail Mall / Hotel</h4>
               </motion.button>
 
               <motion.button 
                 whileHover={{ scale: 1.03, translateY: -4 }}
                 onClick={() => handleNext('highway', setUseCase)}
-                className="p-6 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-slate-800 hover:border-megacharge-green transition-all duration-300 text-center"
+                className="p-6 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-slate-800 hover:border-megacharge-green transition-all duration-300 text-center flex flex-col items-center justify-center"
               >
-                <div className="text-4xl mb-3">🛣️</div>
+                <div className="p-3 bg-megacharge-green bg-opacity-10 border border-megacharge-green border-opacity-20 rounded-2xl w-fit mb-3 shadow-glow-green flex items-center justify-center">
+                  <IconGoogleRoad size={28} className="text-megacharge-green" bounce />
+                </div>
                 <h4 className="text-white font-extrabold text-sm mb-1">Highway Fast Hub</h4>
               </motion.button>
             </div>
@@ -558,9 +578,11 @@ const ChargerSelector = () => {
               <motion.button 
                 whileHover={{ scale: 1.03, translateY: -4 }}
                 onClick={() => handleNext('1phase', setPower)}
-                className="p-8 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-slate-800 hover:border-megacharge-green transition-all duration-300 text-center"
+                className="p-8 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-slate-800 hover:border-megacharge-green transition-all duration-300 text-center flex flex-col items-center justify-center"
               >
-                <div className="text-3xl mb-3">🔌</div>
+                <div className="p-3 bg-megacharge-green bg-opacity-10 border border-megacharge-green border-opacity-20 rounded-2xl w-fit mb-3 shadow-glow-green flex items-center justify-center">
+                  <IconGoogleOutlet size={24} className="text-megacharge-green" />
+                </div>
                 <h4 className="text-white font-extrabold text-base mb-1">Single Phase (230V)</h4>
                 <p className="text-megacharge-text-secondary text-xs">Standard domestic power lines</p>
               </motion.button>
@@ -568,9 +590,11 @@ const ChargerSelector = () => {
               <motion.button 
                 whileHover={{ scale: 1.03, translateY: -4 }}
                 onClick={() => handleNext('3phase', setPower)}
-                className="p-8 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-slate-800 hover:border-megacharge-green transition-all duration-300 text-center"
+                className="p-8 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-slate-800 hover:border-megacharge-green transition-all duration-300 text-center flex flex-col items-center justify-center"
               >
-                <div className="text-3xl mb-3">⚡</div>
+                <div className="p-3 bg-megacharge-green bg-opacity-10 border border-megacharge-green border-opacity-20 rounded-2xl w-fit mb-3 shadow-glow-green flex items-center justify-center">
+                  <IconGoogleBolt size={24} className="text-megacharge-green" pulse />
+                </div>
                 <h4 className="text-white font-extrabold text-base mb-1">Three Phase (415V)</h4>
                 <p className="text-megacharge-text-secondary text-xs">Commercial utility power setup</p>
               </motion.button>
@@ -578,9 +602,11 @@ const ChargerSelector = () => {
               <motion.button 
                 whileHover={{ scale: 1.03, translateY: -4 }}
                 onClick={() => handleNext('grid', setPower)}
-                className="p-8 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-slate-800 hover:border-megacharge-green transition-all duration-300 text-center"
+                className="p-8 rounded-2xl bg-megacharge-dark bg-opacity-40 border border-slate-800 hover:border-megacharge-green transition-all duration-300 text-center flex flex-col items-center justify-center"
               >
-                <div className="text-3xl mb-3">🏭</div>
+                <div className="p-3 bg-megacharge-green bg-opacity-10 border border-megacharge-green border-opacity-20 rounded-2xl w-fit mb-3 shadow-glow-green flex items-center justify-center">
+                  <IconGoogleFactory size={24} className="text-megacharge-green" />
+                </div>
                 <h4 className="text-white font-extrabold text-base mb-1">Substation Grid</h4>
                 <p className="text-megacharge-text-secondary text-xs">High-voltage highway connection hubs</p>
               </motion.button>
@@ -612,9 +638,9 @@ const ChargerSelector = () => {
               
               <button 
                 onClick={resetSelector} 
-                className="text-xs text-megacharge-green hover:underline flex items-center gap-1 font-semibold w-fit"
+                className="text-xs text-megacharge-green hover:underline flex items-center gap-2 font-semibold w-fit hover:scale-105 transition-transform"
               >
-                🔄 Calibrate Inputs Again
+                <IconGoogleSync size={16} className="text-megacharge-green" spin /> Calibrate Inputs Again
               </button>
             </div>
 

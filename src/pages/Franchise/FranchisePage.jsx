@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import './FranchisePage.css';
+import ContactForm from '../../components/ContactForm/ContactForm';
 
 /* ==========================================
    ANIMATION DEFINITIONS
@@ -369,117 +370,10 @@ const FranchisePage = () => {
         </div>
       </section>
 
-      {/* RENTAL ALLIANCE ENQUIRY FORM */}
-      <section id="enquiry-form" className="max-w-3xl mx-auto pb-24 px-6 bg-transparent relative">
-        <div className="absolute inset-0 bg-gradient-radial from-megacharge-green to-transparent opacity-5 blur-2xl pointer-events-none" />
-        
-        <motion.div 
-          {...fadeInUp}
-          className="premium-glass-card-dark p-8 md:p-12 rounded-3xl border border-megacharge-green border-opacity-20 shadow-glow-green text-white relative z-10"
-        >
-          <div className="text-center mb-10">
-            <h3 className="text-white text-3xl font-extrabold mb-3">Host or Rent an EV Station</h3>
-            <p className="text-slate-300 text-sm leading-relaxed max-w-lg mx-auto">
-              Submit your property details for a free site assessment survey by MNIL engineers. Let's build India's green grid together.
-            </p>
-          </div>
+      {/* REUSABLE TWO COLUMN CONTACT FORM */}
+      <ContactForm />
 
-          {submitted ? (
-            <div className="p-8 border border-green-500 border-opacity-40 rounded-2xl bg-green-500 bg-opacity-5 text-center">
-              <span className="text-4xl block mb-4">🎉</span>
-              <h4 className="text-white text-xl font-bold mb-2">Request Submitted Successfully!</h4>
-              <p className="text-slate-300 text-sm leading-relaxed">
-                Thank you for applying. A MegaCharge representative will reach out to schedule your site grid evaluation survey.
-              </p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="flex flex-col gap-6 relative z-10 text-slate-900">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="flex flex-col gap-2">
-                  <label className="text-white text-xs font-bold uppercase tracking-wider font-mono">Full Name *</label>
-                  <input 
-                    type="text" 
-                    required 
-                    value={formData.name}
-                    onChange={(e) => setFormData({...formData, name: e.target.value})}
-                    placeholder="Enter your name" 
-                    className="bg-megacharge-navy border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-megacharge-green"
-                  />
-                </div>
-                <div className="flex flex-col gap-2">
-                  <label className="text-white text-xs font-bold uppercase tracking-wider font-mono">Corporate Email</label>
-                  <input 
-                    type="email" 
-                    required 
-                    value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    placeholder="email@company.com" 
-                    className="bg-megacharge-navy border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-megacharge-green"
-                  />
-                </div>
-              </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="flex flex-col gap-2">
-                  <label className="text-white text-xs font-bold uppercase tracking-wider font-mono">Phone Number *</label>
-                  <input 
-                    type="tel" 
-                    required 
-                    value={formData.phone}
-                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                    placeholder="+91 99999 99999" 
-                    className="bg-megacharge-navy border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-megacharge-green"
-                  />
-                </div>
-                <div className="flex flex-col gap-2">
-                  <label className="text-white text-xs font-bold uppercase tracking-wider font-mono">Property Location (City / State) *</label>
-                  <input 
-                    type="text" 
-                    required 
-                    value={formData.location}
-                    onChange={(e) => setFormData({...formData, location: e.target.value})}
-                    placeholder="e.g. Gurugram, Haryana" 
-                    className="bg-megacharge-navy border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-megacharge-green"
-                  />
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <label className="text-white text-xs font-bold uppercase tracking-wider font-mono">Property Category</label>
-                <select 
-                  value={formData.siteType}
-                  onChange={(e) => setFormData({...formData, siteType: e.target.value})}
-                  className="bg-megacharge-navy border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-megacharge-green font-mono cursor-pointer"
-                >
-                  <option value="highway" className="bg-megacharge-dark">Highway Land / Gas Station</option>
-                  <option value="mall" className="bg-megacharge-dark">Shopping Mall / Commercial Parking</option>
-                  <option value="hotel" className="bg-megacharge-dark">Hotel / Restaurant parking</option>
-                  <option value="office" className="bg-megacharge-dark">Office complex / Tech Park</option>
-                  <option value="residential" className="bg-megacharge-dark">Residential Housing Society</option>
-                </select>
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <label className="text-white text-xs font-bold uppercase tracking-wider font-mono">Message / Site Details</label>
-                <textarea 
-                  rows="4" 
-                  value={formData.message}
-                  onChange={(e) => setFormData({...formData, message: e.target.value})}
-                  placeholder="Provide approximate space dimensions, existing electricity load, or other details..." 
-                  className="bg-megacharge-navy border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-megacharge-green"
-                />
-              </div>
-
-              <button 
-                type="submit" 
-                className="w-full text-center bg-megacharge-green hover:bg-opacity-95 text-white font-bold text-sm py-4 rounded-xl transition-all duration-300 shadow-sm mt-2 block"
-              >
-                Submit Installation Inquiry
-              </button>
-            </form>
-          )}
-        </motion.div>
-      </section>
 
     </div>
   );

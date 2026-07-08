@@ -288,41 +288,6 @@ const ThreeHero = () => {
       {/* GL Canvas Container */}
       <div ref={containerRef} className="absolute inset-0 z-0 pointer-events-auto" />
 
-      {/* Interactive HUD overlay */}
-      <div className="absolute bottom-16 left-6 md:left-12 z-10 flex flex-col gap-4 max-w-sm glass-panel p-6 rounded-2xl border border-megacharge-border">
-        <div className="flex items-center gap-2">
-          <span className={`w-2.5 h-2.5 rounded-full inline-block ${charging ? 'bg-megacharge-green animate-pulse shadow-glow-green' : 'bg-megacharge-orange'}`}></span>
-          <span className="text-white text-xs font-bold uppercase tracking-wider">
-            {charging ? 'Grid Dispense Active' : 'Standby Diagnostic'}
-          </span>
-        </div>
-        <h4 className="text-white font-bold text-lg">MegaCharge Level-3 Charger Core</h4>
-        <p className="text-megacharge-text-secondary text-xs leading-relaxed">
-          Procedural representation of our liquid-cooled DC rectifier block. Drag your mouse to explore the mesh.
-        </p>
-        
-        <button 
-          onClick={handleInitiateCharge}
-          disabled={charging}
-          className={`w-full py-3.5 rounded-full font-bold text-xs uppercase transition-all duration-300 ${charging ? 'bg-megacharge-green bg-opacity-20 text-megacharge-green border border-megacharge-green' : 'bg-megacharge-green hover:bg-opacity-95 text-white shadow-glow-green'}`}
-        >
-          {charging ? 'Charging Grid Simulated...' : 'Initiate Power Charge'}
-        </button>
-      </div>
-
-      {/* Floating Diagnostics HUD right side */}
-      <div className="hidden md:flex absolute top-24 right-12 z-10 flex-col gap-3 text-[11px] font-semibold font-mono text-megacharge-text-secondary">
-        <div className="glass-panel py-2.5 px-4 rounded border border-megacharge-border">
-          GRID STATUS: <span className="text-megacharge-green">415V // NOMINAL</span>
-        </div>
-        <div className="glass-panel py-2.5 px-4 rounded border border-megacharge-border">
-          RECTIFIER TEMP: <span className="text-megacharge-green">34.6°C // COOLING ACTIVE</span>
-        </div>
-        <div className="glass-panel py-2.5 px-4 rounded border border-megacharge-border">
-          OCPP TUNNEL: <span className="text-megacharge-green">OCPP-1.6J // CONNECTED</span>
-        </div>
-      </div>
-
     </div>
   );
 };

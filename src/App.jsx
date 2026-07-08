@@ -2,17 +2,20 @@
  * ========================================
  * App Root Component
  * Purpose:
- * Configures the router, initializes Lenis
+ * Configures the router, initialises Lenis
  * smooth scroll, and lays out global sections.
- *
- * Developer Notes:
- * Handles scroll cleanups and top scroll triggers.
- *
+ * Includes AnimatePresence for page transitions.
  * ========================================
  */
 
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 import Lenis from 'lenis';
 
 /* Shared Layout Components */
@@ -20,6 +23,7 @@ import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import BackgroundGrid from './components/BackgroundGrid/BackgroundGrid';
 import FloatingActions from './components/FloatingActions/FloatingActions';
+import PageTransition from './components/PageTransition/PageTransition';
 
 /* Route Pages */
 import Home from './pages/Home/Home';
@@ -35,34 +39,52 @@ import ContactPage from './pages/Contact/ContactPage';
 import NotFound from './pages/NotFound/NotFound';
 
 /* ==========================================
-   ROUTING HELPERS & SCROLL ALIGNMENT
+   SCROLL TO TOP ON ROUTE CHANGE
 ========================================== */
-
-/**
- * ScrollToTop Component
- * Forces window scroll coordinates to top on route change.
- */
 const ScrollToTop = () => {
   const { pathname } = useLocation();
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
-
   return null;
+};
+
+/* ==========================================
+   ANIMATED ROUTES — reads location key for
+   AnimatePresence to detect route changes
+========================================== */
+const AnimatedRoutes = () => {
+  const location = useLocation();
+
+  return (
+    <AnimatePresence mode="wait" initial={false}>
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<PageTransition><Home /></PageTransition>} />
+        <Route path="/about" element={<PageTransition><About /></PageTransition>} />
+        <Route path="/products" element={<PageTransition><Products /></PageTransition>} />
+        <Route path="/solutions" element={<PageTransition><Solutions /></PageTransition>} />
+        <Route path="/network" element={<PageTransition><NetworkPage /></PageTransition>} />
+        <Route path="/franchise" element={<PageTransition><FranchisePage /></PageTransition>} />
+        <Route path="/sustainability" element={<PageTransition><Sustainability /></PageTransition>} />
+        <Route path="/projects" element={<PageTransition><ProjectsPage /></PageTransition>} />
+        <Route path="/careers" element={<PageTransition><CareersPage /></PageTransition>} />
+        <Route path="/contact" element={<PageTransition><ContactPage /></PageTransition>} />
+        <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
+      </Routes>
+    </AnimatePresence>
+  );
 };
 
 /* ==========================================
    APP COMPONENT
 ========================================== */
-
 const App = () => {
-  
-  // Initialize Lenis Smooth Scroll
+
+  // Initialise Lenis Smooth Scroll
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // easeOutExpo
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
@@ -71,7 +93,6 @@ const App = () => {
       infinite: false,
     });
 
-    // Request Animation Frame loop for Lenis
     let rafId;
     const raf = (time) => {
       lenis.raf(time);
@@ -79,7 +100,6 @@ const App = () => {
     };
     rafId = requestAnimationFrame(raf);
 
-    // Cleanup
     return () => {
       cancelAnimationFrame(rafId);
       lenis.destroy();
@@ -90,35 +110,12 @@ const App = () => {
     <Router>
       <ScrollToTop />
       <BackgroundGrid>
-        
-        {/* Transparent Header */}
         <Navbar />
-
-        {/* Global Floating Actions (WhatsApp & Go to Top) */}
         <FloatingActions />
-
-        {/* Dynamic Main Body */}
         <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/solutions" element={<Solutions />} />
-            <Route path="/network" element={<NetworkPage />} />
-            <Route path="/franchise" element={<FranchisePage />} />
-            <Route path="/sustainability" element={<Sustainability />} />
-            <Route path="/projects" element={<ProjectsPage />} />
-            <Route path="/careers" element={<CareersPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            
-            {/* Fallback 404 */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <AnimatedRoutes />
         </main>
-
-        {/* Corporate Footer */}
         <Footer />
-
       </BackgroundGrid>
     </Router>
   );

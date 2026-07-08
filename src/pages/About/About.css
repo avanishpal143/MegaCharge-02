@@ -1,20 +1,105 @@
 /**
  * ========================================
- * About Page Styles
- * Purpose:
- * Styles leadership grid, quality boxes,
- * and background gradient overrides.
- *
- * Developer Notes:
- * Uses structural padding and responsive text.
- *
+ * About Page Styles — Enhanced
  * ========================================
  */
 
 /* =====================================
-   Legacy Section Highlights
+   Hero
 ===================================== */
 .about-page-container {
-  background-image: radial-gradient(circle at 10% 20%, rgba(29, 185, 84, 0.02), transparent 40%),
-                    radial-gradient(circle at 90% 80%, rgba(255, 107, 53, 0.01), transparent 50%);
+  background-color: var(--color-dark);
+}
+
+.about-hero {
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(29, 185, 84, 0.03), transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(255, 107, 53, 0.02), transparent 50%);
+}
+
+.about-dot-grid {
+  background-image:
+    radial-gradient(circle, rgba(147, 166, 200, 0.12) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.35;
+}
+
+/* =====================================
+   Founding Card
+===================================== */
+.about-founding-card {
+  background: linear-gradient(135deg, rgba(11, 19, 43, 0.8) 0%, rgba(35, 50, 45, 0.6) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* =====================================
+   Vision Cards (dark bg section)
+===================================== */
+.vision-card {
+  background: rgba(11, 19, 43, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.vision-card:hover {
+  background: rgba(11, 19, 43, 0.75);
+  border-color: rgba(147, 166, 200, 0.2);
+  box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.5), 0 0 30px rgba(147, 166, 200, 0.07);
+}
+
+/* =====================================
+   Certification Cards (dark)
+===================================== */
+.cert-card {
+  background: rgba(11, 19, 43, 0.45);
+  border: 1px solid rgba(201, 193, 235, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cert-card:hover {
+  background: rgba(11, 19, 43, 0.75);
+  border-color: rgba(201, 193, 235, 0.3);
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.5), 0 0 25px rgba(201, 193, 235, 0.1);
+}
+
+/* =====================================
+   Leadership Cards (light bg section)
+===================================== */
+.leadership-card {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.leadership-card:hover {
+  border-color: rgba(147, 166, 200, 0.35);
+  box-shadow: 0 20px 50px -10px rgba(147, 166, 200, 0.12), 0 0 0 1px rgba(147, 166, 200, 0.1);
+}
+
+/* =====================================
+   Interactive Timeline Cards
+===================================== */
+.timeline-card {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.timeline-card:hover {
+  box-shadow: 0 10px 40px -8px rgba(147, 166, 200, 0.15);
+}
+
+/* =====================================
+   Animated scan-line (CTA section)
+===================================== */
+@keyframes scanLine {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(300%); }
+}
+
+/* =====================================
+   Stats strip hover
+===================================== */
+.stats-strip-card {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.stats-strip-card:hover {
+  box-shadow: 0 8px 30px -5px rgba(147, 166, 200, 0.15);
 }

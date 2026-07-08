@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { PhoneIcon } from '../CustomIcons/CustomIcons';
+import { PhoneIcon, IconGoogleMail } from '../CustomIcons/CustomIcons';
 import './Footer.css';
-import logoImg from '../../assets/logo.png';
+import fullLogo from '/Full_Logo.png';
 
 /* ==========================================
    FOOTER COMPONENT
@@ -16,13 +16,12 @@ const Footer = () => {
         {/* UPPER DECK: BRAND STATEMENT ONLY */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 pb-12 border-b border-slate-800">
           <div className="lg:col-span-2">
-            <Link to="/" className="flex items-center gap-2.5 mb-4">
-              <div className="logo-icon-container flex items-center justify-center">
-                <img src={logoImg} alt="MegaCharge Logo" className="w-9 h-9 object-contain" />
-              </div>
-              <span className="text-white font-poppins font-extrabold text-2xl tracking-tight">
-                MEGA<span className="text-megacharge-green">CHARGE</span>
-              </span>
+            <Link to="/" className="flex items-center mb-5">
+              <img
+                src={fullLogo}
+                alt="MegaCharge"
+                className="h-12 w-auto object-contain"
+              />
             </Link>
             <p className="text-slate-300 text-sm leading-relaxed max-w-2xl">
               A premium EV infrastructure segment of <strong className="text-white font-bold">Mega Nirman & Industries Limited (MNIL)</strong>. Powering India's electric mobility transition since 1983 with cutting-edge public and residential charger grids. We rent out state-of-the-art charging stations and manage end-to-end installations.
@@ -73,7 +72,7 @@ const Footer = () => {
                 <span>+91 92895 55090</span>
               </a>
               <a href="mailto:sales@megacharge.co.in" className="flex items-center gap-2 text-sm text-white hover:text-megacharge-green transition-colors">
-                <span className="text-megacharge-green">✉</span>
+                <IconGoogleMail size={16} className="text-megacharge-green" />
                 <span>sales@megacharge.co.in</span>
               </a>
             </div>

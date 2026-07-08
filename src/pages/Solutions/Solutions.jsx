@@ -1,7 +1,21 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { BuildingIcon, HomeIcon, TruckIcon } from '../../components/CustomIcons/CustomIcons';
+import { 
+  IconGoogleBuilding, 
+  IconGoogleHome, 
+  IconGoogleTruck,
+  IconGoogleWork,
+  IconGoogleHotel,
+  IconGoogleMall,
+  IconGoogleRestaurant,
+  IconGoogleApartment,
+  IconGoogleSofa,
+  IconGooglePackage,
+  IconGoogleBus,
+  IconGoogleTaxi
+} from '../../components/CustomIcons/CustomIcons';
 import './Solutions.css';
+import ContactForm from '../../components/ContactForm/ContactForm';
 
 /* ==========================================
    ANIMATION DEFINITIONS
@@ -124,13 +138,35 @@ const Solutions = () => {
               </div>
             </div>
             
-            <div className="lg:col-span-5 bg-white border border-slate-200 p-8 rounded-3xl shadow-sm text-slate-900">
-              <h4 className="text-slate-900 font-extrabold text-lg mb-4">Commercial Suitability</h4>
-              <ul className="flex flex-col gap-3 text-xs text-slate-600">
-                <li className="flex items-center gap-2 border-b border-slate-100 pb-2.5">💼 IT Parks & Office Complexes</li>
-                <li className="flex items-center gap-2 border-b border-slate-100 pb-2.5">🏨 Hotels, Resorts, & Banquets</li>
-                <li className="flex items-center gap-2 border-b border-slate-100 pb-2.5">🛍️ Retail Malls & Hypermarkets</li>
-                <li className="flex items-center gap-2">🍽️ Highway Food Courtyards</li>
+            <div className="lg:col-span-5 border border-slate-200 p-8 rounded-3xl text-slate-900 premium-light-gradient-card">
+              <h4 className="text-slate-900 font-extrabold text-lg mb-5 flex items-center gap-2">
+                <IconGoogleBuilding className="text-megacharge-green" size={24} bounce /> Commercial Suitability
+              </h4>
+              <ul className="flex flex-col gap-3.5 text-xs text-slate-600">
+                <li className="flex items-center gap-3 border-b border-slate-100 pb-2.5 hover:text-slate-900 transition-colors">
+                  <div className="p-1.5 bg-megacharge-green bg-opacity-10 text-megacharge-green border border-megacharge-green border-opacity-20 rounded-lg flex items-center justify-center shadow-glow-green">
+                    <IconGoogleWork size={16} />
+                  </div>
+                  <span className="font-medium">IT Parks & Office Complexes</span>
+                </li>
+                <li className="flex items-center gap-3 border-b border-slate-100 pb-2.5 hover:text-slate-900 transition-colors">
+                  <div className="p-1.5 bg-megacharge-green bg-opacity-10 text-megacharge-green border border-megacharge-green border-opacity-20 rounded-lg flex items-center justify-center shadow-glow-green">
+                    <IconGoogleHotel size={16} />
+                  </div>
+                  <span className="font-medium">Hotels, Resorts, & Banquets</span>
+                </li>
+                <li className="flex items-center gap-3 border-b border-slate-100 pb-2.5 hover:text-slate-900 transition-colors">
+                  <div className="p-1.5 bg-megacharge-green bg-opacity-10 text-megacharge-green border border-megacharge-green border-opacity-20 rounded-lg flex items-center justify-center shadow-glow-green">
+                    <IconGoogleMall size={16} />
+                  </div>
+                  <span className="font-medium">Retail Malls & Hypermarkets</span>
+                </li>
+                <li className="flex items-center gap-3 hover:text-slate-900 transition-colors">
+                  <div className="p-1.5 bg-megacharge-green bg-opacity-10 text-megacharge-green border border-megacharge-green border-opacity-20 rounded-lg flex items-center justify-center shadow-glow-green">
+                    <IconGoogleRestaurant size={16} />
+                  </div>
+                  <span className="font-medium">Highway Food Courtyards</span>
+                </li>
               </ul>
             </div>
           </div>
@@ -161,13 +197,35 @@ const Solutions = () => {
               </div>
             </div>
             
-            <div className="lg:col-span-5 bg-white border border-slate-200 p-8 rounded-3xl shadow-sm text-slate-900">
-              <h4 className="text-slate-900 font-extrabold text-lg mb-4">Residential Suitability</h4>
-              <ul className="flex flex-col gap-3 text-xs text-slate-600">
-                <li className="flex items-center gap-2 border-b border-slate-100 pb-2.5">🏡 Individual Luxury Villas</li>
-                <li className="flex items-center gap-2 border-b border-slate-100 pb-2.5">🏢 Multi-story Apartment Societies</li>
-                <li className="flex items-center gap-2 border-b border-slate-100 pb-2.5">🏡 Gated Residential Townships</li>
-                <li className="flex items-center gap-2">🛋️ Cooperative Housing Projects</li>
+            <div className="lg:col-span-5 border border-slate-200 p-8 rounded-3xl text-slate-900 premium-light-gradient-card">
+              <h4 className="text-slate-900 font-extrabold text-lg mb-5 flex items-center gap-2">
+                <IconGoogleHome className="text-megacharge-green" size={24} bounce /> Residential Suitability
+              </h4>
+              <ul className="flex flex-col gap-3.5 text-xs text-slate-600">
+                <li className="flex items-center gap-3 border-b border-slate-100 pb-2.5 hover:text-slate-900 transition-colors">
+                  <div className="p-1.5 bg-megacharge-green bg-opacity-10 text-megacharge-green border border-megacharge-green border-opacity-20 rounded-lg flex items-center justify-center shadow-glow-green">
+                    <IconGoogleHome size={16} />
+                  </div>
+                  <span className="font-medium">Individual Luxury Villas</span>
+                </li>
+                <li className="flex items-center gap-3 border-b border-slate-100 pb-2.5 hover:text-slate-900 transition-colors">
+                  <div className="p-1.5 bg-megacharge-green bg-opacity-10 text-megacharge-green border border-megacharge-green border-opacity-20 rounded-lg flex items-center justify-center shadow-glow-green">
+                    <IconGoogleApartment size={16} />
+                  </div>
+                  <span className="font-medium">Multi-story Apartment Societies</span>
+                </li>
+                <li className="flex items-center gap-3 border-b border-slate-100 pb-2.5 hover:text-slate-900 transition-colors">
+                  <div className="p-1.5 bg-megacharge-green bg-opacity-10 text-megacharge-green border border-megacharge-green border-opacity-20 rounded-lg flex items-center justify-center shadow-glow-green">
+                    <IconGoogleHome size={16} />
+                  </div>
+                  <span className="font-medium">Gated Residential Townships</span>
+                </li>
+                <li className="flex items-center gap-3 hover:text-slate-900 transition-colors">
+                  <div className="p-1.5 bg-megacharge-green bg-opacity-10 text-megacharge-green border border-megacharge-green border-opacity-20 rounded-lg flex items-center justify-center shadow-glow-green">
+                    <IconGoogleSofa size={16} />
+                  </div>
+                  <span className="font-medium">Cooperative Housing Projects</span>
+                </li>
               </ul>
             </div>
           </div>
@@ -198,13 +256,35 @@ const Solutions = () => {
               </div>
             </div>
             
-            <div className="lg:col-span-5 bg-white border border-slate-200 p-8 rounded-3xl shadow-sm text-slate-900">
-              <h4 className="text-slate-900 font-extrabold text-lg mb-4">Fleet Suitability</h4>
-              <ul className="flex flex-col gap-3 text-xs text-slate-600">
-                <li className="flex items-center gap-2 border-b border-slate-100 pb-2.5">📦 E-commerce Delivery Yards</li>
-                <li className="flex items-center gap-2 border-b border-slate-100 pb-2.5">🚌 Employee Transit Bus Plazas</li>
-                <li className="flex items-center gap-2 border-b border-slate-100 pb-2.5">🚛 Last-mile Electric fleets</li>
-                <li className="flex items-center gap-2">🚕 Corporate Taxi Operator Hubs</li>
+            <div className="lg:col-span-5 border border-slate-200 p-8 rounded-3xl text-slate-900 premium-light-gradient-card">
+              <h4 className="text-slate-900 font-extrabold text-lg mb-5 flex items-center gap-2">
+                <IconGoogleTruck className="text-megacharge-green" size={24} bounce /> Fleet Suitability
+              </h4>
+              <ul className="flex flex-col gap-3.5 text-xs text-slate-600">
+                <li className="flex items-center gap-3 border-b border-slate-100 pb-2.5 hover:text-slate-900 transition-colors">
+                  <div className="p-1.5 bg-megacharge-green bg-opacity-10 text-megacharge-green border border-megacharge-green border-opacity-20 rounded-lg flex items-center justify-center shadow-glow-green">
+                    <IconGooglePackage size={16} />
+                  </div>
+                  <span className="font-medium">E-commerce Delivery Yards</span>
+                </li>
+                <li className="flex items-center gap-3 border-b border-slate-100 pb-2.5 hover:text-slate-900 transition-colors">
+                  <div className="p-1.5 bg-megacharge-green bg-opacity-10 text-megacharge-green border border-megacharge-green border-opacity-20 rounded-lg flex items-center justify-center shadow-glow-green">
+                    <IconGoogleBus size={16} />
+                  </div>
+                  <span className="font-medium">Employee Transit Bus Plazas</span>
+                </li>
+                <li className="flex items-center gap-3 border-b border-slate-100 pb-2.5 hover:text-slate-900 transition-colors">
+                  <div className="p-1.5 bg-megacharge-green bg-opacity-10 text-megacharge-green border border-megacharge-green border-opacity-20 rounded-lg flex items-center justify-center shadow-glow-green">
+                    <IconGoogleTruck size={16} />
+                  </div>
+                  <span className="font-medium">Last-mile Electric Fleets</span>
+                </li>
+                <li className="flex items-center gap-3 hover:text-slate-900 transition-colors">
+                  <div className="p-1.5 bg-megacharge-green bg-opacity-10 text-megacharge-green border border-megacharge-green border-opacity-20 rounded-lg flex items-center justify-center shadow-glow-green">
+                    <IconGoogleTaxi size={16} />
+                  </div>
+                  <span className="font-medium">Corporate Taxi Operator Hubs</span>
+                </li>
               </ul>
             </div>
           </div>
@@ -292,90 +372,8 @@ const Solutions = () => {
         </div>
       </section>
 
-      {/* SOLUTIONS ENQUIRY FORM */}
-      <section className="max-w-3xl mx-auto pb-32 px-6 relative">
-        <div className="absolute inset-0 bg-gradient-radial from-megacharge-green to-transparent opacity-5 blur-3xl pointer-events-none" />
-        
-        <motion.div 
-          {...fadeInUp}
-          className="premium-glass-card-dark p-8 md:p-12 rounded-3xl border border-megacharge-green border-opacity-25 flex flex-col gap-8 shadow-glow-green text-white relative z-10"
-        >
-          <div className="text-center md:text-left border-b border-slate-800 pb-6">
-            <h3 className="text-white text-3xl font-extrabold leading-tight">Request Infrastructure Integration</h3>
-            <p className="text-slate-300 text-sm leading-relaxed mt-2">
-              Submit your property details below. A regional manager will schedule a physical survey with load capacity audits.
-            </p>
-          </div>
-
-          {submitted ? (
-            <div className="p-8 border border-green-500 border-opacity-40 rounded-2xl bg-green-500 bg-opacity-5 text-center w-full">
-              <span className="text-4xl block mb-4">🎉</span>
-              <h4 className="text-white text-xl font-bold mb-2">Request Submitted Successfully!</h4>
-              <p className="text-slate-300 text-sm leading-relaxed">
-                Thank you. A field coordinator has been assigned to your query and will contact you within 24 hours.
-              </p>
-            </div>
-          ) : (
-            <form onSubmit={handleFormSubmit} className="flex flex-col gap-5 w-full text-slate-900">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-white text-[10px] font-bold uppercase tracking-wider font-mono">Full Name *</label>
-                  <input 
-                    type="text" 
-                    required 
-                    value={formData.name}
-                    onChange={(e) => setFormData({...formData, name: e.target.value})}
-                    placeholder="Enter your name" 
-                    className="bg-megacharge-navy border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-megacharge-green transition-colors"
-                  />
-                </div>
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-white text-[10px] font-bold uppercase tracking-wider font-mono">Phone Number *</label>
-                  <input 
-                    type="tel" 
-                    required 
-                    value={formData.phone}
-                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                    placeholder="+91 99999 99999" 
-                    className="bg-megacharge-navy border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-megacharge-green transition-colors"
-                  />
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-1.5">
-                <label className="text-white text-[10px] font-bold uppercase tracking-wider font-mono">Select Vertical Segment *</label>
-                <select 
-                  value={formData.solutionType}
-                  onChange={(e) => setFormData({...formData, solutionType: e.target.value})}
-                  className="bg-megacharge-navy border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-megacharge-green transition-colors font-mono cursor-pointer"
-                >
-                  <option value="commercial" className="bg-megacharge-dark">Commercial Complex / Hotel / Restaurant</option>
-                  <option value="residential" className="bg-megacharge-dark">Housing Society / Residential Villa</option>
-                  <option value="fleet" className="bg-megacharge-dark">Logistics Yard / Fleet Depot</option>
-                </select>
-              </div>
-
-              <div className="flex flex-col gap-1.5">
-                <label className="text-white text-[10px] font-bold uppercase tracking-wider font-mono">Deployment Site Notes</label>
-                <textarea 
-                  rows="3" 
-                  value={formData.message}
-                  onChange={(e) => setFormData({...formData, message: e.target.value})}
-                  placeholder="Provide approximate space dimensions, existing electricity load details, or other notes..." 
-                  className="bg-megacharge-navy border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-megacharge-green transition-colors resize-none"
-                />
-              </div>
-
-              <button 
-                type="submit" 
-                className="w-full text-center bg-megacharge-green hover:bg-opacity-95 text-white font-bold text-xs py-4 rounded-xl transition-all duration-300 mt-2 block shadow-glow-green"
-              >
-                Submit Solutions Request &rarr;
-              </button>
-            </form>
-          )}
-        </motion.div>
-      </section>
+      {/* REUSABLE TWO COLUMN CONTACT FORM */}
+      <ContactForm />
 
     </div>
   );

@@ -12,6 +12,7 @@
  */
 
 import React, { useState } from 'react';
+import { IconGoogleCheck } from '../../components/CustomIcons/CustomIcons';
 import './CareersPage.css';
 
 /* ==========================================
@@ -89,7 +90,9 @@ const CareersPage = () => {
 
         {submitted ? (
           <div className="text-center p-8 border border-megacharge-green rounded-2xl bg-megacharge-green bg-opacity-5">
-            <span className="text-3xl block mb-3">✓</span>
+            <div className="p-3 bg-megacharge-green bg-opacity-10 text-megacharge-green border border-megacharge-green border-opacity-20 rounded-2xl w-fit mx-auto mb-3 shadow-glow-green flex items-center justify-center">
+              <IconGoogleCheck size={28} className="text-megacharge-green" bounce />
+            </div>
             <h4 className="text-white font-bold text-lg mb-2">Application Submitted</h4>
             <p className="text-megacharge-text-secondary text-xs leading-relaxed max-w-md mx-auto">
               We have received your application successfully. Our talent division will reach out to you if your background aligns with our engineering grid vacancies.

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
-import logoImg from '../../assets/logo.png';
+import navbarLogo from '/Full_Logo.png';
 
 /* ==========================================
    NAVBAR COMPONENT
@@ -39,18 +39,12 @@ const Navbar = () => {
       <div className="navbar-inner max-w-7xl mx-auto px-6 h-20 flex items-center justify-between relative">
         
         {/* LOGO */}
-        <Link to="/" className="navbar-logo flex items-center gap-2">
-          <div className="logo-icon-container flex items-center justify-center">
-            <img src={logoImg} alt="MegaCharge Logo" className="w-10 h-10 object-contain" />
-          </div>
-          <div className="flex flex-col items-start leading-none gap-0.5">
-            <span className="logo-text font-poppins font-black text-xl tracking-tight uppercase">
-              MEGA<span className="text-gradient-green">CHARGE</span>
-            </span>
-            <span className="text-[7.5px] font-mono tracking-[0.25em] text-megacharge-text-secondary uppercase">
-              MNIL Holdings
-            </span>
-          </div>
+        <Link to="/" className="navbar-logo flex items-center">
+          <img
+            src={navbarLogo}
+            alt="MegaCharge"
+            className="h-12 w-auto object-contain"
+          />
         </Link>
 
         {/* NAV LINKS */}
