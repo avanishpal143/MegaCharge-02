@@ -116,12 +116,13 @@ const IsometricHero = () => {
         {/* Custom SVG telemetry overlay with electrical currents */}
         <svg viewBox="0 0 1000 524" className="absolute inset-0 w-full h-full z-30 pointer-events-none overflow-visible">
           {/* Glowing Background Pulse Ring behind circle backdrop (Circle center ≈ x: 445, y: 262) */}
+          {/* Glowing Background Pulse Ring behind circle backdrop (Circle center ≈ x: 445, y: 262) */}
           <circle 
             cx="445" 
             cy="262" 
             r="188" 
             fill="none" 
-            stroke="#93A6C8" 
+            stroke="var(--color-brand)" 
             strokeWidth="2.5" 
             className="opacity-20"
             style={{ transformOrigin: '445px 262px' }}
@@ -131,31 +132,31 @@ const IsometricHero = () => {
           </circle>
 
           {/* Glowing Cable Spark Flow 1 */}
-          <circle r="6" fill="#B5D26A" filter="drop-shadow(0 0 8px #B5D26A)">
+          <circle r="6" fill="#F18321" filter="drop-shadow(0 0 8px #F18321)">
             <animateMotion dur="2.4s" repeatCount="indefinite" path="M 768,354 C 768,460 768,470 700,470 L 330,470 C 330,470 330,388 255,388" />
           </circle>
 
           {/* Glowing Cable Spark Flow 2 (delayed offset) */}
-          <circle r="4.5" fill="#C9C1EB" filter="drop-shadow(0 0 6px #C9C1EB)">
+          <circle r="4.5" fill="#832800" filter="drop-shadow(0 0 6px #832800)">
             <animateMotion dur="2.4s" begin="1.2s" repeatCount="indefinite" path="M 768,354 C 768,460 768,470 700,470 L 330,470 C 330,470 330,388 255,388" />
           </circle>
 
           {/* Pulsing Charger Plug Node (x: 768, y: 354) */}
-          <circle cx="768" cy="354" r="8" fill="#B5D26A" className="opacity-35">
+          <circle cx="768" cy="354" r="8" fill="#F18321" className="opacity-35">
             <animate attributeName="r" values="8;16;8" dur="2s" repeatCount="indefinite" />
             <animate attributeName="opacity" values="0.4;0;0.4" dur="2s" repeatCount="indefinite" />
           </circle>
-          <circle cx="768" cy="354" r="3.5" fill="#B5D26A" />
+          <circle cx="768" cy="354" r="3.5" fill="#F18321" />
 
           {/* Pulsing Car Plug Node (x: 255, y: 388) */}
-          <circle cx="255" cy="388" r="8" fill="#B5D26A" className="opacity-35">
+          <circle cx="255" cy="388" r="8" fill="#F18321" className="opacity-35">
             <animate attributeName="r" values="8;16;8" dur="2s" repeatCount="indefinite" style={{ animationDelay: '0.6s' }} />
             <animate attributeName="opacity" values="0.4;0;0.4" dur="2s" repeatCount="indefinite" />
           </circle>
-          <circle cx="255" cy="388" r="3.5" fill="#B5D26A" />
+          <circle cx="255" cy="388" r="3.5" fill="#F18321" />
 
           {/* Pulsing Charger Screen LED status indicator */}
-          <circle cx="755" cy="186" r="3.5" fill="#F9F871">
+          <circle cx="755" cy="186" r="3.5" fill="#832800">
             <animate attributeName="opacity" values="1;0.2;1" dur="1.2s" repeatCount="indefinite" />
           </circle>
         </svg>

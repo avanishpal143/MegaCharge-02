@@ -117,7 +117,7 @@ const NetworkGlobe = () => {
     // 5. Add Orbital Grid Ring
     const outerRingGeom = new THREE.RingGeometry(2.6, 2.65, 64);
     const outerRingMat = new THREE.MeshBasicMaterial({
-      color: 'rgba(29, 185, 84, 0.15)',
+      color: '#F18321',
       side: THREE.DoubleSide
     });
     const outerRing = new THREE.Mesh(outerRingGeom, outerRingMat);

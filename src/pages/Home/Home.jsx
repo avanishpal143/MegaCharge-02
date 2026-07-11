@@ -150,14 +150,14 @@ const TESTIMONIALS = [
   {
     name: "Rajiv Sharma",
     role: "Mall Owner, Gurugram",
-    text: "MegaCharge installed 8 DC fast chargers in our parking lot within 2 weeks. Footfall to the mall increased 18% — EV drivers stay longer and spend more.",
+    text: "MegaCharge installed 8 DC fast chargers in our parking lot within 2 weeks. Footfall to the mall increased 18%, as EV drivers stay longer and spend more.",
     rating: 5,
     avatar: "RS"
   },
   {
     name: "Priya Mehta",
     role: "Hotel GM, Pune",
-    text: "Our guests specifically book our hotel because of MegaCharge stations. Zero maintenance headaches — their team handles everything remotely.",
+    text: "Our guests specifically book our hotel because of MegaCharge stations. Zero maintenance headaches: their team handles everything remotely.",
     rating: 5,
     avatar: "PM"
   },
@@ -349,15 +349,15 @@ const Home = () => {
                 Gunning for <span className="text-gradient-green">1 Million</span><br />Charging Points!
               </h2>
               <p className="text-slate-300 text-sm sm:text-base leading-relaxed mt-4 max-w-xl">
-                Leading India's vision for a fully connected electric highway grid — state-of-the-art telemetry, load-balancing hardware, and rapid deployment partnerships.
+                Leading India's vision for a fully connected electric highway grid, powered by state-of-the-art telemetry, load-balancing hardware, and rapid deployment partnerships.
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
               {[
-                { target: 13500, suffix: '+', label: 'Charging Points Across India' },
-                { target: 10, suffix: 'M kW+', label: 'Power Dispensed Monthly' },
-                { target: 26, suffix: '', label: 'States Reached Pan-India' },
-                { target: 350, suffix: '+', label: 'Cities Connected' },
+                { target: 250, suffix: '+', label: 'Charging Points Across India' },
+                { target: 85, suffix: 'K+ kWh', label: 'Power Dispensed Monthly' },
+                { target: 12, suffix: '+', label: 'States Reached Pan-India' },
+                { target: 45, suffix: '+', label: 'Cities Connected' },
               ].map((stat, i) => (
                 <motion.div
                   key={i}
@@ -482,7 +482,7 @@ const Home = () => {
             High-Performance Charging Station Units
           </h2>
           <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-            All MegaCharge hardware features modular power conversion, dynamic load-balancing, and liquid-cooled rectifiers — tested up to 55°C.
+            All MegaCharge hardware features modular power conversion, dynamic load-balancing, and liquid-cooled rectifiers, tested up to 55°C.
           </p>
         </motion.div>
 
@@ -538,12 +538,12 @@ const Home = () => {
                 <span className="bg-megacharge-orange bg-opacity-10 text-megacharge-orange border border-megacharge-orange border-opacity-35 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">Modular DC Rectifier</span>
                 <span className="text-slate-500 text-xs font-mono">Series: MC-DC-180</span>
               </div>
-              <h3 className="text-slate-900 text-2xl font-extrabold mb-4">30 kW–180 kW DC Charger</h3>
+              <h3 className="text-slate-900 text-2xl font-extrabold mb-4">30 kW to 180 kW DC Charger</h3>
               <p className="text-slate-600 text-sm leading-relaxed mb-6">
                 Industrial ultra-fast rectifier for highway hubs, municipal terminals, and fleet centers. Powers EVs to 80% in under 30 minutes.
               </p>
               <ul className="flex flex-col gap-3 mb-8 text-xs text-slate-600 font-mono">
-                {['Dynamic 30–180 kW power allocation', 'Dual CCS2 & CHAdeMO couplers', 'OCPP 1.6 JSON telemetry', 'Liquid-cooled modular rectifiers'].map((f, i) => (
+                {['Dynamic 30 to 180 kW power allocation', 'Dual CCS2 & CHAdeMO couplers', 'OCPP 1.6 JSON telemetry', 'Liquid-cooled modular rectifiers'].map((f, i) => (
                   <li key={i} className="flex items-center gap-2.5"><span className="text-megacharge-orange">&bull;</span>{f}</li>
                 ))}
               </ul>
@@ -566,7 +566,7 @@ const Home = () => {
               Perfect For Every <span className="text-gradient-orange">Property Type</span>
             </h2>
             <p className="text-slate-300 text-sm sm:text-base leading-relaxed mt-4">
-              From highway dhabas to luxury hotels — any property with a parking space can become an EV charging destination.
+              From highway dhabas to luxury hotels, any property with a parking space can become an EV charging destination.
             </p>
           </motion.div>
 
@@ -630,7 +630,7 @@ const Home = () => {
                 Charging Stations You Can <span className="text-megacharge-green">See & Trust</span>
               </h2>
               <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                Not just renders — real MegaCharge stations powering real vehicles across India's highways, malls, hotels, and residential complexes.
+                Not just renders, but real MegaCharge stations powering real vehicles across India's highways, malls, hotels, and residential complexes.
               </p>
               <div className="grid grid-cols-2 gap-4 mt-2">
                 {[
@@ -710,45 +710,45 @@ const Home = () => {
       {/* ==========================================
          8. WHY RENT VS BUY COMPARISON
       ========================================== */}
-      <section className="py-32 px-6 bg-megacharge-dark relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(147,166,200,0.05)_0%,transparent_70%)] pointer-events-none" />
+      <section className="py-32 px-6 relative overflow-hidden border-t border-slate-200" style={{ background: '#fff7f1' }}>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(241,131,33,0.03)_0%,transparent_70%)] pointer-events-none" />
         <div className="max-w-7xl mx-auto relative z-10">
           <motion.div {...fadeInUp} className="text-center max-w-3xl mx-auto mb-20">
-            <h2 className="text-white text-4xl sm:text-5xl font-extrabold mt-2 leading-tight">
-              Why <span className="text-gradient-green">Rent</span> Instead of Buy?
+            <h2 className="text-[#402e32] text-4xl sm:text-5xl font-extrabold mt-2 leading-tight">
+              Why <span className="bg-gradient-to-r from-[#F18321] to-[#832800] bg-clip-text text-transparent">Rent</span> Instead of Buy?
             </h2>
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed mt-4">
+            <p className="text-[#7e4437] text-sm sm:text-base leading-relaxed mt-4">
               The numbers make it clear. Our rental model eliminates all risk while delivering the same upside.
             </p>
           </motion.div>
 
           <motion.div
             {...fadeInUp}
-            className="overflow-x-auto rounded-3xl border border-slate-800 shadow-2xl"
+            className="overflow-x-auto rounded-3xl border border-slate-200 shadow-xl bg-white"
           >
             <table className="w-full min-w-[640px] text-sm">
               <thead>
-                <tr className="bg-slate-900">
-                  <th className="py-5 px-6 text-left text-slate-400 font-mono text-xs uppercase tracking-widest">Parameter</th>
+                <tr className="bg-slate-50 border-b border-slate-200">
+                  <th className="py-5 px-6 text-left text-slate-500 font-mono text-xs uppercase tracking-widest">Parameter</th>
                   <th className="py-5 px-6 text-center">
                     <span className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-wider text-megacharge-green bg-megacharge-green bg-opacity-10 px-4 py-2 rounded-full font-mono border border-megacharge-green border-opacity-30 shadow-glow-green">
                       <IconGoogleCheck size={16} className="text-megacharge-green" /> Rent with MegaCharge
                     </span>
                   </th>
                   <th className="py-5 px-6 text-center text-slate-500 font-mono text-xs uppercase tracking-wider">
-                    <span className="inline-flex items-center gap-2 bg-red-500 bg-opacity-5 px-4 py-2 rounded-full border border-red-500 border-opacity-20 text-red-400">
-                      <IconGoogleCancel size={16} className="text-red-400" /> Buy & Operate Yourself
+                    <span className="inline-flex items-center gap-2 bg-red-500 bg-opacity-5 px-4 py-2 rounded-full border border-red-500 border-opacity-20 text-red-500">
+                      <IconGoogleCancel size={16} className="text-red-500" /> Buy & Operate Yourself
                     </span>
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800">
+              <tbody className="divide-y divide-slate-200">
                 {[
-                  ['Upfront Capital Required', '₹0 / Zero Investment', '₹3–15 Lakhs per charger'],
-                  ['Installation & Civil Work', 'Fully handled by MegaCharge', 'Your responsibility + costs'],
-                  ['Monthly Maintenance', 'Zero — 100% covered by us', '₹5,000–20,000/month'],
+                  ['Upfront Capital Required', '₹0 / Zero Investment', '₹3 to ₹15 Lakhs per charger'],
+                  ['Installation & Civil Work', 'Fully handled by MegaCharge', 'Your responsibility and costs'],
+                  ['Monthly Maintenance', '100% covered by us', '₹5,000 to ₹20,000/month'],
                   ['Software & Telemetry Fees', 'Included in rental contract', 'Separate SaaS subscription'],
-                  ['Breakdown & Repair', '24/7 NOC remote + on-site', 'Find your own technician'],
+                  ['Breakdown & Repair', '24/7 NOC remote and on-site', 'Find your own technician'],
                   ['Revenue', 'Earn rental + revenue share', 'Collect all revenue yourself'],
                   ['Risk', 'Zero risk for the host', 'Full equipment depreciation risk'],
                   ['Upgrade Path', 'Free hardware upgrades by us', 'Buy new hardware at market rate'],
@@ -759,13 +759,13 @@ const Home = () => {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.06, duration: 0.5 }}
-                    className="group hover:bg-slate-900/50 transition-colors duration-200"
+                    className="group hover:bg-slate-50 transition-colors duration-200"
                   >
-                    <td className="py-4 px-6 text-slate-300 text-xs sm:text-sm font-semibold">{param}</td>
+                    <td className="py-4 px-6 text-slate-700 text-xs sm:text-sm font-semibold">{param}</td>
                     <td className="py-4 px-6 text-center">
-                      <span className="text-megacharge-green text-xs sm:text-sm font-bold bg-megacharge-green bg-opacity-5 px-3 py-1 rounded-lg">{rent}</span>
+                      <span className="text-megacharge-green text-xs sm:text-sm font-bold bg-megacharge-green bg-opacity-10 px-3 py-1 rounded-lg">{rent}</span>
                     </td>
-                    <td className="py-4 px-6 text-center text-slate-500 text-xs sm:text-sm">{buy}</td>
+                    <td className="py-4 px-6 text-center text-slate-650 text-xs sm:text-sm">{buy}</td>
                   </motion.tr>
                 ))}
               </tbody>
@@ -801,7 +801,7 @@ const Home = () => {
               { icon: <BoltIcon size={22} strokeWidth={1.6}/>, title: 'Ultra-Fast Charging', desc: 'High-capacity DC fast rectifiers delivering up to 360 kW. Charges EVs to 80% in under 15 minutes.' },
               { icon: <SunMedium size={22} strokeWidth={1.6}/>, title: 'Solar & Green Grid', desc: 'Zero-emission charging arrays powered by local solar panels, wind grids, and smart power storage blocks.' },
               { icon: <ShieldIcon size={22} strokeWidth={1.6}/>, title: '99.9% Network Uptime', desc: 'Active load allocation, redundant backup systems, and live self-healing software for uninterrupted service.' },
-              { icon: <BatteryCharging size={22} strokeWidth={1.6}/>, title: 'Universal Compatibility', desc: 'Dual-gun setups with CCS-2 and Type-2 — fully compatible with all Indian, European, and American EV models.' },
+              { icon: <BatteryCharging size={22} strokeWidth={1.6}/>, title: 'Universal Compatibility', desc: 'Dual-gun setups with CCS-2 and Type-2, fully compatible with all Indian, European, and American EV models.' },
               { icon: <Brain size={22} strokeWidth={1.6}/>, title: 'Dynamic Load Balancing', desc: 'Telemetry systems throttle outputs during grid peaks, keeping infrastructure safe from blowouts and overloads.' },
               { icon: <Wrench size={22} strokeWidth={1.6}/>, title: 'End-to-End Managed', desc: 'Zero management overhead for property hosts. Grid setup, civil works, updates, and maintenance all covered.' },
             ].map((card, i) => (
@@ -837,7 +837,7 @@ const Home = () => {
               Safety-First Charging Diagnostics
             </h2>
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-              Every MegaCharge hub runs smart electrical safety diagnostics — isolating vehicle components from surges, short circuits, and temperature extremes.
+              Every MegaCharge hub runs smart electrical safety diagnostics, isolating vehicle components from surges, short circuits, and temperature extremes.
             </p>
             <div className="flex flex-col gap-6 w-full mt-4">
               {[
@@ -889,7 +889,8 @@ const Home = () => {
         <div className="max-w-7xl mx-auto relative z-10">
           <motion.div {...fadeInUp} className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-white text-4xl sm:text-5xl font-extrabold mt-2 leading-tight">
-              Trusted by Property <span className="text-gradient-green">Owners Pan-India</span>
+              Trusted by Property<br />
+              <span className="text-gradient-green">Owners Pan-India</span>
             </h2>
           </motion.div>
 
@@ -1030,7 +1031,7 @@ const Home = () => {
                   MegaCharge App is<br />All You Need
                 </h2>
                 <p className="text-slate-600 text-sm sm:text-base leading-relaxed mt-4">
-                  Track, manage, and earn from your charging stations across our nationwide network — all from one app.
+                  Track, manage, and earn from your charging stations across our nationwide network, all from one app.
                 </p>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
@@ -1056,7 +1057,7 @@ const Home = () => {
 
           {/* Vehicle compatibility marquee */}
           <div className="border-t border-slate-200 pt-16 flex flex-col gap-6 text-center">
-            <span className="text-slate-500 text-[10px] font-extrabold uppercase tracking-widest font-mono">COMPATIBLE WITH ALL EV BRANDS — CCS2 / TYPE 2 STANDARD</span>
+            <span className="text-slate-500 text-[10px] font-extrabold uppercase tracking-widest font-mono">COMPATIBLE WITH ALL EV BRANDS (CCS2 / TYPE 2 STANDARD)</span>
             <div className="partner-marquee-container">
               <div className="partner-marquee-track-reverse text-slate-700 font-extrabold text-sm tracking-widest font-mono gap-16 md:gap-28 items-center flex">
                 {['TATA.EV', 'HYUNDAI ELECTRIC', 'KIA EV CORE', 'MG ZS ELECTRIC', 'BYD AUTO', 'MERCEDES EQ', 'AUDI E-TRON', 'BMW IX', 'TATA.EV', 'HYUNDAI ELECTRIC', 'KIA EV CORE', 'MG ZS ELECTRIC', 'BYD AUTO', 'MERCEDES EQ', 'AUDI E-TRON', 'BMW IX'].map((name, i) => (

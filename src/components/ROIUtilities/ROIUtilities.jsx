@@ -436,14 +436,14 @@ const ChargerSelector = () => {
       return {
         title: 'MegaCharge 30 kW - 60 kW DC Fast Charger',
         desc: 'Perfect for corporate fleets, commercial complexes, and employee parking hubs. Rapid charging that supports multi-port vehicle splits.',
-        specs: ['Output: 30–60 kW (Three-phase)', 'Connector: CCS2 / CHAdeMO dual connector', 'Network: OCPP 1.6 cloud integration', 'Monetization: Instant QR / UPI wallet payments'],
+        specs: ['Output: 30 to 60 kW (Three-phase)', 'Connector: CCS2 / CHAdeMO dual connector', 'Network: OCPP 1.6 cloud integration', 'Monetization: Instant QR / UPI wallet payments'],
         cta: 'Enquire for Corporate Pricing'
       };
     } else {
       return {
         title: 'MegaCharge 120 kW - 180 kW Dual-Gun DC Charger',
         desc: 'Designed for commercial charging networks and public highway stations. Extreme fast-charging capability that powers dual heavy vehicles concurrently.',
-        specs: ['Output: 120–180 kW', 'Connector: Dual CCS2 High-Power Guns', 'Efficiency: 98%+ active rectifiers', 'Monitoring: 24/7 remote diagnostic diagnostics'],
+        specs: ['Output: 120 to 180 kW', 'Connector: Dual CCS2 High-Power Guns', 'Efficiency: 98%+ active rectifiers', 'Monitoring: 24/7 remote diagnostic diagnostics'],
         cta: 'Connect with Sales & CPO'
       };
     }

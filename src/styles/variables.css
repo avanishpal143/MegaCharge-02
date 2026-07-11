@@ -12,40 +12,49 @@
  */
 
 :root {
-  /* Brand Palette - Redefined to new matching gradient scheme */
-  --color-green: #93A6C8;      /* Primary active highlight (periwinkle) */
-  --color-navy: #344F4F;       /* Sub container dark (teal-grey) */
-  --color-orange: #C9C1EB;     /* Alternate highlight (lavender) */
-  --color-dark: #23322D;       /* Main dark background (slate-green) */
-  --color-gray: #F6F8FB;
+  /* Strict brand color palette variables */
+  --color-brand: #F18321;         /* Main brand orange */
+  --color-brand-hover: #832800;   /* Brand hover (rust) */
+  --color-heading: #402e32;       /* Headings (dark deep plum) */
+  --color-subheading: #653d1e;    /* Subheadings (warm brown) */
+  --color-paragraph: #7e4437;     /* Paragraphs (terracotta) */
+  --color-bg-cool: #dfe0df;       /* Cool grey / silver background */
+  --color-bg-warm: #fff7f1;       /* Warm off-white / cream background */
+  --color-icon: #832800;          /* Icons color */
+  --color-dark: #402e32;          /* Header/Footer dark backdrop */
   --color-white: #FFFFFF;
   
-  /* Custom requested color palette */
-  --color-black: #23322D;
-  --color-plum: #344F4F;
-  --color-lavender: #688AA0;
-  --color-lavender-light: #C9C1EB;
-  --color-navy-dark: #23322D;
-  --color-cosmic-bg: #344F4F;
+  /* Fallback mapped variables for legacy compatibility */
+  --color-green: #F18321;
+  --color-navy: #653d1e;
+  --color-orange: #F18321;
+  --color-bg: #dfe0df;
+  --color-text-primary: #7e4437;
+  --color-card-bg: rgba(255, 247, 241, 0.8);
+  --color-card-border: rgba(241, 131, 33, 0.15);
   
-  /* Modern Cosmic Gradients */
-  --gradient-cosmic: linear-gradient(135deg, #23322D 0%, #344F4F 45%, #496D76 100%);
-  --gradient-purple-glow: linear-gradient(135deg, #688AA0 0%, #93A6C8 50%, #C9C1EB 100%);
-  --gradient-card-dark: linear-gradient(135deg, #23322D 0%, #344F4F 100%);
-  --gradient-battery: linear-gradient(90deg, #93A6C8 0%, #688AA0 70%, #C9C1EB 100%);
+  /* Premium CSS Gradients */
+  --gradient-brand: linear-gradient(135deg, #F18321 0%, #832800 100%);
+  --gradient-brand-hover: linear-gradient(135deg, #832800 0%, #4d0000 100%);
+  --gradient-footer: linear-gradient(180deg, #6e473d 0%, #402e32 100%);
+  --gradient-dark-glass: linear-gradient(135deg, rgba(64, 46, 50, 0.7) 0%, rgba(64, 46, 50, 0.45) 100%);
+  --gradient-battery: linear-gradient(90deg, #F18321 0%, #832800 70%, #4d0000 100%);
+  --gradient-purple-glow: linear-gradient(135deg, #F18321 0%, #832800 100%);
   
-  /* Font Families */
-  --font-primary: 'Poppins', sans-serif;
+  /* Fonts Stack */
+  --font-primary: 'Inter', sans-serif;
+  --font-heading: 'Montserrat', sans-serif;
   
   /* Layout Spacings */
   --spacing-container: 1280px;
   --nav-height: 80px;
   
-  /* Shadows & Neon Glows */
-  --shadow-green: 0 0 25px rgba(147, 166, 200, 0.35);
-  --shadow-orange: 0 0 25px rgba(201, 193, 235, 0.35);
-  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
-  --shadow-card-glow: 0 0 20px rgba(147, 166, 200, 0.08);
+  /* Shadows & Highlights */
+  --shadow-brand: 0 0 25px rgba(241, 131, 33, 0.35);
+  --shadow-green: 0 0 25px rgba(241, 131, 33, 0.35);
+  --shadow-orange: 0 0 25px rgba(241, 131, 33, 0.35);
+  --shadow-glass: 0 8px 32px 0 rgba(64, 46, 50, 0.08);
+  --shadow-card-glow: 0 0 20px rgba(241, 131, 33, 0.08);
   --backdrop-blur-val: blur(20px);
   
   /* Premium Transitions */

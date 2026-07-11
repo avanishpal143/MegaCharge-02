@@ -9,14 +9,14 @@
 ===================================== */
 .hero-section {
   background-image:
-    radial-gradient(circle at 70% 30%, rgba(29, 185, 84, 0.04), transparent 50%),
-    radial-gradient(circle at 10% 80%, rgba(255, 107, 53, 0.02), transparent 40%);
+    radial-gradient(circle at 70% 30%, rgba(241, 131, 33, 0.04), transparent 50%),
+    radial-gradient(circle at 10% 80%, rgba(131, 40, 0, 0.02), transparent 40%);
 }
 
 .hero-grid-overlay {
   background-image:
-    linear-gradient(rgba(147, 166, 200, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(147, 166, 200, 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(101, 61, 30, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(101, 61, 30, 0.03) 1px, transparent 1px);
   background-size: 50px 50px;
   opacity: 0.6;
 }
@@ -46,8 +46,8 @@
   transition: var(--transition-smooth);
 }
 .faq-item:hover {
-  border-color: rgba(147, 166, 200, 0.3);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  border-color: rgba(241, 131, 33, 0.3);
+  box-shadow: 0 4px 20px rgba(64, 46, 50, 0.08);
 }
 
 /* =====================================
@@ -57,30 +57,30 @@
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .how-it-works-card:hover {
-  box-shadow: 0 20px 50px -10px rgba(147, 166, 200, 0.15), 0 0 0 1px rgba(147, 166, 200, 0.2);
+  box-shadow: 0 20px 50px -10px rgba(241, 131, 33, 0.12), 0 0 0 1px rgba(241, 131, 33, 0.15);
 }
 
 /* =====================================
    Use Case Cards
 ===================================== */
 .use-case-card {
-  background: rgba(11, 19, 43, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(64, 46, 50, 0.5);
+  border: 1px solid rgba(241, 131, 33, 0.08);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .use-case-card:hover {
-  background: rgba(11, 19, 43, 0.75);
-  border-color: rgba(147, 166, 200, 0.25);
-  box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.5), 0 0 30px rgba(147, 166, 200, 0.08);
+  background: rgba(64, 46, 50, 0.75);
+  border-color: rgba(241, 131, 33, 0.25);
+  box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.3), 0 0 30px rgba(241, 131, 33, 0.08);
 }
 
 /* =====================================
    Cosmic Features Section
 ===================================== */
 .cosmic-section {
-  background: linear-gradient(180deg, var(--color-dark) 0%, #170a1a 50%, #000000 100%);
+  background: linear-gradient(180deg, var(--color-dark) 0%, #523129 50%, var(--color-dark) 100%);
   position: relative;
   overflow: hidden;
 }
@@ -90,7 +90,7 @@
   left: 10%;
   width: 450px;
   height: 450px;
-  background: radial-gradient(circle, rgba(168, 131, 186, 0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(241, 131, 33, 0.06) 0%, transparent 70%);
   border-radius: 50%;
   pointer-events: none;
 }
@@ -100,13 +100,13 @@
   right: 10%;
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(90, 62, 81, 0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(131, 40, 0, 0.06) 0%, transparent 70%);
   border-radius: 50%;
   pointer-events: none;
 }
 .cosmic-card {
-  background: rgba(11, 19, 43, 0.45);
-  border: 1px solid rgba(168, 131, 186, 0.12);
+  background: rgba(64, 46, 50, 0.45);
+  border: 1px solid rgba(241, 131, 33, 0.12);
   border-radius: 24px;
   padding: 2rem;
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -120,7 +120,7 @@
   inset: 0;
   border-radius: 24px;
   padding: 1px;
-  background: linear-gradient(135deg, rgba(168, 131, 186, 0.2) 0%, rgba(217, 218, 255, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(241, 131, 33, 0.2) 0%, rgba(255, 247, 241, 0.05) 100%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -129,17 +129,17 @@
 }
 .cosmic-card:hover {
   transform: translateY(-8px);
-  background: rgba(35, 11, 19, 0.6);
-  border-color: rgba(201, 193, 235, 0.4);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(201, 193, 235, 0.25);
+  background: rgba(110, 71, 61, 0.6);
+  border-color: rgba(241, 131, 33, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 25px rgba(241, 131, 33, 0.2);
 }
 .cosmic-card:hover::before {
-  background: linear-gradient(135deg, rgba(201, 193, 235, 0.6) 0%, rgba(52, 79, 79, 0.8) 100%);
+  background: linear-gradient(135deg, rgba(241, 131, 33, 0.6) 0%, rgba(64, 46, 50, 0.8) 100%);
 }
 .cosmic-card-icon {
-  background: rgba(201, 193, 235, 0.1);
-  color: var(--color-orange);
-  border: 1px solid rgba(201, 193, 235, 0.2);
+  background: rgba(241, 131, 33, 0.1);
+  color: var(--color-brand);
+  border: 1px solid rgba(241, 131, 33, 0.2);
   width: 52px;
   height: 52px;
   border-radius: 14px;
@@ -149,9 +149,9 @@
   transition: all 0.3s ease;
 }
 .cosmic-card:hover .cosmic-card-icon {
-  background: var(--color-orange);
-  color: var(--color-dark);
-  box-shadow: var(--shadow-orange);
+  background: var(--color-brand);
+  color: var(--color-white);
+  box-shadow: var(--shadow-brand);
 }
 
 /* =====================================
@@ -188,11 +188,11 @@
 }
 .partner-marquee-container::before {
   left: 0;
-  background: linear-gradient(to right, rgb(248, 250, 252) 0%, rgba(248, 250, 252, 0) 100%);
+  background: linear-gradient(to right, #fff7f1 0%, rgba(255, 247, 241, 0) 100%);
 }
 .partner-marquee-container::after {
   right: 0;
-  background: linear-gradient(to left, rgb(248, 250, 252) 0%, rgba(248, 250, 252, 0) 100%);
+  background: linear-gradient(to left, #fff7f1 0%, rgba(255, 247, 241, 0) 100%);
 }
 .partner-marquee-track {
   display: flex;
@@ -240,7 +240,7 @@
    "Why Rent" Table Row Hover
 ===================================== */
 .why-rent-table tbody tr:hover td:nth-child(2) {
-  background: rgba(147, 166, 200, 0.07);
+  background: rgba(241, 131, 33, 0.05);
 }
 
 /* =====================================

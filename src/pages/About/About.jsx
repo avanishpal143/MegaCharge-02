@@ -20,7 +20,8 @@ import {
   IconGoogleGlobe,
   IconGoogleBuilding,
   IconGoogleEco,
-  IconGoogleShield
+  IconGoogleShield,
+  IconAward
 } from '../../components/CustomIcons/CustomIcons';
 import ContactForm from '../../components/ContactForm/ContactForm';
 import './About.css';
@@ -70,8 +71,7 @@ const TIMELINE = [
   {
     year: '1983',
     icon: <IconGoogleConstruction size={20} className="text-megacharge-green" />,
-    title: 'Corporate Inception',
-    desc: 'Mega Nirman & Industries Limited (MNIL) is established under the Companies Act on March 23, 1983 — laying structural roots in commercial real estate, civil engineering, and infrastructure.',
+    desc: 'Mega Nirman & Industries Limited (MNIL) is established under the Companies Act on March 23, 1983, laying structural roots in commercial real estate, civil engineering, and infrastructure.',
   },
   {
     year: '2002',
@@ -89,7 +89,7 @@ const TIMELINE = [
     year: '2024',
     icon: <IconGoogleRocket size={20} className="text-megacharge-green" bounce />,
     title: 'MegaCharge Launch',
-    desc: 'MegaCharge launches as the primary clean mobility division — deploying universal Level 2 AC and Level 3 DC fast rectifiers with proprietary OCPP management SaaS.',
+    desc: 'MegaCharge launches as the primary clean mobility division, deploying universal Level 2 AC and Level 3 DC fast rectifiers with proprietary OCPP management SaaS.',
   },
   {
     year: '2028',
@@ -171,7 +171,7 @@ const About = () => {
               className="flex items-center gap-2 px-4 py-2 bg-megacharge-green bg-opacity-10 border border-megacharge-green border-opacity-30 rounded-full w-fit"
             >
               <span className="w-2 h-2 rounded-full bg-megacharge-green animate-pulse" />
-              <span className="text-megacharge-green text-[10px] font-bold uppercase tracking-widest font-mono">Legacy of Trust — Since 1983</span>
+              <span className="text-megacharge-green text-[10px] font-bold uppercase tracking-widest font-mono">Legacy of Trust: Since 1983</span>
             </motion.div>
 
             <h1 className="text-white text-4xl sm:text-5xl lg:text-7xl font-extrabold font-poppins leading-none tracking-tight">
@@ -179,7 +179,7 @@ const About = () => {
               <span className="text-gradient-green">Across the Subcontinent</span>
             </h1>
             <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl">
-              MegaCharge is the EV infrastructure division of <strong className="text-white">Mega Nirman &amp; Industries Limited (MNIL)</strong> — a non-government public limited company established on March 23, 1983. Four decades of operational excellence in commercial projects powers India's most robust, premium fast-charging network.
+              MegaCharge is the EV infrastructure division of <strong className="text-white">Mega Nirman &amp; Industries Limited (MNIL)</strong>, a non-government public limited company established on March 23, 1983. Four decades of operational excellence in commercial projects powers India's most robust, premium fast-charging network.
             </p>
             <div className="flex flex-wrap gap-4 mt-2">
               <Link to="/contact" className="btn-premium-green text-white font-bold text-sm px-8 py-4 rounded-full flex items-center gap-2 shadow-glow-green hover:scale-105 transition-transform duration-300">
@@ -210,7 +210,7 @@ const About = () => {
                 </div>
                 <h4 className="text-white font-extrabold text-2xl">MNIL Group Foundation</h4>
                 <p className="text-slate-400 text-sm leading-relaxed">
-                  Established under the Indian Companies Act. A legacy of trust and quality engineering — driving forward-thinking public infrastructure projects for over four decades.
+                  Established under the Indian Companies Act. A legacy of trust and quality engineering, driving forward-thinking public infrastructure projects for over four decades.
                 </p>
                 {/* Mini stat row */}
                 <div className="grid grid-cols-3 gap-3 mt-2">
@@ -288,7 +288,7 @@ const About = () => {
                 icon: <IconGoogleEco size={32} className="text-megacharge-green" bounce />,
                 color: 'green',
                 title: 'Our Vision',
-                desc: 'Make clean, fast charging accessible to every corner of India — establishing a zero-emission transport network that integrates solar grid generation with public transit corridors.',
+                desc: 'Make clean, fast charging accessible to every corner of India, establishing a zero-emission transport network that integrates solar grid generation with public transit corridors.',
               },
               {
                 icon: <IconGoogleBolt size={32} className="text-megacharge-green" pulse />,
@@ -469,8 +469,8 @@ const About = () => {
                 className="cert-card group relative rounded-3xl p-7 flex flex-col gap-4 overflow-hidden"
               >
                 <div className="absolute top-0 left-0 right-0 h-[2px] bg-megacharge-orange opacity-40 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="w-12 h-12 rounded-xl bg-megacharge-orange bg-opacity-10 border border-megacharge-orange border-opacity-25 flex items-center justify-center text-xl group-hover:scale-110 transition-transform duration-300">
-                  🏆
+                <div className="w-12 h-12 rounded-xl bg-megacharge-orange bg-opacity-10 border border-megacharge-orange border-opacity-25 flex items-center justify-center text-xl group-hover:scale-110 transition-transform duration-300 text-[#F18321]">
+                  <IconAward className="w-6 h-6" />
                 </div>
                 <div>
                   <h4 className="text-white font-extrabold text-lg mb-2">{cert.title}</h4>
@@ -552,7 +552,7 @@ const About = () => {
               <span className="text-gradient-green">Electric Future?</span>
             </h2>
             <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl">
-              Whether you're a property owner wanting to earn from idle parking, a developer building EV-ready townships, or a business aiming to lead in sustainability — MegaCharge has a solution built for you.
+              Whether you're a property owner wanting to earn from idle parking, a developer building EV-ready townships, or a business aiming to lead in sustainability, MegaCharge has a solution built for you.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4 mt-2">
               <Link to="/contact" className="btn-premium-green text-white font-bold text-sm px-10 py-4 rounded-full flex items-center gap-2 shadow-glow-green hover:scale-105 transition-transform duration-300">

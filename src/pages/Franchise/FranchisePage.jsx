@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { IconGoogleCheck, IconGoogleCancel } from '../../components/CustomIcons/CustomIcons';
 import './FranchisePage.css';
 import ContactForm from '../../components/ContactForm/ContactForm';
 
@@ -67,12 +68,12 @@ const FranchisePage = () => {
       material: "500 GSM Vinyl Flex",
       finish: "Matte Laminate, Eyelets every 24 in",
       dpi: "300 DPI, CMYK",
-      header: "⚡ MegaCharge — EV Charging Station ⚡",
+      header: "MegaCharge EV Charging Station",
       tagline: "CHARGE NOW, DRIVE FURTHER",
       bullets: [
         "AC 7.4 kW Fast Charger support",
         "Universal compatibility with EV 2-wheelers & cars",
-        "Pay per use · No registration required"
+        "Pay per use. No registration required"
       ],
       footnote: "Scan QR to Download App | Helpline: 92895 55090"
     },
@@ -83,8 +84,8 @@ const FranchisePage = () => {
       material: "500 GSM Vinyl Flex",
       finish: "Matte Laminate, Eyelets every 24 in",
       dpi: "300 DPI, CMYK",
-      header: "⚡ MegaCharge DC FAST CHARGING ⚡",
-      tagline: "30–180 kW POWER | CHARGE IN 30 MINUTES",
+      header: "MegaCharge DC FAST CHARGING",
+      tagline: "30 to 180 kW POWER | CHARGE IN 30 MINUTES",
       bullets: [
         "Dual CCS2 & CHAdeMO couplers",
         "GST bill generated automatically",
@@ -100,7 +101,7 @@ const FranchisePage = () => {
       material: "170 GSM Gloss Paper",
       finish: "Gloss Laminate, Wall-mount Bracket",
       dpi: "300 DPI, CMYK",
-      header: "MegaCharge — How to Charge",
+      header: "MegaCharge How to Charge",
       tagline: "Bilingual Step-by-Step Instructions",
       bullets: [
         "1. Download the MegaCharge App (ऐप डाउनलोड करें)",
@@ -192,7 +193,7 @@ const FranchisePage = () => {
                 Rent out your land or parking space to MegaCharge. We manage the charger hardware supply, utility approvals, installation, cloud software billing, remote maintenance, and 24x7 customer support. You receive steady monthly rental lease payments with zero operational stress.
               </p>
               <ul className="flex flex-col gap-3 text-xs text-slate-600 font-mono mb-8">
-                <li className="flex items-center gap-2">&bull; Minimum Space: 2–4 parking bays</li>
+                <li className="flex items-center gap-2">&bull; Minimum Space: 2 to 4 parking bays</li>
                 <li className="flex items-center gap-2">&bull; Ideal Sites: Highway hotels, food malls, tech parks</li>
                 <li className="flex items-center gap-2">&bull; Maintenance: 100% managed by MegaCharge team</li>
               </ul>
@@ -219,7 +220,7 @@ const FranchisePage = () => {
                 Rent the chargers directly from MegaCharge and manage the local station operations on your property. You get complete access to the cloud OCPP 1.6 SaaS client dashboard, control over local pricing, and customer billing pathways. Perfect for gas station owners and expressways.
               </p>
               <ul className="flex flex-col gap-3 text-xs text-slate-600 font-mono mb-8">
-                <li className="flex items-center gap-2">&bull; Minimum Space: 3–6 highway parking bays</li>
+                <li className="flex items-center gap-2">&bull; Minimum Space: 3 to 6 highway parking bays</li>
                 <li className="flex items-center gap-2">&bull; Ideal Sites: Petrol pumps, transit depots, logistics hubs</li>
                 <li className="flex items-center gap-2">&bull; Software: Direct CPO portal telemetry access</li>
               </ul>
@@ -313,11 +314,22 @@ const FranchisePage = () => {
                   <div className="border-t border-slate-200 pt-4">
                     <span className="text-[10px] text-slate-500 uppercase block font-mono mb-1.5">Content points</span>
                     <ul className="space-y-2">
-                      {asset.bullets.map((bullet, idx) => (
-                        <li key={idx} className="text-slate-600 text-xs leading-relaxed flex items-start gap-1">
-                          <span>&bull;</span> <span>{bullet}</span>
-                        </li>
-                      ))}
+                      {asset.bullets.map((bullet, idx) => {
+                        let icon = <span className="text-slate-400 mr-1">&bull;</span>;
+                        let text = bullet;
+                        if (bullet.startsWith('🚫')) {
+                          icon = <IconGoogleCancel className="text-red-500 w-4 h-4 shrink-0 mt-0.5" />;
+                          text = bullet.slice(1).trim();
+                        } else if (bullet.startsWith('✅')) {
+                          icon = <IconGoogleCheck className="text-[#F18321] w-4 h-4 shrink-0 mt-0.5" />;
+                          text = bullet.slice(1).trim();
+                        }
+                        return (
+                          <li key={idx} className="text-slate-600 text-xs leading-relaxed flex items-start gap-2">
+                            {icon} <span>{text}</span>
+                          </li>
+                        );
+                      })}
                     </ul>
                   </div>
                 </div>

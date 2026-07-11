@@ -1,85 +1,86 @@
 /**
  * ========================================
- * Navbar Styles
- * Purpose:
- * Provides smooth transitions and sticky
- * layouts for the transparent navigation
- * header and mega menu.
- *
- * Developer Notes:
- * Uses custom cubic-beziers for transitions.
- *
+ * Navbar Styles — Re-themed Premium Capsule
  * ========================================
  */
 
-/* =====================================
-   Navbar Layout & Background States
-===================================== */
-/* =====================================
-   Navbar Layout & Background States
-===================================== */
 .navbar-container {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 100;
-  transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  z-index: 9999; /* Maintain overlay dominance */
+  padding: 1.5rem 0; /* Expanded padding at scroll top */
+  transition: padding 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none; /* Allow click-throughs in empty areas around capsule */
 }
 
-.navbar-transparent {
-  background: rgba(11, 19, 43, 0.45);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+.navbar-top {
+  background: transparent;
 }
 
 .navbar-scrolled {
-  background: rgba(11, 19, 43, 0.96);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  padding: 0.75rem 0;
 }
 
-/* Ensure navbar inner behaves correctly when scrolled vs transparent */
+/* Base navbar inner grid */
 .navbar-inner {
-  transition: var(--transition-smooth);
+  width: 100%;
+  height: 72px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: auto; /* Re-enable clicks on logo, links, and buttons */
 }
 
+/* Scrolled floating glass capsule configuration */
 .navbar-scrolled .navbar-inner {
-  height: 72px; /* Slightly more compact when scrolled */
+  background: rgba(255, 247, 241, 0.45); /* True transparent glassmorphism background */
+  backdrop-filter: blur(24px) saturate(130%);
+  -webkit-backdrop-filter: blur(24px) saturate(130%);
+  border: 1px solid rgba(241, 131, 33, 0.25); /* Warm brand orange border */
+  box-shadow: 0 10px 40px rgba(64, 46, 50, 0.08); /* Dark plum shadow */
+  border-radius: 9999px; /* Rounded capsule look */
+  height: 64px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
 }
 
 /* =====================================
    Typography & Elements
-===================================== */
+ ===================================== */
 .navbar-logo {
   text-decoration: none;
-  color: var(--color-white);
   transition: var(--transition-fast);
 }
 
-.logo-icon-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: var(--transition-smooth);
-}
-
-.navbar-logo:hover .logo-icon-container {
-  transform: rotate(-8deg) scale(1.1);
-  filter: drop-shadow(0 0 8px rgba(29, 185, 84, 0.45));
+.navbar-logo:hover {
+  transform: scale(1.02);
 }
 
 .nav-link {
-  color: var(--color-white);
+  font-family: var(--font-heading); /* Montserrat */
+  font-weight: 700; /* Montserrat Bold */
   font-size: 0.92rem;
-  font-weight: 500;
   transition: var(--transition-fast);
-  opacity: 0.8;
   position: relative;
   padding: 0.25rem 0;
+}
+
+/* Route theme at top scroll scroll position */
+.nav-light-theme.navbar-top .nav-link {
+  color: var(--color-heading); /* Dark plum for light Home hero backdrop */
+  opacity: 0.9;
+}
+
+.nav-dark-theme.navbar-top .nav-link {
+  color: var(--color-white); /* Pure white for dark page heroes */
+  opacity: 0.9;
+}
+
+/* Scrolled glass capsule state: dark plum text for high contrast readability */
+.navbar-scrolled .nav-link {
+  color: var(--color-heading);
+  opacity: 0.95;
 }
 
 .nav-link::after {
@@ -89,7 +90,7 @@
   left: 0;
   width: 0;
   height: 2px;
-  background: var(--color-green);
+  background: var(--color-brand); /* Brand orange underline on active/hover */
   transition: var(--transition-fast);
 }
 
@@ -99,87 +100,39 @@
 }
 
 .nav-link:hover {
-  color: var(--color-green);
+  color: var(--color-brand);
   opacity: 1;
 }
 
 /* =====================================
-   Mega Menu Dropdown Overlay
-===================================== */
-.mega-menu-overlay {
-  position: absolute;
-  top: calc(100% + 12px);
-  left: 0;
-  width: 100%;
-  background: rgba(6, 18, 33, 0.88);
-  backdrop-filter: blur(28px);
-  -webkit-backdrop-filter: blur(28px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 24px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(29, 185, 84, 0.06);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px);
-  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
-  z-index: 99;
-}
-
-/* On non-scrolled navbar, pull the menu closer to avoid layout gaps */
-.navbar-transparent .mega-menu-overlay {
-  top: 100%;
-  border-radius: 0 0 24px 24px;
-  border-top: none;
-}
-
-.mega-menu-active {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.mega-menu-card {
-  transition: var(--transition-smooth);
-  border: 1px solid transparent;
-  background: rgba(255, 255, 255, 0.01);
-}
-
-.mega-menu-card:hover {
-  border-color: rgba(29, 185, 84, 0.2);
-  background: rgba(29, 185, 84, 0.03);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 15px rgba(29, 185, 84, 0.04);
-}
-
-/* =====================================
-   Mobile Responsive Tweak
-==================================== */
-@media (max-width: 1023px) {
-  .mega-menu-overlay {
-    display: none !important;
-  }
-}
-
-/* Mobile Dropdown Panel */
+   Mobile Responsive Dropdown Panel
+ ===================================== */
 .mobile-menu-panel {
   position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background: rgba(11, 19, 43, 0.98);
+  top: calc(100% + 10px);
+  left: 6%;
+  right: 6%;
+  background: rgba(255, 247, 241, 0.96); /* Warm cream dropdown background */
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 0 0 20px 20px;
+  border: 1px solid rgba(241, 131, 33, 0.25);
+  border-radius: 24px;
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 20px 40px rgba(64, 46, 50, 0.12);
   z-index: 40;
+  pointer-events: auto;
 }
 
-.navbar-scrolled .mobile-menu-panel {
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 24px;
-  margin-top: 10px;
+.mobile-menu-panel .nav-link {
+  color: var(--color-heading);
+  font-size: 1.05rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(64, 46, 50, 0.06);
+}
+
+.mobile-menu-panel .nav-link:last-of-type {
+  border-bottom: none;
 }

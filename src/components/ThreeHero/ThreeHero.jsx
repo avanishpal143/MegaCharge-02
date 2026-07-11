@@ -63,7 +63,7 @@ const ThreeHero = () => {
     dirLight.position.set(5, 5, 5);
     scene.add(dirLight);
 
-    const pointLight = new THREE.PointLight('#93A6C8', 2.5, 20);
+    const pointLight = new THREE.PointLight('#F18321', 2.5, 20);
     pointLight.position.set(0, -2, 2);
     scene.add(pointLight);
 
@@ -75,10 +75,10 @@ const ThreeHero = () => {
     // Inner core cylinder (metallic periwinkle)
     const coreGeom = new THREE.CylinderGeometry(0.8, 0.8, 3, 32);
     const coreMat = new THREE.MeshStandardMaterial({
-      color: '#93A6C8',
+      color: '#F18321',
       roughness: 0.2,
       metalness: 0.9,
-      emissive: '#93A6C8',
+      emissive: '#F18321',
       emissiveIntensity: 0.2
     });
     const coreMesh = new THREE.Mesh(coreGeom, coreMat);
@@ -117,7 +117,7 @@ const ThreeHero = () => {
 
     // Indicator Rings (representing charge status)
     const ringGeom = new THREE.TorusGeometry(1.05, 0.04, 8, 32);
-    const ringMat = new THREE.MeshBasicMaterial({ color: '#93A6C8' });
+    const ringMat = new THREE.MeshBasicMaterial({ color: '#F18321' });
     
     const indicatorRings = [];
     for (let i = 0; i < 3; i++) {
