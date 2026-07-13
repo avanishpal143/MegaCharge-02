@@ -81,8 +81,8 @@ const Footer = () => {
 
         {/* LOWER DECK: COPYRIGHT */}
         <div className="pt-8 border-t border-megacharge-heading border-opacity-20 flex flex-col md:flex-row items-center justify-center gap-6">
-          <span className="text-megacharge-card text-opacity-50 text-xs font-mono">
-            &copy; {new Date().getFullYear()} MegaCharge. made by devlofox
+          <span className="text-megacharge-card text-opacity-60 text-xs font-inter text-center">
+            MegaCharge &copy; {new Date().getFullYear()} All rights reserved | Made with <span className="text-red-500">❤️</span> by <a href="https://devlofox.com/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-megacharge-brand hover:underline transition-colors font-semibold">Devlofox Technologies</a>.
           </span>
         </div>
 
