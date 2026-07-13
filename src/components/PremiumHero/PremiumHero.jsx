@@ -88,12 +88,16 @@ const PremiumHero = () => {
 
           {/* Main heading — GSAP animated */}
           <div ref={titleRef} className="overflow-hidden" style={{ perspective: '800px' }}>
-            <h1 className="text-megacharge-heading font-black font-montserrat leading-[1.05] tracking-tight text-[clamp(2.2rem,5vw,4.5rem)]">
-              {headline.split(' ').map((word, wi) => (
-                <span key={wi} className="inline-block whitespace-nowrap mr-[0.25em] overflow-hidden">
-                  {word.split('').map((ch, ci) => (
-                    <span key={ci} className="char inline-block">
-                      {ch}
+            <h1 className="text-megacharge-heading font-black font-montserrat leading-[1.05] tracking-tight text-[clamp(1.8rem,4vw,3.2rem)]">
+              {["OWN & RENT", "YOUR EV", "CHARGING STATION."].map((line, li) => (
+                <span key={li} className="block">
+                  {line.split(' ').map((word, wi) => (
+                    <span key={wi} className="inline-block whitespace-nowrap mr-[0.25em] overflow-hidden">
+                      {word.split('').map((ch, ci) => (
+                        <span key={ci} className="char inline-block">
+                          {ch}
+                        </span>
+                      ))}
                     </span>
                   ))}
                 </span>

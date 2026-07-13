@@ -15,6 +15,7 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 /* ==========================================
    METRO HUBS DATA
@@ -102,11 +103,39 @@ const HUBS_DATA = [
    INTERACTIVE MAP COMPONENT
 ========================================== */
 
+const containerVariants = {
+  initial: { opacity: 0 },
+  animate: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.06
+    }
+  }
+};
+
+const cardVariants = {
+  initial: { opacity: 0, y: 15 },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.3,
+      ease: 'easeOut'
+    }
+  }
+};
+
 const InteractiveMap = () => {
   const [selectedHub, setSelectedHub] = useState(HUBS_DATA[0]);
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-center">
+    <motion.div 
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, amount: 0.15 }}
+      transition={{ duration: 0.45, ease: 'easeOut' }}
+      className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-center"
+    >
       
       {/* MAP SVG CONTAINER */}
       <div className="lg:col-span-2 flex justify-center relative bg-megacharge-card border border-megacharge-border p-6 rounded-3xl">
@@ -215,10 +244,17 @@ const InteractiveMap = () => {
             Interactive view of high-power public charging bays currently active in this region.
           </p>
 
-          <div className="flex flex-col gap-4 max-h-[250px] overflow-y-auto pr-2">
+          <motion.div 
+            key={selectedHub.id}
+            variants={containerVariants}
+            initial="initial"
+            animate="animate"
+            className="flex flex-col gap-4 max-h-[250px] overflow-y-auto pr-2"
+          >
             {selectedHub.stations.map((st, i) => (
-              <div 
+              <motion.div 
                 key={i} 
+                variants={cardVariants}
                 className="p-4 rounded-xl bg-megacharge-dark border border-megacharge-border flex flex-col gap-2 transition-all duration-300 hover:border-megacharge-brand"
               >
                 <div className="flex items-center justify-between">
@@ -231,9 +267,9 @@ const InteractiveMap = () => {
                   <span>Connector: {st.port}</span>
                   <span>Bays: {st.count}</span>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
         <Link 
@@ -244,7 +280,7 @@ const InteractiveMap = () => {
         </Link>
       </div>
 
-    </div>
+    </motion.div>
   );
 };
 

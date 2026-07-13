@@ -82,7 +82,7 @@ const Footer = () => {
         {/* LOWER DECK: COPYRIGHT */}
         <div className="pt-8 border-t border-megacharge-heading border-opacity-20 flex flex-col md:flex-row items-center justify-center gap-6">
           <span className="text-megacharge-card text-opacity-50 text-xs font-mono">
-            &copy; {new Date().getFullYear()} MegaCharge. All rights reserved.
+            &copy; {new Date().getFullYear()} MegaCharge. made by devlofox
           </span>
         </div>
 

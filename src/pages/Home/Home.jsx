@@ -24,6 +24,9 @@ import PremiumHero from '../../components/PremiumHero/PremiumHero';
 import './Home.css';
 
 import chargingStationCars from '../../assets/charging_station_cars.jpg';
+import teslaCharging from '../../assets/tesla_charging.jpg';
+import chargeEvBanner from '../../assets/charge_ev_banner.png';
+import acChargerReal from '../../assets/ac_charger_real.png';
 import acCharger from '../../assets/ac_charger.png';
 import dcCharger from '../../assets/dc_charger.png';
 import heroBg from '../../assets/hero_bg.png';
@@ -109,38 +112,38 @@ const FloatingParticles = () => {
    ANIMATION CONFIGS
 ========================================== */
 const fadeInUp = {
-  initial: { opacity: 0, y: 40 },
+  initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-100px' },
-  transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+  viewport: { once: false, amount: 0.15 },
+  transition: { duration: 0.45, ease: 'easeOut' }
 };
 
 const fadeInLeft = {
-  initial: { opacity: 0, x: -40 },
+  initial: { opacity: 0, x: -30 },
   whileInView: { opacity: 1, x: 0 },
-  viewport: { once: true, margin: '-80px' },
-  transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+  viewport: { once: false, amount: 0.15 },
+  transition: { duration: 0.45, ease: 'easeOut' }
 };
 
 const fadeInRight = {
-  initial: { opacity: 0, x: 40 },
+  initial: { opacity: 0, x: 30 },
   whileInView: { opacity: 1, x: 0 },
-  viewport: { once: true, margin: '-80px' },
-  transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+  viewport: { once: false, amount: 0.15 },
+  transition: { duration: 0.45, ease: 'easeOut' }
 };
 
 const staggerContainer = {
   initial: { opacity: 0 },
   whileInView: { opacity: 1 },
-  viewport: { once: true, margin: '-50px' },
-  transition: { staggerChildren: 0.15 }
+  viewport: { once: false, amount: 0.15 },
+  transition: { staggerChildren: 0.08 }
 };
 
 const cardVariant = {
-  initial: { opacity: 0, y: 30, scale: 0.97 },
+  initial: { opacity: 0, y: 20, scale: 0.98 },
   whileInView: { opacity: 1, y: 0, scale: 1 },
-  viewport: { once: true, margin: '-60px' },
-  transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] }
+  viewport: { once: false, amount: 0.15 },
+  transition: { duration: 0.35, ease: 'easeOut' }
 };
 
 /* ==========================================
@@ -316,307 +319,9 @@ const Home = () => {
       {/* PREMIUM HERO */}
       <PremiumHero />
 
-      {/* ==========================================
-         2. PARTNERS ANIMATED MARQUEE
-      ========================================== */}
-      <section className="py-14 bg-slate-50 border-y border-slate-200 overflow-hidden">
-        <div className="text-center mb-6">
-          <span className="text-slate-500 text-[10px] font-bold uppercase tracking-widest font-mono">
-            STEERING INFRASTRUCTURE ALLIANCES WITH MARKET LEADERS
-          </span>
-        </div>
-        <div className="partner-marquee-container">
-          <div className="partner-marquee-track text-slate-700 font-extrabold text-sm tracking-widest font-mono flex items-center">
-            {['MNIL CORPORATE', 'DLF INFRA', 'TATA METRO', 'L&T RENEWABLES', 'NHAI EXPRESSWAYS', 'MAHINDRA ELECTRIC', 'LODHA GROUP', 'GMR INFRA', 'MNIL CORPORATE', 'DLF INFRA', 'TATA METRO', 'L&T RENEWABLES', 'NHAI EXPRESSWAYS', 'MAHINDRA ELECTRIC', 'LODHA GROUP', 'GMR INFRA'].map((name, i) => (
-              <span key={i} className="mx-10 sm:mx-16 whitespace-nowrap flex items-center gap-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-megacharge-green inline-block opacity-60" />
-                {name}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* ==========================================
-         3. STATS / MILESTONES SECTION
-      ========================================== */}
-      <section className="py-24 bg-megacharge-dark border-b border-slate-800 relative overflow-hidden text-white">
-        <div className="absolute right-[-10%] top-[10%] w-[350px] h-[350px] bg-megacharge-green opacity-5 rounded-full blur-[80px] pointer-events-none animate-pulse" />
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center relative z-10">
-          <div className="lg:col-span-7 flex flex-col gap-8">
-            <div>
-              <h2 className="text-white text-3xl sm:text-5xl font-extrabold font-poppins leading-tight mt-1">
-                Gunning for <span className="text-gradient-green">1 Million</span><br />Charging Points!
-              </h2>
-              <p className="text-slate-300 text-sm sm:text-base leading-relaxed mt-4 max-w-xl">
-                Leading India's vision for a fully connected electric highway grid, powered by state-of-the-art telemetry, load-balancing hardware, and rapid deployment partnerships.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
-              {[
-                { target: 250, suffix: '+', label: 'Charging Points Across India' },
-                { target: 85, suffix: 'K+ kWh', label: 'Power Dispensed Monthly' },
-                { target: 12, suffix: '+', label: 'States Reached Pan-India' },
-                { target: 45, suffix: '+', label: 'Cities Connected' },
-              ].map((stat, i) => (
-                <motion.div
-                  key={i}
-                  whileHover={{ y: -6, borderColor: 'var(--color-green)' }}
-                  className="p-8 rounded-2xl bg-megacharge-navy bg-opacity-40 border border-slate-800 stats-clipped-card transition-all duration-300 relative overflow-hidden group"
-                >
-                  <div className="absolute inset-0 bg-megacharge-green opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500 rounded-2xl" />
-                  <div className="text-megacharge-green text-4xl sm:text-5xl font-extrabold mb-2 tracking-tight">
-                    <CountUpTo target={stat.target} suffix={stat.suffix} duration={2} />
-                  </div>
-                  <div className="text-slate-400 text-xs sm:text-sm font-bold uppercase tracking-wider font-mono">{stat.label}</div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
 
-          {/* Phone mockup */}
-          <div className="lg:col-span-5 w-full flex items-center justify-center">
-            <motion.div
-              animate={{ y: [-10, 10, -10] }}
-              transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-              className="relative w-[85%] max-w-[300px] aspect-[9/18] bg-megacharge-dark border-[8px] border-slate-800 rounded-[44px] shadow-[0_30px_60px_rgba(0,0,0,0.5)] p-4 flex flex-col gap-4 overflow-hidden"
-            >
-              <div className="absolute top-3 left-1/2 -translate-x-1/2 w-28 h-5 bg-slate-800 rounded-full z-30" />
-              <div className="relative z-10 flex flex-col gap-4 h-full pt-6 justify-between select-none">
-                <div className="flex flex-col gap-1 border-b border-slate-800 pb-3">
-                  <span className="text-[9px] text-megacharge-orange font-bold uppercase tracking-wider font-mono">NOC Live Feed</span>
-                  <span className="text-white text-xs font-bold font-poppins">Active Stations Network</span>
-                </div>
-                <div className="flex-grow bg-slate-950 rounded-2xl border border-slate-800 relative overflow-hidden p-2">
-                  <div className="absolute inset-0 bg-[radial-gradient(#1f2937_1px,transparent_1px)] [background-size:16px_16px] opacity-25" />
-                  <div className="absolute top-1/4 left-1/3 w-3 h-3 bg-megacharge-green rounded-full shadow-glow-green animate-ping" />
-                  <div className="absolute top-1/4 left-1/3 w-2 h-2 bg-megacharge-green rounded-full" />
-                  <div className="absolute bottom-1/3 right-1/4 w-3 h-3 bg-megacharge-green rounded-full animate-ping" style={{ animationDelay: '1s' }} />
-                  <div className="absolute bottom-1/3 right-1/4 w-2 h-2 bg-megacharge-green rounded-full" />
-                  <div className="absolute top-1/2 right-1/3 w-2.5 h-2.5 bg-megacharge-orange rounded-full" />
-                  <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-40">
-                    <line x1="33%" y1="25%" x2="66%" y2="50%" stroke="var(--color-green)" strokeWidth="1" strokeDasharray="3,3" />
-                    <line x1="66%" y1="50%" x2="75%" y2="66%" stroke="var(--color-orange)" strokeWidth="1" strokeDasharray="3,3" />
-                  </svg>
-                  <span className="absolute bottom-3 left-1/2 -translate-x-1/2 text-[9px] text-slate-500 font-mono">24/7 Status: Online</span>
-                </div>
-                <div className="bg-megacharge-navy bg-opacity-50 border border-slate-800 p-3 rounded-2xl flex items-center justify-between">
-                  <div>
-                    <span className="text-[8px] text-slate-400 block uppercase tracking-wider font-mono">Live Sessions</span>
-                    <span className="text-white text-xs font-bold font-mono">1,489 active</span>
-                  </div>
-                  <span className="text-[9px] text-megacharge-green font-mono bg-megacharge-green bg-opacity-10 px-2 py-0.5 rounded-full">Syncing</span>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
 
-      {/* ==========================================
-         4. HOW IT WORKS — STEP BY STEP
-      ========================================== */}
-      <section className="py-32 px-6 bg-slate-50 border-y border-slate-100 overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          <motion.div {...fadeInUp} className="text-center max-w-3xl mx-auto mb-20">
-            <h2 className="text-slate-900 text-4xl sm:text-5xl font-extrabold mt-2 leading-tight">
-              From Empty Parking to<br />
-              <span className="relative inline-block">
-                <span className="text-megacharge-green">Earning Charging Station</span>
-                <svg className="absolute -bottom-2 left-0 w-full" height="6" viewBox="0 0 200 6">
-                  <path d="M0 5 Q100 0 200 5" fill="none" stroke="var(--color-green)" strokeWidth="2" strokeDasharray="4 2" opacity="0.6" />
-                </svg>
-              </span>
-            </h2>
-            <p className="text-slate-600 text-sm sm:text-base leading-relaxed mt-5">
-              Our rental model is zero-risk. You provide the space, we provide everything else.
-            </p>
-          </motion.div>
-
-          <div className="relative">
-            {/* Connecting line behind steps */}
-            <div className="hidden lg:block absolute top-16 left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent z-0" />
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 relative z-10">
-              {STEPS.map((step, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-50px' }}
-                  transition={{ duration: 0.6, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-                  whileHover={{ y: -8, scale: 1.03 }}
-                  className="how-it-works-card flex flex-col items-center text-center gap-4 p-6 rounded-3xl bg-white border border-slate-200 shadow-sm relative group"
-                >
-                  {/* Step number badge */}
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-megacharge-green text-white text-xs font-extrabold font-mono flex items-center justify-center shadow-glow-green">
-                    {step.num}
-                  </div>
-                  <motion.div
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    className="w-16 h-16 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-center mt-4 group-hover:border-megacharge-green group-hover:bg-megacharge-green group-hover:bg-opacity-5 transition-all duration-300 text-megacharge-green"
-                  >
-                    <step.IconComp size={28} strokeWidth={1.6} />
-                  </motion.div>
-                  <h4 className="text-slate-900 font-extrabold text-base">{step.title}</h4>
-                  <p className="text-slate-500 text-xs leading-relaxed">{step.desc}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          <motion.div {...fadeInUp} className="text-center mt-16">
-            <Link to="/contact" className="inline-flex items-center gap-2 btn-premium-green text-white font-bold text-sm px-10 py-4 rounded-full shadow-glow-green hover:scale-105 transition-transform duration-300">
-              Start Your Application <ArrowRightIcon className="w-4 h-4" />
-            </Link>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ==========================================
-         5. CHARGER HARDWARE SHOWCASE
-      ========================================== */}
-      <section className="py-32 px-6 max-w-7xl mx-auto">
-        <motion.div {...fadeInUp} className="text-center max-w-3xl mx-auto mb-20">
-          <h2 className="text-slate-900 text-4xl sm:text-5xl font-extrabold mt-2 mb-4 leading-tight">
-            High-Performance Charging Station Units
-          </h2>
-          <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-            All MegaCharge hardware features modular power conversion, dynamic load-balancing, and liquid-cooled rectifiers, tested up to 55°C.
-          </p>
-        </motion.div>
-
-        <motion.div
-          variants={staggerContainer}
-          initial="initial"
-          whileInView="whileInView"
-          viewport={{ once: true, margin: '-50px' }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-10"
-        >
-          {/* AC Charger Card */}
-          <motion.div
-            variants={cardVariant}
-            whileHover={{ scale: 1.02, translateY: -8 }}
-            className="premium-glass-card p-8 rounded-3xl flex flex-col justify-between relative overflow-hidden"
-          >
-            <div>
-              <div className="w-full h-64 mb-8 overflow-hidden rounded-2xl border border-slate-200 shadow-sm relative group">
-                <img src={acCharger} alt="MegaCharge AC Smart Box" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </div>
-              <div className="flex justify-between items-start mb-4">
-                <span className="bg-megacharge-green bg-opacity-10 text-megacharge-green border border-megacharge-green border-opacity-35 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">Smart AC Wallbox</span>
-                <span className="text-slate-500 text-xs font-mono">Series: MC-AC-07</span>
-              </div>
-              <h3 className="text-slate-900 text-2xl font-extrabold mb-4">7.4 kW AC Smart Box</h3>
-              <p className="text-slate-600 text-sm leading-relaxed mb-6">
-                Compact terminal for residential townships, commercial workspaces, and hotels. RFID authorization and smart app dashboards included.
-              </p>
-              <ul className="flex flex-col gap-3 mb-8 text-xs text-slate-600 font-mono">
-                {['7.4 kW / 32A single-phase', 'Universal Type-2 plug', 'App scheduled timing & UPI', 'IP54 weather shield'].map((f, i) => (
-                  <li key={i} className="flex items-center gap-2.5"><span className="text-megacharge-green">&bull;</span>{f}</li>
-                ))}
-              </ul>
-            </div>
-            <Link to="/products" className="w-full text-center border border-megacharge-green hover:bg-megacharge-green text-megacharge-green hover:text-white font-bold text-xs py-4 rounded-full transition-all duration-300 block">
-              Specifications & Rental Quotes &rarr;
-            </Link>
-          </motion.div>
-
-          {/* DC Charger Card */}
-          <motion.div
-            variants={cardVariant}
-            whileHover={{ scale: 1.02, translateY: -8 }}
-            className="premium-glass-card p-8 rounded-3xl flex flex-col justify-between relative overflow-hidden"
-          >
-            <div>
-              <div className="w-full h-64 mb-8 overflow-hidden rounded-2xl border border-slate-200 shadow-sm relative group">
-                <img src={dcCharger} alt="MegaCharge DC Fast Charger" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </div>
-              <div className="flex justify-between items-start mb-4">
-                <span className="bg-megacharge-orange bg-opacity-10 text-megacharge-orange border border-megacharge-orange border-opacity-35 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">Modular DC Rectifier</span>
-                <span className="text-slate-500 text-xs font-mono">Series: MC-DC-180</span>
-              </div>
-              <h3 className="text-slate-900 text-2xl font-extrabold mb-4">30 kW to 180 kW DC Charger</h3>
-              <p className="text-slate-600 text-sm leading-relaxed mb-6">
-                Industrial ultra-fast rectifier for highway hubs, municipal terminals, and fleet centers. Powers EVs to 80% in under 30 minutes.
-              </p>
-              <ul className="flex flex-col gap-3 mb-8 text-xs text-slate-600 font-mono">
-                {['Dynamic 30 to 180 kW power allocation', 'Dual CCS2 & CHAdeMO couplers', 'OCPP 1.6 JSON telemetry', 'Liquid-cooled modular rectifiers'].map((f, i) => (
-                  <li key={i} className="flex items-center gap-2.5"><span className="text-megacharge-orange">&bull;</span>{f}</li>
-                ))}
-              </ul>
-            </div>
-            <Link to="/products" className="w-full text-center border border-megacharge-orange hover:bg-megacharge-orange text-megacharge-orange hover:text-white font-bold text-xs py-4 rounded-full transition-all duration-300 block">
-              Specifications & Rental Quotes &rarr;
-            </Link>
-          </motion.div>
-        </motion.div>
-      </section>
-
-      {/* ==========================================
-         6. RENTAL USE CASES SECTION
-      ========================================== */}
-      <section className="py-32 px-6 bg-megacharge-dark border-y border-slate-900 relative overflow-hidden">
-        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-megacharge-green opacity-[0.04] rounded-full blur-[150px] pointer-events-none" />
-        <div className="max-w-7xl mx-auto relative z-10">
-          <motion.div {...fadeInUp} className="text-center max-w-3xl mx-auto mb-20">
-            <h2 className="text-white text-4xl sm:text-5xl font-extrabold mt-2 leading-tight">
-              Perfect For Every <span className="text-gradient-orange">Property Type</span>
-            </h2>
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed mt-4">
-              From highway dhabas to luxury hotels, any property with a parking space can become an EV charging destination.
-            </p>
-          </motion.div>
-
-          <motion.div
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="whileInView"
-            viewport={{ once: true, margin: '-50px' }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
-            {USE_CASES.map((uc, i) => (
-              <motion.div
-                key={i}
-                variants={cardVariant}
-                whileHover={{ y: -10, scale: 1.02 }}
-                className="use-case-card group relative rounded-3xl p-7 flex flex-col gap-4 cursor-default overflow-hidden"
-                style={{ '--accent': uc.color === 'green' ? 'var(--color-green)' : 'var(--color-orange)' }}
-              >
-                {/* Top accent line */}
-                <div className={`absolute top-0 left-0 right-0 h-[2px] ${uc.color === 'green' ? 'bg-megacharge-green' : 'bg-megacharge-orange'} opacity-60 group-hover:opacity-100 transition-opacity duration-300`} />
-                
-                <div className="flex items-start justify-between">
-                  <motion.div
-                    whileHover={{ scale: 1.1, rotate: -5 }}
-                    transition={{ type: 'spring', stiffness: 400, damping: 12 }}
-                    className={`w-14 h-14 rounded-2xl flex items-center justify-center ${uc.color === 'green' ? 'bg-megacharge-green bg-opacity-10 border border-megacharge-green border-opacity-25 text-megacharge-green' : 'bg-megacharge-orange bg-opacity-10 border border-megacharge-orange border-opacity-25 text-megacharge-orange'} group-hover:scale-110 transition-transform duration-300`}
-                  >
-                    <uc.IconComp size={24} strokeWidth={1.6} />
-                  </motion.div>
-                  <span className={`text-xs font-extrabold font-mono px-3 py-1.5 rounded-full border ${uc.color === 'green' ? 'text-megacharge-green bg-megacharge-green bg-opacity-10 border-megacharge-green border-opacity-30' : 'text-megacharge-orange bg-megacharge-orange bg-opacity-10 border-megacharge-orange border-opacity-30'}`}>
-                    {uc.stat}
-                  </span>
-                </div>
-                
-                <div>
-                  <span className="text-slate-500 text-[10px] font-bold uppercase tracking-widest font-mono block mb-1">{uc.label}</span>
-                  <h4 className="text-white text-lg font-extrabold mb-2">{uc.headline}</h4>
-                  <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">{uc.desc}</p>
-                </div>
-
-                <div className={`mt-auto pt-4 border-t ${uc.color === 'green' ? 'border-slate-800' : 'border-slate-800'}`}>
-                  <Link to="/solutions" className={`text-xs font-bold flex items-center gap-1 ${uc.color === 'green' ? 'text-megacharge-green' : 'text-megacharge-orange'} group-hover:gap-3 transition-all duration-300`}>
-                    Learn more <ArrowRightIcon className="w-3 h-3" />
-                  </Link>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
 
       {/* ==========================================
          7. PHOTO GALLERY / REAL STATIONS SECTION
@@ -667,12 +372,8 @@ const Home = () => {
                   whileHover={{ scale: 1.02 }}
                   className="col-span-2 h-64 rounded-3xl overflow-hidden shadow-xl relative"
                 >
-                  <img src={chargingStationCars} alt="MegaCharge station with EVs" className="w-full h-full object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                  <div className="absolute bottom-4 left-5 flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-megacharge-green animate-pulse" />
-                    <span className="text-white text-xs font-bold font-mono">Live Charging Session</span>
-                  </div>
+                  <img src={chargeEvBanner} alt="MegaCharge station banner" className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                 </motion.div>
 
                 {/* Bottom two smaller panels */}
@@ -680,16 +381,18 @@ const Home = () => {
                   whileHover={{ scale: 1.03 }}
                   className="h-44 rounded-2xl overflow-hidden shadow-lg bg-megacharge-dark border border-slate-800 flex flex-col items-center justify-center gap-3 relative"
                 >
-                  <img src={acCharger} alt="AC Charger" className="h-28 object-contain opacity-90" />
-                  <span className="text-white text-[10px] font-bold uppercase tracking-wider font-mono">AC 7.4kW</span>
+                  <img src={acChargerReal} alt="AC Charger" className="w-full h-full object-cover opacity-90" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                  <span className="absolute bottom-3 left-4 text-white text-[10px] font-bold uppercase tracking-wider font-mono">AC 7.4kW</span>
                 </motion.div>
 
                 <motion.div
                   whileHover={{ scale: 1.03 }}
                   className="h-44 rounded-2xl overflow-hidden shadow-lg bg-megacharge-dark border border-slate-800 flex flex-col items-center justify-center gap-3 relative"
                 >
-                  <img src={dcCharger} alt="DC Charger" className="h-28 object-contain opacity-90" />
-                  <span className="text-white text-[10px] font-bold uppercase tracking-wider font-mono">DC 180kW</span>
+                  <img src={teslaCharging} alt="Tesla Charging" className="w-full h-full object-cover opacity-90" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                  <span className="absolute bottom-3 left-4 text-white text-[10px] font-bold uppercase tracking-wider font-mono">DC 180kW</span>
                 </motion.div>
               </div>
 
@@ -708,161 +411,70 @@ const Home = () => {
       </section>
 
       {/* ==========================================
-         8. WHY RENT VS BUY COMPARISON
+         4. HOW IT WORKS — STEP BY STEP
       ========================================== */}
-      <section className="py-32 px-6 relative overflow-hidden border-t border-slate-200" style={{ background: '#fff7f1' }}>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(241,131,33,0.03)_0%,transparent_70%)] pointer-events-none" />
-        <div className="max-w-7xl mx-auto relative z-10">
+      <section className="py-32 px-6 bg-slate-50 border-y border-slate-100 overflow-hidden">
+        <div className="max-w-7xl mx-auto">
           <motion.div {...fadeInUp} className="text-center max-w-3xl mx-auto mb-20">
-            <h2 className="text-[#402e32] text-4xl sm:text-5xl font-extrabold mt-2 leading-tight">
-              Why <span className="bg-gradient-to-r from-[#F18321] to-[#832800] bg-clip-text text-transparent">Rent</span> Instead of Buy?
+            <h2 className="text-slate-900 text-4xl sm:text-5xl font-extrabold mt-2 leading-tight">
+              From Empty Parking to<br />
+              <span className="relative inline-block">
+                <span className="text-megacharge-green">Earning Charging Station</span>
+                <svg className="absolute -bottom-2 left-0 w-full" height="6" viewBox="0 0 200 6">
+                  <path d="M0 5 Q100 0 200 5" fill="none" stroke="var(--color-green)" strokeWidth="2" strokeDasharray="4 2" opacity="0.6" />
+                </svg>
+              </span>
             </h2>
-            <p className="text-[#7e4437] text-sm sm:text-base leading-relaxed mt-4">
-              The numbers make it clear. Our rental model eliminates all risk while delivering the same upside.
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed mt-5">
+              Our rental model is zero-risk. You provide the space, we provide everything else.
             </p>
           </motion.div>
 
-          <motion.div
-            {...fadeInUp}
-            className="overflow-x-auto rounded-3xl border border-slate-200 shadow-xl bg-white"
-          >
-            <table className="w-full min-w-[640px] text-sm">
-              <thead>
-                <tr className="bg-slate-50 border-b border-slate-200">
-                  <th className="py-5 px-6 text-left text-slate-500 font-mono text-xs uppercase tracking-widest">Parameter</th>
-                  <th className="py-5 px-6 text-center">
-                    <span className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-wider text-megacharge-green bg-megacharge-green bg-opacity-10 px-4 py-2 rounded-full font-mono border border-megacharge-green border-opacity-30 shadow-glow-green">
-                      <IconGoogleCheck size={16} className="text-megacharge-green" /> Rent with MegaCharge
-                    </span>
-                  </th>
-                  <th className="py-5 px-6 text-center text-slate-500 font-mono text-xs uppercase tracking-wider">
-                    <span className="inline-flex items-center gap-2 bg-red-500 bg-opacity-5 px-4 py-2 rounded-full border border-red-500 border-opacity-20 text-red-500">
-                      <IconGoogleCancel size={16} className="text-red-500" /> Buy & Operate Yourself
-                    </span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-200">
-                {[
-                  ['Upfront Capital Required', '₹0 / Zero Investment', '₹3 to ₹15 Lakhs per charger'],
-                  ['Installation & Civil Work', 'Fully handled by MegaCharge', 'Your responsibility and costs'],
-                  ['Monthly Maintenance', '100% covered by us', '₹5,000 to ₹20,000/month'],
-                  ['Software & Telemetry Fees', 'Included in rental contract', 'Separate SaaS subscription'],
-                  ['Breakdown & Repair', '24/7 NOC remote and on-site', 'Find your own technician'],
-                  ['Revenue', 'Earn rental + revenue share', 'Collect all revenue yourself'],
-                  ['Risk', 'Zero risk for the host', 'Full equipment depreciation risk'],
-                  ['Upgrade Path', 'Free hardware upgrades by us', 'Buy new hardware at market rate'],
-                ].map(([param, rent, buy], i) => (
-                  <motion.tr
-                    key={i}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.06, duration: 0.5 }}
-                    className="group hover:bg-slate-50 transition-colors duration-200"
-                  >
-                    <td className="py-4 px-6 text-slate-700 text-xs sm:text-sm font-semibold">{param}</td>
-                    <td className="py-4 px-6 text-center">
-                      <span className="text-megacharge-green text-xs sm:text-sm font-bold bg-megacharge-green bg-opacity-10 px-3 py-1 rounded-lg">{rent}</span>
-                    </td>
-                    <td className="py-4 px-6 text-center text-slate-650 text-xs sm:text-sm">{buy}</td>
-                  </motion.tr>
-                ))}
-              </tbody>
-            </table>
-          </motion.div>
+          <div className="relative">
+            {/* Connecting line behind steps */}
+            <div className="hidden lg:block absolute top-16 left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent z-0" />
 
-          <motion.div {...fadeInUp} className="text-center mt-12">
-            <Link to="/solutions" className="inline-flex items-center gap-2 btn-premium-green text-white font-bold text-sm px-10 py-4 rounded-full shadow-glow-green hover:scale-105 transition-transform duration-300">
-              See All Rental Plans <ArrowRightIcon className="w-4 h-4" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 relative z-10">
+              {STEPS.map((step, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.15 }}
+                  transition={{ duration: 0.35, delay: i * 0.06, ease: 'easeOut' }}
+                  whileHover={{ y: -8, scale: 1.03 }}
+                  className="how-it-works-card flex flex-col items-center text-center gap-4 p-6 rounded-3xl bg-white border border-slate-200 shadow-sm relative group"
+                >
+                  {/* Step number badge */}
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-megacharge-green text-white text-xs font-extrabold font-mono flex items-center justify-center shadow-glow-green">
+                    {step.num}
+                  </div>
+                  <motion.div
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    className="w-16 h-16 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-center mt-4 group-hover:border-megacharge-green group-hover:bg-megacharge-green group-hover:bg-opacity-5 transition-all duration-300 text-megacharge-green"
+                  >
+                    <step.IconComp size={28} strokeWidth={1.6} />
+                  </motion.div>
+                  <h4 className="text-slate-900 font-extrabold text-base">{step.title}</h4>
+                  <p className="text-slate-500 text-xs leading-relaxed">{step.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          <motion.div {...fadeInUp} className="text-center mt-16">
+            <Link to="/contact" className="inline-flex items-center gap-2 btn-premium-green text-white font-bold text-sm px-10 py-4 rounded-full shadow-glow-green hover:scale-105 transition-transform duration-300">
+              Start Your Application <ArrowRightIcon className="w-4 h-4" />
             </Link>
           </motion.div>
         </div>
       </section>
 
-      {/* ==========================================
-         9. WHAT MAKES MEGACHARGE CUT ABOVE (COSMIC)
-      ========================================== */}
-      <section className="cosmic-section py-32 px-6 relative border-y border-slate-900">
-        <div className="cosmic-glow-orb-1" />
-        <div className="cosmic-glow-orb-2" />
-        <div className="max-w-7xl mx-auto relative z-10">
-          <motion.div {...fadeInUp} className="text-center max-w-3xl mx-auto mb-20">
-            <h2 className="text-white text-4xl sm:text-5xl font-extrabold mt-2 mb-4 leading-tight">
-              What makes MegaCharge® a cut above the rest?
-            </h2>
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-              Future-ready engineering and dynamic cloud analytics to build, manage, and operate India's most reliable rental charging network.
-            </p>
-          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { icon: <BoltIcon size={22} strokeWidth={1.6}/>, title: 'Ultra-Fast Charging', desc: 'High-capacity DC fast rectifiers delivering up to 360 kW. Charges EVs to 80% in under 15 minutes.' },
-              { icon: <SunMedium size={22} strokeWidth={1.6}/>, title: 'Solar & Green Grid', desc: 'Zero-emission charging arrays powered by local solar panels, wind grids, and smart power storage blocks.' },
-              { icon: <ShieldIcon size={22} strokeWidth={1.6}/>, title: '99.9% Network Uptime', desc: 'Active load allocation, redundant backup systems, and live self-healing software for uninterrupted service.' },
-              { icon: <BatteryCharging size={22} strokeWidth={1.6}/>, title: 'Universal Compatibility', desc: 'Dual-gun setups with CCS-2 and Type-2, fully compatible with all Indian, European, and American EV models.' },
-              { icon: <Brain size={22} strokeWidth={1.6}/>, title: 'Dynamic Load Balancing', desc: 'Telemetry systems throttle outputs during grid peaks, keeping infrastructure safe from blowouts and overloads.' },
-              { icon: <Wrench size={22} strokeWidth={1.6}/>, title: 'End-to-End Managed', desc: 'Zero management overhead for property hosts. Grid setup, civil works, updates, and maintenance all covered.' },
-            ].map((card, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ delay: i * 0.1, duration: 0.6 }}
-                whileHover={{ scale: 1.02 }}
-                className="cosmic-card flex flex-col gap-6"
-              >
-                <div className="cosmic-card-icon">
-                  {typeof card.icon === 'string' ? <span className="text-xl">{card.icon}</span> : card.icon}
-                </div>
-                <div>
-                  <h4 className="text-white font-extrabold text-lg mb-2">{card.title}</h4>
-                  <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">{card.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* ==========================================
-         10. DIAGNOSTICS SECTION
-      ========================================== */}
-      <section className="py-32 px-6 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-          <motion.div {...fadeInLeft} className="lg:col-span-6 flex flex-col items-start gap-6">
-            <h2 className="text-slate-900 text-4xl sm:text-5xl font-extrabold leading-tight">
-              Safety-First Charging Diagnostics
-            </h2>
-            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-              Every MegaCharge hub runs smart electrical safety diagnostics, isolating vehicle components from surges, short circuits, and temperature extremes.
-            </p>
-            <div className="flex flex-col gap-6 w-full mt-4">
-              {[
-                { icon: <ShieldIcon className="w-6 h-6" />, title: 'Overvoltage Surge Protection', desc: 'Integrated circuit breakers absorb line surges and lightning currents, preserving vehicle Battery Management Systems.' },
-                { icon: <BoltIcon className="w-6 h-6" />, title: 'Real-time Thermal Control', desc: 'Sensors throttle charger output if grid or charger modules exceed operating temperatures.' },
-                { icon: <ChargerIcon className="w-6 h-6" />, title: 'Continuous OCPP Telemetry', desc: 'Automated connections report diagnostic logs and payment status to centralized customer care centers.' },
-              ].map((item, i) => (
-                <motion.div key={i} whileHover={{ x: 6 }} className="flex gap-4">
-                  <div className="p-3 bg-megacharge-green bg-opacity-10 text-megacharge-green rounded-xl h-fit border border-megacharge-green border-opacity-20 shrink-0">
-                    {item.icon}
-                  </div>
-                  <div>
-                    <h4 className="text-slate-900 font-extrabold text-sm mb-1.5 uppercase tracking-wider">{item.title}</h4>
-                    <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">{item.desc}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
 
-          <motion.div {...fadeInRight} className="lg:col-span-6 w-full filter invert hue-rotate-180 brightness-95">
-            <NetworkGlobe />
-          </motion.div>
-        </div>
-      </section>
+
+
 
       {/* ==========================================
          11. INTERACTIVE MAP
@@ -968,108 +580,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ==========================================
-         13. APP SHOWCASE SECTION
-      ========================================== */}
-      <section className="py-28 px-6 bg-slate-50 border-t border-b border-slate-200 relative overflow-hidden text-slate-900">
-        <div className="max-w-7xl mx-auto flex flex-col gap-20">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            
-            {/* Left: Phone mockups */}
-            <div className="lg:col-span-6 w-full flex justify-center items-center phone-mockup-wrapper relative min-h-[480px]">
-              <div className="relative w-[340px] h-[480px]">
-                {/* Back Phone */}
-                <motion.div
-                  initial={{ rotateY: -10, rotateX: 5 }}
-                  whileHover={{ rotateY: -5, rotateX: 2, scale: 1.02 }}
-                  className="absolute left-4 top-0 w-[210px] aspect-[9/18] bg-megacharge-dark border-4 border-slate-800 rounded-[32px] shadow-2xl p-3 flex flex-col justify-between overflow-hidden"
-                >
-                  <div className="w-16 h-3.5 bg-slate-800 rounded-full mx-auto mb-4" />
-                  <div className="flex-grow flex flex-col items-center justify-center gap-4 text-center">
-                    <IconGoogleBolt size={36} className="text-megacharge-green" pulse />
-                    <span className="text-white text-base font-extrabold tracking-widest font-mono">MEGACHARGE</span>
-                    <span className="text-slate-400 text-[9px] uppercase tracking-wider font-mono">Powering the Future</span>
-                  </div>
-                  <div className="w-12 h-1 bg-slate-700 rounded-full mx-auto" />
-                </motion.div>
 
-                {/* Front Phone */}
-                <motion.div
-                  initial={{ x: 90, y: 50 }}
-                  whileHover={{ scale: 1.03, x: 100, y: 40 }}
-                  className="absolute left-4 top-0 w-[210px] aspect-[9/18] bg-white border-4 border-slate-900 rounded-[32px] shadow-[0_20px_50px_rgba(0,0,0,0.15)] p-3 flex flex-col justify-between overflow-hidden"
-                  style={{ x: 90, y: 50 }}
-                >
-                  <div className="w-16 h-3.5 bg-slate-900 rounded-full mx-auto mb-2" />
-                  <div className="flex-grow flex flex-col gap-2.5 pt-2 justify-between">
-                    <div className="border-b border-slate-100 pb-1.5">
-                      <span className="text-[8px] text-slate-400 block font-mono">WELCOME BACK</span>
-                      <span className="text-slate-950 text-[10px] font-bold">Hello, EV Host</span>
-                    </div>
-                    <div className="flex-grow bg-slate-100 rounded-xl border border-slate-200 relative overflow-hidden p-1">
-                      <div className="absolute inset-0 bg-[radial-gradient(#d1d5db_1px,transparent_1px)] [background-size:12px_12px] opacity-40" />
-                      <div className="absolute top-1.5 inset-x-1.5 bg-white p-1 rounded-md shadow-sm border border-slate-200 flex items-center justify-between text-[7px] text-slate-400 font-mono">
-                        <span>Search chargers...</span><IconGoogleSearch size={8} className="text-slate-400 animate-pulse" />
-                      </div>
-                      <div className="absolute top-1/2 left-1/3 w-2 h-2 bg-megacharge-green rounded-full shadow-glow-green" />
-                      <div className="absolute bottom-1/4 right-1/3 w-2 h-2 bg-megacharge-green rounded-full shadow-glow-green" />
-                    </div>
-                    <div className="bg-slate-50 border border-slate-200 p-2 rounded-xl">
-                      <span className="text-[7px] text-slate-500 font-bold uppercase block font-mono">Revenue This Month</span>
-                      <span className="text-slate-900 text-[11px] font-extrabold text-megacharge-green">₹82,450 ↑</span>
-                    </div>
-                  </div>
-                  <div className="w-12 h-1 bg-slate-300 rounded-full mx-auto mt-2" />
-                </motion.div>
-              </div>
-            </div>
-
-            {/* Right: Features */}
-            <div className="lg:col-span-6 flex flex-col items-start gap-8">
-              <div>
-                <h2 className="text-slate-950 text-3xl sm:text-5xl font-extrabold font-poppins leading-tight mt-1">
-                  MegaCharge App is<br />All You Need
-                </h2>
-                <p className="text-slate-600 text-sm sm:text-base leading-relaxed mt-4">
-                  Track, manage, and earn from your charging stations across our nationwide network, all from one app.
-                </p>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
-                {[
-                  { icon: <IconGoogleScooter size={20} className="text-megacharge-green" bounce />, title: 'TRACK & MONITOR', desc: 'Live session tracking and telemetry curves.' },
-                  { icon: <IconGoogleWallet size={20} className="text-megacharge-green" pulse />, title: 'INTEGRATED WALLET', desc: 'UPI, saved cards, or business profiles.' },
-                  { icon: <IconGoogleCalendar size={20} className="text-megacharge-green" bounce />, title: 'RESERVE SLOTS', desc: 'Pre-book charger connectors ahead of arrival.' },
-                  { icon: <IconGoogleLock size={20} className="text-megacharge-green" />, title: 'OTP SMART CHARGING', desc: 'Secure authentication and plug-and-verify start.' },
-                ].map((f, i) => (
-                  <motion.div key={i} whileHover={{ scale: 1.04 }} className="flex items-start gap-3 p-4 rounded-2xl bg-white border border-slate-200 shadow-sm hover:border-megacharge-green hover:shadow-glow-green transition-all duration-300">
-                    <div className="p-1.5 bg-megacharge-green bg-opacity-10 text-megacharge-green border border-megacharge-green border-opacity-10 rounded-xl flex items-center justify-center">
-                      {f.icon}
-                    </div>
-                    <div>
-                      <h4 className="text-slate-900 font-bold text-sm tracking-wide">{f.title}</h4>
-                      <p className="text-slate-500 text-xs mt-0.5">{f.desc}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Vehicle compatibility marquee */}
-          <div className="border-t border-slate-200 pt-16 flex flex-col gap-6 text-center">
-            <span className="text-slate-500 text-[10px] font-extrabold uppercase tracking-widest font-mono">COMPATIBLE WITH ALL EV BRANDS (CCS2 / TYPE 2 STANDARD)</span>
-            <div className="partner-marquee-container">
-              <div className="partner-marquee-track-reverse text-slate-700 font-extrabold text-sm tracking-widest font-mono gap-16 md:gap-28 items-center flex">
-                {['TATA.EV', 'HYUNDAI ELECTRIC', 'KIA EV CORE', 'MG ZS ELECTRIC', 'BYD AUTO', 'MERCEDES EQ', 'AUDI E-TRON', 'BMW IX', 'TATA.EV', 'HYUNDAI ELECTRIC', 'KIA EV CORE', 'MG ZS ELECTRIC', 'BYD AUTO', 'MERCEDES EQ', 'AUDI E-TRON', 'BMW IX'].map((name, i) => (
-                  <span key={i} className="mx-8 sm:mx-14 whitespace-nowrap flex items-center gap-2">
-                    <span className="w-1 h-1 rounded-full bg-slate-400 inline-block" />{name}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ==========================================
          14. FAQ SECTION

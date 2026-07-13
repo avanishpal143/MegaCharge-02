@@ -20,10 +20,10 @@ const ContactForm = () => {
         
         {/* Left Column: Contact info and Social connections */}
         <motion.div 
-          initial={{ opacity: 0, x: -40 }}
+          initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          viewport={{ once: true, margin: '-20px' }}
+          transition={{ duration: 0.45, ease: 'easeOut' }}
           className="lg:col-span-5 w-full premium-glass-card p-8 md:p-10 rounded-3xl border border-slate-200 flex flex-col gap-10 h-full"
         >
           <div>
@@ -75,10 +75,10 @@ const ContactForm = () => {
 
         {/* Right Column: Registration Form Container */}
         <motion.div 
-          initial={{ opacity: 0, x: 40 }}
+          initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          viewport={{ once: true, margin: '-20px' }}
+          transition={{ duration: 0.45, ease: 'easeOut' }}
           className="lg:col-span-7 w-full premium-glass-card p-8 md:p-10 rounded-3xl border border-slate-200 h-full"
         >
           {submitted ? (
