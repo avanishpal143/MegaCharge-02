@@ -12,9 +12,7 @@ import {
   IconZap, IconGauge, IconCpu, IconPhone,
   // Google Icons
   IconGoogleBolt, IconGoogleConstruction, IconGoogleSmartphone,
-  IconGoogleSupport, IconGoogleSolar, IconGoogleCheck, IconGoogleCancel,
-  IconGoogleSearch, IconGoogleStar, IconGoogleScooter, IconGoogleWallet,
-  IconGoogleCalendar, IconGoogleLock,
+  IconGoogleSupport, IconGoogleSolar,
 } from '../../components/CustomIcons/CustomIcons';
 import { MapPin, Search, FileText, BatteryCharging, Banknote, Hotel, Navigation, Building2, Home as LucideHome, ShoppingBag, Factory, SunMedium, Brain, Wrench } from 'lucide-react';
 import ThreeHero from '../../components/ThreeHero/ThreeHero';
@@ -146,46 +144,6 @@ const cardVariant = {
   transition: { duration: 0.35, ease: 'easeOut' }
 };
 
-/* ==========================================
-   TESTIMONIALS DATA
-========================================== */
-const TESTIMONIALS = [
-  {
-    name: "Rajiv Sharma",
-    role: "Mall Owner, Gurugram",
-    text: "MegaCharge installed 8 DC fast chargers in our parking lot within 2 weeks. Footfall to the mall increased 18%, as EV drivers stay longer and spend more.",
-    rating: 5,
-    avatar: "RS"
-  },
-  {
-    name: "Priya Mehta",
-    role: "Hotel GM, Pune",
-    text: "Our guests specifically book our hotel because of MegaCharge stations. Zero maintenance headaches: their team handles everything remotely.",
-    rating: 5,
-    avatar: "PM"
-  },
-  {
-    name: "Anil Kapoor",
-    role: "Highway Plaza Owner, NH48",
-    text: "Revenue from charging sessions is now ₹85,000/month. The rental model meant zero upfront cost for us. Best infrastructure decision we made.",
-    rating: 5,
-    avatar: "AK"
-  },
-  {
-    name: "Deepak Verma",
-    role: "RWA President, Noida Society",
-    text: "120 flats, 40+ EVs. MegaCharge set up AC wallboxes in our basement within a week. Residents love the app-based billing.",
-    rating: 5,
-    avatar: "DV"
-  },
-  {
-    name: "Sunita Rao",
-    role: "Fleet Manager, Bangalore",
-    text: "Our 60-vehicle EV fleet charges overnight. OCPP telemetry lets us track every session. Cost per km dropped significantly.",
-    rating: 5,
-    avatar: "SR"
-  },
-];
 
 const STEPS = [
   {
@@ -300,18 +258,8 @@ const FAQS = [
 const Home = () => {
   const [activeFaq, setActiveFaq] = useState(null);
   const [heroView, setHeroView] = useState('3d');
-  const [activeTestimonial, setActiveTestimonial] = useState(0);
-  const testimonialRef = useRef(null);
 
   const toggleFaq = (index) => setActiveFaq(activeFaq === index ? null : index);
-
-  // Auto-rotate testimonials
-  useEffect(() => {
-    const t = setInterval(() => {
-      setActiveTestimonial((prev) => (prev + 1) % TESTIMONIALS.length);
-    }, 4500);
-    return () => clearInterval(t);
-  }, []);
 
   return (
     <div className="home-page-container overflow-hidden">
@@ -493,92 +441,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ==========================================
-         12. TESTIMONIALS CAROUSEL
-      ========================================== */}
-      <section className="py-32 px-6 bg-megacharge-dark relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(147,166,200,0.06)_0%,transparent_60%)] pointer-events-none" />
-        <div className="max-w-7xl mx-auto relative z-10">
-          <motion.div {...fadeInUp} className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-white text-4xl sm:text-5xl font-extrabold mt-2 leading-tight">
-              Trusted by Property<br />
-              <span className="text-gradient-green">Owners Pan-India</span>
-            </h2>
-          </motion.div>
-
-          {/* Featured testimonial (auto-rotating) */}
-          <div className="max-w-3xl mx-auto mb-12">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeTestimonial}
-                initial={{ opacity: 0, y: 20, scale: 0.97 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -20, scale: 0.97 }}
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="bg-megacharge-navy bg-opacity-50 border border-slate-700 rounded-3xl p-10 text-center relative overflow-hidden"
-              >
-                <div className="absolute top-6 left-8 text-6xl text-megacharge-green opacity-20 font-serif leading-none select-none">&ldquo;</div>
-                <div className="relative z-10 flex flex-col items-center gap-5">
-                  <div className="flex gap-1">
-                    {[...Array(TESTIMONIALS[activeTestimonial].rating)].map((_, i) => (
-                      <IconGoogleStar key={i} size={20} fill className="text-yellow-400" pulse delay={i * 0.2} />
-                    ))}
-                  </div>
-                  <p className="text-white text-lg sm:text-xl font-medium leading-relaxed italic">
-                    "{TESTIMONIALS[activeTestimonial].text}"
-                  </p>
-                  <div className="flex items-center gap-4 mt-2">
-                    <div className="w-12 h-12 rounded-full bg-megacharge-green bg-opacity-20 border border-megacharge-green border-opacity-40 flex items-center justify-center text-megacharge-green font-extrabold font-mono text-sm">
-                      {TESTIMONIALS[activeTestimonial].avatar}
-                    </div>
-                    <div className="text-left">
-                      <span className="text-white font-bold text-sm block">{TESTIMONIALS[activeTestimonial].name}</span>
-                      <span className="text-slate-400 text-xs font-mono">{TESTIMONIALS[activeTestimonial].role}</span>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          {/* Dot indicators */}
-          <div className="flex justify-center gap-3 mb-12">
-            {TESTIMONIALS.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setActiveTestimonial(i)}
-                className={`rounded-full transition-all duration-300 ${i === activeTestimonial ? 'w-8 h-2.5 bg-megacharge-green' : 'w-2.5 h-2.5 bg-slate-600 hover:bg-slate-400'}`}
-              />
-            ))}
-          </div>
-
-          {/* All testimonial cards row */}
-          <div className="testimonials-scroll-track flex gap-6 overflow-x-auto pb-4 scrollbar-hidden">
-            {TESTIMONIALS.map((t, i) => (
-              <motion.div
-                key={i}
-                whileHover={{ y: -5, scale: 1.02 }}
-                onClick={() => setActiveTestimonial(i)}
-                className={`testimonial-mini-card shrink-0 w-72 p-6 rounded-2xl border cursor-pointer transition-all duration-300 ${i === activeTestimonial ? 'border-megacharge-green bg-megacharge-green bg-opacity-5' : 'border-slate-700 bg-megacharge-navy bg-opacity-30 hover:border-slate-600'}`}
-              >
-                <div className="flex gap-1 mb-3">
-                  {[...Array(t.rating)].map((_, j) => <IconGoogleStar key={j} size={14} fill className="text-yellow-400" />)}
-                </div>
-                <p className="text-slate-300 text-xs leading-relaxed mb-4 line-clamp-3">"{t.text}"</p>
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-megacharge-green bg-opacity-15 border border-megacharge-green border-opacity-30 flex items-center justify-center text-megacharge-green text-[10px] font-extrabold font-mono">
-                    {t.avatar}
-                  </div>
-                  <div>
-                    <span className="text-white text-xs font-bold block">{t.name}</span>
-                    <span className="text-slate-500 text-[10px] font-mono">{t.role}</span>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
 
 

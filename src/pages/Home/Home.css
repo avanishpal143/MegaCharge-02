@@ -218,18 +218,7 @@
   100% { transform: translateX(0); }
 }
 
-/* =====================================
-   Testimonials
-===================================== */
-.testimonials-scroll-track {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-.testimonials-scroll-track::-webkit-scrollbar { display: none; }
 
-.testimonial-mini-card {
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
 
 /* =====================================
    Phone Mockup
