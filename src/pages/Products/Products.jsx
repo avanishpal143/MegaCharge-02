@@ -7,6 +7,8 @@ import ContactForm from '../../components/ContactForm/ContactForm';
 // Import images
 import acCharger from '../../assets/ac_charger.png';
 import dcCharger from '../../assets/dc_charger.png';
+import zenergize60 from '../../assets/zenergize_60.jpg';
+import zenergize240 from '../../assets/zenergize_240.jpg';
 
 /* ==========================================
    ANIMATION DEFINITIONS
@@ -64,18 +66,20 @@ const Products = () => {
       connector: 'Dual CCS2 Guns',
       efficiency: '96%',
       features: ['OCPP 1.6 telemetry', 'Dynamic output sharing', 'Unified UPI QR code billing', 'IP54 weather protection'],
-      usage: 'Highway food courts, large retail malls, public transit bays'
+      usage: 'Highway food courts, large retail malls, public transit bays',
+      image: zenergize60
     },
     {
-      id: 'dc180',
+      id: 'dc240',
       type: 'dc',
-      name: 'MegaCharge 120 kW - 180 kW Dual Gun DC Charger',
-      power: '120 kW - 180 kW Ultra Power',
+      name: 'MegaCharge 120 kW - 240 kW Dual Gun DC Charger',
+      power: '120 kW - 240 kW Ultra Power',
       voltage: '415V AC ± 10%',
       connector: 'Dual CCS2 High-Power Guns',
-      efficiency: '96.5%',
-      features: ['Liquid-cooled rectifiers', 'Fast charge up to 180 kW', '24x7 remote diagnostics', 'Custom brand wrappers'],
-      usage: 'Highway charging stations, logistics vehicle depots, heavy transport hubs'
+      efficiency: '96.8%',
+      features: ['Liquid-cooled active system', 'Fast charge up to 240 kW', '24x7 remote diagnostics', 'Custom brand wrappers'],
+      usage: 'Highway charging stations, logistics vehicle depots, heavy transport hubs',
+      image: zenergize240
     }
   ];
 
@@ -183,7 +187,7 @@ const Products = () => {
                   {/* Product Charger Image */}
                   <div className="w-full h-64 mb-6 overflow-hidden rounded-2xl border border-slate-200 shadow-sm relative group bg-gradient-to-b from-slate-50 to-slate-100 flex items-center justify-center">
                     <img 
-                      src={charger.type === 'ac' ? acCharger : dcCharger} 
+                      src={charger.image || (charger.type === 'ac' ? acCharger : dcCharger)} 
                       alt={charger.name} 
                       className="h-full object-contain p-6 transition-transform duration-500 group-hover:scale-105"
                     />
@@ -250,7 +254,7 @@ const Products = () => {
                 <th className="py-4 text-xs font-mono uppercase tracking-wider text-slate-900 font-bold">7.4 kW AC Smart</th>
                 <th className="py-4 text-xs font-mono uppercase tracking-wider text-slate-900 font-bold">30 kW DC Compact</th>
                 <th className="py-4 text-xs font-mono uppercase tracking-wider text-slate-900 font-bold">60 kW DC Dual</th>
-                <th className="py-4 text-xs font-mono uppercase tracking-wider text-slate-900 font-bold">180 kW DC Ultra</th>
+                <th className="py-4 text-xs font-mono uppercase tracking-wider text-slate-900 font-bold">240 kW DC Ultra</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 text-xs text-slate-600 font-mono">
@@ -259,7 +263,7 @@ const Products = () => {
                 <td className="py-4">7.4 kW</td>
                 <td className="py-4">30 kW</td>
                 <td className="py-4">60 kW</td>
-                <td className="py-4">120 kW - 180 kW</td>
+                <td className="py-4">120 kW - 240 kW</td>
               </tr>
               <tr>
                 <td className="py-4 font-sans text-slate-900 font-bold pl-4">Grid Connection Input</td>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { PhoneIcon, IconGoogleMail } from '../CustomIcons/CustomIcons';
 import './Footer.css';
-import fullLogo from '/Full_Logo.png';
+import fullLogo from '/Screenshot_2026-07-24_at_1.02.52_PM-removebg-preview.png';
 
 /* ==========================================
    FOOTER COMPONENT

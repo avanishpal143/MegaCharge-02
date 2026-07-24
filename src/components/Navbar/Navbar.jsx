@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
-import navbarLogo from '/Full_Logo.png';
+import navbarLogo from '/Screenshot_2026-07-24_at_1.02.52_PM-removebg-preview.png';
 
 /* ==========================================
    NAVBAR COMPONENT

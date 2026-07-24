@@ -1,0 +1,21 @@
+/**
+ * ========================================
+ * Home Solutions Section Styles
+ * Purpose:
+ * Custom layout settings, premium shadows, and glow
+ * effects for the homepage charger card section.
+ * ========================================
+ */
+
+.home-solutions-section {
+  background-image: radial-gradient(circle at 50% 0%, rgba(241, 131, 33, 0.02), transparent 40%),
+                    radial-gradient(circle at 10% 90%, rgba(131, 40, 0, 0.01), transparent 50%);
+}
+
+.home-solutions-section .shadow-premium-glass {
+  box-shadow: 0 12px 40px 0 rgba(64, 46, 50, 0.06);
+}
+
+.home-solutions-section .bg-gradient-radial {
+  background-image: radial-gradient(var(--tw-gradient-stops));
+}

@@ -3,7 +3,11 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ArrowRightIcon } from '../CustomIcons/CustomIcons';
-import megachargeBanner from '../../assets/megacharge_banner.png';
+
+// Import assets
+import zenergize60 from '../../assets/zenergize_60.jpg';
+import zenergize120 from '../../assets/zenergize_120.jpg';
+import zenergize240 from '../../assets/zenergize_240.jpg';
 
 /* ── Horizontal scan line ── */
 const ScanLine = () => (
@@ -32,6 +36,34 @@ const PremiumHero = () => {
   const heroRef = useRef(null);
   const titleRef = useRef(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [selectedCharger, setSelectedCharger] = useState(0);
+
+  const SHOWCASE_CHARGERS = [
+    {
+      name: "Zenergize 60 kW",
+      power: "60 kW Dual Gun DC",
+      rent: "₹18,990/mo",
+      image: zenergize60,
+      features: ["Dual CCS2 Guns", "Dynamic Load Sharing", "OCPP 1.6 Billing System"],
+      badge: "Most Selected"
+    },
+    {
+      name: "Zenergize 120 kW",
+      power: "120 kW High-Power DC",
+      rent: "₹29,990/mo",
+      image: zenergize120,
+      features: ["Dual CCS2 Connectors", "Liquid-Cooled Rectifiers", "24x7 Diagnostic NOC"],
+      badge: "Highway Standard"
+    },
+    {
+      name: "Zenergize 240 kW",
+      power: "240 kW Hyper Charger",
+      rent: "₹54,990/mo",
+      image: zenergize240,
+      features: ["Ultra-Fast Hyper Charging", "Active Thermal Regulation", "NOC Telemetry Sync"],
+      badge: "Hyper Speed"
+    }
+  ];
 
   /* Subtle mouse parallax */
   useEffect(() => {
@@ -55,8 +87,6 @@ const PremiumHero = () => {
         ease: 'power3.out', delay: 0.2 }
     );
   }, []);
-
-  const headline = "OWN & RENT YOUR EV CHARGING STATION.";
 
   return (
     <motion.section
@@ -112,7 +142,7 @@ const PremiumHero = () => {
             transition={{ duration: 0.7, delay: 0.8 }}
             className="text-megacharge-paragraph font-inter text-base md:text-lg leading-relaxed max-w-[580px]"
           >
-            Partner with MegaCharge to launch premium EV charging stations on rent. Earn consistent monthly income through Rental Income
+            Partner with MegaCharge to launch premium EV charging stations on rent. <br />Earn consistent monthly income through Rental Income
           </motion.p>
 
           {/* CTA buttons */}
@@ -143,35 +173,105 @@ const PremiumHero = () => {
 
         </div>
 
-        {/* RIGHT SECTION (BANNER IMAGE) */}
+        {/* RIGHT SECTION (INTERACTIVE SHOWCASE) */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
           style={{ x: mousePos.x * 0.4, y: mousePos.y * 0.4 }}
-          className="lg:col-span-5 relative w-full flex items-center justify-center"
+          className="lg:col-span-5 relative w-full flex flex-col items-center gap-6"
         >
           {/* Card Frame enclosing the image with premium glass shadows */}
-          <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(64,46,50,0.12)] border border-megacharge-border bg-white p-2">
-            <div className="w-full h-full rounded-2xl overflow-hidden relative">
-              <img
-                src={megachargeBanner}
-                alt="MegaCharge Station with EV Cars"
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent pointer-events-none" />
+          <div className="relative w-full max-w-[380px] rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(64,46,50,0.12)] border border-megacharge-border bg-white p-4 flex flex-col gap-4">
+            
+            {/* Image display panel */}
+            <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden relative bg-gradient-to-b from-slate-50 to-slate-100 flex items-center justify-center p-4 border border-slate-100">
+              {/* Badge overlay */}
+              <div className="absolute top-3.5 left-3.5 bg-megacharge-orange text-white px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-wider shadow-sm z-20">
+                {SHOWCASE_CHARGERS[selectedCharger].badge}
+              </div>
+
+              {/* Power rating overlay */}
+              <div className="absolute top-3.5 right-3.5 bg-slate-900/90 text-white px-2.5 py-1 rounded-lg text-[9px] font-bold font-mono z-20">
+                {SHOWCASE_CHARGERS[selectedCharger].power.split(' ')[0]} kW
+              </div>
+
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={selectedCharger}
+                  src={SHOWCASE_CHARGERS[selectedCharger].image}
+                  alt={SHOWCASE_CHARGERS[selectedCharger].name}
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.96 }}
+                  transition={{ duration: 0.25, ease: 'easeOut' }}
+                  className="h-full object-contain p-2"
+                />
+              </AnimatePresence>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent pointer-events-none" />
             </div>
+
+            {/* Selector Tab Buttons */}
+            <div className="flex gap-1.5 bg-slate-100 p-1.5 rounded-2xl border border-slate-200/50">
+              {SHOWCASE_CHARGERS.map((ch, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setSelectedCharger(idx)}
+                  className={`flex-1 text-center py-2.5 rounded-xl text-[10px] font-black uppercase tracking-wider transition-all duration-300 ${
+                    selectedCharger === idx
+                      ? 'bg-megacharge-orange text-white shadow-glow-orange'
+                      : 'text-slate-500 hover:text-slate-800 hover:bg-white/50'
+                  }`}
+                >
+                  {ch.name.split(' ').slice(1).join(' ')}
+                </button>
+              ))}
+            </div>
+
+            {/* Spec details section */}
+            <div className="flex flex-col gap-2.5 px-1 pb-1">
+              <div className="flex items-baseline justify-between gap-4">
+                <h3 className="text-[#402e32] font-black text-base md:text-lg font-montserrat leading-tight transition-colors">
+                  {SHOWCASE_CHARGERS[selectedCharger].name}
+                </h3>
+                <div className="flex flex-col items-end shrink-0">
+                  <span className="text-slate-400 text-[8px] uppercase tracking-wider font-mono">Lease Rate</span>
+                  <span className="text-[#F18321] font-black text-sm md:text-base font-mono leading-none">
+                    {SHOWCASE_CHARGERS[selectedCharger].rent}
+                  </span>
+                </div>
+              </div>
+              
+              <div className="border-t border-slate-100" />
+              
+              <div className="flex flex-col gap-1 text-[11px] text-slate-500 font-mono">
+                {SHOWCASE_CHARGERS[selectedCharger].features.map((f, i) => (
+                  <div key={i} className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-megacharge-orange shrink-0" />
+                    <span className="line-clamp-1">{f}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
           </div>
 
           {/* Branded floating status badge */}
           <motion.div
-            animate={{ y: [-6, 6, -6] }}
+            animate={{ y: [-4, 4, -4] }}
             transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute -bottom-6 right-4 bg-megacharge-card border border-megacharge-border rounded-2xl px-5 py-3 shadow-[0_10px_30px_rgba(64,46,50,0.08)]"
+            className="bg-megacharge-card border border-megacharge-border rounded-2xl px-6 py-2.5 shadow-[0_10px_30px_rgba(64,46,50,0.08)]"
           >
-            <div className="flex flex-col items-center justify-center text-center font-montserrat leading-tight px-2 py-0.5">
-              <span className="text-megacharge-heading font-black text-lg md:text-xl block">250+</span>
-              <span className="text-megacharge-brand font-bold text-[9px] uppercase tracking-widest block mt-0.5">Live Points</span>
+            <div className="flex items-center gap-4 font-montserrat leading-tight">
+              <div>
+                <span className="text-[#402e32] font-black text-lg md:text-xl block leading-none">250+</span>
+                <span className="text-[#F18321] font-bold text-[8px] uppercase tracking-widest block mt-1">Live Points</span>
+              </div>
+              <div className="h-8 w-px bg-slate-200" />
+              <div>
+                <span className="text-[#402e32] font-black text-lg md:text-xl block leading-none">100%</span>
+                <span className="text-[#F18321] font-bold text-[8px] uppercase tracking-widest block mt-1">MNIL Maintained</span>
+              </div>
             </div>
           </motion.div>
         </motion.div>

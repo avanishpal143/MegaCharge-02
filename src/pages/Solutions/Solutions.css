@@ -1,20 +1,61 @@
 /**
  * ========================================
- * Solutions Page Styles
+ * Redesigned Solutions Page Styles
  * Purpose:
- * Styles tabs, grid containers, and list blocks
- * for charging segments.
- *
- * Developer Notes:
- * Incorporates subtle gradients.
- *
+ * Custom styles for sidebar filtering, comparison
+ * drawer, spec sheets, modals, and lists.
  * ========================================
  */
 
-/* =====================================
-   Solutions Page Layout
-===================================== */
 .solutions-page-container {
-  background-image: radial-gradient(circle at 20% 20%, rgba(29, 185, 84, 0.02), transparent 45%),
-                    radial-gradient(circle at 80% 80%, rgba(255, 107, 53, 0.01), transparent 50%);
+  background-image: radial-gradient(circle at 10% 10%, rgba(241, 131, 33, 0.03), transparent 45%),
+                    radial-gradient(circle at 90% 90%, rgba(131, 40, 0, 0.02), transparent 50%);
+}
+
+/* Custom scrollbar for filter sidebar */
+aside::-webkit-scrollbar {
+  width: 4px;
+}
+aside::-webkit-scrollbar-track {
+  background: transparent;
+}
+aside::-webkit-scrollbar-thumb {
+  background: rgba(64, 46, 50, 0.15);
+  border-radius: 4px;
+}
+aside::-webkit-scrollbar-thumb:hover {
+  background: rgba(241, 131, 33, 0.4);
+}
+
+/* FAQ item accordion styles */
+.faq-answer-container {
+  transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s ease;
+}
+
+/* Glass effect tags and overlays */
+.premium-glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.shadow-glow-orange {
+  box-shadow: 0 4px 20px rgba(241, 131, 33, 0.15);
+}
+
+.shadow-glow-orange:hover {
+  box-shadow: 0 8px 25px rgba(241, 131, 33, 0.3);
+}
+
+/* Animation triggers */
+.transition-transform-slow {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Comparison table custom overrides */
+table td {
+  transition: background-color 0.2s ease;
+}
+table tr:hover td {
+  background-color: rgba(241, 131, 33, 0.02);
 }

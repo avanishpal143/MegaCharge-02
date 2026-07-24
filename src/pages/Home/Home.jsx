@@ -19,6 +19,7 @@ import ThreeHero from '../../components/ThreeHero/ThreeHero';
 import IsometricHero from '../../components/IsometricHero/IsometricHero';
 import ContactForm from '../../components/ContactForm/ContactForm';
 import PremiumHero from '../../components/PremiumHero/PremiumHero';
+import HomeSolutions from '../../components/HomeSolutions/HomeSolutions';
 import './Home.css';
 
 import chargingStationCars from '../../assets/charging_station_cars.jpg';
@@ -266,6 +267,9 @@ const Home = () => {
 
       {/* PREMIUM HERO */}
       <PremiumHero />
+
+      {/* RENTAL CHARGING SOLUTIONS PREVIEW */}
+      <HomeSolutions />
 
 
 
