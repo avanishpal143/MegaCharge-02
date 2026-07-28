@@ -42,7 +42,7 @@ const Navbar = () => {
           <img
             src={navbarLogo}
             alt="MegaCharge"
-            className="h-10 md:h-12 w-auto object-contain"
+            className="h-14 md:h-16 lg:h-18 w-auto object-contain max-h-[90%] py-1 transition-all duration-300"
           />
         </Link>
 

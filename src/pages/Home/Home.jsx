@@ -10,9 +10,7 @@ import {
   IconHotel, IconHighway, IconBuilding, IconHome, IconMall,
   IconFleet, IconSolar, IconBrain, IconTool, IconCheck,
   IconZap, IconGauge, IconCpu, IconPhone,
-  // Google Icons
-  IconGoogleBolt, IconGoogleConstruction, IconGoogleSmartphone,
-  IconGoogleSupport, IconGoogleSolar,
+  IconGoogleBolt,
 } from '../../components/CustomIcons/CustomIcons';
 import { MapPin, Search, FileText, BatteryCharging, Banknote, Hotel, Navigation, Building2, Home as LucideHome, ShoppingBag, Factory, SunMedium, Brain, Wrench } from 'lucide-react';
 import ThreeHero from '../../components/ThreeHero/ThreeHero';
@@ -22,10 +20,6 @@ import PremiumHero from '../../components/PremiumHero/PremiumHero';
 import HomeSolutions from '../../components/HomeSolutions/HomeSolutions';
 import './Home.css';
 
-import chargingStationCars from '../../assets/charging_station_cars.jpg';
-import teslaCharging from '../../assets/tesla_charging.jpg';
-import chargeEvBanner from '../../assets/charge_ev_banner.png';
-import acChargerReal from '../../assets/ac_charger_real.png';
 import acCharger from '../../assets/ac_charger.png';
 import dcCharger from '../../assets/dc_charger.png';
 import heroBg from '../../assets/hero_bg.png';
@@ -275,92 +269,7 @@ const Home = () => {
 
 
 
-      {/* ==========================================
-         7. PHOTO GALLERY / REAL STATIONS SECTION
-      ========================================== */}
-      <section className="py-32 px-6 bg-slate-50 border-y border-slate-200 overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            {/* Left: copy */}
-            <motion.div {...fadeInLeft} className="lg:col-span-5 flex flex-col gap-6">
-              <h2 className="text-slate-900 text-4xl sm:text-5xl font-extrabold leading-tight">
-                Charging Stations You Can <span className="text-megacharge-green">See & Trust</span>
-              </h2>
-              <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                Not just renders, but real MegaCharge stations powering real vehicles across India's highways, malls, hotels, and residential complexes.
-              </p>
-              <div className="grid grid-cols-2 gap-4 mt-2">
-                {[
-                  { icon: <IconGoogleConstruction size={20} className="text-megacharge-green" />, label: 'Turnkey Installation', sub: 'Civil + electrical done by us' },
-                  { icon: <IconGoogleSmartphone size={20} className="text-megacharge-green" />, label: 'App Monitored', sub: 'Live session tracking' },
-                  { icon: <IconGoogleSupport size={20} className="text-megacharge-green" pulse />, label: '24/7 Support', sub: 'Remote NOC diagnostics' },
-                  { icon: <IconGoogleSolar size={20} className="text-megacharge-green" bounce />, label: 'Solar Ready', sub: 'Green grid compatible' },
-                ].map((item, i) => (
-                  <motion.div
-                    key={i}
-                    whileHover={{ scale: 1.04 }}
-                    className="flex items-start gap-3 p-4 rounded-2xl bg-white border border-slate-200 shadow-sm hover:border-megacharge-green hover:shadow-glow-green transition-all duration-300"
-                  >
-                    <div className="p-1.5 bg-megacharge-green bg-opacity-10 text-megacharge-green border border-megacharge-green border-opacity-10 rounded-xl flex items-center justify-center">
-                      {item.icon}
-                    </div>
-                    <div>
-                      <span className="text-slate-900 text-xs font-bold block">{item.label}</span>
-                      <span className="text-slate-500 text-[10px]">{item.sub}</span>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-              <Link to="/network" className="inline-flex items-center gap-2 text-megacharge-green font-bold text-sm hover:gap-4 transition-all duration-300 mt-2">
-                Explore Our Network <ArrowRightIcon className="w-4 h-4" />
-              </Link>
-            </motion.div>
 
-            {/* Right: image collage */}
-            <motion.div {...fadeInRight} className="lg:col-span-7 relative">
-              <div className="grid grid-cols-2 gap-4">
-                {/* Main large image */}
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  className="col-span-2 h-64 rounded-3xl overflow-hidden shadow-xl relative"
-                >
-                  <img src={chargeEvBanner} alt="MegaCharge station banner" className="w-full h-full object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                </motion.div>
-
-                {/* Bottom two smaller panels */}
-                <motion.div
-                  whileHover={{ scale: 1.03 }}
-                  className="h-44 rounded-2xl overflow-hidden shadow-lg bg-megacharge-dark border border-slate-800 flex flex-col items-center justify-center gap-3 relative"
-                >
-                  <img src={acChargerReal} alt="AC Charger" className="w-full h-full object-cover opacity-90" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                  <span className="absolute bottom-3 left-4 text-white text-[10px] font-bold uppercase tracking-wider font-mono">AC 7.4kW</span>
-                </motion.div>
-
-                <motion.div
-                  whileHover={{ scale: 1.03 }}
-                  className="h-44 rounded-2xl overflow-hidden shadow-lg bg-megacharge-dark border border-slate-800 flex flex-col items-center justify-center gap-3 relative"
-                >
-                  <img src={teslaCharging} alt="Tesla Charging" className="w-full h-full object-cover opacity-90" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                  <span className="absolute bottom-3 left-4 text-white text-[10px] font-bold uppercase tracking-wider font-mono">DC 180kW</span>
-                </motion.div>
-              </div>
-
-              {/* Floating badge overlay */}
-              <motion.div
-                animate={{ y: [-5, 5, -5] }}
-                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute -top-4 -right-4 bg-megacharge-green text-white px-5 py-3 rounded-2xl shadow-glow-green text-center"
-              >
-                <span className="text-xl font-extrabold font-mono block leading-none">7 Days</span>
-                <span className="text-[9px] uppercase tracking-widest">To Go Live</span>
-              </motion.div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
 
       {/* ==========================================
          4. HOW IT WORKS — STEP BY STEP
