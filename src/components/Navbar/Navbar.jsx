@@ -103,13 +103,6 @@ const Navbar = () => {
 
   return (
     <div className={`navbar-wrapper ${tight ? 'scrolled' : ''}`}>
-      {/* ---------- Trust Strip ---------- */}
-      <div className="strip">
-        <span><b>268</b> live charge points</span>
-        <span><b>1.24 Cr</b> units dispensed</span>
-        <span><b>97.6%</b> network uptime</span>
-        <span><b>BSE: 539767</b></span>
-      </div>
 
       {/* ---------- Sticky / Floating Navigation Header ---------- */}
       <header className={`head ${tight ? 'tight' : ''}`} id="head">
