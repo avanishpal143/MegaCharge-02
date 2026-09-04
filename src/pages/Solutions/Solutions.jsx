@@ -398,7 +398,7 @@ const Solutions = () => {
 
 
       {/* HEADER SECTION (DARK GRADIENT WITH GLOW) */}
-      <section className="w-full bg-[#402e32] pt-32 pb-16 px-6 text-center text-white border-b border-slate-800 relative">
+      <section className="w-full bg-[#402e32] pt-44 sm:pt-48 pb-16 px-6 text-center text-white border-b border-slate-800 relative">
         <div className="absolute inset-0 bg-gradient-radial from-[#F18321] to-transparent opacity-10 blur-3xl pointer-events-none" />
         
         <div className="max-w-7xl mx-auto relative z-10">
@@ -416,7 +416,7 @@ const Solutions = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* A. SIDEBAR FILTERS (DESKTOP) */}
-          <aside className="hidden lg:block lg:col-span-3 bg-white border border-slate-200 rounded-3xl p-6 shadow-sm sticky top-28 max-h-[85vh] overflow-y-auto">
+          <aside className="hidden lg:block lg:col-span-3 bg-white border border-slate-200 rounded-3xl p-6 shadow-sm sticky top-32 max-h-[85vh] overflow-y-auto">
             <div className="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
               <h3 className="text-slate-900 font-extrabold text-base flex items-center gap-2">
                 <SlidersHorizontal size={18} className="text-[#F18321]" /> Filters

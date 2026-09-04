@@ -37,7 +37,7 @@ const CareersPage = () => {
   };
 
   return (
-    <div className="careers-page-container bg-megacharge-dark pt-28 pb-20 px-6">
+    <div className="careers-page-container bg-megacharge-dark pt-44 sm:pt-48 pb-20 px-6">
       
       {/* HEADER SECTION */}
       <section className="max-w-7xl mx-auto mb-16 text-center">

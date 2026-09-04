@@ -1,138 +1,557 @@
-/**
- * ========================================
- * Navbar Styles — Re-themed Premium Capsule
- * ========================================
- */
+:root {
+  --mega-ink: #3a2723;
+  --mega-ink-2: #6b5751;
+  --mega-ink-3: #9c8b85;
+  --mega-line: #e9e5e0;
+  --mega-page: #eceae7;
+  --mega-paper: #ffffff;
+  --mega-orange: #f0801f;
+  --mega-orange-dk: #bf5a08;
+  --mega-peach: #fdf0e2;
+  --mega-mint: #ddf3e4;
+  --mega-mint-ink: #1c7a49;
+}
 
-.navbar-container {
+/* ==========================================
+   FIXED NAVBAR WRAPPER (Never scrolls away)
+   ========================================== */
+.navbar-wrapper {
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
   width: 100%;
-  z-index: 9999; /* Maintain overlay dominance */
-  padding: 1.5rem 0; /* Expanded padding at scroll top */
-  transition: padding 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  pointer-events: none; /* Allow click-throughs in empty areas around capsule */
+  z-index: 9999;
+  pointer-events: none; /* Allows clicks to pass through empty spaces */
+  font-family: 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.navbar-top {
-  background: transparent;
-}
-
-.navbar-scrolled {
-  padding: 0.75rem 0;
-}
-
-/* Base navbar inner grid */
-.navbar-inner {
-  width: 100%;
-  height: 72px;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  pointer-events: auto; /* Re-enable clicks on logo, links, and buttons */
-}
-
-/* Scrolled floating glass capsule configuration */
-.navbar-scrolled .navbar-inner {
-  background: rgba(255, 247, 241, 0.45); /* True transparent glassmorphism background */
-  backdrop-filter: blur(24px) saturate(130%);
-  -webkit-backdrop-filter: blur(24px) saturate(130%);
-  border: 1px solid rgba(241, 131, 33, 0.25); /* Warm brand orange border */
-  box-shadow: 0 10px 40px rgba(64, 46, 50, 0.08); /* Dark plum shadow */
-  border-radius: 9999px; /* Rounded capsule look */
-  height: 64px;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2.5rem;
-}
-
-/* =====================================
-   Typography & Elements
- ===================================== */
-.navbar-logo {
-  text-decoration: none;
-  transition: var(--transition-fast);
-}
-
-.navbar-logo:hover {
-  transform: scale(1.02);
-}
-
-.nav-link {
-  font-family: var(--font-heading); /* Montserrat */
-  font-weight: 700; /* Montserrat Bold */
-  font-size: 0.92rem;
-  transition: var(--transition-fast);
-  position: relative;
-  padding: 0.25rem 0;
-}
-
-/* Route theme at top scroll scroll position */
-.nav-light-theme.navbar-top .nav-link {
-  color: var(--color-heading); /* Dark plum for light Home hero backdrop */
-  opacity: 0.9;
-}
-
-.nav-dark-theme.navbar-top .nav-link {
-  color: var(--color-white); /* Pure white for dark page heroes */
-  opacity: 0.9;
-}
-
-/* Scrolled glass capsule state: dark plum text for high contrast readability */
-.navbar-scrolled .nav-link {
-  color: var(--color-heading);
-  opacity: 0.95;
-}
-
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--color-brand); /* Brand orange underline on active/hover */
-  transition: var(--transition-fast);
-}
-
-.nav-link:hover::after,
-.nav-link.active-link::after {
-  width: 100%;
-}
-
-.nav-link:hover {
-  color: var(--color-brand);
-  opacity: 1;
-}
-
-/* =====================================
-   Mobile Responsive Dropdown Panel
- ===================================== */
-.mobile-menu-panel {
-  position: absolute;
-  top: calc(100% + 10px);
-  left: 6%;
-  right: 6%;
-  background: rgba(255, 247, 241, 0.96); /* Warm cream dropdown background */
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(241, 131, 33, 0.25);
-  border-radius: 24px;
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  box-shadow: 0 20px 40px rgba(64, 46, 50, 0.12);
-  z-index: 40;
+/* Allow interaction on all nav components */
+.strip,
+.bar,
+.mega,
+.drawer,
+.scrim,
+.tabbar {
   pointer-events: auto;
 }
 
-.mobile-menu-panel .nav-link {
-  color: var(--color-heading);
-  font-size: 1.05rem;
-  padding: 0.75rem 0;
-  border-bottom: 1px solid rgba(64, 46, 50, 0.06);
+/* ==========================================
+   TOP TRUST STRIP (Smooth Collapse on Scroll)
+   ========================================== */
+.strip {
+  background: #2c1e1b;
+  color: #e6d9d4;
+  font-size: 12px;
+  letter-spacing: .4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  padding: 8px 20px;
+  max-height: 42px;
+  opacity: 1;
+  transform: translateY(0);
+  overflow: hidden;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              padding 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.strip b {
+  color: #f7ab5e;
+  font-weight: 600;
+}
+.strip span:nth-child(n+3) {
+  display: none;
+}
+@media (min-width: 760px) {
+  .strip span:nth-child(n+3) {
+    display: inline;
+  }
 }
 
-.mobile-menu-panel .nav-link:last-of-type {
-  border-bottom: none;
+/* When scrolled down: strip smoothly retracts upwards */
+.navbar-wrapper.scrolled .strip {
+  max-height: 0;
+  opacity: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
+/* ==========================================
+   SHELL & CONDENSING CAPSULE
+   ========================================== */
+.head {
+  width: 100%;
+  padding: 0;
+  transition: padding 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.head.tight {
+  padding: 10px 20px 0;
+}
+
+.bar {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  background: rgba(253, 250, 247, 0.94);
+  backdrop-filter: blur(20px) saturate(130%);
+  -webkit-backdrop-filter: blur(20px) saturate(130%);
+  padding: 14px 28px;
+  border: 1px solid transparent;
+  border-bottom-color: rgba(239, 230, 220, 0.85);
+  box-shadow: 0 4px 20px rgba(58, 39, 35, 0.04);
+  transition: max-width 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              border-radius 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              padding 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.head:not(.tight) .bar {
+  padding-left: max(28px, calc((100vw - 1240px)/2 + 28px));
+  padding-right: max(28px, calc((100vw - 1240px)/2 + 28px));
+}
+
+/* Scrolled tight pill state */
+.head.tight .bar {
+  max-width: 1220px;
+  border-radius: 999px;
+  background: rgba(255, 252, 249, 0.88);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid rgba(240, 128, 31, 0.26);
+  box-shadow: 0 16px 42px rgba(58, 39, 35, 0.12), 0 2px 8px rgba(240, 128, 31, 0.06);
+  padding: 8px 20px 8px 24px;
+}
+
+/* ==========================================
+   BRAND LOGO
+   ========================================== */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  letter-spacing: 2.4px;
+  font-size: 14px;
+  flex: none;
+  color: var(--mega-ink);
+  text-decoration: none;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.brand:hover {
+  transform: scale(1.03);
+}
+
+/* ==========================================
+   PRIMARY NAVIGATION LINKS
+   ========================================== */
+.primary {
+  display: flex;
+  gap: 4px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+.primary > li {
+  list-style: none;
+  position: relative;
+}
+.top-link {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 15px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--mega-ink-2);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  text-decoration: none;
+  transition: color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.top-link:hover {
+  color: var(--mega-ink);
+  background: rgba(245, 239, 232, 0.7);
+}
+.top-link .car {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.primary > li[data-open="true"] .top-link {
+  color: var(--mega-ink);
+  background: #f5efe8;
+}
+.primary > li[data-open="true"] .car {
+  transform: rotate(180deg);
+}
+.top-link.current {
+  color: var(--mega-ink);
+  position: relative;
+}
+.top-link.current::after {
+  content: "";
+  position: absolute;
+  left: 15px;
+  right: 15px;
+  bottom: 2px;
+  height: 2px;
+  background: var(--mega-orange);
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================
+   TAIL & SIGN IN CTA BUTTON
+   ========================================== */
+.tail {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: none;
+}
+.signin {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--mega-ink-2);
+}
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  background: linear-gradient(100deg, var(--mega-orange), var(--mega-orange-dk));
+  color: #fff !important;
+  border-radius: 999px;
+  padding: 11px 24px;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 1.1px;
+  box-shadow: 0 6px 18px rgba(191, 90, 8, .26);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.25s ease,
+              box-shadow 0.25s ease,
+              padding 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(191, 90, 8, .38);
+}
+.head.tight .cta {
+  padding: 9px 20px;
+  font-size: 12px;
+}
+
+/* ==========================================
+   MEGA MENU DROPDOWN
+   ========================================== */
+.mega {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--mega-line);
+  border-radius: 22px;
+  box-shadow: 0 28px 64px rgba(58, 39, 35, .16), 0 4px 14px rgba(0, 0, 0, 0.04);
+  padding: 18px;
+  display: grid;
+  gap: 6px;
+  min-width: min(640px, 88vw);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.25s;
+  z-index: 1050;
+  pointer-events: none;
+}
+
+/* Invisible hover bridge to prevent menu from closing when moving mouse from top-link to dropdown */
+.mega::before {
+  content: '';
+  position: absolute;
+  top: -24px;
+  left: 0;
+  right: 0;
+  height: 24px;
+  background: transparent;
+  pointer-events: auto;
+}
+li[data-open="true"] .mega {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+.mega.two {
+  grid-template-columns: 1fr 1fr;
+}
+.mi {
+  display: flex;
+  gap: 13px;
+  padding: 13px 14px;
+  border-radius: 14px;
+  align-items: flex-start;
+  text-decoration: none;
+  color: var(--mega-ink);
+  transition: background 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.mi:hover,
+.mi:focus-visible {
+  background: #faf6f1;
+  transform: translateX(2px);
+}
+.mi .ic {
+  width: 38px;
+  height: 38px;
+  flex: none;
+  border-radius: 11px;
+  background: var(--mega-peach);
+  display: grid;
+  place-items: center;
+  transition: transform 0.2s ease;
+}
+.mi:hover .ic {
+  transform: scale(1.05);
+}
+.mi b {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--mega-ink);
+}
+.mi small {
+  display: block;
+  font-size: 13px;
+  color: var(--mega-ink-2);
+  line-height: 1.4;
+  margin-top: 2px;
+}
+.mi .tag {
+  display: inline-block;
+  margin-left: 8px;
+  background: var(--mega-mint);
+  color: var(--mega-mint-ink);
+  border-radius: 999px;
+  padding: 2px 9px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .7px;
+  vertical-align: 2px;
+}
+.mega-foot {
+  grid-column: 1 / -1;
+  margin-top: 6px;
+  border-top: 1px solid var(--mega-line);
+  padding: 14px 14px 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.mega-foot p {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--mega-ink-2);
+}
+.mega-foot a {
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: .9px;
+  color: var(--mega-orange-dk);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+.mega-foot a:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================
+   MOBILE DRAWER & HAMBURGER
+   ========================================== */
+.burger {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--mega-ink);
+}
+.drawer {
+  position: fixed;
+  inset: 0 0 0 auto;
+  width: min(400px, 88vw);
+  z-index: 20000;
+  background: var(--mega-paper);
+  transform: translateX(102%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto;
+  padding: 22px 22px 120px;
+  box-shadow: -20px 0 60px rgba(58, 39, 35, .2);
+}
+.drawer[data-on="true"] {
+  transform: none;
+}
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 19990;
+  background: rgba(44, 30, 27, .42);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.35s;
+}
+.scrim[data-on="true"] {
+  opacity: 1;
+  visibility: visible;
+}
+.drawer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--mega-line);
+}
+.drawer-close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--mega-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: 8px;
+}
+.acc {
+  border-bottom: 1px solid var(--mega-line);
+}
+.acc summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 17px 2px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--mega-ink);
+}
+.acc summary::-webkit-details-marker {
+  display: none;
+}
+.acc[open] summary .car {
+  transform: rotate(180deg);
+}
+.acc .body {
+  padding: 0 2px 16px;
+}
+.acc .body a {
+  display: block;
+  padding: 11px 0;
+  font-size: 15px;
+  color: var(--mega-ink-2);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+.acc .body a:hover {
+  color: var(--mega-orange-dk);
+}
+.drawer .cta {
+  display: flex;
+  width: 100%;
+  text-align: center;
+  margin-top: 22px;
+  box-sizing: border-box;
+}
+
+/* ==========================================
+   MOBILE BOTTOM TAB BAR
+   ========================================== */
+.tabbar {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1500;
+  background: #ffffff;
+  border-top: 1px solid var(--mega-line);
+  padding: 8px 4px calc(8px + env(safe-area-inset-bottom, 0px));
+  box-shadow: 0 -6px 20px rgba(58, 39, 35, .08);
+}
+.tabbar a {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  gap: 3px;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--mega-ink-3);
+  padding: 5px 0;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+.tabbar a.on {
+  color: var(--mega-orange-dk);
+}
+.tabbar a.on svg {
+  stroke: var(--mega-orange-dk);
+}
+
+@media (max-width: 1024px) {
+  .primary,
+  .tail .cta {
+    display: none;
+  }
+  .burger {
+    display: flex;
+  }
+  .bar {
+    gap: 12px;
+    padding: 12px 12px 12px 20px;
+  }
+  .head:not(.tight) .bar {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .tabbar {
+    display: flex;
+  }
+}
+@media (min-width: 1025px) {
+  .drawer,
+  .scrim {
+    display: none;
+  }
 }

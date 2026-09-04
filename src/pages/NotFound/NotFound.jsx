@@ -20,7 +20,7 @@ import { Link } from 'react-router-dom';
 
 const NotFound = () => {
   return (
-    <div className="min-h-screen bg-megacharge-dark flex flex-col items-center justify-center text-center px-6 pt-20">
+    <div className="min-h-screen bg-megacharge-dark flex flex-col items-center justify-center text-center px-6 pt-36">
       <span className="text-megacharge-green text-8xl font-extrabold font-poppins block mb-4">404</span>
       <h2 className="text-white text-2xl md:text-3xl font-bold mb-3 font-poppins">Out of Charge Grid Bounds</h2>
       <p className="text-megacharge-text-secondary text-sm leading-relaxed max-w-md mb-8">

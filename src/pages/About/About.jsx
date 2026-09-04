@@ -148,7 +148,7 @@ const About = () => {
       {/* ==========================================
          1. HERO — DARK GRADIENT
       ========================================== */}
-      <section className="about-hero relative min-h-[70vh] flex items-center pt-36 pb-24 px-6 bg-megacharge-dark text-white overflow-hidden">
+      <section className="about-hero relative min-h-[70vh] flex items-center pt-44 sm:pt-48 pb-24 px-6 bg-megacharge-dark text-white overflow-hidden">
         {/* Ambient orbs */}
         <div className="absolute top-1/3 right-1/4 w-[450px] h-[450px] bg-megacharge-green opacity-[0.06] rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute bottom-0 left-1/6 w-[300px] h-[300px] bg-megacharge-orange opacity-[0.04] rounded-full blur-[100px] pointer-events-none" />

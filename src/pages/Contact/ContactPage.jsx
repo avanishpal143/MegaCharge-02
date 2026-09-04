@@ -50,7 +50,7 @@ const ContactPage = () => {
     <div className="contact-page-container bg-slate-50 min-h-screen">
       
       {/* HEADER SECTION (DARK GRADIENT WITH GLOW) */}
-      <section className="w-full bg-megacharge-dark pt-32 pb-20 px-6 text-center text-white border-b border-slate-800 relative">
+      <section className="w-full bg-megacharge-dark pt-44 sm:pt-48 pb-20 px-6 text-center text-white border-b border-slate-800 relative">
         <div className="absolute inset-0 bg-gradient-radial from-megacharge-green to-transparent opacity-10 blur-3xl pointer-events-none" />
         
         <div className="max-w-7xl mx-auto relative z-10">

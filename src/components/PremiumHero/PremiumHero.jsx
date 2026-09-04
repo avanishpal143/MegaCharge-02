@@ -91,7 +91,7 @@ const PremiumHero = () => {
   return (
     <motion.section
       ref={heroRef}
-      className="relative min-h-screen flex items-center overflow-hidden bg-megacharge-gray pt-20 pb-12"
+      className="relative min-h-screen flex items-center overflow-hidden bg-megacharge-gray pt-28 md:pt-32 pb-12"
     >
       {/* Deep ambient orbs matching strict palette */}
       <motion.div
