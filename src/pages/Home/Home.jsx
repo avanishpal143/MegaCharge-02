@@ -324,7 +324,7 @@ const Home = () => {
           </div>
 
           <motion.div {...fadeInUp} className="text-center mt-16">
-            <Link to="/contact" className="inline-flex items-center gap-2 btn-premium-green text-white font-bold text-sm px-10 py-4 rounded-full shadow-glow-green hover:scale-105 transition-transform duration-300">
+            <Link to="/host-a-site" className="inline-flex items-center gap-2 btn-premium-green text-white font-bold text-sm px-10 py-4 rounded-full shadow-glow-green hover:scale-105 transition-transform duration-300">
               Start Your Application <ArrowRightIcon className="w-4 h-4" />
             </Link>
           </motion.div>

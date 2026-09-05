@@ -32,31 +32,32 @@ const Footer = () => {
         {/* MID DECK: LINKS & CONTACT INFO */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 py-12 font-inter">
           
-          {/* Link Col 1: Products */}
+          {/* Link Col 1: Quick Links */}
           <div>
-            <h5 className="text-white font-bold text-sm mb-4 uppercase tracking-wider font-montserrat">Products</h5>
+            <h5 className="text-white font-bold text-sm mb-4 uppercase tracking-wider font-montserrat">Quick Links</h5>
             <ul className="flex flex-col gap-3">
-              <li><Link to="/products" className="footer-link text-sm">Smart AC Chargers</Link></li>
-              <li><Link to="/products" className="footer-link text-sm">Smart Fast DC Chargers</Link></li>
+              <li><Link to="/" className="footer-link text-sm">Home</Link></li>
+              <li><Link to="/about" className="footer-link text-sm">About Us</Link></li>
+              <li><Link to="/network" className="footer-link text-sm">Charging Network</Link></li>
+              <li><Link to="/contact" className="footer-link text-sm">Contact Us</Link></li>
             </ul>
           </div>
 
-          {/* Link Col 2: Rental Solutions */}
+          {/* Link Col 2: Chargers */}
           <div>
-            <h5 className="text-white font-bold text-sm mb-4 uppercase tracking-wider font-montserrat">Rental Solutions</h5>
+            <h5 className="text-white font-bold text-sm mb-4 uppercase tracking-wider font-montserrat">Chargers</h5>
             <ul className="flex flex-col gap-3">
-              <li><Link to="/solutions" className="footer-link text-sm">Commercial Charging</Link></li>
-              <li><Link to="/solutions" className="footer-link text-sm">Residential Societies</Link></li>
-              <li><Link to="/solutions" className="footer-link text-sm">Fleet Depots</Link></li>
+              <li><Link to="/products" className="footer-link text-sm">All Chargers</Link></li>
+              <li><Link to="/solutions" className="footer-link text-sm">Rental Solutions</Link></li>
             </ul>
           </div>
 
-          {/* Link Col 3: Partnerships */}
+          {/* Link Col 3: Grid Partners */}
           <div>
-            <h5 className="text-white font-bold text-sm mb-4 uppercase tracking-wider font-montserrat">Partnerships</h5>
+            <h5 className="text-white font-bold text-sm mb-4 uppercase tracking-wider font-montserrat">Grid Partners</h5>
             <ul className="flex flex-col gap-3">
-              <li><Link to="/franchise" className="footer-link text-sm">Franchise Program</Link></li>
-              <li><Link to="/contact" className="footer-link text-sm">Installation Request</Link></li>
+              <li><Link to="/host-a-site" className="footer-link text-sm">Host a Site</Link></li>
+              <li><Link to="/franchise" className="footer-link text-sm">Franchise</Link></li>
             </ul>
           </div>
 

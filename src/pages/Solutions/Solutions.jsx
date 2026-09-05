@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Search, Heart, SlidersHorizontal, Grid, List, Check, X, 
@@ -181,6 +182,82 @@ const CHARGERS_DATASET = [
     capacityGroup: '240 kW',
     connectorGroup: 'CCS2 Dual Gun',
     image: zenergize240
+  },
+  {
+    id: 'nh44-panipat',
+    type: 'dc',
+    name: 'NH-44 Panipat Hub (2 × 60 kW DC)',
+    power: '120 kW Combined (2 × 60 kW)',
+    voltage: '415V AC Three Phase',
+    connector: 'Dual CCS2 (4 Guns Total)',
+    efficiency: '96.5%',
+    features: ['Co-ownership model', 'High-density highway site', 'OCPP 1.6 cloud billing', '24x7 MNIL maintenance'],
+    usage: 'Highway Plazas, Commercial Properties',
+    priceVal: 10000,
+    priceStr: '₹10,000 min ticket',
+    purchasePrice: '₹14,90,000 hub cost',
+    rating: 4.9,
+    reviews: 18,
+    capacityGroup: '120 kW',
+    connectorGroup: 'CCS2 Dual Gun',
+    image: zenergize60
+  },
+  {
+    id: 'agra-expressway',
+    type: 'dc',
+    name: 'Agra Expressway Hub (180 kW Ultra)',
+    power: '180 kW Total Fast Charging',
+    voltage: '415V Dedicated HT Grid',
+    connector: 'Triple CCS2 Guns',
+    efficiency: '97%',
+    features: ['High-traffic express corridor', 'Sub-20 min charging', '88% funded', 'Direct monthly NEFT yield'],
+    usage: 'Highway Plazas, Rest Stops',
+    priceVal: 10000,
+    priceStr: '₹10,000 min ticket',
+    purchasePrice: '₹22,00,000 hub cost',
+    rating: 4.9,
+    reviews: 34,
+    capacityGroup: '180 kW',
+    connectorGroup: 'CCS2 Dual Gun',
+    image: zenergize120
+  },
+  {
+    id: 'kurukshetra-cluster',
+    type: 'ac',
+    name: 'Kurukshetra Cluster (4 × 7.4 kW AC)',
+    power: '29.6 kW Total Grid Output',
+    voltage: '230V / 415V Commercial Grid',
+    connector: '4 × Type 2 Sockets',
+    efficiency: '97.5%',
+    features: ['Destination hotel charging', 'Overnight dwell time', 'Smart RFID cards', 'Zero maintenance liability'],
+    usage: 'Hotel, Retail Malls, Commercial Properties',
+    priceVal: 10000,
+    priceStr: '₹10,000 min ticket',
+    purchasePrice: '₹8,00,000 hub cost',
+    rating: 4.8,
+    reviews: 12,
+    capacityGroup: '7.4 kW',
+    connectorGroup: 'Type 2',
+    image: acCharger
+  },
+  {
+    id: 'raebareli-depot',
+    type: 'dc',
+    name: 'Rae Bareli Fleet Depot (6 × 30 kW)',
+    power: '180 kW Heavy Fleet Grid',
+    voltage: '415V Three Phase Industrial',
+    connector: '6 × CCS2 High Cycle Guns',
+    efficiency: '95.5%',
+    features: ['Dedicated logistics fleet', 'Predictable shift charging', 'B2B anchor contracts', '72% funded'],
+    usage: 'Fleet & Logistics, Industrial Depots',
+    priceVal: 10000,
+    priceStr: '₹10,000 min ticket',
+    purchasePrice: '₹25,00,000 hub cost',
+    rating: 4.8,
+    reviews: 26,
+    capacityGroup: '30 kW',
+    connectorGroup: 'CCS2 Single Gun',
+    image: dcCharger
   }
 ];
 
@@ -204,6 +281,8 @@ const FAQS_LIST = [
 ];
 
 const Solutions = () => {
+  const navigate = useNavigate();
+
   // Filters state
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTypes, setSelectedTypes] = useState([]);
@@ -752,7 +831,11 @@ const Solutions = () => {
                         <div className={`${viewMode === 'list' ? 'flex-1 grid grid-cols-1 md:grid-cols-12 gap-6' : ''}`}>
                           
                           {/* Image Box */}
-                          <div className={`relative bg-gradient-to-b from-slate-50 to-slate-100 rounded-2xl border border-slate-100 overflow-hidden flex items-center justify-center p-4 group ${viewMode === 'grid' ? 'w-full h-48 mb-5' : 'md:col-span-3 h-48 md:h-full min-h-[160px]'}`}>
+                          <div 
+                            onClick={() => navigate(`/chargers/${charger.id}`)}
+                            style={{ cursor: 'pointer' }}
+                            className={`relative bg-gradient-to-b from-slate-50 to-slate-100 rounded-2xl border border-slate-100 overflow-hidden flex items-center justify-center p-4 group ${viewMode === 'grid' ? 'w-full h-48 mb-5' : 'md:col-span-3 h-48 md:h-full min-h-[160px]'}`}
+                          >
                             <img 
                               src={charger.image || (charger.type === 'dc' ? dcCharger : acCharger)} 
                               alt={charger.name} 
@@ -760,7 +843,10 @@ const Solutions = () => {
                             />
                             
                             {/* Compare Checkbox */}
-                            <label className="absolute top-3.5 left-3.5 flex items-center gap-1.5 bg-white/95 px-2.5 py-1.5 rounded-lg shadow-sm border border-slate-100 cursor-pointer select-none">
+                            <label 
+                              onClick={(e) => e.stopPropagation()}
+                              className="absolute top-3.5 left-3.5 flex items-center gap-1.5 bg-white/95 px-2.5 py-1.5 rounded-lg shadow-sm border border-slate-100 cursor-pointer select-none"
+                            >
                               <input 
                                 type="checkbox" 
                                 checked={isCompared}
@@ -772,7 +858,10 @@ const Solutions = () => {
 
                             {/* Wishlist Heart */}
                             <button 
-                              onClick={() => handleWishlistToggle(charger.id)}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleWishlistToggle(charger.id);
+                              }}
                               className={`absolute top-3.5 right-3.5 p-2 rounded-full shadow-sm border border-slate-100 transition-colors ${isWishlisted ? 'bg-red-50 text-red-500' : 'bg-white/95 hover:bg-slate-50 text-slate-400'}`}
                               title={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
                             >
@@ -789,7 +878,7 @@ const Solutions = () => {
                               <span className="text-slate-400 text-[10px] font-bold font-mono">{charger.power}</span>
                             </div>
 
-                            <h3 className="text-slate-900 font-black text-base sm:text-lg mb-1 leading-snug line-clamp-1 hover:text-[#F18321] transition-colors cursor-pointer" onClick={() => setSelectedDetailCharger(charger)}>
+                            <h3 className="text-slate-900 font-black text-base sm:text-lg mb-1 leading-snug line-clamp-1 hover:text-[#F18321] transition-colors cursor-pointer" onClick={() => navigate(`/chargers/${charger.id}`)}>
                               {charger.name}
                             </h3>
 
@@ -864,10 +953,10 @@ const Solutions = () => {
                           </div>
 
                           <button 
-                            onClick={() => setSelectedDetailCharger(charger)}
+                            onClick={() => navigate(`/chargers/${charger.id}`)}
                             className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#F18321] to-[#832800] text-white font-extrabold text-xs uppercase tracking-wider py-3 rounded-xl transition-all duration-300 hover:scale-[1.02] shadow-sm hover:shadow-glow-orange"
                           >
-                            Learn More <ArrowRight size={12} />
+                            View Product Details <ArrowRight size={12} />
                           </button>
                         </div>
                       </motion.div>

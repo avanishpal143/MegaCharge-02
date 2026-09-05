@@ -157,12 +157,12 @@ const FranchisePage = () => {
         <div className="absolute inset-0 bg-gradient-radial from-megacharge-green to-transparent opacity-10 blur-3xl pointer-events-none" />
         
         <div className="max-w-7xl mx-auto relative z-10">
-          <h1 className="text-white text-4xl sm:text-5xl lg:text-7xl font-extrabold font-poppins leading-none tracking-tight">
-            EV Charger Rentals <br />
-            <span className="text-gradient-green">& Partner Models</span>
+          <h1 className="text-white text-4xl sm:text-5xl lg:text-7xl font-extrabold font-poppins leading-tight tracking-tight">
+            MegaCharge EV Franchise <br />
+            <span className="text-gradient-green">& Partner Ownership</span>
           </h1>
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-3xl mx-auto mt-6">
-            Get a premium charging station installed on your commercial property. Partner with MegaCharge, backed by the industrial legacy of **Mega Nirman & Industries Ltd (MNIL)**, and choose a lease layout that works for you.
+            Become a certified MegaCharge EV charging network partner. Backed by the industrial legacy of <strong>Mega Nirman & Industries Ltd (MNIL)</strong>, choose a high-margin franchise investment model with industry-leading hardware, dedicated territory exclusivity, and 24x7 cloud NOC support.
           </p>
         </div>
       </section>
@@ -184,22 +184,22 @@ const FranchisePage = () => {
             <div>
               <div className="flex justify-between items-center mb-8">
                 <span className="text-megacharge-green text-xs font-extrabold uppercase tracking-widest bg-megacharge-green bg-opacity-5 border border-megacharge-green border-opacity-30 px-4 py-1.5 rounded-full">
-                  FOCO Rental Model
+                  FOCO Franchise Model
                 </span>
-                <span className="text-slate-500 text-xs font-mono">Franchise Owned · Company Operated</span>
+                <span className="text-slate-500 text-xs font-mono">Franchise Invested · Company Operated</span>
               </div>
-              <h3 className="text-slate-900 text-3xl font-extrabold mb-4">Hands-Off Yield Payouts</h3>
+              <h3 className="text-slate-900 text-3xl font-extrabold mb-4">Hands-Off Institutional Yield</h3>
               <p className="text-slate-600 text-sm leading-relaxed mb-8">
-                Rent out your land or parking space to MegaCharge. We manage the charger hardware supply, utility approvals, installation, cloud software billing, remote maintenance, and 24x7 customer support. You receive steady monthly rental lease payments with zero operational stress.
+                Invest in EV charging infrastructure with complete operational peace of mind. MegaCharge manages hardware procurement, Discom approvals, civil installation, cloud billing, dynamic load sharing, and 24x7 customer support while you receive consistent monthly returns.
               </p>
               <ul className="flex flex-col gap-3 text-xs text-slate-600 font-mono mb-8">
-                <li className="flex items-center gap-2">&bull; Minimum Space: 2 to 4 parking bays</li>
-                <li className="flex items-center gap-2">&bull; Ideal Sites: Highway hotels, food malls, tech parks</li>
-                <li className="flex items-center gap-2">&bull; Maintenance: 100% managed by MegaCharge team</li>
+                <li className="flex items-center gap-2">&bull; Capital Model: Passive investor franchise</li>
+                <li className="flex items-center gap-2">&bull; Typical Locations: High-density expressways & city centers</li>
+                <li className="flex items-center gap-2">&bull; Maintenance: 100% managed by MegaCharge centralized team</li>
               </ul>
             </div>
             <a href="#enquiry-form" className="btn-premium-green text-white text-center text-xs font-bold py-4 rounded-full transition-all duration-300 block">
-              Host a Station &rarr;
+              Apply for FOCO Franchise &rarr;
             </a>
           </motion.div>
 
@@ -211,22 +211,22 @@ const FranchisePage = () => {
             <div>
               <div className="flex justify-between items-center mb-8">
                 <span className="text-megacharge-orange text-xs font-extrabold uppercase tracking-widest bg-megacharge-orange bg-opacity-5 border border-megacharge-orange border-opacity-30 px-4 py-1.5 rounded-full">
-                  FOLO Rental Model
+                  FOLO Franchise Model
                 </span>
                 <span className="text-slate-500 text-xs font-mono">Franchise Owned · Locally Operated</span>
               </div>
-              <h3 className="text-slate-900 text-3xl font-extrabold mb-4">Active Operator Margins</h3>
+              <h3 className="text-slate-900 text-3xl font-extrabold mb-4">Active Business Operator Margins</h3>
               <p className="text-slate-600 text-sm leading-relaxed mb-8">
-                Rent the chargers directly from MegaCharge and manage the local station operations on your property. You get complete access to the cloud OCPP 1.6 SaaS client dashboard, control over local pricing, and customer billing pathways. Perfect for gas station owners and expressways.
+                Operate a MegaCharge territory as your own commercial business. You get full access to the cloud OCPP 1.6 SaaS CPO platform, local retail tariff control, promotional pricing, and dedicated customer billing pathways.
               </p>
               <ul className="flex flex-col gap-3 text-xs text-slate-600 font-mono mb-8">
-                <li className="flex items-center gap-2">&bull; Minimum Space: 3 to 6 highway parking bays</li>
-                <li className="flex items-center gap-2">&bull; Ideal Sites: Petrol pumps, transit depots, logistics hubs</li>
-                <li className="flex items-center gap-2">&bull; Software: Direct CPO portal telemetry access</li>
+                <li className="flex items-center gap-2">&bull; Capital Model: Active entrepreneurial franchise</li>
+                <li className="flex items-center gap-2">&bull; Ideal For: Fleet owners, fuel pump dealers, real estate entrepreneurs</li>
+                <li className="flex items-center gap-2">&bull; Software: Full CPO dashboard and revenue telemetry access</li>
               </ul>
             </div>
             <a href="#enquiry-form" className="btn-premium-green text-white text-center text-xs font-bold py-4 rounded-full transition-all duration-300 block">
-              Rent a Charger &rarr;
+              Apply for FOLO Franchise &rarr;
             </a>
           </motion.div>
         </motion.div>

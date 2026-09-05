@@ -32,6 +32,8 @@ import Products from './pages/Products/Products';
 import Solutions from './pages/Solutions/Solutions';
 import NetworkPage from './pages/Network/NetworkPage';
 import FranchisePage from './pages/Franchise/FranchisePage';
+import HostSitePage from './pages/HostSite/HostSitePage';
+import ProductDetailPage from './pages/ProductDetail/ProductDetailPage';
 import Sustainability from './pages/Sustainability/Sustainability';
 import ProjectsPage from './pages/Projects/ProjectsPage';
 import CareersPage from './pages/Careers/CareersPage';
@@ -63,7 +65,11 @@ const AnimatedRoutes = () => {
         <Route path="/about" element={<PageTransition><About /></PageTransition>} />
         <Route path="/products" element={<PageTransition><Products /></PageTransition>} />
         <Route path="/solutions" element={<PageTransition><Solutions /></PageTransition>} />
+        <Route path="/chargers/:id" element={<PageTransition><ProductDetailPage /></PageTransition>} />
+        <Route path="/product/:id" element={<PageTransition><ProductDetailPage /></PageTransition>} />
         <Route path="/network" element={<PageTransition><NetworkPage /></PageTransition>} />
+        <Route path="/host-a-site" element={<PageTransition><HostSitePage /></PageTransition>} />
+        <Route path="/host-site" element={<PageTransition><HostSitePage /></PageTransition>} />
         <Route path="/franchise" element={<PageTransition><FranchisePage /></PageTransition>} />
         <Route path="/sustainability" element={<PageTransition><Sustainability /></PageTransition>} />
         <Route path="/projects" element={<PageTransition><ProjectsPage /></PageTransition>} />

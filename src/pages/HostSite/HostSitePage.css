@@ -1,0 +1,55 @@
+/* ==========================================
+   HOST A SITE PAGE STYLING
+   MegaCharge Partner Model
+   ========================================== */
+
+.host-site-page {
+  color: #1e293b;
+  font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+}
+
+/* Custom glow utility */
+.glow-green-sm {
+  box-shadow: 0 4px 24px rgba(28, 157, 92, 0.25);
+}
+
+.glow-orange-sm {
+  box-shadow: 0 4px 24px rgba(240, 128, 31, 0.25);
+}
+
+/* Property card selection */
+.property-type-card {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.property-type-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(28, 157, 92, 0.4);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.06);
+}
+
+/* Range input styling */
+.slider-custom {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  outline: none;
+}
+
+.slider-custom::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #1c9d5c;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(28, 157, 92, 0.4);
+  transition: transform 0.15s ease;
+}
+
+.slider-custom::-webkit-slider-thumb:hover {
+  transform: scale(1.18);
+}

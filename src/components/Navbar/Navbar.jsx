@@ -97,9 +97,10 @@ const Navbar = () => {
   };
 
   const isChargersActive = ['/solutions', '/products'].includes(location.pathname);
-  const isPartnersActive = location.pathname === '/franchise';
+  const isPartnersActive = ['/host-a-site', '/host-site', '/franchise'].includes(location.pathname);
   const isNetworkActive = location.pathname === '/network';
-  const isContactActive = ['/contact', '/about', '/careers'].includes(location.pathname);
+  const isAboutActive = location.pathname === '/about';
+  const isContactActive = location.pathname === '/contact';
 
   return (
     <div className={`navbar-wrapper ${tight ? 'scrolled' : ''}`}>
@@ -128,81 +129,17 @@ const Navbar = () => {
               </Link>
             </li>
 
-            {/* 2. CHARGERS */}
-            <li
-              data-open={openMenu === 'chargers' ? 'true' : 'false'}
-              onMouseEnter={() => handleMouseEnter('chargers')}
-              onMouseLeave={handleMouseLeave}
-            >
-              <button
-                type="button"
+            {/* 2. CHARGERS (Direct Link) */}
+            <li>
+              <Link
+                to="/solutions"
                 className={`top-link ${isChargersActive ? 'current' : ''}`}
-                aria-expanded={openMenu === 'chargers'}
-                onClick={(e) => toggleDropdown('chargers', e)}
               >
                 Chargers
-                <svg className="car" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
-                  <path d="M6 9l6 6 6-6" />
-                </svg>
-              </button>
-              <div 
-                className="mega two"
-                onMouseEnter={() => handleMouseEnter('chargers')}
-                onMouseLeave={handleMouseLeave}
-              >
-                <Link className="mi" to="/solutions" onClick={() => setOpenMenu(null)}>
-                  <span className="ic">
-                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#bf5a08" strokeWidth="2" strokeLinecap="round">
-                      <rect x="6" y="3" width="12" height="18" rx="3" />
-                      <path d="M12 8v4M10 16h4" />
-                    </svg>
-                  </span>
-                  <span>
-                    <b>AC wallbox</b>
-                    <small>3.3 to 22 kW for homes, offices and societies</small>
-                  </span>
-                </Link>
-                <Link className="mi" to="/solutions" onClick={() => setOpenMenu(null)}>
-                  <span className="ic">
-                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#bf5a08" strokeWidth="2" strokeLinecap="round">
-                      <path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z" />
-                    </svg>
-                  </span>
-                  <span>
-                    <b>DC fast</b>
-                    <small>30 to 240 kW for highways and commercial sites</small>
-                  </span>
-                </Link>
-                <Link className="mi" to="/solutions" onClick={() => setOpenMenu(null)}>
-                  <span className="ic">
-                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#bf5a08" strokeWidth="2" strokeLinecap="round">
-                      <path d="M5 3h14l-2 18H7L5 3zM9 8h6" />
-                    </svg>
-                  </span>
-                  <span>
-                    <b>Portable</b>
-                    <small>3.3 kW plug-in unit for travel and emergencies</small>
-                  </span>
-                </Link>
-                <Link className="mi" to="/products" onClick={() => setOpenMenu(null)}>
-                  <span className="ic">
-                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#bf5a08" strokeWidth="2" strokeLinecap="round">
-                      <path d="M3 6h18M3 12h18M3 18h18" />
-                    </svg>
-                  </span>
-                  <span>
-                    <b>Compare all models</b>
-                    <small>Filter by capacity, connector and lease rate</small>
-                  </span>
-                </Link>
-                <div className="mega-foot">
-                  <p>Lease from ₹490 a month, or buy outright.</p>
-                  <Link to="/solutions" onClick={() => setOpenMenu(null)}>SEE LEASE RATES</Link>
-                </div>
-              </div>
+              </Link>
             </li>
 
-            {/* 3. GRID PARTNERS */}
+            {/* 3. GRID PARTNERS (Dropdown with ONLY 2 pages: Host a site & Franchise) */}
             <li
               data-open={openMenu === 'partners' ? 'true' : 'false'}
               onMouseEnter={() => handleMouseEnter('partners')}
@@ -220,22 +157,11 @@ const Navbar = () => {
                 </svg>
               </button>
               <div 
-                className="mega two"
+                className="mega partners-two"
                 onMouseEnter={() => handleMouseEnter('partners')}
                 onMouseLeave={handleMouseLeave}
               >
-                <Link className="mi" to="/franchise" onClick={() => setOpenMenu(null)}>
-                  <span className="ic">
-                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#bf5a08" strokeWidth="2" strokeLinecap="round">
-                      <path d="M3 21h18M5 21V10l7-5 7 5v11" />
-                    </svg>
-                  </span>
-                  <span>
-                    <b>Own a hub<span className="tag">NEW</span></b>
-                    <small>Take a share of a working site from ₹10,000</small>
-                  </span>
-                </Link>
-                <Link className="mi" to="/franchise" onClick={() => setOpenMenu(null)}>
+                <Link className="mi" to="/host-a-site" onClick={() => setOpenMenu(null)}>
                   <span className="ic">
                     <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#bf5a08" strokeWidth="2" strokeLinecap="round">
                       <path d="M12 21s-7-4.4-7-10a7 7 0 1114 0c0 5.6-7 10-7 10z" />
@@ -244,7 +170,7 @@ const Navbar = () => {
                   </span>
                   <span>
                     <b>Host a site</b>
-                    <small>Have land or parking? We build and run it</small>
+                    <small>Have land or parking? Zero investment, earn monthly rent</small>
                   </span>
                 </Link>
                 <Link className="mi" to="/franchise" onClick={() => setOpenMenu(null)}>
@@ -256,159 +182,40 @@ const Navbar = () => {
                   </span>
                   <span>
                     <b>Franchise</b>
-                    <small>Run a MegaCharge territory as your own business</small>
+                    <small>Own & operate a high-yield EV charging business</small>
                   </span>
                 </Link>
-                <Link className="mi" to="/franchise" onClick={() => setOpenMenu(null)}>
-                  <span className="ic">
-                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#bf5a08" strokeWidth="2" strokeLinecap="round">
-                      <path d="M3 3v18h18" />
-                      <path d="M7 15l4-5 3 3 5-7" />
-                    </svg>
-                  </span>
-                  <span>
-                    <b>Site economics</b>
-                    <small>How a charge point actually makes money</small>
-                  </span>
-                </Link>
-                <div className="mega-foot">
-                  <p>Partner payouts credited monthly. Targeted, not guaranteed.</p>
-                  <Link to="/franchise" onClick={() => setOpenMenu(null)}>VIEW OPEN SITES</Link>
-                </div>
               </div>
             </li>
 
-            {/* 4. NETWORK */}
-            <li
-              data-open={openMenu === 'network' ? 'true' : 'false'}
-              onMouseEnter={() => handleMouseEnter('network')}
-              onMouseLeave={handleMouseLeave}
-            >
-              <button
-                type="button"
+            {/* 4. NETWORK (Direct Link) */}
+            <li>
+              <Link
+                to="/network"
                 className={`top-link ${isNetworkActive ? 'current' : ''}`}
-                aria-expanded={openMenu === 'network'}
-                onClick={(e) => toggleDropdown('network', e)}
               >
                 Network
-                <svg className="car" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
-                  <path d="M6 9l6 6 6-6" />
-                </svg>
-              </button>
-              <div 
-                className="mega"
-                onMouseEnter={() => handleMouseEnter('network')}
-                onMouseLeave={handleMouseLeave}
-              >
-                <Link className="mi" to="/network" onClick={() => setOpenMenu(null)}>
-                  <span className="ic">
-                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#bf5a08" strokeWidth="2" strokeLinecap="round">
-                      <path d="M9 3L3 6v15l6-3 6 3 6-3V3l-6 3-6-3z" />
-                    </svg>
-                  </span>
-                  <span>
-                    <b>Live charger map</b>
-                    <small>Find and navigate to any MegaCharge point</small>
-                  </span>
-                </Link>
-                <Link className="mi" to="/network" onClick={() => setOpenMenu(null)}>
-                  <span className="ic">
-                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#bf5a08" strokeWidth="2" strokeLinecap="round">
-                      <circle cx="12" cy="12" r="9" />
-                      <path d="M12 7v5l3 3" />
-                    </svg>
-                  </span>
-                  <span>
-                    <b>Uptime and support</b>
-                    <small>How we keep 97.6% of the network live</small>
-                  </span>
-                </Link>
-                <Link className="mi" to="/network" onClick={() => setOpenMenu(null)}>
-                  <span className="ic">
-                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#bf5a08" strokeWidth="2" strokeLinecap="round">
-                      <rect x="3" y="4" width="18" height="16" rx="3" />
-                      <path d="M8 2v4M16 2v4M3 10h18" />
-                    </svg>
-                  </span>
-                  <span>
-                    <b>Coming soon</b>
-                    <small>Sites under construction across the corridor</small>
-                  </span>
-                </Link>
-              </div>
+              </Link>
             </li>
 
-            {/* 5. CONTACT US */}
-            <li
-              data-open={openMenu === 'contact' ? 'true' : 'false'}
-              onMouseEnter={() => handleMouseEnter('contact')}
-              onMouseLeave={handleMouseLeave}
-            >
-              <button
-                type="button"
+            {/* 5. ABOUT (Direct Link) */}
+            <li>
+              <Link
+                to="/about"
+                className={`top-link ${isAboutActive ? 'current' : ''}`}
+              >
+                About
+              </Link>
+            </li>
+
+            {/* 6. CONTACT US (Direct Link) */}
+            <li>
+              <Link
+                to="/contact"
                 className={`top-link ${isContactActive ? 'current' : ''}`}
-                aria-expanded={openMenu === 'contact'}
-                onClick={(e) => toggleDropdown('contact', e)}
               >
-                Contact us
-                <svg className="car" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
-                  <path d="M6 9l6 6 6-6" />
-                </svg>
-              </button>
-              <div 
-                className="mega two"
-                onMouseEnter={() => handleMouseEnter('contact')}
-                onMouseLeave={handleMouseLeave}
-              >
-                <Link className="mi" to="/contact" onClick={() => setOpenMenu(null)}>
-                  <span className="ic">
-                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#bf5a08" strokeWidth="2" strokeLinecap="round">
-                      <path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7 12 12 0 00.7 2.8 2 2 0 01-.4 2.1L8.1 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.5c.9.4 1.8.6 2.8.7a2 2 0 011.7 2.1z" />
-                    </svg>
-                  </span>
-                  <span>
-                    <b>Talk to sales</b>
-                    <small>NSP Pitampura, New Delhi · Mon to Sat</small>
-                  </span>
-                </Link>
-                <Link className="mi" to="/about" onClick={() => setOpenMenu(null)}>
-                  <span className="ic">
-                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#bf5a08" strokeWidth="2" strokeLinecap="round">
-                      <circle cx="12" cy="12" r="9" />
-                      <path d="M12 16v-5M12 8h.01" />
-                    </svg>
-                  </span>
-                  <span>
-                    <b>About MNIL</b>
-                    <small>The listed company behind MegaCharge</small>
-                  </span>
-                </Link>
-                <Link className="mi" to="/about" onClick={() => setOpenMenu(null)}>
-                  <span className="ic">
-                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#bf5a08" strokeWidth="2" strokeLinecap="round">
-                      <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
-                      <path d="M14 2v6h6M9 15h6" />
-                    </svg>
-                  </span>
-                  <span>
-                    <b>Investor relations</b>
-                    <small>Filings, results and disclosures — BSE 539767</small>
-                  </span>
-                </Link>
-                <Link className="mi" to="/careers" onClick={() => setOpenMenu(null)}>
-                  <span className="ic">
-                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#bf5a08" strokeWidth="2" strokeLinecap="round">
-                      <path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2" />
-                      <circle cx="9" cy="7" r="4" />
-                      <path d="M22 21v-2a4 4 0 00-3-3.9" />
-                    </svg>
-                  </span>
-                  <span>
-                    <b>Careers</b>
-                    <small>Sales, field operations and engineering roles</small>
-                  </span>
-                </Link>
-              </div>
+                Contact
+              </Link>
             </li>
           </ul>
 
@@ -474,30 +281,22 @@ const Navbar = () => {
         </div>
 
         <Link
-          className="acc"
+          className="drawer-direct-link"
           to="/"
-          style={{ display: 'block', padding: '17px 2px', fontSize: '17px', fontWeight: 700, color: 'var(--mega-ink)' }}
           onClick={() => setIsDrawerOpen(false)}
         >
           Home
         </Link>
 
-        <details className="acc">
-          <summary>
-            Chargers{' '}
-            <svg className="car" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
-              <path d="M6 9l6 6 6-6" />
-            </svg>
-          </summary>
-          <div className="body">
-            <Link to="/solutions" onClick={() => setIsDrawerOpen(false)}>AC wallbox</Link>
-            <Link to="/solutions" onClick={() => setIsDrawerOpen(false)}>DC fast</Link>
-            <Link to="/solutions" onClick={() => setIsDrawerOpen(false)}>Portable</Link>
-            <Link to="/products" onClick={() => setIsDrawerOpen(false)}>Compare all models</Link>
-          </div>
-        </details>
+        <Link
+          className="drawer-direct-link"
+          to="/solutions"
+          onClick={() => setIsDrawerOpen(false)}
+        >
+          Chargers
+        </Link>
 
-        <details className="acc">
+        <details className="acc" open>
           <summary>
             Grid Partners{' '}
             <svg className="car" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
@@ -505,41 +304,34 @@ const Navbar = () => {
             </svg>
           </summary>
           <div className="body">
-            <Link to="/franchise" onClick={() => setIsDrawerOpen(false)}>Own a hub</Link>
-            <Link to="/franchise" onClick={() => setIsDrawerOpen(false)}>Host a site</Link>
+            <Link to="/host-a-site" onClick={() => setIsDrawerOpen(false)}>Host a site</Link>
             <Link to="/franchise" onClick={() => setIsDrawerOpen(false)}>Franchise</Link>
-            <Link to="/franchise" onClick={() => setIsDrawerOpen(false)}>Site economics</Link>
           </div>
         </details>
 
-        <details className="acc">
-          <summary>
-            Network{' '}
-            <svg className="car" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
-              <path d="M6 9l6 6 6-6" />
-            </svg>
-          </summary>
-          <div className="body">
-            <Link to="/network" onClick={() => setIsDrawerOpen(false)}>Live charger map</Link>
-            <Link to="/network" onClick={() => setIsDrawerOpen(false)}>Uptime and support</Link>
-            <Link to="/network" onClick={() => setIsDrawerOpen(false)}>Coming soon</Link>
-          </div>
-        </details>
+        <Link
+          className="drawer-direct-link"
+          to="/network"
+          onClick={() => setIsDrawerOpen(false)}
+        >
+          Network
+        </Link>
 
-        <details className="acc">
-          <summary>
-            Contact us{' '}
-            <svg className="car" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
-              <path d="M6 9l6 6 6-6" />
-            </svg>
-          </summary>
-          <div className="body">
-            <Link to="/contact" onClick={() => setIsDrawerOpen(false)}>Talk to sales</Link>
-            <Link to="/about" onClick={() => setIsDrawerOpen(false)}>About MNIL</Link>
-            <Link to="/about" onClick={() => setIsDrawerOpen(false)}>Investor relations</Link>
-            <Link to="/careers" onClick={() => setIsDrawerOpen(false)}>Careers</Link>
-          </div>
-        </details>
+        <Link
+          className="drawer-direct-link"
+          to="/about"
+          onClick={() => setIsDrawerOpen(false)}
+        >
+          About
+        </Link>
+
+        <Link
+          className="drawer-direct-link"
+          to="/contact"
+          onClick={() => setIsDrawerOpen(false)}
+        >
+          Contact
+        </Link>
 
         <Link
           to="/contact"
@@ -569,24 +361,25 @@ const Navbar = () => {
           </svg>
           Chargers
         </Link>
-        <Link className={isPartnersActive ? 'on' : ''} to="/franchise">
+        <Link className={location.pathname === '/host-a-site' ? 'on' : ''} to="/host-a-site">
           <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#9c8b85" strokeWidth="2" strokeLinecap="round">
-            <path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z" />
+            <path d="M12 21s-7-4.4-7-10a7 7 0 1114 0c0 5.6-7 10-7 10z" />
+            <circle cx="12" cy="11" r="2.4" />
           </svg>
-          Partner
+          Host Site
+        </Link>
+        <Link className={location.pathname === '/franchise' ? 'on' : ''} to="/franchise">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#9c8b85" strokeWidth="2" strokeLinecap="round">
+            <path d="M3 7l9-4 9 4v10l-9 4-9-4z" />
+            <path d="M12 3v18" />
+          </svg>
+          Franchise
         </Link>
         <Link className={isNetworkActive ? 'on' : ''} to="/network">
           <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#9c8b85" strokeWidth="2" strokeLinecap="round">
             <path d="M9 3L3 6v15l6-3 6 3 6-3V3l-6 3-6-3z" />
           </svg>
           Map
-        </Link>
-        <Link className={isContactActive ? 'on' : ''} to="/contact">
-          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#9c8b85" strokeWidth="2" strokeLinecap="round">
-            <circle cx="12" cy="8" r="4" />
-            <path d="M4 21v-1a7 7 0 0114 0v1" />
-          </svg>
-          Account
         </Link>
       </nav>
     </div>

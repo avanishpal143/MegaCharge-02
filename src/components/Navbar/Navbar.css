@@ -262,6 +262,16 @@ li[data-open="true"] .mega {
 .mega.two {
   grid-template-columns: 1fr 1fr;
 }
+.mega.partners-two {
+  min-width: min(580px, 92vw);
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media (max-width: 640px) {
+  .mega.partners-two {
+    grid-template-columns: 1fr;
+  }
+}
 .mi {
   display: flex;
   gap: 13px;
@@ -408,6 +418,20 @@ li[data-open="true"] .mega {
 }
 .acc {
   border-bottom: 1px solid var(--mega-line);
+}
+.drawer-direct-link {
+  display: block;
+  padding: 17px 2px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--mega-ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--mega-line);
+  transition: color 0.2s ease;
+}
+.drawer-direct-link:hover,
+.drawer-direct-link.current {
+  color: var(--mega-orange-dk);
 }
 .acc summary {
   list-style: none;

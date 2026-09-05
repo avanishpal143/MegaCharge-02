@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PhoneIcon } from '../../components/CustomIcons/CustomIcons';
 import './Products.css';
@@ -36,6 +37,54 @@ const Products = () => {
 
   const CHARGERS_DATA = [
     {
+      id: 'nh44-panipat',
+      type: 'dc',
+      name: 'NH-44 Panipat Hub (2 × 60 kW DC Fast)',
+      power: '120 kW Combined DC Fast',
+      voltage: '415V AC Three Phase Grid',
+      connector: 'Dual CCS2 (4 Guns Total)',
+      efficiency: '96.5%',
+      features: ['Co-ownership hub model', 'OCPP 1.6 cloud billing', 'High-density highway location', '24x7 MNIL maintenance'],
+      usage: 'Highway rest stop, food courts, intercity corridor',
+      image: zenergize60
+    },
+    {
+      id: 'agra-expressway',
+      type: 'dc',
+      name: 'Agra Expressway Hub (180 kW Ultra Fast)',
+      power: '180 kW Total Fast Charging',
+      voltage: '415V Dedicated HT Grid',
+      connector: 'Triple CCS2 Liquid-Cooled Guns',
+      efficiency: '97%',
+      features: ['High-traffic express corridor', 'Sub-20 min charging', '88% funded', 'Direct monthly NEFT yield'],
+      usage: 'Highway Plazas, Expressways, Tourist Corridors',
+      image: zenergize60
+    },
+    {
+      id: 'kurukshetra-cluster',
+      type: 'ac',
+      name: 'Kurukshetra Cluster (4 × 7.4 kW AC)',
+      power: '29.6 kW Total Grid Output',
+      voltage: '230V / 415V Commercial Grid',
+      connector: '4 × Type 2 Sockets',
+      efficiency: '97.5%',
+      features: ['Destination hotel charging', 'Overnight dwell time', 'Smart RFID cards', 'Zero maintenance liability'],
+      usage: 'Hotel, Retail Malls, Commercial Properties',
+      image: acCharger
+    },
+    {
+      id: 'raebareli-depot',
+      type: 'dc',
+      name: 'Rae Bareli Fleet Depot (6 × 30 kW)',
+      power: '180 kW Heavy Fleet Grid',
+      voltage: '415V Three Phase Industrial',
+      connector: '6 × CCS2 High Cycle Guns',
+      efficiency: '95.5%',
+      features: ['Dedicated logistics fleet', 'Predictable shift charging', 'B2B anchor contracts', '72% funded'],
+      usage: 'Fleet & Logistics, Industrial Depots',
+      image: dcCharger
+    },
+    {
       id: 'ac7',
       type: 'ac',
       name: 'MegaCharge 7.4 kW AC Smart Box',
@@ -44,7 +93,32 @@ const Products = () => {
       connector: 'Type 2 plug with 5m cable',
       efficiency: '97%',
       features: ['RFID Authorization', 'Wi-Fi / Bluetooth Integration', 'App Schedule Control', 'Ergonomic Wall Mount'],
-      usage: 'Residential housing, private villa parking, workplace grids'
+      usage: 'Residential housing, private villa parking, workplace grids',
+      image: acCharger
+    },
+    {
+      id: 'ac11',
+      type: 'ac',
+      name: 'MegaCharge Premium 11 kW AC Wallbox',
+      power: '11 kW (Three Phase 16A)',
+      voltage: '415V AC ± 10%',
+      connector: 'Type 2 plug with 5m cable',
+      efficiency: '97%',
+      features: ['Dynamic Load Balancing', 'Wi-Fi / Bluetooth Integration', 'App Schedule Control', 'Ergonomic Wall Mount'],
+      usage: 'Private villas, commercial workplaces, hotels',
+      image: acCharger
+    },
+    {
+      id: 'ac22',
+      type: 'ac',
+      name: 'MegaCharge Dual 22 kW AC Commercial',
+      power: '22 kW (Three Phase Split)',
+      voltage: '415V AC ± 10%',
+      connector: 'Dual Type 2 Sockets',
+      efficiency: '97.5%',
+      features: ['Dual RFID Authentication', 'OCPP 1.6 Billing System', 'Simultaneous Dual Car Charging', 'Weatherproof Casing'],
+      usage: 'Commercial complexes, mall parking, tech parks',
+      image: acCharger
     },
     {
       id: 'dc30',
@@ -55,12 +129,13 @@ const Products = () => {
       connector: 'Single CCS2 Gun',
       efficiency: '95%',
       features: ['OCPP 1.6 cloud sync', 'Intelligent power distribution', '7-inch LCD interface', 'Emergency stop mechanism'],
-      usage: 'Office fleet yards, retail store side-bays, hotel valet parking'
+      usage: 'Office fleet yards, retail store side-bays, hotel valet parking',
+      image: dcCharger
     },
     {
       id: 'dc60',
       type: 'dc',
-      name: 'MegaCharge 60 kW Dual Gun DC Charger',
+      name: 'MegaCharge 60 kW Dual Gun DC Fast Charger',
       power: '60 kW (Three Phase split)',
       voltage: '415V AC ± 10%',
       connector: 'Dual CCS2 Guns',
@@ -70,10 +145,22 @@ const Products = () => {
       image: zenergize60
     },
     {
+      id: 'dc120',
+      type: 'dc',
+      name: 'MegaCharge 120 kW High-Power DC Charger',
+      power: '120 kW Ultra Rapid',
+      voltage: '415V AC ± 10% LT/HT',
+      connector: 'Dual CCS2 High-Power Guns',
+      efficiency: '96.5%',
+      features: ['Liquid-cooled power modules', 'Sub-20 minute charging', '24x7 remote telemetry', 'Modular power cabinet'],
+      usage: 'Highways, logistics depots, transit corridors',
+      image: zenergize60
+    },
+    {
       id: 'dc240',
       type: 'dc',
-      name: 'MegaCharge 120 kW - 240 kW Dual Gun DC Charger',
-      power: '120 kW - 240 kW Ultra Power',
+      name: 'MegaCharge 240 kW Liquid-Cooled Hyper Charger',
+      power: '240 kW Ultra Power',
       voltage: '415V AC ± 10%',
       connector: 'Dual CCS2 High-Power Guns',
       efficiency: '96.8%',
@@ -124,7 +211,7 @@ const Products = () => {
         <div className="absolute inset-0 bg-gradient-radial from-megacharge-green to-transparent opacity-10 blur-3xl pointer-events-none" />
         
         <div className="max-w-7xl mx-auto relative z-10">
-          <h1 className="text-white text-4xl sm:text-5xl lg:text-7xl font-extrabold font-poppins leading-none tracking-tight">
+          <h1 className="text-white text-3xl sm:text-4xl lg:text-5xl font-extrabold font-montserrat leading-tight tracking-tight">
             Rent Smart Chargers for <br />
             <span className="text-gradient-green">Your EV Infrastructure</span>
           </h1>
@@ -185,15 +272,17 @@ const Products = () => {
                   </div>
                   
                   {/* Product Charger Image */}
-                  <div className="w-full h-64 mb-6 overflow-hidden rounded-2xl border border-slate-200 shadow-sm relative group bg-gradient-to-b from-slate-50 to-slate-100 flex items-center justify-center">
+                  <Link to={`/chargers/${charger.id}`} className="block w-full h-64 mb-6 overflow-hidden rounded-2xl border border-slate-200 shadow-sm relative group bg-gradient-to-b from-slate-50 to-slate-100 flex items-center justify-center">
                     <img 
                       src={charger.image || (charger.type === 'ac' ? acCharger : dcCharger)} 
                       alt={charger.name} 
                       className="h-full object-contain p-6 transition-transform duration-500 group-hover:scale-105"
                     />
-                  </div>
+                  </Link>
                   
-                  <h3 className="text-slate-900 text-2xl font-extrabold mb-4">{charger.name}</h3>
+                  <Link to={`/chargers/${charger.id}`}>
+                    <h3 className="text-slate-900 text-lg sm:text-xl font-bold font-montserrat mb-3 hover:text-megacharge-brand transition-colors line-clamp-1">{charger.name}</h3>
+                  </Link>
                   
                   <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs font-mono mb-6 space-y-2 text-slate-600">
                     <div className="flex justify-between">
@@ -211,7 +300,7 @@ const Products = () => {
                   </div>
 
                   <h5 className="text-slate-900 font-bold text-xs uppercase tracking-wider mb-3">Key Integrations:</h5>
-                  <ul className="flex flex-col gap-2 mb-8 text-xs text-slate-600 font-mono">
+                  <ul className="flex flex-col gap-2 mb-6 text-xs text-slate-600 font-mono">
                     {charger.features.map((feat, index) => (
                       <li key={index} className="flex items-center gap-2">
                         <span className={charger.type === 'ac' ? 'text-megacharge-green' : 'text-megacharge-orange'}>&bull;</span>
@@ -221,9 +310,16 @@ const Products = () => {
                   </ul>
                 </div>
 
-                <div className="border-t border-slate-100 pt-6 mt-6">
+                <div className="border-t border-slate-100 pt-5 mt-4">
                   <span className="text-[10px] text-slate-500 uppercase block font-mono mb-1">Recommended Deployment</span>
-                  <span className="text-slate-900 text-xs font-semibold leading-relaxed block">{charger.usage}</span>
+                  <span className="text-slate-900 text-xs font-semibold leading-relaxed block mb-5">{charger.usage}</span>
+                  
+                  <Link 
+                    to={`/chargers/${charger.id}`}
+                    className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-megacharge-brand to-megacharge-orange-dk text-white font-extrabold text-xs uppercase tracking-wider py-3.5 rounded-xl transition-all duration-300 hover:scale-[1.02] shadow-sm hover:shadow-glow-orange"
+                  >
+                    View Full Specifications &amp; Pricing &rarr;
+                  </Link>
                 </div>
               </motion.div>
             ))}
@@ -237,7 +333,7 @@ const Products = () => {
           {...fadeInUp}
           className="text-center max-w-2xl mx-auto mb-16"
         >
-          <h2 className="text-slate-900 text-3xl font-extrabold">Hardware Technical Comparison</h2>
+          <h2 className="text-slate-900 text-2xl sm:text-3xl font-extrabold font-montserrat">Hardware Technical Comparison</h2>
           <p className="text-slate-600 text-xs sm:text-sm mt-3 leading-relaxed">
             Detailed parameter grid detailing output thresholds, protections, and software configurations for our hardware fleet.
           </p>
@@ -318,7 +414,7 @@ const Products = () => {
           {...fadeInUp}
           className="text-center mb-16"
         >
-          <h2 className="text-slate-900 text-3xl font-extrabold">Charger Hardware FAQs</h2>
+          <h2 className="text-slate-900 text-2xl sm:text-3xl font-extrabold font-montserrat">Charger Hardware FAQs</h2>
         </motion.div>
 
         <div className="flex flex-col gap-5">
