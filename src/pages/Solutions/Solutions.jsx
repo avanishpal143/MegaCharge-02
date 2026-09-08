@@ -37,24 +37,6 @@ const staggerContainer = {
 ========================================== */
 const CHARGERS_DATASET = [
   {
-    id: 'portable3',
-    type: 'portable',
-    name: 'MegaCharge Portable Go 3.3 kW',
-    power: '3.3 kW (Single Phase 15A)',
-    voltage: '230V AC ± 15%',
-    connector: '16A 3-Pin Plug to Type 2',
-    efficiency: '98%',
-    features: ['Overcurrent Protection', 'Smart LED status indicator', '5m robust cable', 'Compact design'],
-    usage: 'Home Charging, Emergency Portable',
-    priceVal: 490,
-    priceStr: '₹490/month',
-    purchasePrice: '₹12,990',
-    rating: 4.4,
-    reviews: 190,
-    capacityGroup: '3.3 kW',
-    connectorGroup: 'Type 2'
-  },
-  {
     id: 'ac7',
     type: 'ac',
     name: 'MegaCharge 7.4 kW AC Smart Box',
@@ -542,7 +524,6 @@ const Solutions = () => {
               {expandedFilterSections.type && (
                 <div className="flex flex-col gap-2.5 pl-1">
                   {[
-                    { label: 'Portable Chargers', value: 'portable' },
                     { label: 'Smart AC Wallboxes', value: 'ac' },
                     { label: 'DC Fast Chargers', value: 'dc' }
                   ].map(opt => (
@@ -571,7 +552,7 @@ const Solutions = () => {
               </button>
               {expandedFilterSections.capacity && (
                 <div className="flex flex-col gap-2.5 pl-1">
-                  {['3.3 kW', '7.4 kW', '11 kW', '22 kW', '30 kW', '60 kW', '120 kW', '240 kW'].map(cap => (
+                  {['7.4 kW', '11 kW', '22 kW', '30 kW', '60 kW', '120 kW', '240 kW'].map(cap => (
                     <label key={cap} className="flex items-center gap-2 text-xs text-slate-600 cursor-pointer hover:text-slate-900 select-none">
                       <input 
                         type="checkbox" 
@@ -872,8 +853,8 @@ const Solutions = () => {
                           {/* Info Deck */}
                           <div className={`${viewMode === 'list' ? 'md:col-span-9 flex flex-col justify-between' : ''}`}>
                             <div className="flex items-center gap-2 mb-2 flex-wrap">
-                              <span className={`px-2.5 py-1 rounded-md text-[9px] font-extrabold uppercase tracking-wider ${charger.type === 'portable' ? 'bg-purple-100 text-purple-700' : charger.type === 'ac' ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'}`}>
-                                {charger.type === 'portable' ? 'Portable' : charger.type === 'ac' ? 'AC Wallbox' : 'DC Fast'}
+                              <span className={`px-2.5 py-1 rounded-md text-[9px] font-extrabold uppercase tracking-wider ${charger.type === 'ac' ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'}`}>
+                                {charger.type === 'ac' ? 'AC Wallbox' : 'DC Fast'}
                               </span>
                               <span className="text-slate-400 text-[10px] font-bold font-mono">{charger.power}</span>
                             </div>
@@ -1338,7 +1319,6 @@ const Solutions = () => {
                   <span className="block font-bold text-xs uppercase tracking-wider text-slate-900 mb-2">Product Type</span>
                   <div className="flex flex-col gap-2">
                     {[
-                      { label: 'Portable Chargers', value: 'portable' },
                       { label: 'Smart AC Wallboxes', value: 'ac' },
                       { label: 'DC Fast Chargers', value: 'dc' }
                     ].map(opt => (
@@ -1359,7 +1339,7 @@ const Solutions = () => {
                 <div className="border-b border-slate-100 pb-3">
                   <span className="block font-bold text-xs uppercase tracking-wider text-slate-900 mb-2">Capacity</span>
                   <div className="flex flex-col gap-2">
-                    {['3.3 kW', '7.4 kW', '11 kW', '22 kW', '30 kW', '60 kW', '120 kW', '240 kW'].map(cap => (
+                    {['7.4 kW', '11 kW', '22 kW', '30 kW', '60 kW', '120 kW', '240 kW'].map(cap => (
                       <label key={cap} className="flex items-center gap-2 text-xs text-slate-600 cursor-pointer">
                         <input 
                           type="checkbox" 

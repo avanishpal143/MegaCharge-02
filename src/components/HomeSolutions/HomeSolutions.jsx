@@ -11,16 +11,16 @@ import zenergize60 from '../../assets/zenergize_60.jpg';
 
 const FEATURED_CHARGERS = [
   {
-    id: 'portable3',
-    type: 'Portable',
-    name: 'MegaCharge Portable Go 3.3 kW',
-    capacity: '3.3 kW Single Phase',
-    connector: '16A Plug to Type 2',
-    rent: '₹490/mo',
-    rating: 4.4,
-    reviews: 190,
+    id: 'ac22',
+    type: 'AC Commercial',
+    name: 'MegaCharge Dual 22 kW AC Commercial',
+    capacity: '22 kW Three Phase',
+    connector: 'Dual Type 2 Sockets',
+    rent: '₹2,990/mo',
+    rating: 4.7,
+    reviews: 86,
     isAC: true,
-    highlight: 'Best for Home & Emergency'
+    highlight: 'Best for Workplaces & Fleets'
   },
   {
     id: 'ac7',

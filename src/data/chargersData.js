@@ -668,7 +668,7 @@ export const ALL_PRODUCTS = [
         sub: 'Luxury EV Owner, Mumbai · 6 months'
       }
     ],
-    relatedIds: ['ac7', 'ac22', 'portable3']
+    relatedIds: ['ac7', 'ac22', 'dc30']
   },
 
   {
@@ -732,69 +732,6 @@ export const ALL_PRODUCTS = [
       }
     ],
     relatedIds: ['ac7', 'dc30', 'kurukshetra-cluster']
-  },
-
-  {
-    id: 'portable3',
-    type: 'portable',
-    name: 'MegaCharge Portable Go 3.3 kW',
-    heroTitle: 'MegaCharge Portable Go 3.3 kW',
-    badge: 'PORTABLE TRAVEL',
-    kw: '3.3 kW Plug-in',
-    tagline: 'Ultra-portable 16A 3-pin plug-in EV charger for road trips, vacation homes, and emergency top-ups anywhere in India.',
-    tags: ['PLUG & PLAY', 'TRAVEL READY'],
-    status: 'In Stock',
-    location: 'Trunk Portable, Farmhouses, Emergency Backups',
-    hardware: 'MegaCharge Portable Go IP67 Unit',
-    liveSince: 'Consumer Standard',
-    tariff: '₹490 / month lease',
-    omTerm: '2 Years Replacement Guarantee',
-    minTicket: '₹490/mo',
-    fundedAmount: '₹12,990',
-    targetAmount: '₹12,990',
-    fundedPct: 100,
-    daysLeft: 'SHIPS TODAY',
-    coOwners: 540,
-    uptime: '99.9%',
-    unitCount: '16A 3-Pin to Type 2',
-    power: '3.3 kW (Single Phase 15A/16A)',
-    voltage: '230V AC ± 15%',
-    connector: '16A 3-Pin Power Plug to Type 2',
-    efficiency: '98%',
-    purchasePrice: '₹12,990',
-    hubCost: 12990,
-    costBreakdown: [
-      { item: 'Portable Smart In-Cable Control Box', cost: '₹8,990' },
-      { item: '5m Heavy-Duty Copper Cable', cost: '₹2,500' },
-      { item: 'Shockproof Travel Carry Bag', cost: '₹1,500' }
-    ],
-    offers: [
-      { title: 'Any 16A Wall Socket', desc: 'Plugs directly into common geyser/AC power sockets' },
-      { title: 'Zero Installation Required', desc: 'Simply keep in your boot and charge on the move' }
-    ],
-    gallery: [
-      { src: acCharger, cap: 'COMPACT WATERPROOF PORTABLE IN-LINE UNIT', label: '01' },
-      { src: acChargerReal, cap: 'PLUGS INTO ANY STANDARD 16A DOMESTIC SOCKET', label: '02' }
-    ],
-    bandImage: bannerImg,
-    bandTitle: 'Peace of Mind in Your Car Trunk',
-    bandDesc: 'Never experience range anxiety. Whether you visit a remote farmhouse or highway hotel, you can always plug in.',
-    returns: [
-      { yr: '2Y', gain: '+15%', baseH: 64, retH: 72 },
-      { yr: '3Y', gain: '+28%', baseH: 64, retH: 88 },
-      { yr: '4Y', gain: '+40%', baseH: 64, retH: 104 },
-      { yr: '5Y', gain: '+55%', baseH: 64, retH: 125 }
-    ],
-    chips: [490, 980, 1960, 5000],
-    reviews: [
-      {
-        stars: 5,
-        quote: 'Carried it on our road trip to Himachal Pradesh. Charged at every hotel without any issues.',
-        author: 'Varun Nair',
-        sub: 'EV Traveler, Delhi · 5 months'
-      }
-    ],
-    relatedIds: ['ac7', 'ac11', 'dc30']
   }
 ];
 

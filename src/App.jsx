@@ -13,6 +13,7 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
+  Navigate,
   useLocation,
 } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
@@ -27,7 +28,6 @@ import PageTransition from './components/PageTransition/PageTransition';
 
 /* Route Pages */
 import Home from './pages/Home/Home';
-import About from './pages/About/About';
 import Products from './pages/Products/Products';
 import Solutions from './pages/Solutions/Solutions';
 import NetworkPage from './pages/Network/NetworkPage';
@@ -62,7 +62,7 @@ const AnimatedRoutes = () => {
     <AnimatePresence mode="wait" initial={false}>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageTransition><Home /></PageTransition>} />
-        <Route path="/about" element={<PageTransition><About /></PageTransition>} />
+        <Route path="/about" element={<Navigate to="/" replace />} />
         <Route path="/products" element={<PageTransition><Products /></PageTransition>} />
         <Route path="/solutions" element={<PageTransition><Solutions /></PageTransition>} />
         <Route path="/chargers/:id" element={<PageTransition><ProductDetailPage /></PageTransition>} />

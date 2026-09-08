@@ -37,7 +37,6 @@ const Footer = () => {
             <h5 className="text-white font-bold text-sm mb-4 uppercase tracking-wider font-montserrat">Quick Links</h5>
             <ul className="flex flex-col gap-3">
               <li><Link to="/" className="footer-link text-sm">Home</Link></li>
-              <li><Link to="/about" className="footer-link text-sm">About Us</Link></li>
               <li><Link to="/network" className="footer-link text-sm">Charging Network</Link></li>
               <li><Link to="/contact" className="footer-link text-sm">Contact Us</Link></li>
             </ul>

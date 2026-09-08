@@ -99,7 +99,6 @@ const Navbar = () => {
   const isChargersActive = ['/solutions', '/products'].includes(location.pathname);
   const isPartnersActive = ['/host-a-site', '/host-site', '/franchise'].includes(location.pathname);
   const isNetworkActive = location.pathname === '/network';
-  const isAboutActive = location.pathname === '/about';
   const isContactActive = location.pathname === '/contact';
 
   return (
@@ -198,15 +197,6 @@ const Navbar = () => {
               </Link>
             </li>
 
-            {/* 5. ABOUT (Direct Link) */}
-            <li>
-              <Link
-                to="/about"
-                className={`top-link ${isAboutActive ? 'current' : ''}`}
-              >
-                About
-              </Link>
-            </li>
 
             {/* 6. CONTACT US (Direct Link) */}
             <li>
@@ -317,13 +307,6 @@ const Navbar = () => {
           Network
         </Link>
 
-        <Link
-          className="drawer-direct-link"
-          to="/about"
-          onClick={() => setIsDrawerOpen(false)}
-        >
-          About
-        </Link>
 
         <Link
           className="drawer-direct-link"
