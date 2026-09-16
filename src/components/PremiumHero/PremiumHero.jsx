@@ -44,7 +44,7 @@ const PremiumHero = () => {
       power: "60 kW Dual Gun DC",
       rent: "₹18,990/mo",
       image: zenergize60,
-      features: ["Dual CCS2 Guns", "Dynamic Load Sharing", "OCPP 1.6 Billing System"],
+      features: ["Dual CCS2 Guns", "Dynamic Load Sharing", "OCPP 1.6"],
       badge: "Most Selected"
     },
     {
@@ -119,7 +119,7 @@ const PremiumHero = () => {
           {/* Main heading — GSAP animated */}
           <div ref={titleRef} className="overflow-hidden" style={{ perspective: '800px' }}>
             <h1 className="text-megacharge-heading font-black font-montserrat leading-[1.05] tracking-tight text-[clamp(1.8rem,4vw,3.2rem)]">
-              {["OWN & RENT", "YOUR EV", "CHARGING STATION."].map((line, li) => (
+              {["OWN", "YOUR EV", "CHARGING STATION."].map((line, li) => (
                 <span key={li} className="block">
                   {line.split(' ').map((word, wi) => (
                     <span key={wi} className="inline-block whitespace-nowrap mr-[0.25em] overflow-hidden">
@@ -142,7 +142,7 @@ const PremiumHero = () => {
             transition={{ duration: 0.7, delay: 0.8 }}
             className="text-megacharge-paragraph font-inter text-base md:text-lg leading-relaxed max-w-[580px]"
           >
-            Partner with MegaCharge to launch premium EV charging stations on rent. <br />Earn consistent monthly income through Rental Income
+            Partner with MegaCharge to launch premium EV charging stations. <br />Earn consistent monthly income.
           </motion.p>
 
           {/* CTA buttons */}
@@ -234,12 +234,6 @@ const PremiumHero = () => {
                 <h3 className="text-[#402e32] font-black text-base md:text-lg font-montserrat leading-tight transition-colors">
                   {SHOWCASE_CHARGERS[selectedCharger].name}
                 </h3>
-                <div className="flex flex-col items-end shrink-0">
-                  <span className="text-slate-400 text-[8px] uppercase tracking-wider font-mono">Lease Rate</span>
-                  <span className="text-[#F18321] font-black text-sm md:text-base font-mono leading-none">
-                    {SHOWCASE_CHARGERS[selectedCharger].rent}
-                  </span>
-                </div>
               </div>
               
               <div className="border-t border-slate-100" />

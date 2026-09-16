@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaLinkedin, FaInstagram, FaFacebook, FaTwitter, FaWhatsapp, FaEnvelope, FaMapMarkerAlt, FaPhoneAlt } from 'react-icons/fa';
+import { FaLinkedin, FaInstagram, FaFacebook, FaTwitter, FaWhatsapp, FaPhoneAlt } from 'react-icons/fa';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({ name: '', phone: '', email: '', location: '', message: '' });
@@ -28,14 +28,14 @@ const ContactForm = () => {
         >
           <div>
             <span className="text-megacharge-brand text-xs font-bold uppercase tracking-widest bg-megacharge-brand bg-opacity-5 border border-megacharge-brand border-opacity-20 px-4 py-1.5 rounded-full inline-block mb-4 font-mono">
-              Rental & Support Registry
+              Support & Inquiry Registry
             </span>
             <h2 className="text-megacharge-heading text-3xl sm:text-[32px] font-extrabold leading-tight font-poppins">
-              Ready to Rent an<br />
+              Ready to Own an<br />
               <span className="bg-gradient-to-r from-[#F18321] to-[#832800] bg-clip-text text-transparent">EV Charging Station?</span>
             </h2>
             <p className="text-megacharge-paragraph text-sm leading-relaxed mt-4">
-              Partner with MegaCharge to launch premium EV charging spaces. Provide your coordinates for a free structural assessment and customized rental proposal.
+              Partner with MegaCharge to launch premium EV charging spaces. Provide your coordinates for a free structural assessment and customized proposal.
             </p>
           </div>
 
@@ -48,26 +48,6 @@ const ContactForm = () => {
               <div className="ml-3">
                 <span className="text-[10px] text-slate-500 block font-mono uppercase tracking-wider leading-tight">Helpline Number</span>
                 <span className="text-megacharge-heading text-sm font-bold">+91 92895 55090</span>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-4.5">
-              <div className="p-3.5 bg-megacharge-brand bg-opacity-10 text-megacharge-brand rounded-2xl border border-megacharge-brand border-opacity-20 shadow-glow-orange">
-                <FaEnvelope className="w-4 h-4" />
-              </div>
-              <div className="ml-3">
-                <span className="text-[10px] text-slate-500 block font-mono uppercase tracking-wider leading-tight">Corporate Email</span>
-                <span className="text-megacharge-heading text-sm font-bold">rentals@megacharge.in</span>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-4.5">
-              <div className="p-3.5 bg-megacharge-brand bg-opacity-10 text-megacharge-brand rounded-2xl border border-megacharge-brand border-opacity-20 shadow-glow-orange">
-                <FaMapMarkerAlt className="w-4 h-4" />
-              </div>
-              <div className="ml-3">
-                <span className="text-[10px] text-slate-500 block font-mono uppercase tracking-wider leading-tight">Registered Headquarters</span>
-                <span className="text-megacharge-heading text-sm font-bold">MNIL Holdings Corporate Plazas, Gurugram, Haryana</span>
               </div>
             </div>
           </div>

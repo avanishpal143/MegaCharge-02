@@ -78,13 +78,13 @@ const HomeSolutions = () => {
           className="text-center max-w-3xl mx-auto mb-16"
         >
           <div className="inline-flex items-center gap-2 bg-[#F18321]/10 text-[#F18321] border border-[#F18321]/15 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
-            <Zap size={12} className="fill-current" /> Leasing Catalog
+            <Zap size={12} className="fill-current" /> Charger Catalog
           </div>
           <h2 className="text-slate-900 text-3xl sm:text-5xl font-extrabold font-montserrat leading-tight">
-            Lease Premium <span className="text-[#F18321]">EV Charging Solutions</span>
+            <span className="text-[#F18321]">EV Charging Solutions</span>
           </h2>
           <p className="text-slate-500 text-sm sm:text-base leading-relaxed mt-4">
-            Explore our most popular smart charger rentals, featuring live UPI/RFID billing telemetry, IP54 weatherproofing, and 24/7 MNIL engineering maintenance support.
+            Explore our most popular smart chargers, featuring live UPI/RFID billing telemetry, IP54 weatherproofing, and 24/7 engineering maintenance support.
           </p>
         </motion.div>
 
@@ -136,29 +136,17 @@ const HomeSolutions = () => {
                 </div>
 
                 {/* Charger Title */}
-                <h3 className="text-slate-900 font-extrabold text-base mb-3 leading-snug line-clamp-1">
+                <h3 className="text-slate-900 font-extrabold text-base mb-6 leading-snug line-clamp-1">
                   {charger.name}
                 </h3>
-
-                {/* Quick specs */}
-                <div className="bg-slate-50 rounded-xl p-3 border border-slate-100 text-[10px] font-mono space-y-1.5 text-slate-500 mb-6">
-                  <div className="flex justify-between">
-                    <span>Connector:</span>
-                    <span className="text-slate-800 font-bold">{charger.connector}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Monthly Lease:</span>
-                    <span className="text-[#F18321] font-bold">{charger.rent}</span>
-                  </div>
-                </div>
               </div>
 
               {/* Action Button */}
               <Link 
-                to="/solutions" 
+                to={`/chargers/${charger.id}`} 
                 className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#F18321] to-[#832800] text-white font-extrabold text-xs uppercase tracking-wider py-3 rounded-xl transition-all duration-300 hover:opacity-90 shadow-sm"
               >
-                Lease Details <ArrowRight size={12} />
+                Buy Now <ArrowRight size={12} />
               </Link>
             </motion.div>
           ))}

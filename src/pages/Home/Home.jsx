@@ -156,8 +156,8 @@ const STEPS = [
   {
     num: "03",
     IconComp: FileText,
-    title: "Rental Proposal",
-    desc: "Receive a customized rental agreement with monthly income projections, hardware specs, and installation timeline."
+    title: "Proposal",
+    desc: "Receive a customized agreement with monthly income projections, hardware specs, and installation timeline."
   },
   {
     num: "04",
@@ -226,7 +226,7 @@ const USE_CASES = [
 
 const FAQS = [
   {
-    q: "How does the charging station rental program work?",
+    q: "How does the charging station program work?",
     a: "MegaCharge provides, installs, and manages EV charging stations on rental models. Property owners (hosts) can rent out a portion of their parking or land, and we handle the grid integration, operations, and support. Hosts receive recurring rental payments or revenue-sharing returns."
   },
   {

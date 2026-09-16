@@ -24,7 +24,7 @@ const Footer = () => {
               />
             </Link>
             <p className="text-megacharge-card text-opacity-80 text-sm leading-relaxed max-w-2xl font-inter">
-              A premium EV infrastructure segment of <strong className="text-white font-bold font-montserrat">Mega Nirman & Industries Limited (MNIL)</strong>. Powering India's electric mobility transition since 1983 with cutting-edge public and residential charger grids. We rent out state-of-the-art charging stations and manage end-to-end installations.
+              A premium EV segment of <strong className="text-white font-bold font-montserrat">Mega Nirman & Industries Limited (MNIL)</strong>. Powering India's electric mobility transition since 1983 with cutting-edge public and residential charger grids. We rent out state-of-the-art charging stations and manage end-to-end installations.
             </p>
           </div>
         </div>
@@ -47,7 +47,6 @@ const Footer = () => {
             <h5 className="text-white font-bold text-sm mb-4 uppercase tracking-wider font-montserrat">Chargers</h5>
             <ul className="flex flex-col gap-3">
               <li><Link to="/products" className="footer-link text-sm">All Chargers</Link></li>
-              <li><Link to="/solutions" className="footer-link text-sm">Rental Solutions</Link></li>
             </ul>
           </div>
 

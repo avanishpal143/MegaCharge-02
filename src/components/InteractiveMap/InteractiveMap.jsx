@@ -2,30 +2,33 @@
  * ========================================
  * InteractiveMap Component
  * Purpose:
- * Renders a stylized vector outline map of
- * India with glowing network hotspots to
- * locate and view live charging station status.
+ * Renders a real interactive geographic map
+ * of India using Leaflet with live charging
+ * station hubs, highway corridors, and telemetry.
  *
  * Developer Notes:
- * Uses custom SVG coordinates and triggers sidebar
- * state updates upon node interaction.
- *
+ * Integrates Leaflet tile layers with custom
+ * animated pulse beacons and hub selection.
  * ========================================
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 
 /* ==========================================
-   METRO HUBS DATA
+   METRO HUBS & HIGHWAY DATA (REAL GEO COORDS)
 ========================================== */
 
 const HUBS_DATA = [
   {
     id: 'delhi',
     name: 'Delhi NCR Hub',
-    coords: { x: 190, y: 150 },
+    lat: 28.6139,
+    lng: 77.2090,
+    type: 'metro',
     stations: [
       { name: 'NSP Cyber Plaza Charger (DC 120kW)', status: 'Active', port: 'Dual CCS2', count: 2 },
       { name: 'Connaught Place Civic Center (DC 60kW)', status: 'Active', port: 'CCS2 / CHAdeMO', count: 1 },
@@ -35,7 +38,9 @@ const HUBS_DATA = [
   {
     id: 'mumbai',
     name: 'Mumbai Metro Grid',
-    coords: { x: 110, y: 280 },
+    lat: 19.0760,
+    lng: 72.8777,
+    type: 'metro',
     stations: [
       { name: 'BKC Commercial Hub (DC 120kW)', status: 'Active', port: 'Dual CCS2', count: 2 },
       { name: 'Nariman Point Public Charging (AC 7.4kW)', status: 'Active', port: 'Type 2', count: 4 },
@@ -45,7 +50,9 @@ const HUBS_DATA = [
   {
     id: 'pune',
     name: 'Pune Industrial Grid',
-    coords: { x: 125, y: 300 },
+    lat: 18.5204,
+    lng: 73.8567,
+    type: 'metro',
     stations: [
       { name: 'Hinjawadi IT Park Charger (DC 60kW)', status: 'Active', port: 'CCS2', count: 1 },
       { name: 'Chakan Manufacturing Hub (DC 120kW)', status: 'Active', port: 'Dual CCS2', count: 2 }
@@ -54,7 +61,9 @@ const HUBS_DATA = [
   {
     id: 'bengaluru',
     name: 'Bengaluru Tech Corridor',
-    coords: { x: 170, y: 380 },
+    lat: 12.9716,
+    lng: 77.5946,
+    type: 'metro',
     stations: [
       { name: 'Whitefield IT Plaza (DC 120kW)', status: 'Active', port: 'Dual CCS2', count: 2 },
       { name: 'Electronic City Corridor (DC 60kW)', status: 'Active', port: 'CCS2', count: 1 },
@@ -64,7 +73,9 @@ const HUBS_DATA = [
   {
     id: 'hyderabad',
     name: 'Hyderabad Ring Road Grid',
-    coords: { x: 190, y: 320 },
+    lat: 17.3850,
+    lng: 78.4867,
+    type: 'metro',
     stations: [
       { name: 'Gachibowli Outer Ring Hub (DC 120kW)', status: 'Active', port: 'Dual CCS2', count: 2 },
       { name: 'HITEC City Corporate Hub (DC 60kW)', status: 'Busy', port: 'CCS2', count: 1 }
@@ -73,7 +84,9 @@ const HUBS_DATA = [
   {
     id: 'chennai',
     name: 'Chennai Port & Corridor',
-    coords: { x: 200, y: 395 },
+    lat: 13.0827,
+    lng: 80.2707,
+    type: 'metro',
     stations: [
       { name: 'OMR Expressway Hub (DC 120kW)', status: 'Active', port: 'Dual CCS2', count: 2 },
       { name: 'Guindy Industrial Park (AC 7.4kW)', status: 'Active', port: 'Type 2', count: 4 }
@@ -82,7 +95,9 @@ const HUBS_DATA = [
   {
     id: 'kolkata',
     name: 'Kolkata East Corridor',
-    coords: { x: 330, y: 220 },
+    lat: 22.5726,
+    lng: 88.3639,
+    type: 'metro',
     stations: [
       { name: 'Salt Lake Sector V Grid (DC 60kW)', status: 'Active', port: 'CCS2', count: 1 },
       { name: 'New Town Commercial Center (DC 120kW)', status: 'Active', port: 'Dual CCS2', count: 2 }
@@ -91,7 +106,9 @@ const HUBS_DATA = [
   {
     id: 'nh44',
     name: 'NH44 Highway Corridor',
-    coords: { x: 185, y: 230 },
+    lat: 29.3909,
+    lng: 76.9635,
+    type: 'highway',
     stations: [
       { name: 'Highway Stop Plaza - Hub 01 (DC 180kW)', status: 'Active', port: 'Triple Gun CCS2', count: 3 },
       { name: 'Highway Stop Plaza - Hub 02 (DC 120kW)', status: 'Active', port: 'Dual CCS2', count: 2 }
@@ -99,17 +116,21 @@ const HUBS_DATA = [
   }
 ];
 
-/* ==========================================
-   INTERACTIVE MAP COMPONENT
-========================================== */
+// Corridor connection routes
+const CORRIDOR_ROUTES = [
+  // North-South (NH44 through Delhi to Bengaluru & Chennai)
+  [[29.3909, 76.9635], [28.6139, 77.2090], [17.3850, 78.4867], [12.9716, 77.5946], [13.0827, 80.2707]],
+  // Western Corridor (Delhi to Mumbai & Pune)
+  [[28.6139, 77.2090], [19.0760, 72.8777], [18.5204, 73.8567], [12.9716, 77.5946]],
+  // East Corridor (Delhi to Kolkata)
+  [[28.6139, 77.2090], [22.5726, 88.3639]]
+];
 
 const containerVariants = {
   initial: { opacity: 0 },
   animate: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.06
-    }
+    transition: { staggerChildren: 0.06 }
   }
 };
 
@@ -118,15 +139,100 @@ const cardVariants = {
   animate: {
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.3,
-      ease: 'easeOut'
-    }
+    transition: { duration: 0.3, ease: 'easeOut' }
   }
 };
 
 const InteractiveMap = () => {
   const [selectedHub, setSelectedHub] = useState(HUBS_DATA[0]);
+  const mapContainerRef = useRef(null);
+  const mapRef = useRef(null);
+  const markersRef = useRef({});
+
+  // Initialize Leaflet Map
+  useEffect(() => {
+    if (!mapContainerRef.current || mapRef.current) return;
+
+    // Create Leaflet map centered on India
+    const map = L.map(mapContainerRef.current, {
+      center: [22.5, 79.5],
+      zoom: 5,
+      minZoom: 4,
+      maxZoom: 10,
+      scrollWheelZoom: false,
+      attributionControl: false,
+      zoomControl: true
+    });
+
+    mapRef.current = map;
+
+    // Add high-resolution clean CartoDB Voyager tile layer
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+      maxZoom: 19,
+      subdomains: 'abcd'
+    }).addTo(map);
+
+    // Draw Highway Corridor Lines
+    CORRIDOR_ROUTES.forEach(route => {
+      L.polyline(route, {
+        color: '#F18321',
+        weight: 2.5,
+        opacity: 0.65,
+        dashArray: '6, 8',
+        lineCap: 'round'
+      }).addTo(map);
+    });
+
+    // Create markers for each Hub
+    HUBS_DATA.forEach(hub => {
+      const isHighway = hub.type === 'highway';
+      const color = isHighway ? '#832800' : '#F18321';
+
+      const customIcon = L.divIcon({
+        className: 'custom-hub-marker',
+        html: `
+          <div class="hub-marker-container" id="marker-${hub.id}" style="position: relative; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+            <div class="hub-beacon-ring" style="position: absolute; width: 30px; height: 30px; border-radius: 50%; background: ${color}; opacity: 0.3; animation: hubPing 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;"></div>
+            <div class="hub-marker-core" style="position: relative; width: 15px; height: 15px; border-radius: 50%; background: ${color}; border: 2.5px solid #ffffff; box-shadow: 0 3px 10px rgba(0,0,0,0.35); transition: transform 0.2s;"></div>
+            <div class="hub-marker-tooltip" style="position: absolute; bottom: -18px; white-space: nowrap; font-size: 10px; font-weight: 700; color: #1e293b; background: rgba(255,255,255,0.92); backdrop-filter: blur(4px); padding: 1px 6px; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.15); pointer-events: none; border: 1px solid rgba(0,0,0,0.06);">
+              ${hub.name.split(' ')[0]}
+            </div>
+          </div>
+        `,
+        iconSize: [34, 34],
+        iconAnchor: [17, 17]
+      });
+
+      const marker = L.marker([hub.lat, hub.lng], { icon: customIcon }).addTo(map);
+
+      marker.on('click', () => {
+        setSelectedHub(hub);
+        map.flyTo([hub.lat, hub.lng], 6.5, { duration: 0.8 });
+      });
+
+      markersRef.current[hub.id] = marker;
+    });
+
+    // Cleanup on unmount
+    return () => {
+      map.remove();
+      mapRef.current = null;
+    };
+  }, []);
+
+  // Update selection effect on map
+  const handleSelectHub = (hub) => {
+    setSelectedHub(hub);
+    if (mapRef.current) {
+      mapRef.current.flyTo([hub.lat, hub.lng], 6.5, { duration: 0.8 });
+    }
+  };
+
+  const handleResetView = () => {
+    if (mapRef.current) {
+      mapRef.current.flyTo([22.5, 79.5], 5, { duration: 0.8 });
+    }
+  };
 
   return (
     <motion.div 
@@ -134,104 +240,61 @@ const InteractiveMap = () => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: false, amount: 0.15 }}
       transition={{ duration: 0.45, ease: 'easeOut' }}
-      className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-center"
+      className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-stretch"
     >
-      
-      {/* MAP SVG CONTAINER */}
-      <div className="lg:col-span-2 flex justify-center relative bg-megacharge-card border border-megacharge-border p-6 rounded-3xl">
-        
-        {/* Technical Grid Overlay */}
-        <div className="absolute inset-0 grid grid-cols-12 grid-rows-12 gap-0 pointer-events-none opacity-5">
-          {Array.from({ length: 144 }).map((_, i) => (
-            <div key={i} className="border border-white border-dashed"></div>
+      {/* REAL MAP CONTAINER */}
+      <div className="lg:col-span-2 relative bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm flex flex-col min-h-[480px]">
+        {/* CSS Animation Keyframes for map beacons */}
+        <style dangerouslySetInnerHTML={{ __html: `
+          @keyframes hubPing {
+            0% { transform: scale(0.6); opacity: 0.8; }
+            70% { transform: scale(1.8); opacity: 0; }
+            100% { transform: scale(2.2); opacity: 0; }
+          }
+          .custom-hub-marker { background: transparent !important; border: none !important; }
+          .leaflet-container { font-family: inherit; width: 100%; height: 100%; z-index: 10; border-radius: 1.5rem; }
+          .leaflet-control-zoom { border: none !important; box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important; border-radius: 12px !important; overflow: hidden; }
+          .leaflet-control-zoom a { background: #ffffff !important; color: #334155 !important; border: 1px solid #e2e8f0 !important; }
+          .leaflet-control-zoom a:hover { background: #f8fafc !important; color: #F18321 !important; }
+        `}} />
+
+        {/* Quick Hub Selector Pills */}
+        <div className="absolute top-4 left-4 right-16 z-[500] flex gap-2 overflow-x-auto pb-1 scrollbar-none pointer-events-auto">
+          {HUBS_DATA.map(hub => (
+            <button
+              key={hub.id}
+              onClick={() => handleSelectHub(hub)}
+              className={`px-3 py-1.5 rounded-full text-xs font-bold shrink-0 transition-all duration-200 shadow-sm backdrop-blur-md ${
+                selectedHub.id === hub.id 
+                  ? 'bg-gradient-to-r from-[#F18321] to-[#832800] text-white shadow-glow-orange scale-105' 
+                  : 'bg-white/90 text-slate-700 hover:bg-white border border-slate-200/80 hover:border-[#F18321]'
+              }`}
+            >
+              {hub.name.replace(' Hub', '').replace(' Grid', '').replace(' Corridor', '')}
+            </button>
           ))}
         </div>
 
-        <svg 
-          viewBox="0 0 450 480" 
-          fill="none" 
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-full max-w-[450px] relative z-10 filter drop-shadow-[0_0_15px_rgba(64,46,50,0.2)]"
-        >
-          {/* Stylized Outline of India */}
-          <path
-            d="M175 40 L195 60 L185 85 L200 95 L190 120 L210 135 L200 155 L225 175 L255 160 L275 170 L285 190 L320 200 L340 190 L335 225 L360 230 L345 245 L320 235 L300 240 L285 220 L260 230 L220 235 L225 255 L215 270 L220 295 L200 320 L220 345 L205 385 L208 410 L202 430 L192 410 L170 380 L160 360 L135 320 L125 300 L110 280 L108 260 L125 240 L135 210 L115 190 L95 195 L80 180 L82 165 L105 140 L120 145 L135 125 L145 120 L130 95 L140 85 L145 50 L175 40 Z"
-            fill="var(--color-bg-cool)"
-            stroke="var(--color-subheading)"
-            strokeWidth="2"
-            strokeLinejoin="round"
-          />
+        {/* Leaflet Map Div */}
+        <div ref={mapContainerRef} className="w-full h-full min-h-[460px] flex-1 relative z-10" />
 
-          {/* Network Connection Lines */}
-          <path
-            d="M190 150 L185 230 L190 320 L170 380 M110 280 L125 300 L170 380 L200 395 M330 220 L185 230"
-            stroke="rgba(241, 131, 33, 0.25)"
-            strokeWidth="1.5"
-            strokeDasharray="4 4"
-          />
-
-          {/* Plotting Hubs */}
-          {HUBS_DATA.map((hub) => {
-            const isSelected = selectedHub.id === hub.id;
-            return (
-              <g 
-                key={hub.id}
-                onClick={() => setSelectedHub(hub)}
-                className="cursor-pointer group"
-              >
-                {/* Ping Wave */}
-                <circle
-                  cx={hub.coords.x}
-                  cy={hub.coords.y}
-                  r={isSelected ? 10 : 6}
-                  fill={hub.id === 'nh44' ? '#F18321' : '#832800'}
-                  fillOpacity="0.25"
-                  className="animate-ping"
-                  style={{ animationDuration: isSelected ? '1.5s' : '3s' }}
-                />
-                
-                {/* Core Dot */}
-                <circle
-                  cx={hub.coords.x}
-                  cy={hub.coords.y}
-                  r={isSelected ? 6 : 4.5}
-                  fill={hub.id === 'nh44' ? '#F18321' : '#832800'}
-                  className="transition-all duration-300 group-hover:r-6"
-                />
-
-                {/* Inner White Core */}
-                <circle
-                  cx={hub.coords.x}
-                  cy={hub.coords.y}
-                  r="2"
-                  fill="#ffffff"
-                />
-
-                {/* Tooltip text (appears on hover) */}
-                <text
-                  x={hub.coords.x + 10}
-                  y={hub.coords.y + 4}
-                  fill="var(--color-heading)"
-                  fontSize="9"
-                  fontFamily="var(--font-heading)"
-                  fontWeight="bold"
-                  className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none select-none drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)]"
-                >
-                  {hub.name}
-                </text>
-              </g>
-            );
-          })}
-        </svg>
-
-        {/* Legend */}
-        <div className="absolute bottom-4 left-4 flex gap-4 text-xs font-semibold z-20">
-          <div className="flex items-center gap-1.5 text-megacharge-brand">
-            <span className="w-2.5 h-2.5 bg-megacharge-brand rounded-full inline-block"></span> Metro Grid
+        {/* Floating Controls & Legend */}
+        <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between z-[500] pointer-events-none">
+          <div className="flex items-center gap-3 bg-white/95 backdrop-blur-md border border-slate-200/80 px-4 py-2 rounded-2xl shadow-sm pointer-events-auto text-xs font-semibold">
+            <div className="flex items-center gap-1.5 text-[#F18321]">
+              <span className="w-2.5 h-2.5 bg-[#F18321] rounded-full inline-block"></span> Metro Hub
+            </div>
+            <div className="flex items-center gap-1.5 text-[#832800]">
+              <span className="w-2.5 h-2.5 bg-[#832800] rounded-full inline-block"></span> Highway Corridor
+            </div>
           </div>
-          <div className="flex items-center gap-1.5 text-megacharge-icon">
-            <span className="w-2.5 h-2.5 bg-megacharge-icon rounded-full inline-block"></span> Highway Corridor
-          </div>
+
+          <button
+            onClick={handleResetView}
+            className="bg-white/95 hover:bg-white text-slate-700 hover:text-[#F18321] border border-slate-200 px-3 py-1.5 rounded-xl shadow-sm text-xs font-bold pointer-events-auto transition-all duration-200"
+          >
+            Reset View ⟲
+          </button>
         </div>
       </div>
 
@@ -279,7 +342,6 @@ const InteractiveMap = () => {
           View Full Interactive Finder &rarr;
         </Link>
       </div>
-
     </motion.div>
   );
 };

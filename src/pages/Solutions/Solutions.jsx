@@ -1440,46 +1440,7 @@ const Solutions = () => {
         )}
       </AnimatePresence>
 
-      {/* ROADMAP SECTION (PROCESS ROADMAP) */}
-      <section className="py-24 px-6 bg-white border-y border-slate-200">
-        <div className="max-w-7xl mx-auto">
-          <motion.div 
-            {...fadeInUp}
-            className="text-center max-w-2xl mx-auto mb-16"
-          >
-            <h2 className="text-slate-900 text-3xl font-extrabold">Installation Roadmap to Launch</h2>
-            <p className="text-slate-600 text-xs sm:text-sm mt-3 leading-relaxed">
-              We guide you from property evaluation to full commissioning and digital deployment launch.
-            </p>
-          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <motion.div whileHover={{ y: -5 }} className="p-6 rounded-2xl bg-slate-50 border border-slate-200 shadow-sm">
-              <span className="text-[#F18321] font-bold text-2xl mb-3 block">01. Site Survey</span>
-              <h4 className="text-slate-900 font-extrabold text-sm mb-2">Feasibility Audit</h4>
-              <p className="text-slate-600 text-xs leading-relaxed">MNIL field engineers conduct structural assessments and electrical check audits.</p>
-            </motion.div>
-
-            <motion.div whileHover={{ y: -5 }} className="p-6 rounded-2xl bg-slate-50 border border-slate-200 shadow-sm">
-              <span className="text-[#F18321] font-bold text-2xl mb-3 block">02. Design Approval</span>
-              <h4 className="text-slate-900 font-extrabold text-sm mb-2">Technical Blueprint</h4>
-              <p className="text-slate-600 text-xs leading-relaxed">We outline optimal charger configurations, cabling metrics, and safety isolators.</p>
-            </motion.div>
-
-            <motion.div whileHover={{ y: -5 }} className="p-6 rounded-2xl bg-slate-50 border border-slate-200 shadow-sm">
-              <span className="text-[#F18321] font-bold text-2xl mb-3 block">03. Deployment</span>
-              <h4 className="text-slate-900 font-extrabold text-sm mb-2">Civil Works & Mounts</h4>
-              <p className="text-slate-600 text-xs leading-relaxed">We pour structural base blocks, install couplers, and wire the terminals safely.</p>
-            </motion.div>
-
-            <motion.div whileHover={{ y: -5 }} className="p-6 rounded-2xl bg-slate-50 border border-slate-200 shadow-sm">
-              <span className="text-[#F18321] font-bold text-2xl mb-3 block">04. Telemetry Sync</span>
-              <h4 className="text-slate-900 font-extrabold text-sm mb-2">Live Cloud Config</h4>
-              <p className="text-slate-600 text-xs leading-relaxed">We map the terminal to public directories and connect cloud OCPP billing grids.</p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
 
       {/* SOLUTIONS FAQs */}
       <section className="max-w-4xl mx-auto py-24 px-6">
