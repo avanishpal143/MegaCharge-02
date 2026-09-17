@@ -169,7 +169,7 @@ const Navbar = () => {
                   </span>
                   <span>
                     <b>Host a site</b>
-                    <small>Have land or parking? Zero investment, earn monthly rent</small>
+                    <small>Have land or parking?</small>
                   </span>
                 </Link>
                 <Link className="mi" to="/franchise" onClick={() => setOpenMenu(null)}>

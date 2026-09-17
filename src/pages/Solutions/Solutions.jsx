@@ -464,10 +464,10 @@ const Solutions = () => {
         
         <div className="max-w-7xl mx-auto relative z-10">
           <h1 className="text-white text-3xl sm:text-5xl font-extrabold font-montserrat">
-            EV Charger <span className="text-[#F18321]">Rental Solutions</span>
+            EVCS <span className="text-[#F18321]">Solutions</span>
           </h1>
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto mt-4">
-            Rent premium EV smart charging hardware for your commercial parking properties, residential societies, or fleet depots. Select and filter below to find your setup.
+            Premium EV smart charging hardware for your commercial parking properties, residential societies, or fleet depots. Select and filter below to find your setup.
           </p>
         </div>
       </section>
@@ -524,7 +524,7 @@ const Solutions = () => {
               {expandedFilterSections.type && (
                 <div className="flex flex-col gap-2.5 pl-1">
                   {[
-                    { label: 'Smart AC Wallboxes', value: 'ac' },
+                      { label: 'Smart AC Chargers', value: 'ac' },
                     { label: 'DC Fast Chargers', value: 'dc' }
                   ].map(opt => (
                     <label key={opt.value} className="flex items-center gap-2 text-xs text-slate-600 cursor-pointer hover:text-slate-900 select-none">
@@ -1319,7 +1319,7 @@ const Solutions = () => {
                   <span className="block font-bold text-xs uppercase tracking-wider text-slate-900 mb-2">Product Type</span>
                   <div className="flex flex-col gap-2">
                     {[
-                      { label: 'Smart AC Wallboxes', value: 'ac' },
+                        { label: 'Smart AC Chargers', value: 'ac' },
                       { label: 'DC Fast Chargers', value: 'dc' }
                     ].map(opt => (
                       <label key={opt.value} className="flex items-center gap-2 text-xs text-slate-600 cursor-pointer">

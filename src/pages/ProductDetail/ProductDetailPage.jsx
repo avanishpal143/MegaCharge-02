@@ -230,7 +230,7 @@ const ProductDetailPage = () => {
         
         {/* BREADCRUMB */}
         <div className="crumb">
-          <Link to="/solutions">Rental Solutions</Link>
+          <Link to="/solutions">EVCS Solutions</Link>
           <span>›</span>
           <Link to="/solutions">{isHub ? 'Owned Sites' : 'Charger Hardware'}</Link>
           <span>›</span>

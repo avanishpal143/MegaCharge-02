@@ -102,14 +102,8 @@ const PROPERTY_TYPES = [
 
 const WHY_HOST = [
   {
-    title: '100% Capital Funded by MegaCharge',
-    desc: 'Zero investment from your side. We supply state-of-the-art AC & DC fast chargers, transformer setups, power panels, cabling, and safety barriers.',
-    icon: DollarSign,
-    color: 'emerald'
-  },
-  {
-    title: 'Guaranteed Monthly Rent + Revenue Share',
-    desc: 'Enjoy fixed guaranteed base lease rent every month, plus an additional percentage payout on every kWh power dispensed at your station.',
+    title: 'Monthly Revenue Share',
+    desc: 'Enjoy payout on every kWh power dispensed at your station.',
     icon: TrendingUp,
     color: 'orange'
   },
@@ -133,7 +127,7 @@ const WHY_HOST = [
   },
   {
     title: 'Institutional Backing & Clean Legal Terms',
-    desc: 'Partner directly with Mega Nirman & Industries Ltd (MNIL - BSE 539767). Enjoy clear, transparent 3 to 5-year renewable lease agreements.',
+    desc: 'Partner directly with Mega Nirman & Industries Ltd (MNIL - BSE 539767).',
     icon: CheckCircle2,
     color: 'orange'
   }
@@ -148,21 +142,21 @@ const ONBOARDING_STEPS = [
   },
   {
     step: '02',
-    title: 'Free Technical Survey',
+    title: 'Technical Survey',
     time: 'Within 48 Hours',
     desc: 'Our grid engineers visit your site to inspect transformer load, cable pathway, and bay accessibility.'
   },
   {
     step: '03',
-    title: 'Sign Institutional Lease',
+    title: 'Sign Agreement',
     time: 'Day 3 - 5',
-    desc: 'Formalize a transparent 3-5 year lease with guaranteed monthly rent and revenue-share clauses.'
+    desc: 'Formalize a transparent 3-5 year agreement with revenue-share clauses.'
   },
   {
     step: '04',
     title: 'Civil & Charger Setup',
     time: 'Day 7 - 18',
-    desc: 'MegaCharge pours concrete plinths, pulls HT/LT cabling, installs chargers, and sets up safety bays.'
+    desc: 'MegaCharge installs chargers, and sets up safety bays.'
   },
   {
     step: '05',
@@ -195,7 +189,7 @@ const HOST_FAQS = [
   },
   {
     q: 'How and when do I receive my monthly payouts?',
-    a: 'Your guaranteed base lease rent and revenue share earnings are consolidated and transferred directly via NEFT/RTGS to your registered bank account by the 5th working day of every calendar month, along with a transparent digital statement.'
+    a: 'Your monthly revenue share earnings are transferred directly via NEFT/RTGS to your registered bank account by the 5th working day of every calendar month, along with a transparent digital statement.'
   }
 ];
 
@@ -276,7 +270,7 @@ const HostSitePage = () => {
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-6"
           >
             <Sparkles className="w-3.5 h-3.5" />
-            MegaCharge Grid Partner Program · Zero Capital Expenditure
+            MegaCharge Grid Partner Program
           </motion.div>
 
           <motion.h1
@@ -297,7 +291,7 @@ const HostSitePage = () => {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="text-stone-300 text-base sm:text-lg leading-relaxed max-w-3xl mx-auto mt-6"
           >
-            Have parking bays or commercial roadside land? Partner with MegaCharge (MNIL). We fund 100% of the equipment, civil work, power setup, and 24/7 maintenance while you earn guaranteed monthly rent and recurring power share.
+            Have parking bays or land? Partner with us.
           </motion.p>
 
           {/* Quick Action CTAs */}
@@ -321,30 +315,20 @@ const HostSitePage = () => {
             </a>
           </motion.div>
 
-          {/* 4 Feature Badges */}
+          {/* Feature Badges */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mt-16 max-w-4xl mx-auto text-left"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mt-16 max-w-xl mx-auto text-left"
           >
-            <div className="p-4 sm:p-5 rounded-2xl bg-stone-900/70 border border-stone-800 backdrop-blur-sm">
-              <span className="text-emerald-400 text-2xl font-black font-mono">₹0</span>
-              <p className="text-stone-200 text-xs font-bold mt-1">Host Investment</p>
-              <p className="text-stone-400 text-[11px] mt-0.5 leading-snug">MegaCharge funds 100% of capital</p>
-            </div>
-            <div className="p-4 sm:p-5 rounded-2xl bg-stone-900/70 border border-stone-800 backdrop-blur-sm">
-              <span className="text-[#f0801f] text-2xl font-black font-mono">₹30K - ₹90K+</span>
-              <p className="text-stone-200 text-xs font-bold mt-1">Monthly Host Income</p>
-              <p className="text-stone-400 text-[11px] mt-0.5 leading-snug">Guaranteed lease + session share</p>
-            </div>
             <div className="p-4 sm:p-5 rounded-2xl bg-stone-900/70 border border-stone-800 backdrop-blur-sm">
               <span className="text-emerald-400 text-2xl font-black font-mono">15 - 21 Days</span>
               <p className="text-stone-200 text-xs font-bold mt-1">Fast Commissioning</p>
               <p className="text-stone-400 text-[11px] mt-0.5 leading-snug">From survey to live charging station</p>
             </div>
             <div className="p-4 sm:p-5 rounded-2xl bg-stone-900/70 border border-stone-800 backdrop-blur-sm">
-              <span className="text-[#f0801f] text-2xl font-black font-mono">24 / 7 NOC</span>
+              <span className="text-[#f0801f] text-2xl font-black font-mono">24 / 7</span>
               <p className="text-stone-200 text-xs font-bold mt-1">Zero Maintenance Hassle</p>
               <p className="text-stone-400 text-[11px] mt-0.5 leading-snug">Our engineers handle repairs</p>
             </div>
@@ -364,7 +348,7 @@ const HostSitePage = () => {
             Which Properties Can Host a MegaCharge Station?
           </h2>
           <p className="text-slate-600 text-sm sm:text-base leading-relaxed mt-3">
-            If you have 2 or more parking slots with convenient road access, your property is primed to generate recurring green yield.
+            If you have parking slots with convenient road access, your property is primed to generate recurring green yield.
           </p>
         </motion.div>
 
@@ -548,14 +532,6 @@ const HostSitePage = () => {
 
                 <div className="space-y-3.5 border-t border-stone-800 pt-5 text-xs">
                   <div className="flex justify-between items-center text-stone-300">
-                    <span>Guaranteed Fixed Base Rent:</span>
-                    <span className="text-white font-mono font-bold">₹{calculatedYield.baseRent.toLocaleString('en-IN')}</span>
-                  </div>
-                  <div className="flex justify-between items-center text-stone-300">
-                    <span>Session Revenue Profit Share:</span>
-                    <span className="text-emerald-400 font-mono font-bold">+ ₹{calculatedYield.revenueShare.toLocaleString('en-IN')}</span>
-                  </div>
-                  <div className="flex justify-between items-center text-stone-300">
                     <span>Annual Projected Host Payout:</span>
                     <span className="text-[#f0801f] font-mono font-bold text-sm">₹{calculatedYield.annualTotal.toLocaleString('en-IN')} / yr</span>
                   </div>
@@ -572,9 +548,6 @@ const HostSitePage = () => {
                   >
                     Lock In This Site Proposal <ArrowRight className="w-4 h-4" />
                   </a>
-                  <p className="text-stone-400 text-[11px] text-center mt-3">
-                    Payouts credited monthly. Backed by MNIL institutional agreement.
-                  </p>
                 </div>
               </div>
             </motion.div>
