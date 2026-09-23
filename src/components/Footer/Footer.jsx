@@ -55,7 +55,8 @@ const Footer = () => {
             <h5 className="text-white font-bold text-sm mb-4 uppercase tracking-wider font-montserrat">Grid Partners</h5>
             <ul className="flex flex-col gap-3">
               <li><Link to="/host-a-site" className="footer-link text-sm">Host a Site</Link></li>
-              <li><Link to="/franchise" className="footer-link text-sm">Franchise</Link></li>
+              <li><Link to="/franchise" className="footer-link text-sm">Franchise &amp; Dealership</Link></li>
+              <li><Link to="/live-station" className="footer-link text-sm">Live Stations for Sale</Link></li>
             </ul>
           </div>
 

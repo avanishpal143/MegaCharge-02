@@ -339,6 +339,26 @@ const ProductDetailPage = () => {
               </div>
             </div>
 
+            {/* Live Station Purchase Highlight Banner */}
+            {product.id === 'ac7' && (
+              <div className="p-4 my-4 rounded-2xl bg-gradient-to-r from-[#FFF1DC] to-[#FDEBD6] border border-[#F0D9C3] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-sm">
+                <div>
+                  <span className="text-[10px] font-mono font-bold text-[#8A4B12] uppercase tracking-wider block">
+                    ⚡ Live Earning Station Available
+                  </span>
+                  <b className="text-xs sm:text-sm text-[#2B1D1A] block mt-0.5">
+                    Own this station pre-installed &amp; earn ~₹470/mo payout
+                  </b>
+                </div>
+                <Link
+                  to="/live-station"
+                  className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#EE8A33] to-[#C4600F] text-white text-xs font-bold font-montserrat whitespace-nowrap uppercase tracking-wider shadow-md hover:brightness-105 transition-all"
+                >
+                  View Live Station &rarr;
+                </Link>
+              </div>
+            )}
+
             {/* Funded Progress Card */}
             <div className="funded">
               <div className="funded-top">

@@ -267,6 +267,16 @@ li[data-open="true"] .mega {
   grid-template-columns: 1fr 1fr;
   gap: 12px;
 }
+.mega.partners-dropdown {
+  min-width: min(760px, 94vw);
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 10px;
+}
+@media (max-width: 768px) {
+  .mega.partners-dropdown {
+    grid-template-columns: 1fr;
+  }
+}
 @media (max-width: 640px) {
   .mega.partners-two {
     grid-template-columns: 1fr;

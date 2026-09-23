@@ -939,6 +939,18 @@ const Solutions = () => {
                           >
                             View Product Details <ArrowRight size={12} />
                           </button>
+
+                          {charger.id === 'ac7' && (
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                navigate('/live-station');
+                              }}
+                              className="w-full mt-2 inline-flex items-center justify-center gap-1.5 bg-[#FFF1DC] border border-[#F0D9C3] text-[#8A4B12] font-bold text-[11px] uppercase tracking-wider py-2 rounded-xl hover:bg-[#FDEBD6] transition-all shadow-sm"
+                            >
+                              ⚡ Own Live Station (~₹470/mo)
+                            </button>
+                          )}
                         </div>
                       </motion.div>
                     );

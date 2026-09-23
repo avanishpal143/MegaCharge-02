@@ -1,0 +1,104 @@
+/**
+ * ========================================
+ * Live Station Page Styles
+ * MegaCharge 7.4 kW Live Earning Station
+ * ========================================
+ */
+
+:root {
+  --ls-ground: #FAF7F3;
+  --ls-card: #FFFFFF;
+  --ls-ink: #2B1D1A;
+  --ls-soft: #5A4E48;
+  --ls-mute: #766A63;
+  --ls-line: #ECE6DF;
+  --ls-orange-a: #EE8A33;
+  --ls-orange-b: #C4600F;
+  --ls-peach: #FDF1E6;
+  --ls-green: #1E8A4C;
+}
+
+.live-station-container {
+  background-color: var(--ls-ground);
+  color: var(--ls-ink);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+}
+
+/* Pulse animation for Live status indicator */
+@keyframes livePulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(30, 138, 76, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(30, 138, 76, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(30, 138, 76, 0);
+  }
+}
+
+.live-dot-pulse {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: #1E8A4C;
+  animation: livePulse 2s infinite;
+}
+
+/* Payback progress meter & dashed target marker */
+.meter-bar-wrapper {
+  position: relative;
+  height: 14px;
+  border-radius: 999px;
+  background: #46362F;
+  overflow: visible;
+}
+
+.meter-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #EE8A33, #F6A460);
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.meter-target-marker {
+  position: absolute;
+  top: -8px;
+  bottom: -6px;
+  width: 0;
+  border-left: 2px dashed #ffffff;
+  pointer-events: none;
+}
+
+.meter-target-marker em {
+  position: absolute;
+  top: -18px;
+  left: 6px;
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 700;
+  color: #F6A460;
+  white-space: nowrap;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+/* Sticky Bottom Buy Bar */
+.sticky-buy-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid var(--ls-line);
+  box-shadow: 0 -8px 24px rgba(43, 29, 26, 0.08);
+  transform: translateY(110%);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sticky-buy-bar.visible {
+  transform: translateY(0);
+}
