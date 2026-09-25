@@ -95,17 +95,25 @@
 .brand {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-weight: 800;
-  letter-spacing: 2.4px;
-  font-size: 14px;
   flex: none;
-  color: var(--mega-ink);
   text-decoration: none;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .brand:hover {
   transform: scale(1.03);
+}
+.brand-logo-img {
+  height: 38px;
+  width: auto;
+  max-width: 170px;
+  object-fit: contain;
+  display: block;
+}
+@media (max-width: 768px) {
+  .brand-logo-img {
+    height: 32px;
+    max-width: 140px;
+  }
 }
 
 /* ==========================================

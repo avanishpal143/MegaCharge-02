@@ -108,12 +108,12 @@ const Navbar = () => {
       <header className={`head ${tight ? 'tight' : ''}`} id="head">
         <div className="bar">
           {/* Brand Logo */}
-          <Link className="brand" to="/" aria-label="MegaEV Home">
-            <svg width="27" height="27" viewBox="0 0 32 32" aria-hidden="true">
-              <path d="M4 27V6l11 12" stroke="#1c9d5c" strokeWidth="3.4" fill="none" strokeLinejoin="round" />
-              <path d="M28 5v21L17 14" stroke="#f0801f" strokeWidth="3.4" fill="none" strokeLinejoin="round" />
-            </svg>
-            MEGAEV
+          <Link className="brand" to="/" aria-label="MEGA EV Home">
+            <img 
+              src="/megaev-logo.png" 
+              alt="MEGA EV" 
+              className="brand-logo-img" 
+            />
           </Link>
 
           {/* Primary Nav Items */}
@@ -262,12 +262,12 @@ const Navbar = () => {
         data-on={isDrawerOpen ? 'true' : 'false'}
       >
         <div className="drawer-top">
-          <Link className="brand" to="/" onClick={() => setIsDrawerOpen(false)}>
-            <svg width="25" height="25" viewBox="0 0 32 32" aria-hidden="true">
-              <path d="M4 27V6l11 12" stroke="#1c9d5c" strokeWidth="3.4" fill="none" strokeLinejoin="round" />
-              <path d="M28 5v21L17 14" stroke="#f0801f" strokeWidth="3.4" fill="none" strokeLinejoin="round" />
-            </svg>
-            MEGAEV
+          <Link className="brand" to="/" onClick={() => setIsDrawerOpen(false)} aria-label="MEGA EV Home">
+            <img 
+              src="/megaev-logo.png" 
+              alt="MEGA EV" 
+              className="brand-logo-img" 
+            />
           </Link>
           <button
             type="button"

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { PhoneIcon, IconGoogleMail } from '../CustomIcons/CustomIcons';
 import './Footer.css';
-import fullLogo from '/Screenshot_2026-07-24_at_1.02.52_PM-removebg-preview.png';
+import fullLogo from '/megaev-logo.png';
 
 /* ==========================================
    FOOTER COMPONENT
@@ -16,11 +16,11 @@ const Footer = () => {
         {/* UPPER DECK: BRAND STATEMENT ONLY */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 pb-12 border-b border-megacharge-heading border-opacity-20">
           <div className="lg:col-span-2">
-            <Link to="/" className="flex items-center mb-5">
+            <Link to="/" className="flex items-center mb-5" aria-label="MEGA EV Home">
               <img
                 src={fullLogo}
-                alt="MegaCharge"
-                className="h-12 w-auto object-contain"
+                alt="MEGA EV"
+                className="h-12 md:h-14 w-auto object-contain"
               />
             </Link>
             <p className="text-megacharge-card text-opacity-80 text-sm leading-relaxed max-w-2xl font-inter">
