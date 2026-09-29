@@ -97,7 +97,7 @@ const Navbar = () => {
   };
 
   const isChargersActive = ['/solutions', '/products'].includes(location.pathname);
-  const isPartnersActive = ['/host-a-site', '/host-site', '/franchise', '/live-station', '/live-stations', '/stations-for-sale'].includes(location.pathname);
+  const isPartnersActive = ['/host-a-site', '/host-site', '/franchise'].includes(location.pathname);
   const isNetworkActive = location.pathname === '/network';
   const isContactActive = location.pathname === '/contact';
 
@@ -182,18 +182,6 @@ const Navbar = () => {
                   <span>
                     <b>Franchise &amp; Dealer</b>
                     <small>FICO station funding &amp; dealership</small>
-                  </span>
-                </Link>
-                <Link className="mi" to="/live-station" onClick={() => setOpenMenu(null)}>
-                  <span className="ic">
-                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#bf5a08" strokeWidth="2" strokeLinecap="round">
-                      <circle cx="12" cy="12" r="10" />
-                      <polygon points="10 8 16 12 10 16 10 8" fill="#bf5a08" />
-                    </svg>
-                  </span>
-                  <span>
-                    <b>Live Station for Sale</b>
-                    <small>Pre-installed 7.4 kW box with ~₹470/mo payout</small>
                   </span>
                 </Link>
               </div>
@@ -308,7 +296,6 @@ const Navbar = () => {
           <div className="body">
             <Link to="/host-a-site" onClick={() => setIsDrawerOpen(false)}>Host a site</Link>
             <Link to="/franchise" onClick={() => setIsDrawerOpen(false)}>Franchise</Link>
-            <Link to="/live-station" onClick={() => setIsDrawerOpen(false)}>Live Station (Buy &amp; Earn)</Link>
           </div>
         </details>
 

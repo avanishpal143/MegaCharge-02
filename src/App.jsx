@@ -38,7 +38,6 @@ import Sustainability from './pages/Sustainability/Sustainability';
 import ProjectsPage from './pages/Projects/ProjectsPage';
 import CareersPage from './pages/Careers/CareersPage';
 import ContactPage from './pages/Contact/ContactPage';
-import LiveStationPage from './pages/LiveStation/LiveStationPage';
 import NotFound from './pages/NotFound/NotFound';
 
 /* ==========================================
@@ -72,9 +71,9 @@ const AnimatedRoutes = () => {
         <Route path="/host-a-site" element={<PageTransition><HostSitePage /></PageTransition>} />
         <Route path="/host-site" element={<PageTransition><HostSitePage /></PageTransition>} />
         <Route path="/franchise" element={<PageTransition><FranchisePage /></PageTransition>} />
-        <Route path="/live-station" element={<PageTransition><LiveStationPage /></PageTransition>} />
-        <Route path="/live-stations" element={<PageTransition><LiveStationPage /></PageTransition>} />
-        <Route path="/stations-for-sale" element={<PageTransition><LiveStationPage /></PageTransition>} />
+        <Route path="/live-station" element={<Navigate to="/chargers/ac7" replace />} />
+        <Route path="/live-stations" element={<Navigate to="/chargers/ac7" replace />} />
+        <Route path="/stations-for-sale" element={<Navigate to="/chargers/ac7" replace />} />
         <Route path="/sustainability" element={<PageTransition><Sustainability /></PageTransition>} />
         <Route path="/projects" element={<PageTransition><ProjectsPage /></PageTransition>} />
         <Route path="/careers" element={<PageTransition><CareersPage /></PageTransition>} />

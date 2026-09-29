@@ -924,33 +924,12 @@ const Solutions = () => {
 
                         {/* Price & CTA Area */}
                         <div className={`border-t border-slate-100 pt-4 flex flex-col justify-end ${viewMode === 'grid' ? '' : 'md:border-t-0 md:pt-0 md:border-l md:pl-6 md:w-56 md:justify-center'}`}>
-                          <div className="mb-4">
-                            <span className="text-slate-400 text-[10px] uppercase block tracking-wider font-mono">Lease Rate</span>
-                            <div className="flex items-baseline gap-1">
-                              <span className="text-slate-900 text-xl font-black font-mono">{charger.priceStr.split('/')[0]}</span>
-                              <span className="text-slate-400 text-[11px]">/ mo</span>
-                            </div>
-                            <span className="text-slate-400 text-[10px] block mt-0.5">Purchase price: {charger.purchasePrice}</span>
-                          </div>
-
                           <button 
                             onClick={() => navigate(`/chargers/${charger.id}`)}
                             className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#F18321] to-[#832800] text-white font-extrabold text-xs uppercase tracking-wider py-3 rounded-xl transition-all duration-300 hover:scale-[1.02] shadow-sm hover:shadow-glow-orange"
                           >
                             View Product Details <ArrowRight size={12} />
                           </button>
-
-                          {charger.id === 'ac7' && (
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                navigate('/live-station');
-                              }}
-                              className="w-full mt-2 inline-flex items-center justify-center gap-1.5 bg-[#FFF1DC] border border-[#F0D9C3] text-[#8A4B12] font-bold text-[11px] uppercase tracking-wider py-2 rounded-xl hover:bg-[#FDEBD6] transition-all shadow-sm"
-                            >
-                              ⚡ Own Live Station (~₹470/mo)
-                            </button>
-                          )}
                         </div>
                       </motion.div>
                     );
@@ -1089,12 +1068,6 @@ const Solutions = () => {
                       ))}
                     </tr>
                     <tr>
-                      <td className="p-4 font-sans text-slate-900 font-bold">Lease Rental Rate</td>
-                      {comparedChargers.map(c => (
-                        <td key={c.id} className="p-4 border-l border-slate-200 font-bold text-slate-900">{c.priceStr}</td>
-                      ))}
-                    </tr>
-                    <tr>
                       <td className="p-4 font-sans text-slate-900 font-bold">Recommended For</td>
                       {comparedChargers.map(c => (
                         <td key={c.id} className="p-4 border-l border-slate-200 font-sans text-slate-500 leading-normal">{c.usage}</td>
@@ -1192,10 +1165,6 @@ const Solutions = () => {
                     <div className="flex justify-between border-b border-slate-100 pb-2">
                       <span className="text-slate-400">Efficiency:</span>
                       <span className="text-slate-900 font-bold">{selectedDetailCharger.efficiency}</span>
-                    </div>
-                    <div className="flex justify-between pb-1">
-                      <span className="text-slate-400">Lease Rate:</span>
-                      <span className="text-slate-900 font-bold">{selectedDetailCharger.priceStr}</span>
                     </div>
                   </div>
 
