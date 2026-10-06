@@ -135,7 +135,7 @@ function razorpayDevApiPlugin() {
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), razorpayDevApiPlugin()],
-  base: './',
+  base: '/',
   build: {
     outDir: 'dist',
     rollupOptions: {
