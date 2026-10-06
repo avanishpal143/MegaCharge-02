@@ -13,8 +13,10 @@ import {
   HelpCircle, 
   MessageCircle, 
   PhoneCall, 
-  ExternalLink 
+  ExternalLink,
+  Lock
 } from 'lucide-react';
+import { processRazorpayPayment } from '../../services/razorpayService';
 import './LiveStationPage.css';
 
 /* Image Assets */
@@ -64,6 +66,11 @@ const LiveStationPage = () => {
   // Buy Dialog State
   const [isBuyModalOpen, setIsBuyModalOpen] = useState(false);
   const [isAgreed, setIsAgreed] = useState(false);
+  const [buyerForm, setBuyerForm] = useState({ name: '', phone: '', email: '' });
+  const [isPaying, setIsPaying] = useState(false);
+  const [payStage, setPayStage] = useState('');
+  const [payError, setPayError] = useState('');
+  const [paymentReceipt, setPaymentReceipt] = useState(null);
 
   // Sticky Bar visibility
   const [showStickyBar, setShowStickyBar] = useState(false);
@@ -123,9 +130,43 @@ const LiveStationPage = () => {
   const handleCheckoutSubmit = (e) => {
     e.preventDefault();
     if (!isAgreed) return;
-    setIsBuyModalOpen(false);
-    const msg = `Hi MegaCharge team, I would like to proceed with the purchase of the live 7.4 kW AC Smart Box (₹39,990) for my site. Please share the escrow payment link and onboarding documents.`;
-    openWhatsApp(msg);
+    if (!buyerForm.name.trim() || !buyerForm.phone.trim()) {
+      alert('Please enter your Full Name and Phone Number.');
+      return;
+    }
+
+    setPayError('');
+    setIsPaying(true);
+
+    processRazorpayPayment({
+      amount: STATION_CONFIG.price,
+      productName: 'MegaCharge 7.4 kW AC Smart Box (Live Station)',
+      customer: {
+        name: buyerForm.name.trim(),
+        phone: buyerForm.phone.trim(),
+        email: buyerForm.email?.trim() || '',
+      },
+      notes: {
+        stationType: 'live-station-7.4kw',
+        stationPrice: STATION_CONFIG.price,
+        site: 'MegaCharge Live Network',
+      },
+      setStage: (stage) => setPayStage(stage),
+      onSuccess: (receipt) => {
+        setIsPaying(false);
+        setPayStage('');
+        setPaymentReceipt(receipt);
+      },
+      onError: (errMsg) => {
+        setIsPaying(false);
+        setPayStage('');
+        setPayError(errMsg);
+      },
+      onDismiss: () => {
+        setIsPaying(false);
+        setPayStage('');
+      },
+    });
   };
 
   const FAQS = [
@@ -830,73 +871,174 @@ const LiveStationPage = () => {
             >
               <button
                 type="button"
-                onClick={() => setIsBuyModalOpen(false)}
+                onClick={() => { setIsBuyModalOpen(false); setPaymentReceipt(null); setPayError(''); }}
                 className="absolute right-5 top-5 w-8 h-8 rounded-full bg-[#FAF7F3] flex items-center justify-center text-[#766A63] hover:text-[#2B1D1A]"
                 aria-label="Close"
               >
                 <X className="w-4 h-4" />
               </button>
 
-              <h2 className="text-xl font-black font-montserrat uppercase">
-                Acquire Live Station
-              </h2>
-              <p className="text-xs text-[#766A63] mt-1">
-                You are purchasing an active earning charging station with registered title.
-              </p>
+              {paymentReceipt ? (
+                <div className="text-center py-4 space-y-4">
+                  <div className="w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center mx-auto text-emerald-600">
+                    <ShieldCheck className="w-8 h-8" />
+                  </div>
+                  <h2 className="text-2xl font-black font-montserrat uppercase text-[#2B1D1A]">
+                    Payment Verified & Station Reserved!
+                  </h2>
+                  <p className="text-xs text-[#766A63] max-w-sm mx-auto">
+                    Your payment has been cryptographically verified via Razorpay HMAC signature. The station hardware title registration has been initiated.
+                  </p>
 
-              {/* Order Summary Box */}
-              <div className="bg-[#2B1D1A] text-white rounded-2xl p-4 my-5 space-y-2 text-xs font-mono">
-                <div className="flex justify-between">
-                  <span className="text-[#CDBFB6]">Live 7.4 kW station</span>
-                  <b className="text-white text-sm">{inr(STATION_CONFIG.price)}</b>
+                  <div className="bg-[#FAF7F3] border border-[#ECE6DF] rounded-2xl p-4 text-left text-xs font-mono space-y-2">
+                    <div className="flex justify-between">
+                      <span className="text-[#766A63]">Payment ID:</span>
+                      <b className="text-[#2B1D1A]">{paymentReceipt.paymentId}</b>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-[#766A63]">Order ID:</span>
+                      <b className="text-[#2B1D1A]">{paymentReceipt.orderId}</b>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-[#766A63]">Amount Paid:</span>
+                      <b className="text-emerald-700 text-sm">{inr(paymentReceipt.amount)}</b>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-[#766A63]">Date & Time:</span>
+                      <span>{paymentReceipt.date} at {paymentReceipt.time}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-[#766A63]">Customer:</span>
+                      <span>{paymentReceipt.customer?.name} ({paymentReceipt.customer?.phone})</span>
+                    </div>
+                  </div>
+
+                  <div className="pt-2 flex flex-col sm:flex-row gap-3">
+                    <a
+                      href={`https://wa.me/${STATION_CONFIG.whatsapp}?text=${encodeURIComponent(`Hi MegaCharge, I just paid ${inr(paymentReceipt.amount)} for the Live 7.4 kW Station. Payment ID: ${paymentReceipt.paymentId}, Order ID: ${paymentReceipt.orderId}. Please share my legal agreement.`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 py-3.5 rounded-xl bg-[#25D366] text-white font-montserrat font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 hover:brightness-105 shadow-md"
+                    >
+                      <MessageCircle className="w-4 h-4" /> WhatsApp Legal Team
+                    </a>
+                    <button
+                      type="button"
+                      onClick={() => { setIsBuyModalOpen(false); setPaymentReceipt(null); }}
+                      className="py-3.5 px-6 rounded-xl border border-[#ECE6DF] text-[#766A63] font-montserrat font-bold text-xs uppercase tracking-wider hover:bg-slate-50"
+                    >
+                      Close
+                    </button>
+                  </div>
                 </div>
-                <div className="flex justify-between text-[#F6A460]">
-                  <span>Year-one payout target</span>
-                  <b>~{inr(monthlyPayout)}/month</b>
-                </div>
-                <div className="flex justify-between text-[#1E8A4C]">
-                  <span>Target payback duration</span>
-                  <b>~18 months</b>
-                </div>
-              </div>
+              ) : (
+                <>
+                  <h2 className="text-xl font-black font-montserrat uppercase">
+                    Acquire Live Station
+                  </h2>
+                  <p className="text-xs text-[#766A63] mt-1">
+                    You are purchasing an active earning charging station with registered title.
+                  </p>
 
-              {/* What happens next */}
-              <div className="space-y-2 text-xs text-[#5A4E48] mb-5">
-                <p className="font-bold text-[#2B1D1A] uppercase tracking-wider text-[11px] font-mono">
-                  What happens next:
-                </p>
-                <ol className="list-decimal pl-4 space-y-1.5 leading-relaxed">
-                  <li>You pay securely into the designated ICICI escrow account.</li>
-                  <li>We register the station hardware title in your name and dispatch legal documents.</li>
-                  <li>Your live monitoring dashboard activates and payouts commence the following month.</li>
-                </ol>
-              </div>
+                  {/* Order Summary Box */}
+                  <div className="bg-[#2B1D1A] text-white rounded-2xl p-4 my-5 space-y-2 text-xs font-mono">
+                    <div className="flex justify-between">
+                      <span className="text-[#CDBFB6]">Live 7.4 kW station</span>
+                      <b className="text-white text-sm">{inr(STATION_CONFIG.price)}</b>
+                    </div>
+                    <div className="flex justify-between text-[#F6A460]">
+                      <span>Year-one payout target</span>
+                      <b>~{inr(monthlyPayout)}/month</b>
+                    </div>
+                    <div className="flex justify-between text-[#1E8A4C]">
+                      <span>Target payback duration</span>
+                      <b>~18 months</b>
+                    </div>
+                  </div>
 
-              <form onSubmit={handleCheckoutSubmit} className="space-y-4">
-                <label className="flex items-start gap-3 text-xs text-[#5A4E48] cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={isAgreed}
-                    onChange={(e) => setIsAgreed(e.target.checked)}
-                    className="w-4 h-4 mt-0.5 accent-[#C4600F] rounded"
-                  />
-                  <span>
-                    I have read the offer summary and understand that station payouts depend on electricity throughput and are not a guaranteed deposit return.
-                  </span>
-                </label>
+                  {payError && (
+                    <div className="bg-red-50 border border-red-200 text-red-700 p-3 rounded-xl text-xs mb-4">
+                      <b>Notice:</b> {payError}
+                    </div>
+                  )}
 
-                <button
-                  type="submit"
-                  disabled={!isAgreed}
-                  className={`w-full py-3.5 rounded-xl font-montserrat font-bold text-xs uppercase tracking-wider shadow-lg transition-all ${
-                    isAgreed
-                      ? 'bg-gradient-to-r from-[#EE8A33] to-[#C4600F] text-white hover:brightness-105'
-                      : 'bg-slate-200 text-slate-400 cursor-not-allowed'
-                  }`}
-                >
-                  Continue to escrow payment &rarr;
-                </button>
-              </form>
+                  <form onSubmit={handleCheckoutSubmit} className="space-y-3.5">
+                    <div>
+                      <label className="block text-[11px] font-bold uppercase tracking-wider text-[#5A4E48] mb-1">
+                        Full Name *
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="Your full name"
+                        value={buyerForm.name}
+                        onChange={(e) => setBuyerForm(prev => ({ ...prev, name: e.target.value }))}
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-[#ECE6DF] text-xs focus:outline-none focus:border-[#EE8A33]"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div>
+                        <label className="block text-[11px] font-bold uppercase tracking-wider text-[#5A4E48] mb-1">
+                          Phone Number *
+                        </label>
+                        <input
+                          type="tel"
+                          required
+                          placeholder="+91 98765 43210"
+                          value={buyerForm.phone}
+                          onChange={(e) => setBuyerForm(prev => ({ ...prev, phone: e.target.value }))}
+                          className="w-full px-3.5 py-2.5 rounded-xl border border-[#ECE6DF] text-xs focus:outline-none focus:border-[#EE8A33]"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-[11px] font-bold uppercase tracking-wider text-[#5A4E48] mb-1">
+                          Email (Optional)
+                        </label>
+                        <input
+                          type="email"
+                          placeholder="name@example.com"
+                          value={buyerForm.email}
+                          onChange={(e) => setBuyerForm(prev => ({ ...prev, email: e.target.value }))}
+                          className="w-full px-3.5 py-2.5 rounded-xl border border-[#ECE6DF] text-xs focus:outline-none focus:border-[#EE8A33]"
+                        />
+                      </div>
+                    </div>
+
+                    <label className="flex items-start gap-2.5 text-[11px] text-[#5A4E48] cursor-pointer pt-1">
+                      <input
+                        type="checkbox"
+                        checked={isAgreed}
+                        onChange={(e) => setIsAgreed(e.target.checked)}
+                        className="w-4 h-4 mt-0.5 accent-[#C4600F] rounded"
+                      />
+                      <span className="leading-snug">
+                        I understand station payouts depend on electricity throughput (~62 kWh/day) and are not a fixed deposit return.
+                      </span>
+                    </label>
+
+                    <button
+                      type="submit"
+                      disabled={!isAgreed || isPaying}
+                      className={`w-full py-3.5 rounded-xl font-montserrat font-bold text-xs uppercase tracking-wider shadow-lg transition-all ${
+                        isAgreed && !isPaying
+                          ? 'bg-gradient-to-r from-[#EE8A33] to-[#C4600F] text-white hover:brightness-105'
+                          : 'bg-slate-200 text-slate-400 cursor-not-allowed'
+                      }`}
+                    >
+                      {payStage === 'creating_order' && 'Creating Secure Order…'}
+                      {payStage === 'awaiting_payment' && 'Awaiting Razorpay…'}
+                      {payStage === 'verifying' && 'Verifying Signature…'}
+                      {!payStage && (isPaying ? 'Processing…' : `Pay ${inr(STATION_CONFIG.price)} via Razorpay →`)}
+                    </button>
+
+                    <div className="flex items-center justify-center gap-1.5 text-[10px] text-slate-500 pt-1">
+                      <Lock className="w-3 h-3 text-emerald-600" />
+                      <span>256-Bit SSL Encrypted Escrow Transaction via Razorpay</span>
+                    </div>
+                  </form>
+                </>
+              )}
             </motion.div>
           </div>
         )}

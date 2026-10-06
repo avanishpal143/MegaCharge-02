@@ -8,8 +8,9 @@ import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { createPortal } from 'react-dom';
-import { Check, Clock, MessageCircle, ShieldCheck, FileText, TrendingUp, Zap } from 'lucide-react';
+import { Check, Clock, MessageCircle, ShieldCheck, FileText, TrendingUp, Zap, Lock } from 'lucide-react';
 import { ALL_PRODUCTS, getProductById } from '../../data/chargersData';
+import { processRazorpayPayment } from '../../services/razorpayService';
 import './ProductDetailPage.css';
 
 const inr = (n) => '₹' + Math.round(n).toLocaleString('en-IN');
@@ -29,6 +30,8 @@ export default function ProductDetailPage() {
   const [submitted, setSubmitted]   = useState(false);
   const [payData, setPayData]       = useState(null);
   const [paying, setPaying]         = useState(false);
+  const [payStage, setPayStage]     = useState('');
+  const [payError, setPayError]     = useState('');
   const [showStick, setShowStick]   = useState(false);
   const buyRef = useRef(null);
 
@@ -90,54 +93,46 @@ export default function ProductDetailPage() {
     (product.relatedIds || []).map(rid => ALL_PRODUCTS.find(p => p.id === rid)).filter(Boolean),
   [product]);
 
-  /* ── payment ── */
+  /* ── payment (Tareeqa B: Secure Backend Order + Signature Verification) ── */
   const handlePay = (e) => {
     e.preventDefault();
     if (!form.name.trim() || !form.phone.trim()) {
       alert('Please fill Name and Phone.');
       return;
     }
+    setPayError('');
     setPaying(true);
-    const key = import.meta.env.VITE_RAZORPAY_KEY_ID || 'rzp_test_1DP5mmOlF5G5ag';
-    const amt = Math.round(hubCost * 100);
 
-    const launch = () => {
-      if (window.Razorpay) {
-        try {
-          const rzp = new window.Razorpay({
-            key, amount: amt, currency: 'INR',
-            name: 'MegaCharge (MNIL)',
-            description: product.name,
-            image: '/Favicon_like.png',
-            prefill: { name: form.name, contact: form.phone, email: form.email || 'customer@megacharge.co.in' },
-            theme: { color: '#EE8A33' },
-            handler: (res) => {
-              setPaying(false);
-              setPayData({ id: res.razorpay_payment_id, amount: hubCost,
-                date: new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }),
-                time: new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }) });
-              setSubmitted(true);
-            },
-            modal: { ondismiss: () => setPaying(false) },
-          });
-          rzp.on('payment.failed', () => { setPaying(false); alert('Payment failed. Please try again.'); });
-          rzp.open();
-        } catch { fallback(); }
-      } else {
-        const s = document.createElement('script');
-        s.src = 'https://checkout.razorpay.com/v1/checkout.js';
-        s.onload = launch;
-        s.onerror = () => { setPaying(false); alert('Could not load payment gateway.'); };
-        document.body.appendChild(s);
-      }
-    };
-    const fallback = () => {
-      setPaying(false);
-      setPayData({ id: 'pay_' + Math.random().toString(36).substring(2, 11).toUpperCase(), amount: hubCost,
-        date: new Date().toLocaleDateString('en-IN'), time: new Date().toLocaleTimeString('en-IN') });
-      setSubmitted(true);
-    };
-    launch();
+    processRazorpayPayment({
+      amount: hubCost,
+      productName: product.name,
+      customer: {
+        name: form.name.trim(),
+        phone: form.phone.trim(),
+        email: form.email?.trim() || '',
+      },
+      notes: {
+        message: form.message || '',
+        productId: product.id,
+        kw: product.kw || '',
+      },
+      setStage: (stage) => setPayStage(stage),
+      onSuccess: (receipt) => {
+        setPaying(false);
+        setPayStage('');
+        setPayData(receipt);
+        setSubmitted(true);
+      },
+      onError: (errMsg) => {
+        setPaying(false);
+        setPayStage('');
+        setPayError(errMsg);
+      },
+      onDismiss: () => {
+        setPaying(false);
+        setPayStage('');
+      },
+    });
   };
 
   const FAQ = [
@@ -561,21 +556,47 @@ export default function ProductDetailPage() {
 
             {submitted ? (
               <div className="pdp-modal-success">
-                <div className="check-ic"><Check size={22} /></div>
-                <h3>Booking Confirmed!</h3>
-                <p>Payment ID: <b>{payData?.id}</b></p>
-                <p>Amount: <b>{inr(payData?.amount)}</b> · {payData?.date} at {payData?.time}</p>
-                <p style={{ marginTop: 12, fontSize: 12, color: 'var(--mute)' }}>
-                  Our team will contact you within 24 hours to complete onboarding.
+                <div className="check-ic"><ShieldCheck size={28} color="#16a34a" /></div>
+                <h3>Booking Confirmed & Verified!</h3>
+                <div style={{ background: '#f8fafc', padding: 14, borderRadius: 10, margin: '14px 0', border: '1px solid #e2e8f0', textAlign: 'left', fontSize: 13 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
+                    <span style={{ color: '#64748b' }}>Payment ID:</span>
+                    <b style={{ fontFamily: 'monospace', color: '#0f172a' }}>{payData?.paymentId}</b>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
+                    <span style={{ color: '#64748b' }}>Order ID:</span>
+                    <b style={{ fontFamily: 'monospace', color: '#0f172a' }}>{payData?.orderId}</b>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
+                    <span style={{ color: '#64748b' }}>Amount Paid:</span>
+                    <b style={{ color: '#16a34a' }}>{inr(payData?.amount)}</b>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <span style={{ color: '#64748b' }}>Date & Time:</span>
+                    <span>{payData?.date} at {payData?.time}</span>
+                  </div>
+                </div>
+                <p style={{ fontSize: 12, color: 'var(--mute)', lineHeight: 1.5 }}>
+                  Payment verified with Razorpay HMAC-SHA256 signature. Our executive team will contact you within 24 hours with onboarding documents.
                 </p>
-                <button
-                  type="button"
-                  className="btn btn-buy"
-                  style={{ marginTop: 16 }}
-                  onClick={() => { setModalOpen(false); setSubmitted(false); setPayData(null); }}
-                >
-                  Close
-                </button>
+                <div style={{ display: 'flex', gap: 8, marginTop: 16 }}>
+                  <a
+                    href={`https://wa.me/919289555090?text=${encodeURIComponent(`Hi MegaCharge, I just completed payment of ${inr(payData?.amount)} for ${product.name}. Payment ID: ${payData?.paymentId}. Please share onboarding documents.`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-buy"
+                    style={{ flex: 1, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 6, background: '#25D366' }}
+                  >
+                    <MessageCircle size={16} /> WhatsApp Support
+                  </a>
+                  <button
+                    type="button"
+                    className="btn btn-line"
+                    onClick={() => { setModalOpen(false); setSubmitted(false); setPayData(null); }}
+                  >
+                    Close
+                  </button>
+                </div>
               </div>
             ) : (
               <>
@@ -585,6 +606,13 @@ export default function ProductDetailPage() {
                   <div className="row"><span>You pay</span><span className="earn">{inr(hubCost)}</span></div>
                   <div className="row"><span>Target monthly payout</span><span className="earn">~{inr(monthlyPayout)}</span></div>
                 </div>
+
+                {payError && (
+                  <div style={{ background: '#fef2f2', border: '1px solid #fecaca', color: '#991b1b', padding: '10px 14px', borderRadius: 8, fontSize: 12, margin: '12px 0', textAlign: 'left' }}>
+                    <b>Payment Notice:</b> {payError}
+                  </div>
+                )}
+
                 <form onSubmit={handlePay}>
                   <label>Full Name *</label>
                   <input type="text" placeholder="Your name" value={form.name} onChange={e => setForm(p => ({...p, name: e.target.value}))} required />
@@ -594,9 +622,17 @@ export default function ProductDetailPage() {
                   <input type="email" placeholder="your@email.com" value={form.email} onChange={e => setForm(p => ({...p, email: e.target.value}))} />
                   <label>Message (optional)</label>
                   <textarea placeholder="Any questions…" value={form.message} onChange={e => setForm(p => ({...p, message: e.target.value}))} />
+                  
                   <button type="submit" className="btn btn-buy" style={{ marginTop: 16 }} disabled={paying}>
-                    {paying ? 'Processing…' : `Continue to payment →`}
+                    {payStage === 'creating_order' && 'Creating Secure Order…'}
+                    {payStage === 'awaiting_payment' && 'Awaiting Razorpay…'}
+                    {payStage === 'verifying' && 'Verifying Signature…'}
+                    {!payStage && (paying ? 'Processing…' : `Continue to payment →`)}
                   </button>
+
+                  <div style={{ marginTop: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, fontSize: 11, color: '#64748b' }}>
+                    <Lock size={12} color="#16a34a" /> 256-Bit Encrypted Razorpay Checkout
+                  </div>
                 </form>
               </>
             )}
