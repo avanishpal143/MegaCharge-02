@@ -173,7 +173,7 @@ export default function ProductDetailPage() {
           <div className="inner">
 
             {/* LEFT — gallery + spec + stats */}
-            <div>
+            <div className="hero-left">
               <div className="gal">
                 <div className="gallery-main">
                   <img key={photo} src={galImg?.src} alt={galImg?.cap || product.name} />
