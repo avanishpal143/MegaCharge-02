@@ -572,8 +572,8 @@ export const ALL_PRODUCTS = [
     voltage: '230V AC ± 15% Standard Domestic',
     connector: 'Type 2 Plug with 5m Cable',
     efficiency: '97%',
-    purchasePrice: '₹39,990',
-    hubCost: 39990,
+    purchasePrice: '₹10',
+    hubCost: 10,
     costBreakdown: [
       { item: '7.4 kW Smart AC Hardware', cost: '₹29,990' },
       { item: 'RFID Cards & Smart Gateway', cost: '₹5,000' },
