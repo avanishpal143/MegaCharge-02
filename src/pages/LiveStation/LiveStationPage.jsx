@@ -29,7 +29,7 @@ import zenergize60 from '../../assets/zenergize_60.jpg';
    CONFIG
    ========================================== */
 const STATION_CONFIG = {
-  price: 39990,
+  price: 2500,
   paybackMonths: 18, // 1.5 years target payback
   escalation: 0.08,  // 8% yearly increase in tariff
   modelledKwhDay: 62,
