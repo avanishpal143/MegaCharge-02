@@ -198,27 +198,19 @@ export default function ProductDetailPage() {
                 </div>
               </div>
 
-              {/* spec rows */}
-              <div className="spec">
-                <div className="spec-row"><span className="k">Location:</span><span className="v">{product.location}</span></div>
-                <div className="spec-row"><span className="k">Hardware:</span><span className="v">{product.hardware}</span></div>
-                <div className="spec-row"><span className="k">Looked after by:</span><span className="v">MegaCharge (upkeep included)</span></div>
-                <div className="spec-row"><span className="k">Warranty:</span><span className="v" style={{ color: 'var(--green)' }}>{product.omTerm}</span></div>
-              </div>
             </div>
 
-            {/* RIGHT — title + buybox + stats3 */}
+            {/* RIGHT — title + buybox */}
             <div className="intro">
-              {/* badges */}
+              {/* badges & brand in one line */}
               <div className="badges">
                 {product.tags?.map((t, i) => (
                   <span key={i} className={`badge ${i % 2 === 0 ? 'badge-green' : 'badge-peach'}`}>{t}</span>
                 ))}
+                <span className="badge badge-brand">MegaCharge</span>
               </div>
 
-              <span className="eyebrow">MegaCharge</span>
               <h1>{product.heroTitle || product.name}</h1>
-              <p className="lead">{product.tagline}</p>
 
               {/* BUYBOX */}
               <div className="buybox" ref={buyRef} id="buy">
@@ -259,12 +251,7 @@ export default function ProductDetailPage() {
                 </div>
               </div>
 
-              {/* STATS3 */}
-              <div className="stats3">
-                <div><b>{product.efficiency}</b><span>Efficiency</span></div>
-                <div><b>~18 mo</b><span>Payback</span></div>
-                <div><b>{product.uptime}</b><span>Uptime</span></div>
-              </div>
+              <p className="lead">{product.tagline}</p>
             </div>
           </div>
         </section>

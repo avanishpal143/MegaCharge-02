@@ -24,6 +24,13 @@
   --mono: 'IBM Plex Mono', ui-monospace, 'Courier New', monospace;
 }
 
+.pdp,
+.pdp *,
+.pdp *::before,
+.pdp *::after {
+  box-sizing: border-box;
+}
+
 .pdp {
   background: var(--g);
   color: var(--ink);
@@ -83,41 +90,6 @@
   .pdp .hero .inner { grid-template-columns: 1fr; gap: 22px; align-items: start; }
 }
 
-/* Even hero columns for desktop */
-@media (min-width: 901px) {
-  .pdp .hero-left {
-    display: flex;
-    flex-direction: column;
-  }
-  .pdp .gal {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-  .pdp .gallery-main {
-    flex: 1;
-    aspect-ratio: auto;
-    max-height: none;
-    min-height: 320px;
-    display: flex;
-    flex-direction: column;
-  }
-  .pdp .gallery-main img {
-    flex: 1;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .pdp .spec {
-    margin-top: 12px;
-    flex-shrink: 0;
-  }
-  .pdp .stats3 {
-    margin-top: 12px;
-    flex-shrink: 0;
-  }
-}
-
 /* Gallery */
 .pdp .gal {
   background: var(--card);
@@ -133,11 +105,15 @@
   background: #dcd6cf;
 }
 .pdp .gallery-main img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
+
+
 .pdp .live-pill {
   position: absolute;
   left: 10px;
@@ -265,8 +241,9 @@
 .pdp .badges {
   display: flex;
   gap: 8px;
+  align-items: center;
   flex-wrap: wrap;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 .pdp .badge {
   font-family: var(--display);
@@ -274,27 +251,35 @@
   font-size: 10.5px;
   letter-spacing: .1em;
   text-transform: uppercase;
-  padding: 5px 10px;
+  padding: 5px 11px;
   border-radius: 999px;
+  line-height: 1.2;
 }
 .pdp .badge-green { background: #E3F4E8; color: #17693A; }
 .pdp .badge-peach { background: #FDEBD6; color: #9A5314; }
+.pdp .badge-brand { 
+  background: #FFF1DC; 
+  color: #8A4B12; 
+  border: 1px solid rgba(238, 138, 51, 0.3);
+}
 
 .pdp h1 {
   font-family: var(--display);
   font-weight: 800;
-  font-size: clamp(26px, 3vw, 34px);
+  font-size: clamp(18px, 1.95vw, 22.5px);
   text-transform: uppercase;
   letter-spacing: 0;
-  line-height: 1.1;
+  line-height: 1.25;
   color: var(--ink);
-  margin: 4px 0 10px;
+  margin: 4px 0 8px;
+  text-wrap: balance;
 }
 .pdp .lead {
-  font-size: 15px;
+  font-size: 13.5px;
   color: var(--soft);
-  line-height: 1.6;
-  margin: 0 0 2px;
+  line-height: 1.55;
+  margin: 12px 0 0;
+  padding: 0 2px;
 }
 
 /* BUYBOX */
@@ -418,6 +403,65 @@
   white-space: nowrap;
 }
 @media (max-width: 400px) { .pdp .reassure { flex-wrap: wrap; } }
+
+/* Even hero columns for desktop — Perfect Pixel-Flush Alignment */
+@media (min-width: 901px) {
+  .pdp .hero .inner {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    gap: 32px;
+    align-items: stretch;
+  }
+  .pdp .hero-left {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    height: 100%;
+  }
+  .pdp .gal {
+    flex: 1 1 0%;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    height: 100%;
+    box-sizing: border-box;
+  }
+  .pdp .gallery-main {
+    flex: 1 1 0%;
+    height: 100%;
+    aspect-ratio: auto;
+    min-height: 0;
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .pdp .gallery-main img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .pdp .intro {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    height: 100%;
+  }
+  .pdp .buybox {
+    margin-top: 10px;
+    margin-bottom: 0;
+    padding: 18px 20px;
+    box-sizing: border-box;
+  }
+  .pdp .lead {
+    margin-top: 12px;
+    margin-bottom: 0;
+    font-size: 13px;
+    color: var(--soft);
+    line-height: 1.5;
+  }
+}
 
 /* ── SECTION BLOCKS ── */
 .pdp .block {
