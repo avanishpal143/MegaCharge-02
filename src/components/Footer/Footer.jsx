@@ -66,13 +66,13 @@ const Footer = () => {
               811-812, Aggarwal Cyber Plaza-1, Netaji Subhash Place, Pitampura, Delhi, 110034
             </p>
             <div className="flex flex-col gap-2">
-              <a href="tel:9289555090" className="flex items-center gap-2 text-sm text-white hover:text-megacharge-brand transition-colors">
+              <a href="tel:9289555890" className="flex items-center gap-2 text-sm text-white hover:text-megacharge-brand transition-colors">
                 <PhoneIcon className="w-4 h-4 text-megacharge-brand" />
-                <span>+91 92895 55090</span>
+                <span>+91 92895 55890</span>
               </a>
-              <a href="mailto:sales@megacharge.co.in" className="flex items-center gap-2 text-sm text-white hover:text-megacharge-brand transition-colors">
+              <a href="mailto:support@megacharge.co.in" className="flex items-center gap-2 text-sm text-white hover:text-megacharge-brand transition-colors">
                 <IconGoogleMail size={16} className="text-megacharge-brand" />
-                <span>sales@megacharge.co.in</span>
+                <span>support@megacharge.co.in</span>
               </a>
             </div>
           </div>

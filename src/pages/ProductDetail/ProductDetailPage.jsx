@@ -5,10 +5,10 @@
  */
 
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { createPortal } from 'react-dom';
-import { Check, Clock, MessageCircle, ShieldCheck, FileText, TrendingUp, Zap, Lock } from 'lucide-react';
+import { Check, Clock, MessageCircle, ShieldCheck, FileText, TrendingUp, Zap, Lock, ChevronLeft, ChevronRight } from 'lucide-react';
 import { ALL_PRODUCTS, getProductById } from '../../data/chargersData';
 import { processRazorpayPayment } from '../../services/razorpayService';
 import './ProductDetailPage.css';
@@ -17,6 +17,7 @@ const inr = (n) => '₹' + Math.round(n).toLocaleString('en-IN');
 
 export default function ProductDetailPage() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const product = useMemo(() => getProductById(id), [id]);
   const isHub = product.type === 'hub';
 
@@ -34,6 +35,18 @@ export default function ProductDetailPage() {
   const [payError, setPayError]     = useState('');
   const [showStick, setShowStick]   = useState(false);
   const buyRef = useRef(null);
+
+  /* photo navigation helpers */
+  const nextPhoto = (e) => {
+    if (e) e.stopPropagation();
+    if (!product.gallery?.length) return;
+    setPhoto((p) => (p + 1) % product.gallery.length);
+  };
+  const prevPhoto = (e) => {
+    if (e) e.stopPropagation();
+    if (!product.gallery?.length) return;
+    setPhoto((p) => (p - 1 + product.gallery.length) % product.gallery.length);
+  };
 
   /* reset on product change */
   useEffect(() => {
@@ -77,13 +90,16 @@ export default function ProductDetailPage() {
   }, [hubCost]);
 
   const payoutsList = useMemo(() => {
+    if (product.payoutSchedule && product.payoutSchedule.length === 5) {
+      return product.payoutSchedule;
+    }
     let cum = 0;
     return Array.from({ length: 5 }, (_, i) => {
       const yr = Math.round(monthlyPayout * 12 * Math.pow(1.08, i));
       cum += yr;
       return { year: i + 1, yr, cum };
     });
-  }, [monthlyPayout]);
+  }, [product.payoutSchedule, monthlyPayout]);
 
   const selectedCum = payoutsList[calcYears - 1]?.cum || 0;
   const maxCum = payoutsList[4]?.cum || 1;
@@ -138,18 +154,18 @@ export default function ProductDetailPage() {
   const FAQ = [
     { q: 'What exactly do I own?',
       a: isHub
-        ? 'A proportionate partnership interest in the LLP that holds the hardware, transformer, and registered site lease — filed with the Ministry of Corporate Affairs quarterly.'
+        ? 'You own the 180 kW DC fast-charging dual-gun hardware registered in your name/entity under the executed agreement, placed at the high-traffic Prem Vehicles Agra site on the expressway corridor.'
         : 'The charging station hardware itself, registered in your name or firm, and 100% of the net earnings from the electricity units it dispenses to EV drivers.' },
-    { q: 'How is my payout worked out?',
-      a: 'From the electricity units (kWh) dispensed each month at the site\'s prevailing charging tariff, after deducting direct Discom electricity cost and site upkeep. Every session and kWh is visible in your dashboard.' },
-    { q: 'Is the payout guaranteed?',
-      a: 'No. The payout is a targeted projection based on modelled utilization. If EV drivers use the station more, you earn more; if traffic is lower, payouts reflect actual throughput.' },
-    { q: 'What if the charger breaks?',
-      a: 'MegaCharge takes complete responsibility. Our 24×7 cloud NOC monitors telemetry continuously. The hardware is backed by a 3-year full replacement warranty with zero maintenance charges on you.' },
-    { q: 'Can I sell my station later?',
-      a: 'Yes. MegaCharge operates a certified secondary marketplace. Inform our team and we will match your asset with an active buyer, disbursing funds to your verified account within 7 working days.' },
-    { q: 'Do I need to visit the site or do anything?',
-      a: 'No on-site involvement required. EV drivers plug in, scan the QR code or tap their RFID card, and pay automatically through the MegaCharge app. You monitor everything remotely from your smartphone.' },
+    { q: 'How does the Safexpress demand guarantee work?',
+      a: 'Safexpress commits its commercial EV fleet (14,000+ trucks network) to a guaranteed minimum volume every month for 5 years. If actual usage falls below the contractual minimum, the gap is billed directly to Safexpress and not absorbed by you.' },
+    { q: 'How are net earnings calculated and paid?',
+      a: 'Net earnings are derived from units dispensed at the contracted tariff of ₹15/unit in Year 1 and ₹13/unit from Year 2, after deducting operating costs of ₹10/unit (electricity ₹7, site ₹2, O&M ₹1). Net earnings are credited directly to your bank account monthly.' },
+    { q: 'Who operates and maintains the charging hub?',
+      a: 'Complete hands-free ownership. Installation, DISCOM liaison, 24x7 cloud telemetry, preventative maintenance, billing and collections are managed by MegaCharge, operated by BSE-listed Mega Nirman & Industries Limited (BSE: 539767).' },
+    { q: 'What happens at the end of the 5-year contract?',
+      a: 'The agreement comes with a 3-year renewal option on the exact same asset, meaning Years 6–8 continue to generate high-yield cashflows without requiring any fresh capex investment.' },
+    { q: 'Can I sell my station asset if needed?',
+      a: 'Yes. MegaCharge facilitates secondary transfers. You can exit your asset with assistance from our investor desk, transferring ownership to verified buyers with settlements completed in 7 business days.' },
   ];
 
   const galImg = product.gallery?.[photo];
@@ -176,20 +192,63 @@ export default function ProductDetailPage() {
             <div className="hero-left">
               <div className="gal">
                 <div className="gallery-main">
-                  <img key={photo} src={galImg?.src} alt={galImg?.cap || product.name} />
-                  <div className="live-pill">
-                    <span className="live-dot" />
-                    LIVE SINCE &nbsp;<span style={{ fontWeight: 500, textTransform: 'none', letterSpacing: 0 }}>
-                      {product.liveSince}
-                    </span>
+                  <img src={galImg?.src} alt={galImg?.cap || product.name} />
+
+                  {/* Status badge on photo */}
+                  <div className={`live-pill ${product.isComingSoon ? 'coming-soon-pill' : ''}`}>
+                    <span className={`live-dot ${product.isComingSoon ? 'coming-soon-dot' : ''}`} />
+                    {product.isComingSoon ? 'COMING SOON' : `LIVE SINCE ${product.liveSince || 'OCT 2026'}`}
                   </div>
+
                   <div className="kw-tag">{product.kw}</div>
 
-                  {/* thumbnails */}
+                  {/* Navigation Arrows DIRECTLY ON PHOTO */}
+                  {product.gallery?.length > 1 && (
+                    <>
+                      <button 
+                        type="button" 
+                        className="gal-nav gal-nav-prev" 
+                        onClick={prevPhoto} 
+                        aria-label="Previous photo"
+                      >
+                        <ChevronLeft size={22} />
+                      </button>
+                      <button 
+                        type="button" 
+                        className="gal-nav gal-nav-next" 
+                        onClick={nextPhoto} 
+                        aria-label="Next photo"
+                      >
+                        <ChevronRight size={22} />
+                      </button>
+                    </>
+                  )}
+
+                  {/* Photo counter */}
+                  {product.gallery?.length > 1 && (
+                    <div className="photo-counter">
+                      {photo + 1} / {product.gallery.length}
+                    </div>
+                  )}
+
+                  {/* Caption overlay on bottom of photo */}
+                  {galImg?.cap && (
+                    <div className="gal-caption">
+                      <span>{galImg.cap}</span>
+                    </div>
+                  )}
+
+                  {/* Clean, non-vibrating thumbnail selector centered on photo */}
                   {product.gallery?.length > 1 && (
                     <div className="thumbs">
-                      {product.gallery.slice(0, 4).map((g, i) => (
-                        <button key={i} type="button" aria-pressed={photo === i} onClick={() => setPhoto(i)} aria-label={`View ${i + 1}`}>
+                      {product.gallery.map((g, i) => (
+                        <button 
+                          key={i} 
+                          type="button" 
+                          aria-pressed={photo === i} 
+                          onClick={(e) => { e.stopPropagation(); setPhoto(i); }} 
+                          aria-label={`View photo ${i + 1}`}
+                        >
                           <img src={g.src} alt="" />
                         </button>
                       ))}
@@ -204,6 +263,11 @@ export default function ProductDetailPage() {
             <div className="intro">
               {/* badges & brand in one line */}
               <div className="badges">
+                {product.isComingSoon && (
+                  <span className="badge" style={{ background: '#FEF3C7', color: '#92400E', borderColor: '#FCD34D', fontWeight: 800 }}>
+                    COMING SOON
+                  </span>
+                )}
                 {product.tags?.map((t, i) => (
                   <span key={i} className={`badge ${i % 2 === 0 ? 'badge-green' : 'badge-peach'}`}>{t}</span>
                 ))}
@@ -216,31 +280,63 @@ export default function ProductDetailPage() {
               <div className="buybox" ref={buyRef} id="buy">
                 <div className="prices">
                   <div>
-                    <div className="lbl">You pay</div>
-                    <div className="big">{inr(hubCost)}</div>
+                    <div className="lbl">
+                      {product.isComingSoon ? 'Estimated Price' : `You pay ${product.diwaliPrice ? '(Diwali Price)' : ''}`}
+                    </div>
+                    <div className="big">{product.diwaliPrice || inr(hubCost)}</div>
+                    {product.mrp && (
+                      <div style={{ fontSize: '12px', color: '#94a3b8', marginTop: '3px' }}>
+                        MRP <span style={{ textDecoration: 'line-through' }}>{product.mrp}</span>
+                        {product.savings && <span style={{ color: '#22c55e', marginLeft: '6px', fontWeight: 600 }}>Save {product.savings}</span>}
+                      </div>
+                    )}
                   </div>
                   <div>
-                    <div className="lbl">Target payout, year one</div>
+                    <div className="lbl">{product.guaranteedFloor ? '5-Yr Guaranteed Minimum' : 'Target payout, year one'}</div>
                     <div className="big earn">
-                      ~{inr(monthlyPayout)}
-                      <span className="per-mo"> a month</span>
+                      {product.guaranteedFloor || `~${inr(monthlyPayout)}`}
+                      {!product.guaranteedFloor && <span className="per-mo"> a month</span>}
                     </div>
+                    {product.expectedEarnings5Yrs && (
+                      <div style={{ fontSize: '12px', color: '#F6A460', marginTop: '3px', fontWeight: 600 }}>
+                        Expected: {product.expectedEarnings5Yrs}
+                      </div>
+                    )}
                   </div>
                 </div>
 
                 <div className="payback-row">
                   <Clock size={14} color="#F6A460" />
-                  <span>Pays for itself in about <b>1.5 years</b></span>
+                  <span>Pays for itself in about <b>{product.paybackPeriod || '1.4–2 years'}</b> ({product.irr ? `IRR ${product.irr}` : 'High Yield'})</span>
                 </div>
 
                 <p className="box-note">
-                  Payouts and payback are targets, not a promise. They go up or down with how much drivers use the station.
+                  {product.isComingSoon 
+                    ? `Coming Soon · Priority Allocation: Pre-register your interest today to get first notification and guaranteed allocation when this expressway terminal launches.`
+                    : (product.guaranteedFloor 
+                        ? `Demand guaranteed by Safexpress (14,000+ trucks fleet). Contractual floor of ${product.guaranteedFloor} net earnings over 5 years with shortfall protection.`
+                        : 'Payouts and payback are targets, not a promise. They go up or down with how much drivers use the station.')}
                 </p>
 
-                <button type="button" className="btn btn-buy" onClick={() => setModalOpen(true)}>
-                  Buy now
+                <button 
+                  type="button" 
+                  className="btn btn-buy" 
+                  onClick={() => setModalOpen(true)}
+                  style={product.isComingSoon ? { background: '#D97706', borderColor: '#B45309' } : {}}
+                >
+                  {product.isComingSoon ? 'Pre-Register Interest' : 'Buy now'}
                 </button>
-                <button type="button" className="btn btn-line" onClick={() => setModalOpen(true)}>
+                <button 
+                  type="button" 
+                  className="btn btn-line" 
+                  onClick={() => {
+                    navigate('/contact');
+                    setTimeout(() => {
+                      const el = document.getElementById('contact-form') || document.querySelector('form');
+                      if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    }, 120);
+                  }}
+                >
                   Talk to us first
                 </button>
 
@@ -330,7 +426,9 @@ export default function ProductDetailPage() {
             </div>
 
             <p className="calc-note">
-              Based on the site's modelled use: about 62 units (kWh) a day at ₹11 a unit, with tariffs rising 8% a year and upkeep already taken out. Target payback: 18 months. Real payouts can be lower and payback can take longer. Please read the projection report before you buy.
+              {product.id === 'agra-expressway'
+                ? 'Modelled on 180 kW dual-gun terminal at Prem Vehicles Agra with Safexpress contracted fleet volume. Contracted tariff of ₹15/unit (Yr 1) and ₹13/unit (Yr 2+), with net operating cost of ₹10/unit. Guaranteed floor of ₹27.5 L net backed by Safexpress shortfall protection. 3-year renewal option on same asset.'
+                : `Based on modelled commercial fleet throughput at contracted tariffs with ₹10/unit operating costs taken out. Expected payback: ${product.paybackPeriod || '1.4–2 years'}. Operated by Mega Nirman & Industries Ltd (BSE: 539767).`}
             </p>
 
             <div className="talkrow" id="talk">
@@ -341,9 +439,15 @@ export default function ProductDetailPage() {
                   <small>MegaCharge Owner Desk · Mon–Sat, 10am to 7pm IST</small>
                 </div>
               </div>
-              <button type="button" className="btn btn-buy btn-inline" onClick={() => setModalOpen(true)}>Schedule a call</button>
+              <button type="button" className="btn btn-buy btn-inline" onClick={() => {
+                navigate('/contact');
+                setTimeout(() => {
+                  const el = document.getElementById('contact-form') || document.querySelector('form');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }, 120);
+              }}>Schedule a call</button>
               <a
-                href={`https://wa.me/919289555090?text=${encodeURIComponent(`Hi MegaCharge, I want to discuss ${product.name}.`)}`}
+                href={`https://wa.me/919289555890?text=${encodeURIComponent(`Hi MegaCharge, I want to discuss ${product.name}.`)}`}
                 target="_blank" rel="noreferrer"
                 className="btn btn-line btn-inline"
               >Chat on WhatsApp</a>
@@ -361,7 +465,7 @@ export default function ProductDetailPage() {
             <div className="fact">
               <div className="k">Where it is</div>
               <div className="v sm">{product.location}</div>
-              <div className="d">Homes, villas, offices and societies</div>
+              <div className="d">{product.locationDesc || 'Highway commercial & fleet logistics corridor'}</div>
             </div>
             <div className="fact">
               <div className="k">Power</div>
@@ -375,13 +479,13 @@ export default function ProductDetailPage() {
             </div>
             <div className="fact">
               <div className="k">Energy sold</div>
-              <div className="v">~62 kWh</div>
-              <div className="d">Per day, as modelled for this site</div>
+              <div className="v">{product.dailyEnergy || '~1,400–1,750 kWh'}</div>
+              <div className="d">{product.dailyEnergyDesc || 'Per day, commercial fleet volume'}</div>
             </div>
             <div className="fact">
               <div className="k">Charging price</div>
               <div className="v">{product.tariff}</div>
-              <div className="d">What drivers pay today</div>
+              <div className="d">{product.tariffDesc || 'Contracted corporate tariff'}</div>
             </div>
             <div className="fact">
               <div className="k">Efficiency</div>
@@ -391,12 +495,12 @@ export default function ProductDetailPage() {
             <div className="fact">
               <div className="k">Charger model</div>
               <div className="v sm">{product.hardware}</div>
-              <div className="d">Wi-Fi, Bluetooth and tap-card</div>
+              <div className="d">{product.hardwareDesc || 'Dual CCS2 guns with cloud telemetry'}</div>
             </div>
             <div className="fact">
-              <div className="k">Warranty</div>
-              <div className="v sm" style={{ color: 'var(--green)' }}>3 years</div>
-              <div className="d">Full replacement</div>
+              <div className="k">Contract Term</div>
+              <div className="v sm" style={{ color: 'var(--green)' }}>5 + 3 Years</div>
+              <div className="d">Zero new capex renewal option</div>
             </div>
           </div>
         </div>
@@ -528,10 +632,17 @@ export default function ProductDetailPage() {
       <div className={`pdp-stick${showStick ? ' show' : ''}`}>
         <div className="pdp-stick-inner">
           <div className="pdp-stick-t">
-            <b>{inr(hubCost)}</b>
-            Live {product.kw} station · ~{inr(monthlyPayout)}/month · payback ~18 months (target)
+            <b>{product.diwaliPrice || inr(hubCost)}</b>
+            {product.isComingSoon ? 'Coming Soon · Priority Allocation' : `Live ${product.kw} station`} · {product.expectedEarnings5Yrs ? `${product.expectedEarnings5Yrs} (5-Yr)` : `~${inr(monthlyPayout)}/mo`} · payback {product.paybackPeriod || '1.4–2 yrs'}
           </div>
-          <button type="button" className="pdp-stick-btn" onClick={() => setModalOpen(true)}>Buy now</button>
+          <button 
+            type="button" 
+            className="pdp-stick-btn" 
+            onClick={() => setModalOpen(true)}
+            style={product.isComingSoon ? { background: '#D97706', borderColor: '#B45309' } : {}}
+          >
+            {product.isComingSoon ? 'Pre-Register' : 'Buy now'}
+          </button>
         </div>
       </div>
 
@@ -544,31 +655,50 @@ export default function ProductDetailPage() {
             {submitted ? (
               <div className="pdp-modal-success">
                 <div className="check-ic"><ShieldCheck size={28} color="#16a34a" /></div>
-                <h3>Booking Confirmed & Verified!</h3>
-                <div style={{ background: '#f8fafc', padding: 14, borderRadius: 10, margin: '14px 0', border: '1px solid #e2e8f0', textAlign: 'left', fontSize: 13 }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-                    <span style={{ color: '#64748b' }}>Payment ID:</span>
-                    <b style={{ fontFamily: 'monospace', color: '#0f172a' }}>{payData?.paymentId}</b>
+                <h3>{product.isComingSoon ? 'Pre-Registration Confirmed!' : 'Booking Confirmed & Verified!'}</h3>
+                
+                {product.isComingSoon ? (
+                  <div style={{ background: '#f8fafc', padding: 16, borderRadius: 10, margin: '14px 0', border: '1px solid #e2e8f0', textAlign: 'left', fontSize: 13 }}>
+                    <p style={{ margin: '0 0 10px 0', color: '#0f172a', fontWeight: 600 }}>
+                      Thank you, {form.name}!
+                    </p>
+                    <p style={{ margin: 0, color: '#475569', lineHeight: 1.6 }}>
+                      Your pre-registration for <b>{product.name}</b> has been received. Our investment desk will contact you at <b>{form.phone}</b> with draft concession documents and priority allotment notice prior to official launch.
+                    </p>
                   </div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-                    <span style={{ color: '#64748b' }}>Order ID:</span>
-                    <b style={{ fontFamily: 'monospace', color: '#0f172a' }}>{payData?.orderId}</b>
+                ) : (
+                  <div style={{ background: '#f8fafc', padding: 14, borderRadius: 10, margin: '14px 0', border: '1px solid #e2e8f0', textAlign: 'left', fontSize: 13 }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
+                      <span style={{ color: '#64748b' }}>Payment ID:</span>
+                      <b style={{ fontFamily: 'monospace', color: '#0f172a' }}>{payData?.paymentId}</b>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
+                      <span style={{ color: '#64748b' }}>Order ID:</span>
+                      <b style={{ fontFamily: 'monospace', color: '#0f172a' }}>{payData?.orderId}</b>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
+                      <span style={{ color: '#64748b' }}>Amount Paid:</span>
+                      <b style={{ color: '#16a34a' }}>{inr(payData?.amount)}</b>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                      <span style={{ color: '#64748b' }}>Date & Time:</span>
+                      <span>{payData?.date} at {payData?.time}</span>
+                    </div>
                   </div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-                    <span style={{ color: '#64748b' }}>Amount Paid:</span>
-                    <b style={{ color: '#16a34a' }}>{inr(payData?.amount)}</b>
-                  </div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <span style={{ color: '#64748b' }}>Date & Time:</span>
-                    <span>{payData?.date} at {payData?.time}</span>
-                  </div>
-                </div>
+                )}
+
                 <p style={{ fontSize: 12, color: 'var(--mute)', lineHeight: 1.5 }}>
-                  Payment verified with Razorpay HMAC-SHA256 signature. Our executive team will contact you within 24 hours with onboarding documents.
+                  {product.isComingSoon
+                    ? 'MegaCharge Owner Desk will assist you with corridor traffic projections and contract term sheets.'
+                    : 'Payment verified with Razorpay HMAC-SHA256 signature. Our executive team will contact you within 24 hours with onboarding documents.'}
                 </p>
                 <div style={{ display: 'flex', gap: 8, marginTop: 16 }}>
                   <a
-                    href={`https://wa.me/919289555090?text=${encodeURIComponent(`Hi MegaCharge, I just completed payment of ${inr(payData?.amount)} for ${product.name}. Payment ID: ${payData?.paymentId}. Please share onboarding documents.`)}`}
+                    href={`https://wa.me/919289555890?text=${encodeURIComponent(
+                      product.isComingSoon 
+                        ? `Hi MegaCharge, I have pre-registered for ${product.name}. Please share corridor feasibility details.`
+                        : `Hi MegaCharge, I just completed payment of ${inr(payData?.amount)} for ${product.name}. Payment ID: ${payData?.paymentId}. Please share onboarding documents.`
+                    )}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn btn-buy"
@@ -587,11 +717,11 @@ export default function ProductDetailPage() {
               </div>
             ) : (
               <>
-                <h2>Book this station</h2>
+                <h2>{product.isComingSoon ? 'Pre-Register for Priority Allocation' : 'Book this station'}</h2>
                 <div className="pdp-modal-sum">
                   <div className="row"><span>Station</span><span>{product.name}</span></div>
-                  <div className="row"><span>You pay</span><span className="earn">{inr(hubCost)}</span></div>
-                  <div className="row"><span>Target monthly payout</span><span className="earn">~{inr(monthlyPayout)}</span></div>
+                  <div className="row"><span>Status</span><span className="earn" style={{ color: product.isComingSoon ? '#D97706' : 'var(--green)' }}>{product.status || 'Live'}</span></div>
+                  <div className="row"><span>Corridor</span><span>{product.location?.split(',')[0]}</span></div>
                 </div>
 
                 {payError && (
@@ -600,7 +730,18 @@ export default function ProductDetailPage() {
                   </div>
                 )}
 
-                <form onSubmit={handlePay}>
+                <form onSubmit={(e) => {
+                  e.preventDefault();
+                  if (!form.name.trim() || !form.phone.trim()) {
+                    alert('Please fill Name and Phone.');
+                    return;
+                  }
+                  if (product.isComingSoon) {
+                    setSubmitted(true);
+                    return;
+                  }
+                  handlePay(e);
+                }}>
                   <label>Full Name *</label>
                   <input type="text" placeholder="Your name" value={form.name} onChange={e => setForm(p => ({...p, name: e.target.value}))} required />
                   <label>Phone *</label>
@@ -608,17 +749,26 @@ export default function ProductDetailPage() {
                   <label>Email (optional)</label>
                   <input type="email" placeholder="your@email.com" value={form.email} onChange={e => setForm(p => ({...p, email: e.target.value}))} />
                   <label>Message (optional)</label>
-                  <textarea placeholder="Any questions…" value={form.message} onChange={e => setForm(p => ({...p, message: e.target.value}))} />
+                  <textarea placeholder={product.isComingSoon ? "Any specific investor queries or preferred allocation…" : "Any questions…"} value={form.message} onChange={e => setForm(p => ({...p, message: e.target.value}))} />
                   
-                  <button type="submit" className="btn btn-buy" style={{ marginTop: 16 }} disabled={paying}>
-                    {payStage === 'creating_order' && 'Creating Secure Order…'}
-                    {payStage === 'awaiting_payment' && 'Awaiting Razorpay…'}
-                    {payStage === 'verifying' && 'Verifying Signature…'}
-                    {!payStage && (paying ? 'Processing…' : `Continue to payment →`)}
+                  <button 
+                    type="submit" 
+                    className="btn btn-buy" 
+                    style={{ marginTop: 16, ...(product.isComingSoon ? { background: '#D97706', borderColor: '#B45309' } : {}) }} 
+                    disabled={paying}
+                  >
+                    {product.isComingSoon ? 'Submit Pre-Registration →' : (
+                      <>
+                        {payStage === 'creating_order' && 'Creating Secure Order…'}
+                        {payStage === 'awaiting_payment' && 'Awaiting Razorpay…'}
+                        {payStage === 'verifying' && 'Verifying Signature…'}
+                        {!payStage && (paying ? 'Processing…' : `Continue to payment →`)}
+                      </>
+                    )}
                   </button>
 
                   <div style={{ marginTop: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, fontSize: 11, color: '#64748b' }}>
-                    <Lock size={12} color="#16a34a" /> 256-Bit Encrypted Razorpay Checkout
+                    <Lock size={12} color="#16a34a" /> {product.isComingSoon ? 'Zero Cost Pre-Registration · Priority Notification' : '256-Bit Encrypted Razorpay Checkout'}
                   </div>
                 </form>
               </>

@@ -209,8 +209,9 @@ const Navbar = () => {
             </li>
           </ul>
 
-          {/* Action Button (Sign In) & Hamburger */}
+          {/* Action Button (Sign In - Hidden for now) & Hamburger */}
           <div className="tail">
+            {/* SIGN IN temporarily hidden
             <Link to="/contact" className="cta">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round">
                 <circle cx="12" cy="8" r="4" />
@@ -218,6 +219,7 @@ const Navbar = () => {
               </svg>
               SIGN IN
             </Link>
+            */}
             <button
               type="button"
               className="burger"
@@ -316,6 +318,7 @@ const Navbar = () => {
           Contact
         </Link>
 
+        {/* SIGN IN temporarily hidden
         <Link
           to="/contact"
           className="cta"
@@ -327,6 +330,7 @@ const Navbar = () => {
           </svg>
           SIGN IN
         </Link>
+        */}
       </aside>
 
       {/* ---------- Mobile Bottom Tab Bar ---------- */}

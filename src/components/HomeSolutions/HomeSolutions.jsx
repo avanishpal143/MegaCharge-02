@@ -8,44 +8,52 @@ import './HomeSolutions.css';
 import acCharger from '../../assets/ac_charger.png';
 import dcCharger from '../../assets/dc_charger.png';
 import zenergize60 from '../../assets/zenergize_60.jpg';
+import zenergize120 from '../../assets/zenergize_120.jpg';
+import zenergize240 from '../../assets/zenergize_240.jpg';
+import agraStationCloseup from '../../assets/agra_station_closeup.jpg';
 
 const FEATURED_CHARGERS = [
   {
-    id: 'ac22',
-    type: 'AC Commercial',
-    name: 'MegaCharge Dual 22 kW AC Commercial',
-    capacity: '22 kW Three Phase',
-    connector: 'Dual Type 2 Sockets',
-    rent: '₹2,990/mo',
-    rating: 4.7,
-    reviews: 86,
-    isAC: true,
-    highlight: 'Best for Workplaces & Fleets'
-  },
-  {
-    id: 'ac7',
-    type: 'AC Wallbox',
-    name: 'MegaCharge 7.4 kW AC Smart Box',
-    capacity: '7.4 kW Single Phase',
-    connector: 'Type 2 5m Cable',
-    rent: '₹1,490/mo',
-    rating: 4.8,
-    reviews: 124,
-    isAC: true,
-    highlight: 'Most Popular for Workplaces'
-  },
-  {
-    id: 'dc60',
-    type: 'DC Fast Charger',
-    name: 'MegaCharge 60 kW Dual Gun DC',
-    capacity: '60 kW Three Phase Split',
-    connector: 'Dual CCS2 Connectors',
-    rent: '₹18,990/mo',
-    rating: 4.9,
-    reviews: 110,
+    id: 'agra-expressway',
+    type: 'Safexpress Guaranteed Hub',
+    name: 'MC-101 | Agra Expressway Hub',
+    capacity: '180 kW Dual Fast',
+    connector: 'Dual CCS2 Fast Guns',
+    rent: 'Diwali Price: ₹40 L',
+    rating: 5.0,
+    reviews: 38,
     isAC: false,
-    highlight: 'Ideal for Commercial & Highways',
-    image: zenergize60
+    isComingSoon: false,
+    highlight: 'Safexpress Guaranteed · Prem Vehicles Agra',
+    image: agraStationCloseup
+  },
+  {
+    id: 'yamuna-expressway',
+    type: 'Hyper Expressway Hub',
+    name: 'MC-102 | Yamuna Expressway Super Hub',
+    capacity: '240 kW Hyper Power',
+    connector: 'Quad CCS2 Liquid 500A',
+    rent: 'Diwali Price: ₹48 L',
+    rating: 4.9,
+    reviews: 44,
+    isAC: false,
+    isComingSoon: true,
+    highlight: 'Coming Soon · Jewar Logistics Link',
+    image: zenergize240
+  },
+  {
+    id: 'delhi-mumbai-expressway',
+    type: 'Greenfield Freight Hub',
+    name: 'MC-103 | Delhi-Mumbai Expressway Hub',
+    capacity: '120 kW Dual Fast',
+    connector: 'Dual CCS2 Fast Guns',
+    rent: 'Diwali Price: ₹29.5 L',
+    rating: 4.8,
+    reviews: 31,
+    isAC: false,
+    isComingSoon: true,
+    highlight: 'Coming Soon · NE-4 Wayside Plaza',
+    image: zenergize120
   }
 ];
 
@@ -119,7 +127,7 @@ const HomeSolutions = () => {
                     alt={charger.name} 
                     className="h-full object-contain p-2 transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute bottom-2 left-2 bg-slate-900/90 text-white text-[9px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">
+                  <div className={`absolute bottom-2 left-2 text-white text-[9px] font-bold px-2 py-0.5 rounded uppercase tracking-wider ${charger.isComingSoon ? 'bg-amber-600' : 'bg-slate-900/90'}`}>
                     {charger.highlight}
                   </div>
                 </div>
@@ -144,9 +152,13 @@ const HomeSolutions = () => {
               {/* Action Button */}
               <Link 
                 to={`/chargers/${charger.id}`} 
-                className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#F18321] to-[#832800] text-white font-extrabold text-xs uppercase tracking-wider py-3 rounded-xl transition-all duration-300 hover:opacity-90 shadow-sm"
+                className={`w-full inline-flex items-center justify-center gap-2 text-white font-extrabold text-xs uppercase tracking-wider py-3 rounded-xl transition-all duration-300 hover:opacity-90 shadow-sm ${
+                  charger.isComingSoon 
+                    ? 'bg-gradient-to-r from-amber-600 to-amber-700' 
+                    : 'bg-gradient-to-r from-[#F18321] to-[#832800]'
+                }`}
               >
-                Buy Now <ArrowRight size={12} />
+                {charger.isComingSoon ? 'Coming Soon · Pre-Register' : 'Buy Now'} <ArrowRight size={12} />
               </Link>
             </motion.div>
           ))}

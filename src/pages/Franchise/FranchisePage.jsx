@@ -13,7 +13,7 @@ import zenergize60 from '../../assets/zenergize_60.jpg';
    CONFIG & PRICING
    ========================================== */
 const CONFIG = {
-  whatsapp: '919289555090',
+  whatsapp: '919289555890',
   mode: 'fico',
   focoFeePct: 15,
   ficoInvestorPct: 50,

@@ -77,8 +77,8 @@ const ContactPage = () => {
               Connect directly with our 24x7 grid control center for active station troubleshooting or charging session failures.
             </p>
           </div>
-          <a href="tel:9289555090" className="text-megacharge-green text-lg font-bold font-poppins hover:underline">
-            +91 92895 55090
+          <a href="tel:9289555890" className="text-megacharge-green text-lg font-bold font-poppins hover:underline">
+            +91 92895 55890
           </a>
         </div>
 
@@ -93,8 +93,8 @@ const ContactPage = () => {
               Mega Nirman & Industries Limited (MNIL), 811-812, Aggarwal Cyber Plaza-1, Netaji Subhash Place, Pitampura, Delhi, 110034.
             </p>
           </div>
-          <a href="mailto:sales@megacharge.co.in" className="text-megacharge-green text-sm font-semibold hover:underline">
-            sales@megacharge.co.in
+          <a href="mailto:support@megacharge.co.in" className="text-megacharge-green text-sm font-semibold hover:underline">
+            support@megacharge.co.in
           </a>
         </div>
 

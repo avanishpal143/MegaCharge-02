@@ -71,9 +71,9 @@ const AnimatedRoutes = () => {
         <Route path="/host-a-site" element={<PageTransition><HostSitePage /></PageTransition>} />
         <Route path="/host-site" element={<PageTransition><HostSitePage /></PageTransition>} />
         <Route path="/franchise" element={<PageTransition><FranchisePage /></PageTransition>} />
-        <Route path="/live-station" element={<Navigate to="/chargers/ac7" replace />} />
-        <Route path="/live-stations" element={<Navigate to="/chargers/ac7" replace />} />
-        <Route path="/stations-for-sale" element={<Navigate to="/chargers/ac7" replace />} />
+        <Route path="/live-station" element={<Navigate to="/chargers/agra-expressway" replace />} />
+        <Route path="/live-stations" element={<Navigate to="/chargers/agra-expressway" replace />} />
+        <Route path="/stations-for-sale" element={<Navigate to="/chargers/agra-expressway" replace />} />
         <Route path="/sustainability" element={<PageTransition><Sustainability /></PageTransition>} />
         <Route path="/projects" element={<PageTransition><ProjectsPage /></PageTransition>} />
         <Route path="/careers" element={<PageTransition><CareersPage /></PageTransition>} />

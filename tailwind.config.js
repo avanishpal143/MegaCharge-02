@@ -20,6 +20,8 @@ export default {
           subheading: "#653d1e",
           paragraph: "#7e4437",
           icon: "#832800",
+          'text-secondary': "#cbd5e1",
+          textSecondary: "#cbd5e1",
         }
       },
       fontFamily: {

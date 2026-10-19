@@ -29,12 +29,12 @@ import zenergize60 from '../../assets/zenergize_60.jpg';
    CONFIG
    ========================================== */
 const STATION_CONFIG = {
-  price: 2500,
+  price: 39990,
   paybackMonths: 18, // 1.5 years target payback
   escalation: 0.08,  // 8% yearly increase in tariff
   modelledKwhDay: 62,
   tariffPerUnit: 11,
-  whatsapp: '919289555090',
+  whatsapp: '919289555890',
   location: 'DLF CyberCity / Sector 29, Gurgaon',
   hardware: 'Smart AC Wallbox Model MC-07',
   liveSince: 'LIVE · JAN 2026',

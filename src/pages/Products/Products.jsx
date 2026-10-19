@@ -9,7 +9,9 @@ import ContactForm from '../../components/ContactForm/ContactForm';
 import acCharger from '../../assets/ac_charger.png';
 import dcCharger from '../../assets/dc_charger.png';
 import zenergize60 from '../../assets/zenergize_60.jpg';
+import zenergize120 from '../../assets/zenergize_120.jpg';
 import zenergize240 from '../../assets/zenergize_240.jpg';
+import agraStationCloseup from '../../assets/agra_station_closeup.jpg';
 
 /* ==========================================
    ANIMATION DEFINITIONS
@@ -37,136 +39,46 @@ const Products = () => {
 
   const CHARGERS_DATA = [
     {
-      id: 'nh44-panipat',
-      type: 'dc',
-      name: 'NH-44 Panipat Hub (2 × 60 kW DC Fast)',
-      power: '120 kW Combined DC Fast',
-      voltage: '415V AC Three Phase Grid',
-      connector: 'Dual CCS2 (4 Guns Total)',
-      efficiency: '96.5%',
-      features: ['Co-ownership hub model', 'OCPP 1.6 cloud billing', 'High-density highway location', '24x7 MNIL maintenance'],
-      usage: 'Highway rest stop, food courts, intercity corridor',
-      image: zenergize60
-    },
-    {
       id: 'agra-expressway',
+      code: 'MC-101',
       type: 'dc',
-      name: 'Agra Expressway Hub (180 kW Ultra Fast)',
-      power: '180 kW Total Fast Charging',
+      isComingSoon: false,
+      name: 'MC-101 | Agra Expressway Hub (180 kW)',
+      power: '180 kW Dual Fast Charging',
       voltage: '415V Dedicated HT Grid',
-      connector: 'Triple CCS2 Liquid-Cooled Guns',
-      efficiency: '97%',
-      features: ['High-traffic express corridor', 'Sub-20 min charging', '88% funded', 'Direct monthly NEFT yield'],
-      usage: 'Highway Plazas, Expressways, Tourist Corridors',
-      image: zenergize60
-    },
-    {
-      id: 'kurukshetra-cluster',
-      type: 'ac',
-      name: 'Kurukshetra Cluster (4 × 7.4 kW AC)',
-      power: '29.6 kW Total Grid Output',
-      voltage: '230V / 415V Commercial Grid',
-      connector: '4 × Type 2 Sockets',
-      efficiency: '97.5%',
-      features: ['Destination hotel charging', 'Overnight dwell time', 'Smart RFID cards', 'Zero maintenance liability'],
-      usage: 'Hotel, Retail Malls, Commercial Properties',
-      image: acCharger
-    },
-    {
-      id: 'raebareli-depot',
-      type: 'dc',
-      name: 'Rae Bareli Fleet Depot (6 × 30 kW)',
-      power: '180 kW Heavy Fleet Grid',
-      voltage: '415V Three Phase Industrial',
-      connector: '6 × CCS2 High Cycle Guns',
-      efficiency: '95.5%',
-      features: ['Dedicated logistics fleet', 'Predictable shift charging', 'B2B anchor contracts', '72% funded'],
-      usage: 'Fleet & Logistics, Industrial Depots',
-      image: dcCharger
-    },
-    {
-      id: 'ac7',
-      type: 'ac',
-      name: 'MegaCharge 7.4 kW AC Smart Box',
-      power: '7.4 kW (Single Phase 32A)',
-      voltage: '230V AC ± 15%',
-      connector: 'Type 2 plug with 5m cable',
-      efficiency: '97%',
-      features: ['RFID Authorization', 'Wi-Fi / Bluetooth Integration', 'App Schedule Control', 'Ergonomic Wall Mount'],
-      usage: 'Residential housing, private villa parking, workplace grids',
-      image: acCharger
-    },
-    {
-      id: 'ac11',
-      type: 'ac',
-      name: 'MegaCharge Premium 11 kW AC Wallbox',
-      power: '11 kW (Three Phase 16A)',
-      voltage: '415V AC ± 10%',
-      connector: 'Type 2 plug with 5m cable',
-      efficiency: '97%',
-      features: ['Dynamic Load Balancing', 'Wi-Fi / Bluetooth Integration', 'App Schedule Control', 'Ergonomic Wall Mount'],
-      usage: 'Private villas, commercial workplaces, hotels',
-      image: acCharger
-    },
-    {
-      id: 'ac22',
-      type: 'ac',
-      name: 'MegaCharge Dual 22 kW AC Commercial',
-      power: '22 kW (Three Phase Split)',
-      voltage: '415V AC ± 10%',
-      connector: 'Dual Type 2 Sockets',
-      efficiency: '97.5%',
-      features: ['Dual RFID Authentication', 'OCPP 1.6 Billing System', 'Simultaneous Dual Car Charging', 'Weatherproof Casing'],
-      usage: 'Commercial complexes, mall parking, tech parks',
-      image: acCharger
-    },
-    {
-      id: 'dc30',
-      type: 'dc',
-      name: 'MegaCharge 30 kW DC Compact Rapid',
-      power: '30 kW (Three Phase)',
-      voltage: '415V AC ± 10%',
-      connector: 'Single CCS2 Gun',
-      efficiency: '95%',
-      features: ['OCPP 1.6 cloud sync', 'Intelligent power distribution', '7-inch LCD interface', 'Emergency stop mechanism'],
-      usage: 'Office fleet yards, retail store side-bays, hotel valet parking',
-      image: dcCharger
-    },
-    {
-      id: 'dc60',
-      type: 'dc',
-      name: 'MegaCharge 60 kW Dual Gun DC Fast Charger',
-      power: '60 kW (Three Phase split)',
-      voltage: '415V AC ± 10%',
-      connector: 'Dual CCS2 Guns',
-      efficiency: '96%',
-      features: ['OCPP 1.6 telemetry', 'Dynamic output sharing', 'Unified UPI QR code billing', 'IP54 weather protection'],
-      usage: 'Highway food courts, large retail malls, public transit bays',
-      image: zenergize60
-    },
-    {
-      id: 'dc120',
-      type: 'dc',
-      name: 'MegaCharge 120 kW High-Power DC Charger',
-      power: '120 kW Ultra Rapid',
-      voltage: '415V AC ± 10% LT/HT',
       connector: 'Dual CCS2 High-Power Guns',
-      efficiency: '96.5%',
-      features: ['Liquid-cooled power modules', 'Sub-20 minute charging', '24x7 remote telemetry', 'Modular power cabinet'],
-      usage: 'Highways, logistics depots, transit corridors',
-      image: zenergize60
+      efficiency: '97.2%',
+      features: ['Safexpress guaranteed corporate demand', 'Diwali Price: ₹40 L + GST (Save ₹2.5 L)', '5-Yr Net Earnings: ₹105–140 Lakh', '1.4–2 yrs payback · 43–64% IRR'],
+      usage: 'Prem Vehicles Pvt Ltd, Agra (Agra Expressway Corridor)',
+      image: agraStationCloseup
     },
     {
-      id: 'dc240',
+      id: 'yamuna-expressway',
+      code: 'MC-102',
       type: 'dc',
-      name: 'MegaCharge 240 kW Liquid-Cooled Hyper Charger',
-      power: '240 kW Ultra Power',
-      voltage: '415V AC ± 10%',
-      connector: 'Dual CCS2 High-Power Guns',
-      efficiency: '96.8%',
-      features: ['Liquid-cooled active system', 'Fast charge up to 240 kW', '24x7 remote diagnostics', 'Custom brand wrappers'],
-      usage: 'Highway charging stations, logistics vehicle depots, heavy transport hubs',
+      isComingSoon: true,
+      name: 'MC-102 | Yamuna Expressway Super Hub (240 kW)',
+      power: '240 kW Combined Hyper Charging',
+      voltage: '415V HT Dedicated Transformer',
+      connector: 'Quad CCS2 Liquid-Cooled Guns',
+      efficiency: '97.5%',
+      features: ['Coming Soon · Pre-Registration Open', 'Jewar Airport freight logistics link', 'Expected 5-Yr Net Earnings: ₹135–175 Lakh', '1.3–1.8 yrs payback · 46–68% IRR'],
+      usage: 'Jewar Logistics Interchange, Yamuna Expressway Milestone 68',
       image: zenergize240
+    },
+    {
+      id: 'delhi-mumbai-expressway',
+      code: 'MC-103',
+      type: 'dc',
+      isComingSoon: true,
+      name: 'MC-103 | Delhi-Mumbai Expressway Hub (120 kW)',
+      power: '120 kW Dual Fast Charging',
+      voltage: '415V Three Phase Industrial Grid',
+      connector: 'Dual CCS2 Fast Guns',
+      efficiency: '96.8%',
+      features: ['Coming Soon · Pre-Registration Open', 'NE-4 Greenfield corridor wayside hub', 'Expected 5-Yr Net Earnings: ₹82–110 Lakh', '1.5–2.1 yrs payback · 40–60% IRR'],
+      usage: 'NE-4 Delhi-Mumbai Expressway Km 112, Wayside Rest Area',
+      image: zenergize120
     }
   ];
 
@@ -202,7 +114,9 @@ const Products = () => {
 
   const filteredChargers = activeTab === 'all' 
     ? CHARGERS_DATA 
-    : CHARGERS_DATA.filter(c => c.type === activeTab);
+    : activeTab === 'ultra'
+      ? CHARGERS_DATA.filter(c => c.id === 'yamuna-expressway' || c.id === 'agra-expressway')
+      : CHARGERS_DATA.filter(c => c.id === 'delhi-mumbai-expressway');
 
   return (
     <div className="products-page-container overflow-hidden bg-slate-50 min-h-screen">
@@ -212,11 +126,11 @@ const Products = () => {
         
         <div className="max-w-7xl mx-auto relative z-10">
           <h1 className="text-white text-3xl sm:text-4xl lg:text-5xl font-extrabold font-montserrat leading-tight tracking-tight">
-            Rent Smart Chargers for <br />
-            <span className="text-gradient-green">Your EV Infrastructure</span>
+            High-Speed Expressway <br />
+            <span className="text-gradient-green">Charging Hubs</span>
           </h1>
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-3xl mx-auto mt-6">
-            Every MegaCharge unit is built to perform reliably in extreme temperatures. Rent our premium chargers on flexible terms with zero upfront setup costs, active grid protection, and remote OCPP telemetry.
+            Explore live and operational high-power EV charging terminals on India's busiest highway corridors. Co-own a verified high-yield charging asset with guaranteed uptime and monthly revenue payouts.
           </p>
  
           {/* TABS SELECTOR */}
@@ -225,19 +139,19 @@ const Products = () => {
               onClick={() => setActiveTab('all')}
               className={`px-8 py-3 rounded-full font-bold text-xs uppercase tracking-wider transition-all duration-300 ${activeTab === 'all' ? 'bg-megacharge-green text-white shadow-glow-green' : 'bg-megacharge-navy border border-slate-700 text-slate-300 hover:text-white'}`}
             >
-              Show All Models
+              All Expressway Hubs (3)
             </button>
             <button 
-              onClick={() => setActiveTab('ac')}
-              className={`px-8 py-3 rounded-full font-bold text-xs uppercase tracking-wider transition-all duration-300 ${activeTab === 'ac' ? 'bg-megacharge-green text-white shadow-glow-green' : 'bg-megacharge-navy border border-slate-700 text-slate-300 hover:text-white'}`}
+              onClick={() => setActiveTab('ultra')}
+              className={`px-8 py-3 rounded-full font-bold text-xs uppercase tracking-wider transition-all duration-300 ${activeTab === 'ultra' ? 'bg-megacharge-green text-white shadow-glow-green' : 'bg-megacharge-navy border border-slate-700 text-slate-300 hover:text-white'}`}
             >
-              Smart AC Wallboxes
+              Ultra &amp; Hyper (180 kW - 240 kW)
             </button>
             <button 
-              onClick={() => setActiveTab('dc')}
-              className={`px-8 py-3 rounded-full font-bold text-xs uppercase tracking-wider transition-all duration-300 ${activeTab === 'dc' ? 'bg-megacharge-green text-white shadow-glow-green' : 'bg-megacharge-navy border border-slate-700 text-slate-300 hover:text-white'}`}
+              onClick={() => setActiveTab('dual')}
+              className={`px-8 py-3 rounded-full font-bold text-xs uppercase tracking-wider transition-all duration-300 ${activeTab === 'dual' ? 'bg-megacharge-green text-white shadow-glow-green' : 'bg-megacharge-navy border border-slate-700 text-slate-300 hover:text-white'}`}
             >
-              DC Fast Chargers
+              Dual Fast (120 kW)
             </button>
           </div>
         </div>
@@ -265,9 +179,15 @@ const Products = () => {
               >
                 <div>
                   <div className="flex justify-between items-start mb-6">
-                    <span className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider ${charger.type === 'ac' ? 'bg-megacharge-green bg-opacity-10 text-megacharge-green' : 'bg-megacharge-orange bg-opacity-10 text-megacharge-orange'}`}>
-                      {charger.type === 'ac' ? 'AC Wallbox' : 'DC Rapid'}
-                    </span>
+                    {charger.isComingSoon ? (
+                      <span className="px-3.5 py-1 rounded-full text-[11px] font-extrabold uppercase tracking-wider bg-amber-100 text-amber-800 border border-amber-300">
+                        Coming Soon
+                      </span>
+                    ) : (
+                      <span className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider ${charger.type === 'ac' ? 'bg-megacharge-green bg-opacity-10 text-megacharge-green' : 'bg-megacharge-orange bg-opacity-10 text-megacharge-orange'}`}>
+                        {charger.type === 'ac' ? 'AC Wallbox' : 'DC Rapid'}
+                      </span>
+                    )}
                     <span className="text-slate-400 text-xs font-mono">{charger.power}</span>
                   </div>
                   
@@ -278,6 +198,11 @@ const Products = () => {
                       alt={charger.name} 
                       className="h-full object-contain p-6 transition-transform duration-500 group-hover:scale-105"
                     />
+                    {charger.isComingSoon && (
+                      <div className="absolute top-3 right-3 bg-amber-500 text-white text-[10px] font-bold uppercase px-2.5 py-1 rounded-full shadow-md">
+                        Coming Soon
+                      </div>
+                    )}
                   </Link>
                   
                   <Link to={`/chargers/${charger.id}`}>
@@ -303,7 +228,7 @@ const Products = () => {
                   <ul className="flex flex-col gap-2 mb-6 text-xs text-slate-600 font-mono">
                     {charger.features.map((feat, index) => (
                       <li key={index} className="flex items-center gap-2">
-                        <span className={charger.type === 'ac' ? 'text-megacharge-green' : 'text-megacharge-orange'}>&bull;</span>
+                        <span className={charger.isComingSoon ? 'text-amber-500' : (charger.type === 'ac' ? 'text-megacharge-green' : 'text-megacharge-orange')}>&bull;</span>
                         <span>{feat}</span>
                       </li>
                     ))}
@@ -316,9 +241,13 @@ const Products = () => {
                   
                   <Link 
                     to={`/chargers/${charger.id}`}
-                    className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-megacharge-brand to-megacharge-orange-dk text-white font-extrabold text-xs uppercase tracking-wider py-3.5 rounded-xl transition-all duration-300 hover:scale-[1.02] shadow-sm hover:shadow-glow-orange"
+                    className={`w-full inline-flex items-center justify-center gap-2 font-extrabold text-xs uppercase tracking-wider py-3.5 rounded-xl transition-all duration-300 hover:scale-[1.02] shadow-sm ${
+                      charger.isComingSoon 
+                        ? 'bg-amber-600 hover:bg-amber-700 text-white shadow-amber-200' 
+                        : 'bg-gradient-to-r from-megacharge-brand to-megacharge-orange-dk text-white hover:shadow-glow-orange'
+                    }`}
                   >
-                    View Full Specifications &amp; Pricing &rarr;
+                    {charger.isComingSoon ? 'Coming Soon · Pre-Register →' : 'View Full Specifications & Pricing →'}
                   </Link>
                 </div>
               </motion.div>
@@ -343,64 +272,56 @@ const Products = () => {
           {...fadeInUp}
           className="overflow-x-auto bg-white rounded-3xl border border-slate-200 p-6 shadow-sm"
         >
-          <table className="w-full text-left border-collapse min-w-[800px]">
+          <table className="w-full text-left border-collapse min-w-[700px]">
             <thead>
               <tr className="border-b border-slate-200 pb-4">
                 <th className="py-4 text-xs font-mono uppercase tracking-wider text-megacharge-green font-bold pl-4">Specification Matrix</th>
-                <th className="py-4 text-xs font-mono uppercase tracking-wider text-slate-900 font-bold">7.4 kW AC Smart</th>
-                <th className="py-4 text-xs font-mono uppercase tracking-wider text-slate-900 font-bold">30 kW DC Compact</th>
-                <th className="py-4 text-xs font-mono uppercase tracking-wider text-slate-900 font-bold">60 kW DC Dual</th>
-                <th className="py-4 text-xs font-mono uppercase tracking-wider text-slate-900 font-bold">240 kW DC Ultra</th>
+                <th className="py-4 text-xs font-mono uppercase tracking-wider text-slate-900 font-bold">Delhi-Mumbai (120 kW)</th>
+                <th className="py-4 text-xs font-mono uppercase tracking-wider text-slate-900 font-bold">Agra Expway (180 kW)</th>
+                <th className="py-4 text-xs font-mono uppercase tracking-wider text-slate-900 font-bold">Yamuna Expway (240 kW)</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 text-xs text-slate-600 font-mono">
               <tr>
                 <td className="py-4 font-sans text-slate-900 font-bold pl-4">Max Output Power</td>
-                <td className="py-4">7.4 kW</td>
-                <td className="py-4">30 kW</td>
-                <td className="py-4">60 kW</td>
-                <td className="py-4">120 kW - 240 kW</td>
+                <td className="py-4">120 kW Rapid</td>
+                <td className="py-4">180 kW Ultra</td>
+                <td className="py-4">240 kW Hyper Power</td>
               </tr>
               <tr>
                 <td className="py-4 font-sans text-slate-900 font-bold pl-4">Grid Connection Input</td>
-                <td className="py-4">Single Phase (230V)</td>
                 <td className="py-4">Three Phase (415V)</td>
-                <td className="py-4">Three Phase (415V)</td>
-                <td className="py-4">Grid Sub-Station (415V)</td>
+                <td className="py-4">Dedicated HT Transformer (415V)</td>
+                <td className="py-4">Dedicated HT Transformer (415V)</td>
               </tr>
               <tr>
                 <td className="py-4 font-sans text-slate-900 font-bold pl-4">Standard Connectors</td>
-                <td className="py-4">Type 2 Cable</td>
-                <td className="py-4">Single CCS2 Gun</td>
-                <td className="py-4">Dual CCS2 Guns</td>
-                <td className="py-4">Dual CCS2 High-Power</td>
+                <td className="py-4">Dual CCS2 Fast Guns</td>
+                <td className="py-4">Triple CCS2 Liquid Guns</td>
+                <td className="py-4">Quad CCS2 Liquid 500A Guns</td>
               </tr>
               <tr>
                 <td className="py-4 font-sans text-slate-900 font-bold pl-4">Conversion Efficiency</td>
+                <td className="py-4">96.8%</td>
                 <td className="py-4">97.0%</td>
-                <td className="py-4">95.0%</td>
-                <td className="py-4">96.0%</td>
-                <td className="py-4">96.5%</td>
+                <td className="py-4">97.5%</td>
               </tr>
               <tr>
-                <td className="py-4 font-sans text-slate-900 font-bold pl-4">Weather Protection</td>
-                <td className="py-4">IP54 / Outdoor</td>
-                <td className="py-4">IP54 / Outdoor</td>
-                <td className="py-4">IP54 / Outdoor</td>
+                <td className="py-4 font-sans text-slate-900 font-bold pl-4">Cooling & Weathering</td>
+                <td className="py-4">IP54 / Heavy Outdoor</td>
                 <td className="py-4">IP54 / Liquid-Cooled</td>
+                <td className="py-4">IP55 / Active Chiller Unit</td>
               </tr>
               <tr>
                 <td className="py-4 font-sans text-slate-900 font-bold pl-4">OCPP Telemetry Server</td>
-                <td className="py-4">OCPP 1.6 JSON</td>
-                <td className="py-4">OCPP 1.6 JSON</td>
-                <td className="py-4">OCPP 1.6 JSON</td>
-                <td className="py-4">OCPP 1.6 JSON</td>
+                <td className="py-4">OCPP 1.6J Cloud Sync</td>
+                <td className="py-4">OCPP 1.6J Cloud Sync</td>
+                <td className="py-4">OCPP 1.6J Cloud Sync</td>
               </tr>
               <tr>
                 <td className="py-4 font-sans text-slate-900 font-bold pl-4">Emergency Surge Buffer</td>
-                <td className="py-4">Yes (30mA RCD)</td>
                 <td className="py-4">Yes (SPD + Overload)</td>
-                <td className="py-4">Yes (SPD + Overload)</td>
+                <td className="py-4">Yes (SPD + Active fuse)</td>
                 <td className="py-4">Yes (SPD + Active fuse)</td>
               </tr>
             </tbody>

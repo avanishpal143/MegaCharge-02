@@ -14,6 +14,9 @@ import dcCharger from '../../assets/dc_charger.png';
 import zenergize60 from '../../assets/zenergize_60.jpg';
 import zenergize120 from '../../assets/zenergize_120.jpg';
 import zenergize240 from '../../assets/zenergize_240.jpg';
+import agraStationCloseup from '../../assets/agra_station_closeup.jpg';
+import agraStationNight from '../../assets/agra_station_night.jpg';
+import expresswayPortrait from '../../assets/expressway_front_portrait.jpg';
 
 /* ==========================================
    ANIMATION CONFIGS
@@ -37,209 +40,67 @@ const staggerContainer = {
 ========================================== */
 const CHARGERS_DATASET = [
   {
-    id: 'ac7',
-    type: 'ac',
-    name: 'MegaCharge 7.4 kW AC Smart Box',
-    power: '7.4 kW (Single Phase 32A)',
-    voltage: '230V AC ± 15%',
-    connector: 'Type 2 plug with 5m cable',
-    efficiency: '97%',
-    features: ['RFID Authorization', 'Wi-Fi / Bluetooth Integration', 'App Schedule Control', 'Ergonomic Wall Mount'],
-    usage: 'Workplace/Office, Home Charging',
-    priceVal: 1490,
-    priceStr: '₹1,490/month',
-    purchasePrice: '₹39,990',
-    rating: 4.8,
-    reviews: 124,
-    capacityGroup: '7.4 kW',
-    connectorGroup: 'Type 2'
+    id: 'agra-expressway',
+    code: 'MC-101',
+    type: 'dc',
+    name: 'MC-101 | Agra Expressway Hub (180 kW)',
+    power: '180 kW Dual Fast Charging',
+    voltage: '415V Dedicated HT Grid',
+    connector: 'Dual CCS2 Fast Guns',
+    efficiency: '97.2%',
+    features: ['Safexpress guaranteed corporate demand', 'Diwali Price: ₹40 L + GST (Save ₹2.5 L)', '5-Yr Net Earnings: ₹105–140 Lakh', '1.4–2 yrs payback · 43–64% IRR'],
+    usage: 'Prem Vehicles Pvt Ltd, Agra (Agra Expressway Corridor)',
+    priceVal: 10000,
+    priceStr: '₹10,000 min ticket',
+    purchasePrice: '₹40,00,000 Diwali Price',
+    rating: 5.0,
+    reviews: 38,
+    capacityGroup: '180 kW',
+    connectorGroup: 'CCS2 Dual Gun',
+    isComingSoon: false,
+    image: agraStationCloseup
   },
   {
-    id: 'ac11',
-    type: 'ac',
-    name: 'MegaCharge Premium 11 kW AC Wallbox',
-    power: '11 kW (Three Phase 16A)',
-    voltage: '415V AC ± 10%',
-    connector: 'Type 2 plug with 5m cable',
-    efficiency: '97%',
-    features: ['RFID Authorization', 'Wi-Fi / Ethernet Integration', 'Dynamic Load Balancer', 'LED status display'],
-    usage: 'Home Charging, Workplace/Office, Hotel',
-    priceVal: 1990,
-    priceStr: '₹1,990/month',
-    purchasePrice: '₹49,990',
-    rating: 4.6,
-    reviews: 82,
-    capacityGroup: '11 kW',
-    connectorGroup: 'Type 2'
-  },
-  {
-    id: 'ac22',
-    type: 'ac',
-    name: 'MegaCharge Dual 22 kW AC Commercial',
-    power: '22 kW (Three Phase split)',
-    voltage: '415V AC ± 10%',
-    connector: 'Dual Type 2 Connectors',
+    id: 'yamuna-expressway',
+    code: 'MC-102',
+    type: 'dc',
+    isComingSoon: true,
+    name: 'MC-102 | Yamuna Expressway Super Hub (240 kW)',
+    power: '240 kW Combined Hyper Charging',
+    voltage: '415V HT Dedicated Transformer',
+    connector: 'Quad CCS2 Liquid-Cooled Guns',
     efficiency: '97.5%',
-    features: ['Dual RFID Authentication', 'OCPP 1.6 Billing System', 'LED interactive screen', 'Weatherproof casing'],
-    usage: 'Commercial Properties, Workplace/Office, Hotel, Retail Malls',
-    priceVal: 2990,
-    priceStr: '₹2,990/month',
-    purchasePrice: '₹79,990',
-    rating: 4.7,
-    reviews: 65,
-    capacityGroup: '22 kW',
-    connectorGroup: 'Type 2'
-  },
-  {
-    id: 'dc30',
-    type: 'dc',
-    name: 'MegaCharge 30 kW DC Compact Rapid',
-    power: '30 kW (Three Phase)',
-    voltage: '415V AC ± 10%',
-    connector: 'Single CCS2 Gun',
-    efficiency: '95%',
-    features: ['OCPP 1.6 cloud sync', 'Intelligent power distribution', '7-inch LCD interface', 'Emergency stop mechanism'],
-    usage: 'Fleet & Logistics, Retail Malls, Hotel, Commercial Properties',
-    priceVal: 9990,
-    priceStr: '₹9,990/month',
-    purchasePrice: '₹2,49,990',
-    rating: 4.5,
-    reviews: 39,
-    capacityGroup: '30 kW',
-    connectorGroup: 'CCS2 Single Gun'
-  },
-  {
-    id: 'dc60',
-    type: 'dc',
-    name: 'MegaCharge 60 kW Dual Gun DC Charger',
-    power: '60 kW (Three Phase split)',
-    voltage: '415V AC ± 10%',
-    connector: 'Dual CCS2 Guns',
-    efficiency: '96%',
-    features: ['OCPP 1.6 telemetry', 'Dynamic output sharing', 'Unified UPI QR code billing', 'IP54 weather protection'],
-    usage: 'Highway Plazas, Retail Malls, Fleet & Logistics',
-    priceVal: 18990,
-    priceStr: '₹18,990/month',
-    purchasePrice: '₹5,89,990',
+    features: ['Coming Soon · Pre-Registration Open', 'Jewar Airport freight logistics link', '5-Yr Net Earnings: ₹135–175 Lakh', '1.3–1.8 yrs payback · 46–68% IRR'],
+    usage: 'Jewar Logistics Interchange, Yamuna Expressway Milestone 68',
+    priceVal: 10000,
+    priceStr: '₹10,000 min ticket',
+    purchasePrice: '₹48,00,000 (Estimated)',
     rating: 4.9,
-    reviews: 110,
-    capacityGroup: '60 kW',
-    connectorGroup: 'CCS2 Dual Gun',
-    image: zenergize60
-  },
-  {
-    id: 'dc120',
-    type: 'dc',
-    name: 'MegaCharge 120 kW High-Power DC Charger',
-    power: '120 kW (Three Phase High Load)',
-    voltage: '415V AC ± 10%',
-    connector: 'Dual CCS2 High-Power Guns',
-    efficiency: '96.5%',
-    features: ['Liquid-cooled rectifiers', 'Fast charge up to 120 kW', '24x7 remote diagnostics', 'Custom brand wrappers'],
-    usage: 'Highway Plazas, Fleet & Logistics',
-    priceVal: 29990,
-    priceStr: '₹29,990/month',
-    purchasePrice: '₹11,49,990',
-    rating: 4.8,
-    reviews: 56,
-    capacityGroup: '120 kW',
-    connectorGroup: 'CCS2 Dual Gun',
-    image: zenergize120
-  },
-  {
-    id: 'dc240',
-    type: 'dc',
-    name: 'MegaCharge 240 kW Liquid-Cooled Hyper Charger',
-    power: '240 kW Ultra Power',
-    voltage: '415V AC ± 10% Grid',
-    connector: 'Dual CCS2 High-Power Guns',
-    efficiency: '96.8%',
-    features: ['Liquid-cooled active system', 'Ultra-fast hyper charging', 'NOC telemetry sync', 'Active surge protection fuse'],
-    usage: 'Highway Plazas, Fleet & Logistics depots',
-    priceVal: 54990,
-    priceStr: '₹54,990/month',
-    purchasePrice: '₹19,49,990',
-    rating: 4.9,
-    reviews: 78,
+    reviews: 44,
     capacityGroup: '240 kW',
-    connectorGroup: 'CCS2 Dual Gun',
+    connectorGroup: 'CCS2 Quad Gun',
     image: zenergize240
   },
   {
-    id: 'nh44-panipat',
+    id: 'delhi-mumbai-expressway',
+    code: 'MC-103',
     type: 'dc',
-    name: 'NH-44 Panipat Hub (2 × 60 kW DC)',
-    power: '120 kW Combined (2 × 60 kW)',
-    voltage: '415V AC Three Phase',
-    connector: 'Dual CCS2 (4 Guns Total)',
-    efficiency: '96.5%',
-    features: ['Co-ownership model', 'High-density highway site', 'OCPP 1.6 cloud billing', '24x7 MNIL maintenance'],
-    usage: 'Highway Plazas, Commercial Properties',
+    isComingSoon: true,
+    name: 'MC-103 | Delhi-Mumbai Expressway Terminal (120 kW)',
+    power: '120 kW Dual Fast Charging',
+    voltage: '415V Three Phase Industrial Grid',
+    connector: 'Dual CCS2 Fast Guns',
+    efficiency: '96.8%',
+    features: ['Coming Soon · Pre-Registration Open', 'NE-4 Greenfield corridor wayside hub', '5-Yr Net Earnings: ₹82–110 Lakh', '1.5–2.1 yrs payback · 40–60% IRR'],
+    usage: 'NE-4 Delhi-Mumbai Expressway Km 112, Wayside Rest Area',
     priceVal: 10000,
     priceStr: '₹10,000 min ticket',
-    purchasePrice: '₹14,90,000 hub cost',
-    rating: 4.9,
-    reviews: 18,
+    purchasePrice: '₹29,50,000 (Estimated)',
+    rating: 4.8,
+    reviews: 31,
     capacityGroup: '120 kW',
     connectorGroup: 'CCS2 Dual Gun',
-    image: zenergize60
-  },
-  {
-    id: 'agra-expressway',
-    type: 'dc',
-    name: 'Agra Expressway Hub (180 kW Ultra)',
-    power: '180 kW Total Fast Charging',
-    voltage: '415V Dedicated HT Grid',
-    connector: 'Triple CCS2 Guns',
-    efficiency: '97%',
-    features: ['High-traffic express corridor', 'Sub-20 min charging', '88% funded', 'Direct monthly NEFT yield'],
-    usage: 'Highway Plazas, Rest Stops',
-    priceVal: 10000,
-    priceStr: '₹10,000 min ticket',
-    purchasePrice: '₹22,00,000 hub cost',
-    rating: 4.9,
-    reviews: 34,
-    capacityGroup: '180 kW',
-    connectorGroup: 'CCS2 Dual Gun',
     image: zenergize120
-  },
-  {
-    id: 'kurukshetra-cluster',
-    type: 'ac',
-    name: 'Kurukshetra Cluster (4 × 7.4 kW AC)',
-    power: '29.6 kW Total Grid Output',
-    voltage: '230V / 415V Commercial Grid',
-    connector: '4 × Type 2 Sockets',
-    efficiency: '97.5%',
-    features: ['Destination hotel charging', 'Overnight dwell time', 'Smart RFID cards', 'Zero maintenance liability'],
-    usage: 'Hotel, Retail Malls, Commercial Properties',
-    priceVal: 10000,
-    priceStr: '₹10,000 min ticket',
-    purchasePrice: '₹8,00,000 hub cost',
-    rating: 4.8,
-    reviews: 12,
-    capacityGroup: '7.4 kW',
-    connectorGroup: 'Type 2',
-    image: acCharger
-  },
-  {
-    id: 'raebareli-depot',
-    type: 'dc',
-    name: 'Rae Bareli Fleet Depot (6 × 30 kW)',
-    power: '180 kW Heavy Fleet Grid',
-    voltage: '415V Three Phase Industrial',
-    connector: '6 × CCS2 High Cycle Guns',
-    efficiency: '95.5%',
-    features: ['Dedicated logistics fleet', 'Predictable shift charging', 'B2B anchor contracts', '72% funded'],
-    usage: 'Fleet & Logistics, Industrial Depots',
-    priceVal: 10000,
-    priceStr: '₹10,000 min ticket',
-    purchasePrice: '₹25,00,000 hub cost',
-    rating: 4.8,
-    reviews: 26,
-    capacityGroup: '30 kW',
-    connectorGroup: 'CCS2 Single Gun',
-    image: dcCharger
   }
 ];
 
@@ -853,9 +714,15 @@ const Solutions = () => {
                           {/* Info Deck */}
                           <div className={`${viewMode === 'list' ? 'md:col-span-9 flex flex-col justify-between' : ''}`}>
                             <div className="flex items-center gap-2 mb-2 flex-wrap">
-                              <span className={`px-2.5 py-1 rounded-md text-[9px] font-extrabold uppercase tracking-wider ${charger.type === 'ac' ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'}`}>
-                                {charger.type === 'ac' ? 'AC Wallbox' : 'DC Fast'}
-                              </span>
+                              {charger.isComingSoon ? (
+                                <span className="px-2.5 py-1 rounded-md text-[9px] font-extrabold uppercase tracking-wider bg-amber-100 text-amber-800 border border-amber-300">
+                                  Coming Soon
+                                </span>
+                              ) : (
+                                <span className={`px-2.5 py-1 rounded-md text-[9px] font-extrabold uppercase tracking-wider ${charger.type === 'ac' ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'}`}>
+                                  {charger.type === 'ac' ? 'AC Wallbox' : 'DC Fast'}
+                                </span>
+                              )}
                               <span className="text-slate-400 text-[10px] font-bold font-mono">{charger.power}</span>
                             </div>
 
@@ -926,9 +793,13 @@ const Solutions = () => {
                         <div className={`border-t border-slate-100 pt-4 flex flex-col justify-end ${viewMode === 'grid' ? '' : 'md:border-t-0 md:pt-0 md:border-l md:pl-6 md:w-56 md:justify-center'}`}>
                           <button 
                             onClick={() => navigate(`/chargers/${charger.id}`)}
-                            className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#F18321] to-[#832800] text-white font-extrabold text-xs uppercase tracking-wider py-3 rounded-xl transition-all duration-300 hover:scale-[1.02] shadow-sm hover:shadow-glow-orange"
+                            className={`w-full inline-flex items-center justify-center gap-2 text-white font-extrabold text-xs uppercase tracking-wider py-3 rounded-xl transition-all duration-300 hover:scale-[1.02] shadow-sm ${
+                              charger.isComingSoon 
+                                ? 'bg-amber-600 hover:bg-amber-700 shadow-amber-200' 
+                                : 'bg-gradient-to-r from-[#F18321] to-[#832800] hover:shadow-glow-orange'
+                            }`}
                           >
-                            View Product Details <ArrowRight size={12} />
+                            {charger.isComingSoon ? 'Coming Soon · Pre-Register' : 'View Product Details'} <ArrowRight size={12} />
                           </button>
                         </div>
                       </motion.div>

@@ -31,7 +31,7 @@ const FloatingActions = () => {
       
       {/* 1. WHATSAPP FLOATING BUTTON (PULSING GREEN) */}
       <a 
-        href="https://wa.me/919289555090?text=Hello%20MegaCharge%2C%20I%20am%20interested%20in%20EV%20Charging%20Station%20Rentals."
+        href="https://wa.me/919289555890?text=Hello%20MegaCharge%2C%20I%20am%20interested%20in%20EV%20Charging%20Station%20Rentals."
         target="_blank" 
         rel="noopener noreferrer"
         className="whatsapp-float-btn shadow-2xl flex items-center justify-center"
